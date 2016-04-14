@@ -1,5 +1,5 @@
 module Features
-  def supplier(name)
+  def company(name)
     Company.create(name:name,adress:'Ravenna',number:'345')
   end
 

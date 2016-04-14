@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   end
 
   def company_invoices
-    @invoices = Company.find(params_id).invoices
+    @invoices = Invoice.by_company params_id
     render "index"
   end
 

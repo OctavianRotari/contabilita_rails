@@ -10,4 +10,5 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include Features, type: :feature
+  config.include Unit, type: :model
 end
