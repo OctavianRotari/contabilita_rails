@@ -3,13 +3,14 @@ class InvoicesController < ApplicationController
     @invoices = Invoice.all
   end
 
-  def show
-    @invoices = ClientsAndSupplier.invoices params_id
+  def clients_and_supliers_invoices
+    @invoices = ClientsAndSupplier.find(params_id).invoices
+    render "index"
   end
 
   private
 
   def params_id
-    Invoice.find(params[:id])
+    params[:clients_and_supplier_id]
   end
 end

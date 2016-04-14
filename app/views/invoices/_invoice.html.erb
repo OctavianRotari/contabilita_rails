@@ -1,6 +1,7 @@
 <table>
 <thead>
 	<tr>
+		<th>Fornitore</th>
 		<th>Totale</th>
 		<th>Iva</th>
 		<th>Data di emmissione</th>
@@ -10,15 +11,16 @@
 	</tr>
 </thead>
 <tbody>
-	<tr>
-		<% @invoices.each do |invoice|%>
+	<% @invoices.each do |invoice|%>
+		<tr>
+			<td><%=link_to invoice.issuer_name, clients_and_supplier_invoices_path(invoice.issuer_id) %></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.vat %></td>
 			<td><%=invoice.date.strftime("%d/%m/%Y") %></td>
 			<td><%=invoice.plate %></td>
 			<td><%=invoice.deadline.strftime("%d/%m/%Y") %></td>
 			<td><%=invoice.type_of_payment %></td>
-		<%end%>
-	</tr>
+		</tr>
+	<%end%>
 </tbody>
 </table>
