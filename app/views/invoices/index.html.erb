@@ -13,7 +13,7 @@
 <tbody>
 	<tr>
 		<% @invoices.each do |invoice|%>
-			<td><%=invoice.supplier %></td>
+			<td><%=link_to invoice.supplier, invoice_path(invoice) %></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.vat %></td>
 			<td><%=invoice.date.strftime("%d/%m/%Y") %></td>

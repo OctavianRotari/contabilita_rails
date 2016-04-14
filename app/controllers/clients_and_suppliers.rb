@@ -1,0 +1,3 @@
+class ClientsAndSuppliers < ApplicationController
+
+end

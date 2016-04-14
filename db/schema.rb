@@ -11,18 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414113313) do
+ActiveRecord::Schema.define(version: 20160414152734) do
+
+  create_table "clients_and_suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "adress"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "invoices", force: :cascade do |t|
-    t.string   "supplier"
     t.integer  "total"
     t.integer  "vat"
     t.datetime "date"
     t.string   "plate"
     t.datetime "deadline"
     t.string   "type_of_payment"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "clients_and_supplier_id"
   end
+
+  add_index "invoices", ["clients_and_supplier_id"], name: "index_invoices_on_clients_and_supplier_id"
 
 end
