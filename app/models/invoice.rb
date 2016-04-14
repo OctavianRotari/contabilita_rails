@@ -1,11 +1,11 @@
 class Invoice < ActiveRecord::Base
-  belongs_to :clients_and_supplier
+  belongs_to :company
 
-  def issuer_name
-    clients_and_supplier.name
+  def company_name
+    company.name
   end
 
-  def issuer_id
-    clients_and_supplier.id
+  def company_id
+    company.id
   end
 end

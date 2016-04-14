@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160414152734) do
 
-  create_table "clients_and_suppliers", force: :cascade do |t|
+  create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "adress"
     t.integer  "number"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20160414152734) do
     t.string   "plate"
     t.datetime "deadline"
     t.string   "type_of_payment"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "clients_and_supplier_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "company_id"
   end
 
-  add_index "invoices", ["clients_and_supplier_id"], name: "index_invoices_on_clients_and_supplier_id"
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"
 
 end

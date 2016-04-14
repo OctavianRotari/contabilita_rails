@@ -1,6 +1,6 @@
-class CreateClientsAndSuppliers < ActiveRecord::Migration
+class CreateCompanies < ActiveRecord::Migration
   def change
-    create_table :clients_and_suppliers do |t|
+    create_table :companies do |t|
       t.string :name
       t.string :adress
       t.integer :number

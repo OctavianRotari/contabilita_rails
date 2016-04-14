@@ -1,2 +1,0 @@
-class ClientsAndSuppliers < ApplicationController
-end
