@@ -1,11 +1,10 @@
 class InvoicesController < ApplicationController
   def index
-    byebug
     @invoices = Invoice.all
   end
 
   def show
-    #@invoices = Supplier.invoices params_id
+    @invoices = ClientsAndSupplier.invoices params_id
   end
 
   private
