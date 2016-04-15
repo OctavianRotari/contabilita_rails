@@ -27,6 +27,10 @@
 		});
 	</script>
 	<div>
+		<%= form.label 'Motivo' %>
+		<%= form.text_field :reason, require: true %>
+	</div>
+	<div>
 		<%= form.label 'Data emissione' %>
 		<%= form.text_field :date, require: true %>
 	</div>

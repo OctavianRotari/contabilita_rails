@@ -3,7 +3,7 @@
 <table>
 <thead>
 	<tr>
-		<th>Fornitore</th>
+		<th>Reason</th>
 		<th>Totale</th>
 		<th>Iva</th>
 		<th>Data di emmissione</th>
@@ -15,12 +15,12 @@
 <tbody>
 	<% @company.invoices.each do |invoice|%>
 		<tr>
-			<td><%=@company.name%></td>
+			<td><%=invoice.reason %></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.vat %></td>
-			<td><%=invoice.date.strftime("%d/%m/%Y") %></td>
+			<td><%=invoice.date%></td>
 			<td><%=invoice.plate %></td>
-			<td><%=invoice.deadline.strftime("%d/%m/%Y") %></td>
+			<td><%=invoice.deadline%></td>
 			<td><%=invoice.type_of_payment %></td>
 		</tr>
 	<%end%>
