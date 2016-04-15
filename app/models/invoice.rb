@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  attr_accessor :taxable
+  attr_accessor :taxable, :taxable_1, :vat_1, :taxable_2, :vat_2
   belongs_to :company
 
   def self.by_company params_id

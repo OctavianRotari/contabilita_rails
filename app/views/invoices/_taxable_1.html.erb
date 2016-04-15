@@ -1,0 +1,12 @@
+<div>
+	<%= form.label 'Imponibile' %>
+	<%= form.text_field :taxable, require: true %>
+</div>
+<div>
+	<%= form.label 'Iva' %>
+	<%= form.select(:vat_1) do %>
+		<% [['4', 4],['10', 10],['22',22]].each do |option| %>
+			<%= content_tag(:option, option.first, value: option.last) %>
+		<%end%>
+	<%end%>
+</div>

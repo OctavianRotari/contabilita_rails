@@ -8,18 +8,24 @@
 			<% end %>
 		</ul>
 	<% end %>
-	<div>
-		<%= form.label 'Imponibile' %>
-		<%= form.text_field :taxable, require: true %>
+	<div id="new_taxable_div">
+		<input type="button" value="Imponibile" class="new_taxable">
+		<input type="button" value="Due imponibili" class="new_taxable">
+		<input type="button" value="Tre imponibili" class="new_taxable">
 	</div>
-	<div>
-		<%= form.label 'Iva' %>
-		<%= form.select(:vat) do %>
-			<% [['4', 4],['10', 10],['22',22]].each do |option| %>
-				<%= content_tag(:option, option.first, value: option.last) %>
-			<%end%>
-		<%end%>
-	</div>
+	<script>
+		$(document).ready(function(){
+			$('.new_taxable').click(function(){
+				if($(this).attr("value") === 'Imponibile'){
+					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_1", locals: { form: form }) %>');
+				} else if($(this).attr("value") === 'Due imponibili'){
+					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_2", locals: { form: form }) %>');
+				} else {
+					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_3", locals: { form: form }) %>');
+				}
+			});
+		});
+	</script>
 	<div>
 		<%= form.label 'Data emissione' %>
 		<%= form.text_field :date, require: true %>
@@ -40,4 +46,4 @@
 		<%= form.submit "Aggiungi fattura" %>
 	</div>
 <% end %>
-<%= javascript_include_tag "scripts", "data-turbolinks-track" => true  %>
+
