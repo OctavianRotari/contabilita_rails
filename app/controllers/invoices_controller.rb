@@ -1,6 +1,4 @@
 class InvoicesController < ApplicationController
-  before_filter :get_company, only: [:new, :create]
-
   def index
     @invoices = Invoice.all
   end
@@ -10,9 +8,9 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    invoice = @company.invoices.build(invoice_params)
+    invoice = Invoice.build_invoice invoice_params, company_id
     if invoice.save
-      redirect_to company_path(@company.id)
+      redirect_to company_path(company_id)
     else
       redirect_to new_company_invoice
     end
@@ -23,8 +21,8 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:total, :date, :plate, :deadline, :type_of_payment)
   end
 
-  def get_company
-    @company = Company.find(params[:company_id])
+  def company_id
+    params[:company_id]
   end
 end
 

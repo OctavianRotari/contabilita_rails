@@ -5,6 +5,11 @@ class Invoice < ActiveRecord::Base
     Company.invoices params_id
   end
 
+  def self.build_invoice invoice_params, company_id
+    company = Company.invoices(company_id)
+    company.build(invoice_params)
+  end
+
   def company_name
     company.name
   end
