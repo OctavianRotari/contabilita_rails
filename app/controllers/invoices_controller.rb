@@ -3,9 +3,8 @@ class InvoicesController < ApplicationController
     @invoices = Invoice.all
   end
 
-  def company_invoices
-    @invoices = Invoice.by_company params_id
-    render "index"
+  def new
+
   end
 
   private

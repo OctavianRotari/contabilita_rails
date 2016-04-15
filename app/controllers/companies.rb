@@ -1,2 +1,0 @@
-class Companies < ApplicationController
-end
