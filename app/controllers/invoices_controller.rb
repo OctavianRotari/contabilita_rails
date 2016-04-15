@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    byebug
     invoice = Invoice.calculate_total invoice_params
     invoice_new = Invoice.add_to_company invoice, company_id
     if invoice_new.save
@@ -20,7 +21,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:total, :taxable, :vat, :date, :plate, :deadline, :type_of_payment)
+    params.require(:invoice).permit(:total, :taxable, :vat, :taxable_1, :vat_1, :taxable_2, :vat_2, :date, :plate, :deadline, :type_of_payment)
   end
 
   def company_id
