@@ -6,16 +6,12 @@ class Invoice < ActiveRecord::Base
     Company.invoices params_id
   end
 
-  def self.build_invoice invoice_params, company_id
-    company = Company.invoices(company_id)
-    company.build(invoice_params)
+  def self.calculate_total invoice_params
+    (BuildInvoice.new invoice_params).total
   end
 
-  def self.calculate_total invoice_params
-    vat = invoice_params[:taxable].to_i * invoice_params[:vat].to_i/100
-    invoice_params[:vat] = vat
-    invoice_params = invoice_params.merge(total: vat + invoice_params[:taxable].to_i )
-    invoice_params
+  def self.add_to_company invoice, company_id
+    (Company.invoices(company_id)).build(invoice)
   end
 
   def company_name

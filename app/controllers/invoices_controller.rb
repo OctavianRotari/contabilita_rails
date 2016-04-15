@@ -8,9 +8,9 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    invoice_with_total = Invoice.calculate_total invoice_params
-    invoice = Invoice.build_invoice invoice_with_total, company_id
-    if invoice.save
+    invoice = Invoice.calculate_total invoice_params
+    invoice_new = Invoice.add_to_company invoice, company_id
+    if invoice_new.save
       redirect_to company_path(company_id)
     else
       redirect_to new_company_invoice
