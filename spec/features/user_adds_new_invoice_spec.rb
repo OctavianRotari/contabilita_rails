@@ -17,13 +17,15 @@ feature 'user' do
     click_link 'Aziende'
     click_link 'Bezzi'
     click_link 'Aggiungi fattura'
-    fill_in 'invoice[total]', with: 250
+    fill_in 'invoice[taxable]', with: 250
+    page.select '22', from: 'invoice[vat]'
     fill_in 'invoice[date]', with: "01/04/2015"
     fill_in 'invoice[plate]', with: "EG324FR"
     fill_in 'invoice[deadline]', with: "01/05/2015"
     fill_in 'invoice[type_of_payment]', with: "bonifico"
     click_button 'Aggiungi fattura'
-    expect(page).to have_css 'td', text: '250'
+    expect(page).to have_css 'td', text: '305'
+    expect(page).to have_css 'td', text: '55'
     expect(page).to have_css 'td', text: 'EG324FR'
     expect(page).to have_css 'td', text: 'bonifico'
   end

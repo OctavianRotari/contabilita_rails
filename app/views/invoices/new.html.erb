@@ -9,8 +9,16 @@
 		</ul>
 	<% end %>
 	<div>
-		<%= form.label 'Totale' %>
-		<%= form.text_field :total, require: true %>
+		<%= form.label 'Imponibile' %>
+		<%= form.text_field :taxable, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Iva' %>
+		<%= form.select(:vat) do %>
+			<% [['4', 4],['10', 10],['22',22]].each do |option| %>
+				<%= content_tag(:option, option.first, value: option.last) %>
+			<%end%>
+		<%end%>
 	</div>
 	<div>
 		<%= form.label 'Data emissione' %>
@@ -32,3 +40,4 @@
 		<%= form.submit "Aggiungi fattura" %>
 	</div>
 <% end %>
+<%= javascript_include_tag "scripts", "data-turbolinks-track" => true  %>

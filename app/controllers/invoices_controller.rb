@@ -8,7 +8,8 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    invoice = Invoice.build_invoice invoice_params, company_id
+    invoice_with_total = Invoice.calculate_total invoice_params
+    invoice = Invoice.build_invoice invoice_with_total, company_id
     if invoice.save
       redirect_to company_path(company_id)
     else
@@ -17,8 +18,9 @@ class InvoicesController < ApplicationController
   end
 
   private
+
   def invoice_params
-    params.require(:invoice).permit(:total, :date, :plate, :deadline, :type_of_payment)
+    params.require(:invoice).permit(:total, :taxable, :vat, :date, :plate, :deadline, :type_of_payment)
   end
 
   def company_id
