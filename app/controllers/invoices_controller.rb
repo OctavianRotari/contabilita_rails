@@ -7,6 +7,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
+  def show
+    @invoice = Invoice.find(params[:id])
+  end
+
   def create
     invoice = Invoice.calculate_total invoice_params
     invoice_new = Invoice.add_to_company invoice, company_id

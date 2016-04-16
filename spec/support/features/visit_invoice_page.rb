@@ -10,4 +10,11 @@ module Features
     click_link 'Bezzi'
     click_link 'Aggiungi fattura'
   end
+
+  def visits_individual_invoice
+    visit '/'
+    click_link 'Aziende'
+    click_link 'Bezzi'
+    click_link 'Manutenzione'
+  end
 end
