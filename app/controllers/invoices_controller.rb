@@ -17,25 +17,14 @@ class InvoicesController < ApplicationController
     if invoice_new.save
       redirect_to company_path(company_id)
     else
-      redirect_to new_company_invoice
+      render new_company_invoice
     end
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,
-                                    :paid,
-                                    :taxable_1,
-                                    :vat_1,
-                                    :taxable_2,
-                                    :vat_2,
-                                    :taxable_3,
-                                    :vat_3,
-                                    :date,
-                                    :plate,
-                                    :deadline,
-                                    :type_of_payment)
+    params.require(:invoice).permit(:reason,:paid,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date,:plate,:deadline,:type_of_payment)
   end
 
   def company_id
