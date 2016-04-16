@@ -14,6 +14,8 @@ class CalculateTaxable
     @total_taxable
   end
 
+  private
+
   def calc_of_taxable taxable
     if(@invoice_params.has_key?(taxable.to_sym))
       @total_taxable += @invoice_params[taxable.to_sym].to_f

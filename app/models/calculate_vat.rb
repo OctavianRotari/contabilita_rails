@@ -15,6 +15,8 @@ class CalculateVat
     @total_vat
   end
 
+  private
+
   def calc_of_vat vat, taxable
     if(@invoice_params.has_key?(vat.to_sym))
       @total_vat += @invoice_params[taxable.to_sym].to_f * @invoice_params[vat.to_sym].to_i/100
