@@ -4,6 +4,7 @@
 		<th>Fornitore</th>
 		<th>Totale</th>
 		<th>Motivo</th>
+		<th>Pagato</th>
 		<th>Iva</th>
 		<th>Data di emmissione</th>
 		<th>Targa</th>
@@ -17,6 +18,7 @@
 			<td><%=link_to invoice.company_name, company_path(invoice.company_id) %></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.reason %></td>
+			<td><%=invoice.paid %></td>
 			<td><%=invoice.vat %></td>
 			<td><%=invoice.date%></td>
 			<td><%=invoice.plate %></td>

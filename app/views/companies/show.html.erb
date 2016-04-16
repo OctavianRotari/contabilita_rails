@@ -3,7 +3,8 @@
 <table>
 <thead>
 	<tr>
-		<th>Reason</th>
+		<th>Motivo</th>
+		<th>Pagato</th>
 		<th>Totale</th>
 		<th>Iva</th>
 		<th>Data di emmissione</th>
@@ -16,6 +17,7 @@
 	<% @company.invoices.each do |invoice|%>
 		<tr>
 			<td><%=invoice.reason %></td>
+			<td><%=invoice.paid%></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.vat %></td>
 			<td><%=invoice.date%></td>

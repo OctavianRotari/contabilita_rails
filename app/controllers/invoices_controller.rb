@@ -20,7 +20,18 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason, :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3, :date, :plate, :deadline, :type_of_payment)
+    params.require(:invoice).permit(:reason,
+                                    :paid,
+                                    :taxable_1,
+                                    :vat_1,
+                                    :taxable_2,
+                                    :vat_2,
+                                    :taxable_3,
+                                    :vat_3,
+                                    :date,
+                                    :plate,
+                                    :deadline,
+                                    :type_of_payment)
   end
 
   def company_id
