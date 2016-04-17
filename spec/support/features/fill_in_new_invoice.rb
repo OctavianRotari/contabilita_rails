@@ -5,6 +5,6 @@ module Features
     fill_in 'invoice[date]', with: "01/04/2015"
     fill_in 'invoice[plate]', with: "EG324FR"
     fill_in 'invoice[deadline]', with: "01/05/2015"
-    fill_in 'invoice[method_of_payment]', with: "bonifico"
+    fill_in 'invoice[reason]', with: "Manutenzione"
   end
 end
