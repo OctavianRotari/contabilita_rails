@@ -13,14 +13,10 @@ class BuildInvoice
   def build
     @invoice_params = invoice_params
     total
-    add_to_company @invoice_params, company_id
+    Company.build @invoice_params, company_id
   end
 
-  def add_to_company invoice, company_id
-    company = Company.invoices(company_id)
-    company.build(invoice)
-  end
-
+  private
   def total
     total_vat = @vat.total_vat
     total_taxable = @taxable.total_taxable
@@ -29,8 +25,6 @@ class BuildInvoice
     clear_invoice_params
     @invoice_params
   end
-
-  private
 
   def company_id
     @params[:company_id]
