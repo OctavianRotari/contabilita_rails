@@ -1,6 +1,6 @@
 class Invoice < ActiveRecord::Base
   attr_accessor :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3, :paid, :method_of_payment
-  has_many :payments
+  has_many :payments, dependent: :destroy
   belongs_to :company
 
   def self.by_company params_id

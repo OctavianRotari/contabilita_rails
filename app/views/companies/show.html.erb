@@ -9,6 +9,7 @@
 		<th>Data di emmissione</th>
 		<th>Targa</th>
 		<th>Scadenza</th>
+		<th>Elimina</th>
 	</tr>
 </thead>
 <tbody>
@@ -20,6 +21,7 @@
 			<td><%=invoice.date%></td>
 			<td><%=invoice.plate %></td>
 			<td><%=invoice.deadline%></td>
+			<td><%=button_to "Elimina fattura", company_invoice_path(company_id: @company.id, id: invoice.id), method: :delete %></td>
 		</tr>
 	<%end%>
 </tbody>

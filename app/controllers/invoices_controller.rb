@@ -11,6 +11,13 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
 
+  def destroy
+    @invoice = Invoice.find(params[:id])
+    @invoice.destroy
+    flash[:notice] = 'Fattura elliminata'
+    redirect_to company_path(company_id)
+  end
+
   def create
     invoice = Invoice.register params
     if invoice.save
