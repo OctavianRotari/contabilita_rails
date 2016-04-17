@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416165328) do
+ActiveRecord::Schema.define(version: 20160417200452) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160416165328) do
     t.decimal  "vat"
     t.decimal  "total"
     t.string   "reason"
+    t.decimal  "taxable"
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"

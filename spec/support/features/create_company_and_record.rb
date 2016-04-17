@@ -4,11 +4,12 @@ module Features
   end
 
   def create_invoice(company, reason='Manutenzione')
-    company.invoices.create(reason:reason, 
-                            total:110, 
-                            vat:10, 
-                            date:'01/04/2015', 
-                            plate:'de234ed', 
+    company.invoices.create(reason:reason,
+                            total:110,
+                            vat:10,
+                            date:'01/04/2015',
+                            plate:'de234ed',
+                            taxable:100,
                             deadline:'30/04/2015')
   end
 

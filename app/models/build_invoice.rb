@@ -21,7 +21,7 @@ class BuildInvoice
     total_vat = @vat.total_vat
     total_taxable = @taxable.total_taxable
     total =  total_vat + total_taxable
-    @invoice_params = @invoice_params.merge(total: total, vat: total_vat)
+    @invoice_params = @invoice_params.merge(total: total, vat: total_vat, taxable:total_taxable)
     clear_invoice_params
     @invoice_params
   end
