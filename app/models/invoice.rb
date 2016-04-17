@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  attr_accessor :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3
+  attr_accessor :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3, :paid, :method_of_payment
   has_many :payments
   belongs_to :company
 
@@ -7,12 +7,9 @@ class Invoice < ActiveRecord::Base
     Company.invoices params_id
   end
 
-  def self.calculate_total invoice_params
-    (BuildInvoice.new invoice_params).total
-  end
-
-  def self.add_to_company invoice, company_id
-    (Company.invoices(company_id)).build(invoice)
+  def self.register params
+    invoice = BuildInvoice.new params
+    invoice.build
   end
 
   def self.payments params_id

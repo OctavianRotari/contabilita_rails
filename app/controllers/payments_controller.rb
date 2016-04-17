@@ -4,15 +4,14 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = Payment.add_to_invoice payment_params, invoice_id
-    payment.save
+    Payment.add_to_invoice payment_params, invoice_id
     redirect_to company_invoice_path(company_id: company_id, id: invoice_id)
   end
 
   private
 
   def payment_params
-    params.require(:payment).permit(:total,:method_of_payment,:date)
+    params.require(:payment).permit(:paid,:method_of_payment,:date)
   end
 
   def company_id

@@ -3,10 +3,22 @@ require_relative 'calculate_vat'
 
 class BuildInvoice
 
-  def initialize invoice_params
-    @invoice_params = invoice_params
+  def initialize params
+    @params = params
     @taxable = CalculateTaxable.new(invoice_params)
     @vat = CalculateVat.new(invoice_params)
+    @invoice_params = nil
+  end
+
+  def build
+    @invoice_params = invoice_params
+    total
+    add_to_company @invoice_params, company_id
+  end
+
+  def add_to_company invoice, company_id
+    company = Company.invoices(company_id)
+    company.build(invoice)
   end
 
   def total
@@ -19,6 +31,14 @@ class BuildInvoice
   end
 
   private
+
+  def company_id
+    @params[:company_id]
+  end
+
+  def invoice_params
+    @params.require(:invoice).permit(:reason,:paid,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date,:plate,:deadline,:method_of_payment)
+  end
 
   def clear_invoice_params
     i = 1
