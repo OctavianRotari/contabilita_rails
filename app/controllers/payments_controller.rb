@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:paid,:method_of_payment,:date)
+    params.require(:payment).permit(:paid,:method_of_payment,:payment_date)
   end
 
   def company_id

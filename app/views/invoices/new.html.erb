@@ -31,12 +31,8 @@
 		<%= form.text_field :reason, require: true %>
 	</div>
 	<div>
-		<%= form.label 'Pagato' %>
-		<%= form.text_field :paid, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Data emissione' %>
-		<%= form.text_field :date, require: true %>
+		<%= form.label 'Data emissione fattura' %>
+		<%= form.text_field :date_of_issue, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Targa camion' %>
@@ -45,6 +41,14 @@
 	<div>
 		<%= form.label 'Data scadenza' %>
 		<%= form.text_field :deadline, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Pagato' %>
+		<%= form.text_field :paid, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Data pagamento' %>
+		<%= form.text_field :payment_date, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Tipo di pagamento' %>

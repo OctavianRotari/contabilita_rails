@@ -38,10 +38,26 @@ feature 'user' do
     fill_in_new_invoice
     fill_in 'invoice[paid]', with: 50
     fill_in 'invoice[method_of_payment]', with: "bonifico"
+    fill_in 'invoice[payment_date]', with: "01/04/2015"
     click_button 'Aggiungi fattura'
     click_link 'Manutenzione'
     expect(page).to have_css 'p', text: 'Totale pagamento:50.0'
     expect(page).to have_css 'p', text: 'Metodo pagamento:bonifico'
-    expect(page).to have_css 'p', text: 'Data:2015-04-01 00:00:00 UTC'
+    expect(page).to have_css 'p', text: 'Data pagamento:2015-04-01 00:00:00 UTC'
+  end
+
+  scenario 'Adds a new invoice without payment', js: true do
+    company('Bezzi')
+    visit '/companies'
+    click_on 'Bezzi'
+    click_link 'Aggiungi fattura'
+    click_button 'Due imponibili'
+    fill_in_new_invoice
+    click_button 'Aggiungi fattura'
+    click_link 'Manutenzione'
+    expect(page).not_to have_css 'p', text: 'Pagamenti:'
+    expect(page).not_to have_css 'p', text: 'Totale pagamento:'
+    expect(page).not_to have_css 'p', text: 'Metodo pagamento:'
+    expect(page).not_to have_css 'p', text: 'Data pagamento:'
   end
 end

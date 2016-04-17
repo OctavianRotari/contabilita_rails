@@ -1,18 +1,20 @@
 <h1><%= @invoice.company.name %></h1>
 <h2><%= @invoice.reason %></h2>
 <p>Motivo: <%=@invoice.reason%></p>
-<p>Pagamenti:
-	<% @invoice.payments.each do |payment|%>
-		<p>Totale pagamento:<%=payment.paid%></p> 
-		<p>Metodo pagamento:<%=payment.method_of_payment%></p> 
-		<p>Data:<%=payment.date%></p> 
-	<%end%>
-</p>
 <p>Taxable: <%=@invoice.taxable %></p>
 <p>Iva: <%=@invoice.vat %></p>
 <p>Totale: <%=@invoice.total %></p>
-<p>Data emissione: <%=@invoice.date%></p>
+<p>Data emissione: <%=@invoice.date_of_issue%></p>
 <p>Targa: <%=@invoice.plate %></p>
 <p>Scadenza: <%=@invoice.deadline%></p>
+<%if !@invoice.payments.empty? %>
+	<p>Pagamenti:</p>
+	<% @invoice.payments.each do |payment|%>
+		<p>Totale pagamento:<%=payment.paid%></p> 
+		<p>Metodo pagamento:<%=payment.method_of_payment%></p> 
+		<p>Data pagamento:<%=payment.payment_date%></p> 
+	<%end%>
+<%end%>
+
 <%= link_to "Effettua pagamento", 
 	new_company_invoice_payment_path(company_id:@invoice.company.id, invoice_id: @invoice.id)%>

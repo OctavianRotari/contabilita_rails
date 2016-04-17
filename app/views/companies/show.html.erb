@@ -18,7 +18,7 @@
 			<td><%=link_to invoice.reason, company_invoice_path(company_id: @company.id, id: invoice.id) %></td>
 			<td><%=invoice.total %></td>
 			<td><%=invoice.vat %></td>
-			<td><%=invoice.date%></td>
+			<td><%=invoice.date_of_issue%></td>
 			<td><%=invoice.plate %></td>
 			<td><%=invoice.deadline%></td>
 			<td><%=button_to "Elimina fattura", company_invoice_path(company_id: @company.id, id: invoice.id), method: :delete %></td>

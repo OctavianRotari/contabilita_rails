@@ -31,7 +31,7 @@ class BuildInvoice
   end
 
   def invoice_params
-    @params.require(:invoice).permit(:reason,:paid,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date,:plate,:deadline,:method_of_payment)
+    @params.require(:invoice).permit(:reason,:paid,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:plate,:deadline,:method_of_payment)
   end
 
   def clear_invoice_params

@@ -7,14 +7,14 @@ module Features
     company.invoices.create(reason:reason,
                             total:110,
                             vat:10,
-                            date:'01/04/2015',
+                            date_of_issue:'01/04/2015',
                             plate:'de234ed',
                             taxable:100,
                             deadline:'30/04/2015')
   end
 
   def create_payment(invoice, amount=100)
-    invoice.payments.create(paid:amount,method_of_payment:'cassa',date:'01/04/2015')
+    invoice.payments.create(paid:amount,method_of_payment:'cassa',payment_date:'01/04/2015')
   end
 
 end
