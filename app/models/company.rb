@@ -9,5 +9,4 @@ class Company < ActiveRecord::Base
     company = self.invoices(company_id)
     company.build(invoice)
   end
-
 end

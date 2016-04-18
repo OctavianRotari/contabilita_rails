@@ -7,9 +7,13 @@ class Invoice < ActiveRecord::Base
     Company.invoices params_id
   end
 
-  def self.register params
-    invoice = BuildInvoice.new params
-    invoice.build
+  def self.build(invoice_params)
+    params = BuildInvoice.new(invoice_params)
+    params.build
+  end
+
+  def self.add_to(company_id, invoice)
+    Company.build invoice, company_id
   end
 
   def self.payments params_id

@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'visits page new invoice' do
+  scenario 'updates invoice', js: true do
     company = company('Bezzi')
     create_invoice(company)
-    visits_company
-    click_button "Elimina fattura"
-    expect(page).not_to have_css 'td', text: 'Manutenzione'
+    visit '/companies'
+    click_on 'Bezzi'
+    click_link 'Manutenzione'
+    click_link 'Aggiorna'
+    fill_in 'invoice[reason]', with: "Cambiato asse"
+    click_link 'Aggiorna'
+    expect(page).to have_css 'a', text: 'Cambiato asse'
   end
 end

@@ -13,7 +13,8 @@ class InvoicesController < ApplicationController
 
   def update
     invoice = Invoice.find(params[:id])
-    invoice.update(invoice_params)
+    params = Invoice.build(invoice_params)
+    invoice.update(params)
     redirect_to company_invoice_path(company_id:company_id, invoice_id: invoice.id)
   end
 
@@ -29,7 +30,8 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    invoice = Invoice.register(params)
+    params = Invoice.build(invoice_params)
+    invoice = Invoice.add_to(company_id, params)
     if invoice.save
       Payment.add_to_invoice(params_for_payment, invoice.id)
       redirect_to company_path(company_id)
