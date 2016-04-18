@@ -1,29 +1,28 @@
-require_relative 'calculate_taxable'
-require_relative 'calculate_vat'
-
 class BuildInvoice
+  include CalculateTaxable
+  include CalculateVat
 
   def initialize params
     @params = params
-    @taxable = CalculateTaxable.new(invoice_params)
-    @vat = CalculateVat.new(invoice_params)
     @invoice_params = nil
   end
 
   def build
     @invoice_params = invoice_params
-    total
+    update_invoice_params
     Company.build @invoice_params, company_id
   end
 
-  private
-  def total
-    total_vat = @vat.total_vat
-    total_taxable = @taxable.total_taxable
-    total =  total_vat + total_taxable
-    @invoice_params = @invoice_params.merge(total: total, vat: total_vat, taxable:total_taxable)
+  def update_invoice_params
+    @invoice_params = @invoice_params.merge(total: total, vat: total_vat(@invoice_params), taxable:total_taxable(@invoice_params))
     clear_invoice_params
     @invoice_params
+  end
+
+  private
+
+  def total
+    total_vat(@invoice_params) + total_taxable(@invoice_params)
   end
 
   def company_id
@@ -31,7 +30,7 @@ class BuildInvoice
   end
 
   def invoice_params
-    @params.require(:invoice).permit(:reason,:paid,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:plate,:deadline,:method_of_payment)
+    @params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:plate,:deadline)
   end
 
   def clear_invoice_params

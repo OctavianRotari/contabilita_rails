@@ -7,6 +7,16 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
+  def edit
+    @invoice = Invoice.find(params[:id])
+  end
+
+  def update
+    invoice = Invoice.find(params[:id])
+    invoice.update(invoice_params)
+    redirect_to company_invoice_path(company_id:company_id, invoice_id: invoice.id)
+  end
+
   def show
     @invoice = Invoice.find(params[:id])
   end
@@ -19,7 +29,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    invoice = Invoice.register params
+    invoice = Invoice.register(params)
     if invoice.save
       Payment.add_to_invoice(params_for_payment, invoice.id)
       redirect_to company_path(company_id)
@@ -29,6 +39,10 @@ class InvoicesController < ApplicationController
   end
 
   private
+
+  def invoice_params
+    params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:plate,:deadline)
+  end
 
   def company_id
     params[:company_id]
