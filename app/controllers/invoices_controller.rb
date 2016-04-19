@@ -23,8 +23,8 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @invoice = Invoice.find(params[:id])
-    @invoice.destroy
+    invoice = Invoice.find(params[:id])
+    invoice.destroy
     flash[:notice] = 'Fattura elliminata'
     redirect_to company_path(company_id)
   end

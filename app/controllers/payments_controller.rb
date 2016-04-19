@@ -18,6 +18,13 @@ class PaymentsController < ApplicationController
     redirect_to company_invoice_path(company_id:company_id, id: invoice_id)
   end
 
+  def destroy
+    payment = Payment.find(params[:id])
+    payment.destroy
+    flash[:notice] = 'Pagamento elliminata'
+    redirect_to company_invoice_path(company_id:company_id, id: invoice_id)
+  end
+
   private
 
   def payment_params

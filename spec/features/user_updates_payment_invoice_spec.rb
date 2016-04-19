@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'user sees individual invoice' do
+  scenario 'updates a payment' do
     company = company('Bezzi')
-    create_invoice(company)
+    invoice = create_invoice(company)
+    create_payment(invoice)
     visits_individual_invoice
-    add_payment
     click_link 'Aggiorna pagamento'
     fill_in 'payment[paid]', with: 70
     click_button 'Effettua pagamento'

@@ -3,8 +3,11 @@
 	<p>Totale pagamento:<%=payment.paid%></p> 
 	<p>Metodo pagamento:<%=payment.method_of_payment%></p> 
 	<p>Data pagamento:<%=payment.payment_date%></p> 
-	<%= link_to 'Aggiorna pagamento', edit_company_invoice_payment_path(company_id:params[:company_id], invoice_id: @invoice.id, id:payment.id)
-	%>
+	<%= link_to 'Aggiorna pagamento', edit_company_invoice_payment_path(company_id:params[:company_id], invoice_id: @invoice.id, id:payment.id)%>
 	<br>
+	<br>
+	<%= button_to 'Elimina pagamento', company_invoice_payment_path(company_id:params[:company_id], invoice_id: @invoice.id, id:payment.id),
+		method: :delete
+	%>
 	<br>
 <%end%>
