@@ -8,12 +8,7 @@
 <p>Targa: <%=@invoice.plate %></p>
 <p>Scadenza: <%=@invoice.deadline%></p>
 <%if !@invoice.payments.empty? %>
-	<p>Pagamenti:</p>
-	<% @invoice.payments.each do |payment|%>
-		<p>Totale pagamento:<%=payment.paid%></p> 
-		<p>Metodo pagamento:<%=payment.method_of_payment%></p> 
-		<p>Data pagamento:<%=payment.payment_date%></p> 
-	<%end%>
+	<%= render @invoice.payments %>
 <%end%>
 <%= link_to 'Aggiorna', edit_company_invoice_path(company_id:@invoice.company.id, invoice_id: @invoice.id) %>
 <%= link_to "Effettua pagamento", 

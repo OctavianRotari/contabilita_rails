@@ -8,6 +8,16 @@ class PaymentsController < ApplicationController
     redirect_to company_invoice_path(company_id: company_id, id: invoice_id)
   end
 
+  def edit
+    @payment = Payment.find(params[:id])
+  end
+
+  def update
+    payment = Payment.find(params[:id])
+    payment.update(payment_params)
+    redirect_to company_invoice_path(company_id:company_id, id: invoice_id)
+  end
+
   private
 
   def payment_params

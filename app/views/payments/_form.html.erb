@@ -1,0 +1,30 @@
+<%= form_for(@payment, url:
+			if request.path_info.include? 'edit'
+				company_invoice_payment_path
+			else
+				company_invoice_payments_path
+			end ) do |form| %>
+	<% if @payment.errors.any? %>
+		<%= pluralize(@payment.errors.count, "error") %> prevented your account from being created:
+		<ul>
+			<% @payment.errors.full_messages.each do |error_message| %>
+				<li><%= error_message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<div>
+		<%= form.label 'Totale' %>
+		<%= form.text_field :paid, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Metodo di pagamento' %>
+		<%= form.text_field :method_of_payment, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Data pagamento' %>
+		<%= form.text_field :payment_date, require: true %>
+	</div>
+		<%= form.submit 'Effettua pagamento' %>
+	</div>
+<% end %>
+
