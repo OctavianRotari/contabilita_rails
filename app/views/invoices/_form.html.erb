@@ -1,9 +1,4 @@
-<%= form_for @invoice, url:
-	if request.path_info.include? 'edit'
-			company_invoice_path(company_id:params[:company_id], invoice_id: @invoice.id) 
-		else
-			company_invoices_path(company_id:params[:company_id], invoice_id: @invoice.id) 
-		end do |form|%>
+<%= form_for @invoice, url: invoice_edit_or_new do |form|%>
 	<% if @invoice.errors.any? %>
 		<%= pluralize(@invoice.errors.count, "error") %> prevented your account from being created:
 		<ul>
@@ -18,18 +13,25 @@
 		<input type="button" value="Tre imponibili" class="new_taxable">
 	</div>
 	<script>
-	$(document).ready(function(){
-		$('.new_taxable').click(function(){
-			if($(this).attr('value') === 'Imponibile'){
-				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_1", locals: { form: form }) %>');
-			} else if($(this).attr("value") === 'Due imponibili'){
-				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_2", locals: { form: form }) %>');
-			} else {
-				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_3", locals: { form: form }) %>');
-			}
+		$(document).ready(function(){
+			$('.new_taxable').click(function(){
+				if($(this).attr('value') === 'Imponibile'){
+					$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_1", locals: { form: form }) %>');
+				} else if($(this).attr("value") === 'Due imponibili'){
+					$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_2", locals: { form: form }) %>');
+				} else {
+					$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_3", locals: { form: form }) %>');
+				}
+			});
 		});
-	});
 	</script>
+	<% if !@vehicles.empty? %>
+		<%= form.select(:vehicle_id) do %>
+			<% @vehicles.each do |vehicle| %>
+				<%= content_tag(:option, vehicle.plate , value: vehicle.id) %>
+			<%end%>
+		<%end%>
+	<%end%>
 	<div>
 		<%= form.label 'Motivo' %>
 		<%= form.text_field :reason, require: true %>
@@ -37,10 +39,6 @@
 	<div>
 		<%= form.label 'Data emissione fattura' %>
 		<%= form.text_field :date_of_issue, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Targa camion' %>
-		<%= form.text_field :plate, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Data scadenza' %>

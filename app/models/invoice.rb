@@ -2,6 +2,7 @@ class Invoice < ActiveRecord::Base
   attr_accessor :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3, :paid, :payment_date, :method_of_payment
   has_many :payments, dependent: :destroy
   belongs_to :company
+  belongs_to :vehicle
 
   def self.by_company params_id
     Company.invoices params_id
@@ -12,8 +13,10 @@ class Invoice < ActiveRecord::Base
     params.build
   end
 
-  def self.add_to(company_id, invoice)
-    Company.build invoice, company_id
+  def self.add_to_parents(company_id, invoice)
+    company_invoice = Company.build invoice, company_id
+    vehicle_invoice = Vehicle.build invoice, invoice[:vehicle_id]
+    company_invoice
   end
 
   def self.payments params_id

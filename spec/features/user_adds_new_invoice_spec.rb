@@ -11,11 +11,11 @@ feature 'user' do
     click_button 'Aggiungi fattura'
     expect(page).to have_css 'td', text: '305'
     expect(page).to have_css 'td', text: '55'
-    expect(page).to have_css 'td', text: 'EG324FR'
   end
 
   scenario 'Adds a new invoice with two taxable', js: true do
     company('Bezzi')
+    create_vehicle
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
@@ -26,11 +26,11 @@ feature 'user' do
     click_button 'Aggiungi fattura'
     expect(page).to have_css 'td', text: '415'
     expect(page).to have_css 'td', text: '65'
-    expect(page).to have_css 'td', text: 'EG324FR'
   end
 
   scenario 'Adds a new invoice with part of the sum already paid', js: true do
     company('Bezzi')
+    create_vehicle
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
@@ -48,6 +48,7 @@ feature 'user' do
 
   scenario 'Adds a new invoice without payment', js: true do
     company('Bezzi')
+    create_vehicle
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'

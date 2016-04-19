@@ -5,7 +5,7 @@
 <p>Iva: <%=@invoice.vat %></p>
 <p>Totale: <%=@invoice.total %></p>
 <p>Data emissione: <%=@invoice.date_of_issue%></p>
-<p>Targa: <%=@invoice.plate %></p>
+<p>Targa: <%=@invoice.vehicle.plate %></p>
 <p>Scadenza: <%=@invoice.deadline%></p>
 <%if !@invoice.payments.empty? %>
 	<%= render @invoice.payments %>

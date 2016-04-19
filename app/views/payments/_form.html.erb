@@ -1,9 +1,4 @@
-<%= form_for(@payment, url:
-			if request.path_info.include? 'edit'
-				company_invoice_payment_path
-			else
-				company_invoice_payments_path
-			end ) do |form| %>
+<%= form_for(@payment, url: payment_edit_or_new) do |form| %>
 	<% if @payment.errors.any? %>
 		<%= pluralize(@payment.errors.count, "error") %> prevented your account from being created:
 		<ul>

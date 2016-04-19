@@ -1,0 +1,21 @@
+<%= form_for @vehicle do |form| %>
+	<% if @vehicle.errors.any? %>
+		<%= pluralize(@vehicle.errors.count, "error") %> prevented your account from being created:
+		<ul>
+			<% @vehicle.errors.full_messages.each do |error_message| %>
+				<li><%= error_message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<div>
+		<%= form.label 'Targa' %>
+		<%= form.text_field :plate, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Tipo mezzo' %>
+		<%= form.text_field :type_of_vehicle, require: true %>
+	</div>
+	<div>
+		<%= form.submit "Aggiungi mezzo" %>
+	</div>
+<% end %>

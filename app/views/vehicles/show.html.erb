@@ -1,9 +1,9 @@
+<h2><%= @vehicle.plate %></h2>
 <table>
 <thead>
 	<tr>
-		<th>Fornitore</th>
-		<th>Totale</th>
 		<th>Motivo</th>
+		<th>Totale</th>
 		<th>Iva</th>
 		<th>Data di emmissione</th>
 		<th>Targa</th>
@@ -11,14 +11,13 @@
 	</tr>
 </thead>
 <tbody>
-	<% @invoices.each do |invoice|%>
+	<% @vehicle.invoices.each do |invoice|%>
 		<tr>
-			<td><%=link_to invoice.company_name, company_path(invoice.company_id) %></td>
+			<td><%=link_to invoice.reason, company_invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
 			<td><%=invoice.total %></td>
-			<td><%=invoice.reason %></td>
 			<td><%=invoice.vat %></td>
 			<td><%=invoice.date_of_issue%></td>
-			<%#<td><%=invoice.vehicle.plate %></td>%>
+			<td><%=invoice.vehicle.plate %></td>
 			<td><%=invoice.deadline%></td>
 		</tr>
 	<%end%>

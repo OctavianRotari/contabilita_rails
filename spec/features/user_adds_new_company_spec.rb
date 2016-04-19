@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'visits add new company' do
+  scenario 'adds new company' do
     visit '/'
     click_link 'Aziende'
     click_link 'Aggiungi azienda'

@@ -5,6 +5,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @vehicles = Vehicle.all
   end
 
   def edit
@@ -31,7 +32,7 @@ class InvoicesController < ApplicationController
 
   def create
     params = Invoice.build(invoice_params)
-    invoice = Invoice.add_to(company_id, params)
+    invoice = Invoice.add_to_parents(company_id, params)
     if invoice.save
       Payment.add_to_invoice(params_for_payment, invoice.id)
       redirect_to company_path(company_id)
@@ -43,7 +44,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:plate,:deadline)
+    params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:vehicle_id,:deadline)
   end
 
   def company_id
