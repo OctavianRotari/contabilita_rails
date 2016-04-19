@@ -18,17 +18,17 @@
 		<input type="button" value="Tre imponibili" class="new_taxable">
 	</div>
 	<script>
-		$(document).ready(function(){
-			$('.new_taxable').click(function(){
-				if($(this).attr("value") === 'Imponibile'){
-					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_1", locals: { form: form }) %>');
-				} else if($(this).attr("value") === 'Due imponibili'){
-					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_2", locals: { form: form }) %>');
-				} else {
-					$('#new_taxable_div').html('<%= escape_javascript(render :partial => "invoices/taxable_3", locals: { form: form }) %>');
-				}
-			});
+	$(document).ready(function(){
+		$('.new_taxable').click(function(){
+			if($(this).attr('value') === 'Imponibile'){
+				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_1", locals: { form: form }) %>');
+			} else if($(this).attr("value") === 'Due imponibili'){
+				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_2", locals: { form: form }) %>');
+			} else {
+				$('#new_taxable_div').html('<%= escape_javascript(render partial: "invoices/taxable_3", locals: { form: form }) %>');
+			}
 		});
+	});
 	</script>
 	<div>
 		<%= form.label 'Motivo' %>
