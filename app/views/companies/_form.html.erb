@@ -1,0 +1,25 @@
+<%= form_for @company do |form| %>
+	<% if @company.errors.any? %>
+		<%= pluralize(@company.errors.count, "error") %> prevented your account from being created:
+		<ul>
+			<% @company.errors.full_messages.each do |error_message| %>
+				<li><%= error_message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<div>
+		<%= form.label 'Nome' %>
+		<%= form.text_field :name, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Indirizzo' %>
+		<%= form.text_field :adress, require: true %>
+	</div>
+	<div>
+		<%= form.label 'Numero' %>
+		<%= form.text_field :number, require: true %>
+	</div>
+	<div>
+		<%= form.submit "Aggiungi azienda" %>
+	</div>
+<% end %>

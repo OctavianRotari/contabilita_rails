@@ -2,4 +2,5 @@
 <br>
 <% @companies.each do |company| %>
 	<%= link_to company.name, company_path(company.id) %><br>
+	<%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
 <%end%>
