@@ -18,6 +18,13 @@ class CompaniesController < ApplicationController
     redirect_to company_path(params[:id])
   end
 
+  def destroy
+    company = Company.find(params[:id])
+    company.destroy
+    flash[:notice] = 'Azienda elliminata'
+    redirect_to companies_path
+  end
+
   def show
     @company = Company.find(params[:id])
   end

@@ -3,4 +3,5 @@
 <% @companies.each do |company| %>
 	<%= link_to company.name, company_path(company.id) %><br>
 	<%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
+	<%= button_to 'Elimina azienda', company_path(company.id), method: :delete %><br>
 <%end%>
