@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+
   def index
     @invoices = Invoice.all
   end
@@ -9,6 +10,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
+    @vehicles = Vehicle.all
     @invoice = Invoice.find(params[:id])
   end
 
