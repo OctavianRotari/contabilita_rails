@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :vehicles do
+  resources :vehicles, only: [:new, :create, :update, :edit, :index, :show] do
     resources :invoices, only: [:index]
   end
 end

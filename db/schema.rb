@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160419134826) do
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
-    t.datetime "deadline"
+    t.date     "deadline"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "company_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160419134826) do
 
   create_table "payments", force: :cascade do |t|
     t.string   "method_of_payment"
-    t.datetime "payment_date"
+    t.date     "payment_date"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "invoice_id"

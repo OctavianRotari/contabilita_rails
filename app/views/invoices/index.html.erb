@@ -30,9 +30,9 @@
 			<td><%=@invoices.paid(invoice.id) %></td>
 			<td><%=@invoices.to_pay(invoice.id) %></td>
 			<td><%=link_to invoice.reason,company_invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
-			<td><%=invoice.date_of_issue%></td>
+			<td><%=invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 			<td><%=link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
-			<td><%=invoice.deadline%></td>
+			<td><%=invoice.deadline.strftime("%d-%m-%Y")%></td>
 		</tr>
 	<%end%>
 </tbody>
