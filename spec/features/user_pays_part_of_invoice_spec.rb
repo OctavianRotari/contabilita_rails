@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'user' do
   scenario 'user sees individual invoice' do
     company = company('Bezzi')
+    vehicle("ER354BS")
     create_invoice(company)
     visits_individual_invoice
     click_link 'Effettua pagamento'

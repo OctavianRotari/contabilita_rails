@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'user' do
   scenario 'Adds a new invoice', js: true do
     company('Bezzi')
+    vehicle("ER354BS")
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
@@ -15,7 +16,7 @@ feature 'user' do
 
   scenario 'Adds a new invoice with two taxable', js: true do
     company('Bezzi')
-    create_vehicle
+    vehicle("ER354BS")
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
@@ -30,7 +31,7 @@ feature 'user' do
 
   scenario 'Adds a new invoice with part of the sum already paid', js: true do
     company('Bezzi')
-    create_vehicle
+    vehicle("ER354BS")
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
@@ -48,7 +49,7 @@ feature 'user' do
 
   scenario 'Adds a new invoice without payment', js: true do
     company('Bezzi')
-    create_vehicle
+    vehicle("ER354BS")
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'

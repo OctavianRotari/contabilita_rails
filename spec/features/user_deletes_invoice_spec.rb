@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'visits page new invoice' do
+  scenario 'deletes invoice' do
     company = company('Bezzi')
+    vehicle("ER354BS")
     create_invoice(company)
     visits_company
     click_button "Elimina fattura"

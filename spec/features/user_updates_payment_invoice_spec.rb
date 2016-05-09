@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'user' do
   scenario 'updates a payment' do
     company = company('Bezzi')
+    vehicle("ER354BS")
     invoice = create_invoice(company)
     create_payment(invoice)
     visits_individual_invoice
