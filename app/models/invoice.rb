@@ -23,6 +23,64 @@ class Invoice < ActiveRecord::Base
     find(params_id).payments
   end
 
+  def self.total
+    invoices = Invoice.all
+    total = 0
+    invoices.each do |invoice|
+      total += invoice.total
+    end
+    total
+  end
+
+  def self.total_vat
+    invoices = Invoice.all
+    total = 0
+    invoices.each do |invoice|
+      total += invoice.vat
+    end
+    total
+  end
+
+  def self.paid(id)
+    invoice = Invoice.find(id)
+    total = 0
+    invoice.payments.each do |payment|
+      total += payment.paid
+    end
+    total
+  end
+
+  def self.total_paid
+    invoices = Invoice.all
+    total = 0
+    invoices.each do |invoice|
+      invoice.payments.each do |payment|
+        total += payment.paid
+      end
+    end
+    total
+  end
+
+  def self.to_pay(id)
+    invoice = Invoice.find(id)
+    total = 0
+    invoice.payments.each do |payment|
+      total += payment.paid
+    end
+    invoice.total - total
+  end
+
+  def self.total_to_pay
+    invoices = Invoice.all
+    total = 0
+    invoices.each do |invoice|
+      invoice.payments.each do |payment|
+        total += payment.paid
+      end
+    end
+    self.total - total
+  end
+
   def company_name
     company.name
   end
