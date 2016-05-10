@@ -5,10 +5,10 @@ feature 'user' do
     vehicle('RB342BD')
     visit '/'
     click_link 'Mezzi'
-    click_link 'Aggiungi mezzo'
+    click_link 'Aggiorna mezzo'
     fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'
     fill_in 'vehicle[plate]', with: 'ER345BR'
     click_button "Aggiungi mezzo"
-    expect(page).to have_css 'a', text: 'ER345BR'
+    expect(page).to have_css 'h2', text: 'ER345BR'
   end
 end
