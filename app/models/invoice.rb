@@ -17,7 +17,4 @@ class Invoice < ActiveRecord::Base
     company.name
   end
 
-  def company_id
-    company.id
-  end
 end

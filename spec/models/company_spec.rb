@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Company, type: :model do
+describe Company, type: :unit do
   describe '#invoices' do
     it 'should have many invoices' do
       company = company('Octav')

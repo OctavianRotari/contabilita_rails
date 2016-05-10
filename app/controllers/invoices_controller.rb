@@ -58,6 +58,4 @@ class InvoicesController < ApplicationController
   def params_for_payment
     params.require(:invoice).permit(:paid,:payment_date,:method_of_payment)
   end
-
 end
-
