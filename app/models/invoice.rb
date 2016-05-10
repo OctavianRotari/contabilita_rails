@@ -4,19 +4,14 @@ class Invoice < ActiveRecord::Base
   belongs_to :company
   belongs_to :vehicle
 
-  def self.by_company params_id
-    Company.invoices params_id
-  end
-
-  def self.build(invoice_params)
-    params = BuildInvoice.new(invoice_params)
-    params.build
-  end
-
   def self.payments params_id
     find(params_id).payments
   end
 
+  def self.build payment_params, invoice_id
+    company = self.payments(invoice_id)
+    company.build(payment_params)
+  end
 
   def company_name
     company.name

@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  include AddPaymentToInvoice
   include AddToParents
 
   def index
@@ -34,10 +35,10 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    params = Invoice.build(invoice_params)
+    params = BuildInvoice.new(invoice_params).build
     invoice = add_to_parents(company_id, params)
     if invoice.save
-      Payment.add_to_invoice(params_for_payment, invoice.id)
+      add_payment_to_invoice(params_for_payment, invoice.id)
       redirect_to company_path(company_id)
     else
       render new_company_invoice

@@ -18,12 +18,4 @@ describe Invoice, type: :model do
     end
   end
 
-  describe '#by_company' do
-    it 'should return the invoices of the company' do
-      company = company('Gabry')
-      create_record(company)
-      expect(Invoice.by_company(1).count).to eq(1)
-    end
-  end
-
 end
