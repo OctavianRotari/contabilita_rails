@@ -13,12 +13,6 @@ class Invoice < ActiveRecord::Base
     params.build
   end
 
-  def self.add_to_parents(company_id, invoice)
-    company_invoice = Company.build invoice, company_id
-    vehicle_invoice = Vehicle.build invoice, invoice[:vehicle_id]
-    company_invoice
-  end
-
   def self.payments params_id
     find(params_id).payments
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'user sees' do
   scenario 'all the invoices' do
-    invoice = '110.0 10.0 0 110.0 Bezzi 110.0 10.0 0 110.0 Manutenzione 2015-04-01 00:00:00 UTC ER354BS 2015-04-30 00:00:00 UTC'
+    invoice = 'Totale: 110.0 10.0 0 110.0 Bezzi 110.0 10.0 0 110.0 Manutenzione 01-04-2015 ER354BS 30-04-2015'
     company = company('Bezzi')
     vehicle("ER354BS")
     create_invoice(company)
