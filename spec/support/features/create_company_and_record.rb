@@ -7,21 +7,11 @@ module Features
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
   end
 
-  def create_invoice(parent, reason='Manutenzione')
+  def create_invoice(parent, reason='Manutenzione',vehicle_id = 1)
     parent.invoices.create(reason:reason,
                             total:110,
                             vat:10,
-                            vehicle_id: 1,
-                            date_of_issue:'01/04/2015',
-                            taxable:100,
-                            deadline:'30/04/2015')
-  end
-
-  def create_invoice_1(parent, reason='Manutenzione')
-    parent.invoices.create(reason:reason,
-                            total:110,
-                            vat:10,
-                            vehicle_id: 2,
+                            vehicle_id: vehicle_id,
                             date_of_issue:'01/04/2015',
                             taxable:100,
                             deadline:'30/04/2015')
