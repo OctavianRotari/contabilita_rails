@@ -25,24 +25,34 @@
 			});
 		});
 	</script>
-	<% if !@vehicles.empty? %>
+	<div>
+		<%= form.label 'Tipo fattura' %>
+		<%= form.select(:type_of_invoice) do %>
+			<%= content_tag(:option, 'Attiva' , value: 'attiva') %>
+			<%= content_tag(:option, 'Passiva' , value: 'passiva') %>
+		<%end%>
+	</div>
+	<div>
+		<%= form.label 'Mezzo' %>
 		<%= form.select(:vehicle_id) do %>
 			<% @vehicles.each do |vehicle| %>
 				<%= content_tag(:option, vehicle.plate , value: vehicle.id) %>
 			<%end%>
+			<%= content_tag(:option, 'Officina' , value: 'officina') %>
+			<%= content_tag(:option, 'Nessuno' , value: nil) %>
 		<%end%>
-	<%end%>
+	</div>
 	<div>
 		<%= form.label 'Motivo' %>
 		<%= form.text_field :reason, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Data emissione fattura' %>
-		<%= form.date_select :date_of_issue, require: true %>
+		<%= form.text_field :date_of_issue, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Data scadenza' %>
-		<%= form.date_select :deadline, require: true %>
+		<%= form.text_field :deadline, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Pagato' %>
@@ -50,7 +60,7 @@
 	</div>
 	<div>
 		<%= form.label 'Data pagamento' %>
-		<%= form.date_select :payment_date, require: true %>
+		<%= form.text_field :payment_date, require: true %>
 	</div>
 	<div>
 		<%= form.label 'Tipo di pagamento' %>

@@ -39,14 +39,12 @@ feature 'user' do
     fill_in_new_invoice
     fill_in 'invoice[paid]', with: 50
     fill_in 'invoice[method_of_payment]', with: "bonifico"
-    select '2016', from: 'invoice[payment_date(1i)]'
-    select 'March', from: 'invoice[payment_date(2i)]'
-    select '1', from: 'invoice[payment_date(3i)]'
+    page.execute_script("$('#invoice_payment_date').val('2016-05-20')")
     click_button 'Aggiungi fattura'
     click_link 'Manutenzione'
     expect(page).to have_css 'p', text: 'Totale pagamento:50.0'
     expect(page).to have_css 'p', text: 'Metodo pagamento:bonifico'
-    expect(page).to have_css 'p', text: 'Data pagamento:01-03-2016'
+    expect(page).to have_css 'p', text: 'Data pagamento:20-05-2016'
   end
 
   scenario 'Adds a new invoice without payment', js: true do

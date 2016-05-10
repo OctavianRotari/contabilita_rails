@@ -1,4 +1,14 @@
 module Features
+  def visit_active_invoices_page
+    visit '/'
+    click_link 'Fatture attive'
+  end
+
+  def visit_passive_invoices_page
+    visit '/'
+    click_link 'Fatture passive'
+  end
+
   def visit_invoice_page
     visit '/'
     click_link 'Fatture'

@@ -1,12 +1,13 @@
 <h1><%= @invoice.company.name %></h1>
 <h2><%= @invoice.reason %></h2>
 <p>Motivo: <%=@invoice.reason%></p>
-<p>Taxable: <%=@invoice.taxable %></p>
+<p>Tipo fattura: <%=@invoice.type_of_invoice%></p>
+<p>Inponibile: <%=@invoice.taxable %></p>
 <p>Iva: <%=@invoice.vat %></p>
 <p>Totale: <%=@invoice.total %></p>
-<p>Data emissione: <%=@invoice.date_of_issue.strftime("%d-%m-%Y") %></p>
+<p>Data emissione: <%=@invoice.date_of_issue %></p>
 <p>Targa: <%=@invoice.vehicle.plate %></p>
-<p>Scadenza: <%=@invoice.deadline.strftime("%d-%m-%Y") %></p>
+<p>Scadenza: <%=@invoice.deadline %></p>
 <%if !@invoice.payments.empty? %>
 	<%= render @invoice.payments %>
 <%end%>

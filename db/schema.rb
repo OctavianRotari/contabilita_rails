@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419134826) do
+ActiveRecord::Schema.define(version: 20160510143619) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -23,15 +23,16 @@ ActiveRecord::Schema.define(version: 20160419134826) do
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
-    t.date     "deadline"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "deadline"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "company_id"
     t.decimal  "vat"
     t.decimal  "total"
     t.string   "reason"
     t.decimal  "taxable"
     t.integer  "vehicle_id"
+    t.string   "type_of_invoice"
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"
@@ -39,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160419134826) do
 
   create_table "payments", force: :cascade do |t|
     t.string   "method_of_payment"
-    t.date     "payment_date"
+    t.datetime "payment_date"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "invoice_id"
