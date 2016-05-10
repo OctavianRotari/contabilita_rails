@@ -38,8 +38,6 @@
 			<% @vehicles.each do |vehicle| %>
 				<%= content_tag(:option, vehicle.plate , value: vehicle.id) %>
 			<%end%>
-			<%= content_tag(:option, 'Officina' , value: 'officina') %>
-			<%= content_tag(:option, 'Nessuno' , value: nil) %>
 		<%end%>
 	</div>
 	<div>

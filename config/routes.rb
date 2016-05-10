@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "accounting#index"
-  resources :invoices, only: [:index]
+
+  get 'active_invoices' => 'invoices#active_index'
+  get 'passive_invoices' => 'invoices#passive_index'
 
   resources :companies do
     resources :invoices do

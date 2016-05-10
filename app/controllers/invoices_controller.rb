@@ -2,8 +2,12 @@ class InvoicesController < ApplicationController
   include AddPaymentToInvoice
   include AddToParents
 
-  def index
-    @invoices = Invoice.all
+  def active_index
+    @invoices = Invoice.active
+  end
+
+  def passive_index
+    @invoices = Invoice.passive
   end
 
   def new
@@ -48,7 +52,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:vehicle_id,:deadline)
+    params.require(:invoice).permit(:reason,:taxable_1,:vat_1,:taxable_2,:vat_2,:taxable_3,:vat_3,:date_of_issue,:vehicle_id,:deadline,:type_of_invoice)
   end
 
   def company_id
