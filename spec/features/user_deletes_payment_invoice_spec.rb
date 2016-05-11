@@ -4,7 +4,7 @@ feature 'user' do
   scenario 'deletes payment' do
     company = company('Bezzi')
     vehicle("ER354BS")
-    invoice = create_invoice(company)
+    invoice = create_passive_invoice(company)
     create_payment(invoice)
     visits_individual_invoice
     click_button 'Elimina pagamento'

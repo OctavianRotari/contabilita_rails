@@ -7,12 +7,25 @@ module Features
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
   end
 
-  def create_invoice(parent, reason='Manutenzione',vehicle_id = 1)
+  def create_active_invoice(parent, reason='Manutenzione')
+    parent.invoices.create(reason:reason,
+                            total:110,
+                            vat:10,
+                            vehicle_id: nil,
+                            date_of_issue:'01/04/2015',
+                            type_of_invoice: 'attiva',
+                            taxable:100,
+                            deadline:'30/04/2015')
+  end
+
+
+  def create_passive_invoice(parent, reason='Manutenzione',vehicle_id = 1)
     parent.invoices.create(reason:reason,
                             total:110,
                             vat:10,
                             vehicle_id: vehicle_id,
                             date_of_issue:'01/04/2015',
+                            type_of_invoice: 'passiva',
                             taxable:100,
                             deadline:'30/04/2015')
   end

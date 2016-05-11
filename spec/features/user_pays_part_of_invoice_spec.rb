@@ -4,7 +4,7 @@ feature 'user' do
   scenario 'user sees individual invoice', js: true do
     company = company('Bezzi')
     vehicle("ER354BS")
-    create_invoice(company)
+    create_passive_invoice(company)
     visits_individual_invoice
     click_link 'Effettua pagamento'
     fill_in 'payment[paid]', with: 50
