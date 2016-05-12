@@ -53,18 +53,6 @@
 		<%= form.text_field :deadline, require: true %>
 	</div>
 	<div>
-		<%= form.label 'Pagato' %>
-		<%= form.text_field :paid, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Data pagamento' %>
-		<%= form.text_field :payment_date, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Tipo di pagamento' %>
-		<%= form.text_field :method_of_payment, require: true %>
-	</div>
-	<div>
 		<%= form.submit "Aggiungi fattura" %>
 	</div>
 <% end %>

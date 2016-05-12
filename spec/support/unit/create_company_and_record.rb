@@ -7,8 +7,15 @@ module Unit
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
   end
 
-  def create_record(company)
-    company.invoices.create(total:110, vat:10, taxable:100, reason:'Manutenzione', vehicle_id:1, date_of_issue:'01/04/2015', deadline:'30/04/2015')
+  def create_passive_record(company)
+    company.invoices.create(total:110,
+                            vat:10,
+                            taxable:100,
+                            reason:'Manutenzione',
+                            vehicle_id:1,
+                            date_of_issue:'01/04/2015',
+                            deadline:'30/04/2015',
+                            type_of_invoice:'passiva')
   end
 
   def add_payment_to_invoice(invoice)

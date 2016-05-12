@@ -8,11 +8,6 @@ class Invoice < ActiveRecord::Base
     find(params_id).payments
   end
 
-  def self.build payment_params, invoice_id
-    company = self.payments(invoice_id)
-    company.build(payment_params)
-  end
-
   def self.active
     where(type_of_invoice: 'attiva')
   end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'Adds a new invoice', js: true do
+  scenario 'adds a new invoice', js: true do
     company('Bezzi')
     vehicle("ER354BS")
     visit '/companies'
@@ -27,24 +27,6 @@ feature 'user' do
     click_button 'Aggiungi fattura'
     expect(page).to have_css 'td', text: '415'
     expect(page).to have_css 'td', text: '65'
-  end
-
-  scenario 'Adds a new invoice with part of the sum already paid', js: true do
-    company('Bezzi')
-    vehicle("ER354BS")
-    visit '/companies'
-    click_on 'Bezzi'
-    click_link 'Aggiungi fattura'
-    click_button 'Due imponibili'
-    fill_in_new_invoice
-    fill_in 'invoice[paid]', with: 50
-    fill_in 'invoice[method_of_payment]', with: "bonifico"
-    page.execute_script("$('#invoice_payment_date').val('2016-05-20')")
-    click_button 'Aggiungi fattura'
-    click_link 'Manutenzione'
-    expect(page).to have_css 'p', text: 'Totale pagamento:50.0'
-    expect(page).to have_css 'p', text: 'Metodo pagamento:bonifico'
-    expect(page).to have_css 'p', text: 'Data pagamento:20-05-2016'
   end
 
   scenario 'Adds a new invoice without payment', js: true do

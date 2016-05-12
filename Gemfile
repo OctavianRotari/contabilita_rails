@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-ui-rails'
+gem 'jquery-turbolinks'
 
 group :development do
   gem 'spring'

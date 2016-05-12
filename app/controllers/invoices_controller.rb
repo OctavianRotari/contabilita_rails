@@ -22,8 +22,7 @@ class InvoicesController < ApplicationController
 
   def update
     invoice = Invoice.find(params[:id])
-    params = Invoice.build(invoice_params)
-    invoice.update(params)
+    invoice.update(invoice_params)
     redirect_to company_invoice_path(company_id:company_id, invoice_id: invoice.id)
   end
 
@@ -35,15 +34,22 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:notice] = 'Fattura elliminata'
-    redirect_to company_path(company_id)
+    if invoice.type_of_invoice == 'passiva'
+      redirect_to company_passive_invoices_path(company_id)
+    else
+      redirect_to company_active_invoices_path(company_id)
+    end
   end
 
   def create
     params = BuildInvoice.new(invoice_params).build
     invoice = add_to_parents(company_id, params)
     if invoice.save
-      add_payment_to_invoice(params_for_payment, invoice.id)
-      redirect_to company_path(company_id)
+      if invoice.type_of_invoice == 'passiva'
+        redirect_to company_passive_invoices_path(company_id)
+      else
+        redirect_to company_active_invoices_path(company_id)
+      end
     else
       render new_company_invoice
     end
@@ -59,7 +65,4 @@ class InvoicesController < ApplicationController
     params[:company_id]
   end
 
-  def params_for_payment
-    params.require(:invoice).permit(:paid,:payment_date,:method_of_payment)
-  end
 end

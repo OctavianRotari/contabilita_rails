@@ -1,2 +1,2 @@
 <h2><%= @vehicle.plate %></h2>
-<%= render "invoices/show", invoices: @vehicle.invoices %>
+<%= render "invoices/passive_invoices", invoices: @vehicle.invoices.passive %>

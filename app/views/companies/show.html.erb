@@ -1,3 +1,7 @@
 <%= link_to "Aggiungi fattura", new_company_invoice_path(@company.id) %>
 <h2><%= @company.name %></h2>
-<%= render "invoices/show", invoices: @company.invoices %>
+<%url = request.path_info%>
+<%= link_to 'Fatture passive', company_passive_invoices_path(@company.id), :remote => true %>
+<%= link_to 'Fatture attive', company_active_invoices_path(@company.id), :remote => true %>
+<div id="invoices">
+</div>

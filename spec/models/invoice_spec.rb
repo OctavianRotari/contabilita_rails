@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Invoice, type: :unit do
   before :each do
     company = company('Octav')
-    create_record(company)
+    create_passive_record(company)
   end
 
   describe '#company_name' do

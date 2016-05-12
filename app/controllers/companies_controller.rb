@@ -26,13 +26,27 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
+    @company = Company.find(params[:company_id] || params[:id])
+  end
+
+  def passive_invoices
+    @invoices = Company.find(params[:company_id]).invoices.passive
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def active_invoices
+    @invoices = Company.find(params[:company_id]).invoices.active
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
     company = Company.new(company_params)
     if company.save
-      redirect_to company_path(company.id)
+      redirect_to companies_path
     else
       redirect_to company_new_path
     end
