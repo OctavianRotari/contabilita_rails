@@ -3,7 +3,7 @@ module Features
     Company.create(name:name,adress:'Ravenna',number:'345')
   end
 
-  def vehicle(plate)
+  def vehicle(plate="ER341GF")
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
   end
 

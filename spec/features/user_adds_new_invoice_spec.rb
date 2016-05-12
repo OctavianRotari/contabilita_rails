@@ -9,7 +9,7 @@ feature 'user' do
     click_link 'Aggiungi fattura'
     click_button 'Imponibile'
     fill_in_new_invoice
-    click_button 'Aggiungi fattura'
+    click_button 'Conferma'
     expect(page).to have_css 'h2', text: 'Manutenzione'
   end
 
@@ -23,7 +23,7 @@ feature 'user' do
     fill_in_new_invoice
     fill_in 'invoice[taxable_2]', with: 100
     page.select '10', from: 'invoice[vat_2]'
-    click_button 'Aggiungi fattura'
+    click_button 'Conferma'
     expect(page).to have_css 'p', text: '415'
     expect(page).to have_css 'p', text: '65'
   end
