@@ -16,6 +16,11 @@ class Invoice < ActiveRecord::Base
     where(type_of_invoice: 'passiva')
   end
 
+  def self.build(payment_params, invoice_id)
+    invoice = Invoice.find(invoice_id)
+    invoice.payments.build(payment_params)
+  end
+
   def company_name
     company.name
   end

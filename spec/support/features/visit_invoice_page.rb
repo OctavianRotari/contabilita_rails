@@ -18,12 +18,14 @@ module Features
     visit '/'
     click_link 'Aziende'
     click_link 'Bezzi'
+    click_link 'Fatture attive'
   end
 
   def visits_passive_invoices_of_company
     visit '/'
     click_link 'Aziende'
     click_link 'Bezzi'
+    click_link 'Fatture passive'
   end
 
   def visits_new_invoice
@@ -37,6 +39,7 @@ module Features
     visit '/'
     click_link 'Aziende'
     click_link 'Bezzi'
+    click_link 'Fatture passive'
     click_link 'Manutenzione'
   end
 end

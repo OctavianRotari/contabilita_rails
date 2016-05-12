@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'deletes invoice' do
+  scenario 'deletes invoice', js: true do
     company = company('Bezzi')
     vehicle("ER354BS")
     create_passive_invoice(company)

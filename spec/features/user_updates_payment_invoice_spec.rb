@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'updates a payment' do
+  scenario 'updates a payment', js: true do
     company = company('Bezzi')
     vehicle("ER354BS")
     invoice = create_passive_invoice(company)

@@ -34,22 +34,14 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:notice] = 'Fattura elliminata'
-    if invoice.type_of_invoice == 'passiva'
-      redirect_to company_passive_invoices_path(company_id)
-    else
-      redirect_to company_active_invoices_path(company_id)
-    end
+    redirect_to company_path(id:company_id)
   end
 
   def create
     params = BuildInvoice.new(invoice_params).build
     invoice = add_to_parents(company_id, params)
     if invoice.save
-      if invoice.type_of_invoice == 'passiva'
-        redirect_to company_passive_invoices_path(company_id)
-      else
-        redirect_to company_active_invoices_path(company_id)
-      end
+      redirect_to company_invoice_path(company_id:company_id, id: invoice.id)
     else
       render new_company_invoice
     end

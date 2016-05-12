@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'user sees individual invoice' do
+  scenario 'user sees individual invoice', js: true do
     company = company('Bezzi')
     vehicle = vehicle("ER859BS")
     create_passive_invoice(vehicle)

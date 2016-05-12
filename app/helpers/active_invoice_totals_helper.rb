@@ -8,8 +8,8 @@ module ActiveInvoiceTotalsHelper
     total
   end
 
-  def total_vat_all_invoices
-    invoices = Invoice.all
+  def total_vat_all_active_invoices
+    invoices = Invoice.active
     total = 0
     invoices.each do |invoice|
       total += invoice.vat
@@ -26,8 +26,8 @@ module ActiveInvoiceTotalsHelper
     total
   end
 
-  def total_paid_all_invoices
-    invoices = Invoice.all
+  def total_collected_all_active_invoices
+    invoices = Invoice.active
     total = 0
     invoices.each do |invoice|
       invoice.payments.each do |payment|
@@ -46,8 +46,8 @@ module ActiveInvoiceTotalsHelper
     invoice.total - total
   end
 
-  def total_to_pay_all_invoices
-    invoices = Invoice.all
+  def total_to_collect_all_active_invoices
+    invoices = Invoice.active
     total = 0
     invoices.each do |invoice|
       invoice.payments.each do |payment|

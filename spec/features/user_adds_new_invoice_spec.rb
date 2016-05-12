@@ -10,8 +10,7 @@ feature 'user' do
     click_button 'Imponibile'
     fill_in_new_invoice
     click_button 'Aggiungi fattura'
-    expect(page).to have_css 'td', text: '305'
-    expect(page).to have_css 'td', text: '55'
+    expect(page).to have_css 'h2', text: 'Manutenzione'
   end
 
   scenario 'Adds a new invoice with two taxable', js: true do
@@ -25,23 +24,8 @@ feature 'user' do
     fill_in 'invoice[taxable_2]', with: 100
     page.select '10', from: 'invoice[vat_2]'
     click_button 'Aggiungi fattura'
-    expect(page).to have_css 'td', text: '415'
-    expect(page).to have_css 'td', text: '65'
+    expect(page).to have_css 'p', text: '415'
+    expect(page).to have_css 'p', text: '65'
   end
 
-  scenario 'Adds a new invoice without payment', js: true do
-    company('Bezzi')
-    vehicle("ER354BS")
-    visit '/companies'
-    click_on 'Bezzi'
-    click_link 'Aggiungi fattura'
-    click_button 'Due imponibili'
-    fill_in_new_invoice
-    click_button 'Aggiungi fattura'
-    click_link 'Manutenzione'
-    expect(page).not_to have_css 'p', text: 'Pagamenti:'
-    expect(page).not_to have_css 'p', text: 'Totale pagamento:'
-    expect(page).not_to have_css 'p', text: 'Metodo pagamento:'
-    expect(page).not_to have_css 'p', text: 'Data pagamento:'
-  end
 end

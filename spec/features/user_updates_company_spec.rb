@@ -10,6 +10,6 @@ feature 'user' do
     fill_in 'company[adress]', with: 'Ravenna Bagnacavallo'
     fill_in 'company[number]', with: '0293-143352'
     click_button "Aggiungi azienda"
-    expect(page).to have_css 'h2', text: 'Maca'
+    expect(page).to have_css 'a', text: 'Maca'
   end
 end
