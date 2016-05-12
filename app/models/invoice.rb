@@ -1,8 +1,10 @@
 class Invoice < ActiveRecord::Base
-  attr_accessor :taxable_1, :vat_1, :taxable_2, :vat_2, :taxable_3, :vat_3, :paid, :payment_date, :method_of_payment
+  attr_accessor :taxable_vat_fields_attributes
   has_many :payments, dependent: :destroy
+  has_many :taxable_vat_fields
   belongs_to :company
   belongs_to :vehicle
+  accepts_nested_attributes_for :taxable_vat_fields
 
   def self.payments params_id
     find(params_id).payments

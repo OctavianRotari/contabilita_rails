@@ -7,7 +7,6 @@ feature 'user' do
     visit '/companies'
     click_on 'Bezzi'
     click_link 'Aggiungi fattura'
-    click_button 'Imponibile'
     fill_in_new_invoice
     click_button 'Conferma'
     expect(page).to have_css 'h2', text: 'Manutenzione'

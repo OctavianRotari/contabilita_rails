@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510143619) do
+ActiveRecord::Schema.define(version: 20160512203104) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20160510143619) do
   end
 
   add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id"
+
+  create_table "taxable_vat_fields", force: :cascade do |t|
+    t.decimal  "taxable"
+    t.decimal  "vat"
+    t.integer  "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taxable_vat_fields", ["invoice_id"], name: "index_taxable_vat_fields_on_invoice_id"
 
   create_table "vehicles", force: :cascade do |t|
     t.string   "plate"
