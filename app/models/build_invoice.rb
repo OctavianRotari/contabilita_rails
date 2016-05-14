@@ -11,17 +11,27 @@ class BuildInvoice
     @total_taxable = 0
   end
 
-  def taxable
-    @taxable.push(@invoice_params[:taxable].to_f)
+  def taxable params
+    @taxable.push(params[:taxable].to_f)
   end
 
-  def vat
-    @vat.push(@invoice_params[:vat].to_i)
+  def vat params
+    @vat.push(params[:vat].to_i)
   end
 
   def build
-    vat
-    taxable
+    byebug
+    vat @invoice_params
+    taxable @invoice_params
+    if @invoice_params.has_key?(:taxable_vat_fields_attributes)
+      taxable_vat_fields = @invoice_params[:taxable_vat_fields_attributes]
+      added_fields = taxable_vat_fields.keys
+      added_fields.each do |field|
+        byebug
+        vat(taxable_vat_fields[field])
+        taxable(taxable_vat_fields[field])
+      end
+    end
     @total_vat = total_vat(@taxable, @vat)
     @total_taxable = total_taxable(@taxable)
     @invoice_params = updated_invoice
