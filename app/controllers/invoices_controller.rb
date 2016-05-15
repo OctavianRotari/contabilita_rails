@@ -22,7 +22,8 @@ class InvoicesController < ApplicationController
 
   def update
     invoice = Invoice.find(params[:id])
-    invoice.update(invoice_params)
+    params = BuildInvoice.new(invoice_params).build
+    invoice.update(params)
     redirect_to company_invoice_path(company_id:company_id, invoice_id: invoice.id)
   end
 
@@ -50,7 +51,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:date_of_issue,:vehicle_id,:deadline,:type_of_invoice, :taxable, :vat, taxable_vat_fields_attributes:[:taxable, :vat])
+    params.require(:invoice).permit(:reason,:date_of_issue,:vehicle_id,:deadline,:type_of_invoice, taxable_vat_fields_attributes:[:taxable, :vat_rate])
   end
 
   def company_id

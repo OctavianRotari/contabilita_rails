@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512203104) do
+ActiveRecord::Schema.define(version: 20160515104106) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20160512203104) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "company_id"
-    t.decimal  "vat"
+    t.decimal  "total_vat"
     t.decimal  "total"
     t.string   "reason"
-    t.decimal  "taxable"
+    t.decimal  "total_taxable"
     t.integer  "vehicle_id"
     t.string   "type_of_invoice"
   end
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160512203104) do
 
   create_table "taxable_vat_fields", force: :cascade do |t|
     t.decimal  "taxable"
-    t.decimal  "vat"
+    t.decimal  "vat_rate"
     t.integer  "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

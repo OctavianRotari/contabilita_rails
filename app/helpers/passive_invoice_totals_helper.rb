@@ -12,7 +12,7 @@ module PassiveInvoiceTotalsHelper
     invoices = Invoice.passive
     total = 0
     invoices.each do |invoice|
-      total += invoice.vat
+      total += invoice.total_vat
     end
     total
   end

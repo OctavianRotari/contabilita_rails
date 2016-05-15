@@ -9,8 +9,8 @@ module Unit
 
   def create_passive_record(company)
     company.invoices.create(total:110,
-                            vat:10,
-                            taxable:100,
+                            total_vat:10,
+                            total_taxable:100,
                             reason:'Manutenzione',
                             vehicle_id:1,
                             date_of_issue:'01/04/2015',

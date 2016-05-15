@@ -7,19 +7,10 @@
 			<% end %>
 		</ul>
 	<% end %>
-	<div class="taxable">
-		<%= form.label 'Imponibile' %>
-		<%= form.text_field :taxable, require: true %>
-		<%= form.label 'Iva' %>
-		<%= form.select(:vat) do %>
-			<% [['4', 4],['10', 10],['22',22]].each do |option| %>
-				<%= content_tag(:option, option.first, value: option.last) %>
-			<%end%>
-		<%end%>
-	</div>
 	<%= form.fields_for :taxable_vat_fields do |builder| %>
 		<%= render 'taxable_vat_field_fields', f: builder %>
 	<% end %>
+	<%=default_fields form , :taxable_vat_fields%>
 	<%=link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
 	<div>
 		<%= form.label 'Tipo fattura' %>
