@@ -1,5 +1,4 @@
 class Invoice < ActiveRecord::Base
-  attr_accessor :taxable_vat_fields_attributes
   has_many :payments, dependent: :destroy
   has_many :taxable_vat_fields
   belongs_to :company

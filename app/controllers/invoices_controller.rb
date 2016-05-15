@@ -1,6 +1,4 @@
 class InvoicesController < ApplicationController
-  include AddPaymentToInvoice
-  include AddToParents
 
   def active_index
     @invoices = Invoice.active
@@ -21,6 +19,7 @@ class InvoicesController < ApplicationController
   end
 
   def update
+    byebug
     invoice = Invoice.find(params[:id])
     params = BuildInvoice.new(invoice_params).build
     invoice.update(params)
@@ -40,7 +39,7 @@ class InvoicesController < ApplicationController
 
   def create
     params = BuildInvoice.new(invoice_params).build
-    invoice = add_to_parents(company_id, params)
+    invoice = Invoice.new(params)
     if invoice.save
       redirect_to company_invoice_path(company_id:company_id, id: invoice.id)
     else
@@ -51,7 +50,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:date_of_issue,:vehicle_id,:deadline,:type_of_invoice, taxable_vat_fields_attributes:[:taxable, :vat_rate])
+    params.require(:invoice).permit(:reason,:date_of_issue,:vehicle_id,:company_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
 
   def company_id

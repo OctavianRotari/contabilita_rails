@@ -12,7 +12,6 @@ class BuildInvoice
   end
 
   def build
-    byebug
     added_fields
     @total_vat = total_vat(@taxable, @vat)
     @total_taxable = total_taxable(@taxable)
