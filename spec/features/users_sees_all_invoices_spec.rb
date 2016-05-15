@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  active_invoice = 'Totale: 110.0 10.0 0 0 Bezzi 110.0 10.0 0 110.0 Manutenzione 01-04-2015 30-04-2015'
+  active_invoice = 'Totale: 110.0 10.0 0 110.0 Bezzi 110.0 10.0 0 110.0 Manutenzione 01-04-2015 30-04-2015'
   passive_invoice = 'Totale: 110.0 10.0 0 110.0 Bezzi 110.0 10.0 0 110.0 Manutenzione 01-04-2015 ER354BS 30-04-2015'
 
   scenario 'sees all the active invoices' do
