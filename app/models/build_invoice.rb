@@ -1,4 +1,5 @@
 class BuildInvoice
+  attr_reader :invoice_params
 
   include CalculateTaxable
   include CalculateVat
