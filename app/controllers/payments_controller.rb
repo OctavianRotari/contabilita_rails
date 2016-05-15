@@ -1,13 +1,17 @@
 class PaymentsController < ApplicationController
-  include AddPaymentToInvoice
 
   def new
     @payment = Payment.new
   end
 
   def create
-    add_payment_to_invoice payment_params, invoice_id
-    redirect_to company_invoice_path(company_id: company_id, id: invoice_id)
+    payment = Payment.new(payment_params)
+    payment.invoice_id = invoice_id
+    if payment.save
+      redirect_to company_invoice_path(company_id: company_id, id: invoice_id)
+    else
+      new_company_invoice_payment_path(company_id:company.id, invoice_id: invoice_id)
+    end
   end
 
   def edit

@@ -54,6 +54,6 @@ module ActiveInvoiceTotalsHelper
         total += payment.paid
       end
     end
-    total_all_passive_invoices - total
+    total_all_active_invoices - total
   end
 end
