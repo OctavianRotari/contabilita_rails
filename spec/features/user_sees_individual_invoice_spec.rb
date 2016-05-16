@@ -8,6 +8,6 @@ feature 'user' do
     create_passive_invoice(company)
     visits_individual_invoice
     expect(page).to have_css 'h2', text: 'Manutenzione'
-    expect(page).to have_css 'p', text: 'Inponibile: 100'
+    expect(page).to have_css 'p', text: 'Imponibile: 100'
   end
 end

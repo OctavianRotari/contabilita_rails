@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe PassiveInvoiceTotalsHelper, type: :unit do
-  let(:extended_class) { Class.new { extend PassiveInvoiceTotalsHelper } }
+describe TotalsInvoicesHelper, type: :unit do
+  let(:extended_class) { Class.new { extend TotalsInvoicesHelper } }
 
   before :each do
     create_vehicle
@@ -14,13 +14,15 @@ describe PassiveInvoiceTotalsHelper, type: :unit do
 
   describe '#total_all_invoices' do
     it 'should calculate the total of all invoices' do
-      expect(extended_class.total_all_passive_invoices).to eq(220)
+      invoices = Invoice.all
+      expect(extended_class.total_all_invoices(invoices)).to eq(220)
     end
   end
 
   describe '#total_vat_all_invoices' do
     it 'should calculate the total vat of all invoices' do
-      expect(extended_class.total_vat_all_passive_invoices).to eq(20)
+      invoices = Invoice.all
+      expect(extended_class.total_vat_all_invoices(invoices)).to eq(20)
     end
   end
 
@@ -32,7 +34,8 @@ describe PassiveInvoiceTotalsHelper, type: :unit do
 
   describe '#total_paid_all_invoice' do
     it 'should calculate the total paid for all invoice' do
-      expect(extended_class.total_paid_all_passive_invoices).to eq(60)
+      invoices = Invoice.all
+      expect(extended_class.total_paid_or_collected_all_invoices(invoices)).to eq(60)
     end
   end
 
@@ -44,7 +47,8 @@ describe PassiveInvoiceTotalsHelper, type: :unit do
 
   describe '#total_to_pay_all_invoices' do
     it 'should calculate the total to pay for all invoices' do
-      expect(extended_class.total_to_pay_all_passive_invoices).to eq(160)
+      invoices = Invoice.all
+      expect(extended_class.total_remaining_all_invoices(invoices)).to eq(160)
     end
   end
 end
