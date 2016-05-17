@@ -6,7 +6,7 @@ feature 'user clicks on the company' do
     vehicle("ER859BS")
     create_passive_invoice(company,'Montaggio gomme')
     create_passive_invoice(company)
-    visits_passive_invoices_of_company
+    visits_passive_invoices("Bezzi")
     expect(page).to have_css 'td', text: 'Manutenzione'
     expect(page).to have_css 'td', text: 'Montaggio gomme'
   end
@@ -19,7 +19,7 @@ feature 'user clicks on the company' do
     vehicle("ER759BS")
     create_passive_invoice(company_1)
     create_passive_invoice(company_2,'Montaggio gomme')
-    visits_passive_invoices_of_company
+    visits_passive_invoices("Bezzi")
     expect(page).not_to have_css 'td', text: 'Montaggio gomme'
   end
 end

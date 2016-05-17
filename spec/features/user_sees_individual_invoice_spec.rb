@@ -2,11 +2,8 @@ require 'rails_helper'
 
 feature 'user' do
   scenario 'user sees individual invoice', js: true do
-    company = company('Bezzi')
-    vehicle = vehicle("ER859BS")
-    create_passive_invoice(vehicle)
-    create_passive_invoice(company)
-    visits_individual_invoice
+    create_passive_record('Bezzi',"ER859BS")
+    visits_individual_invoice('Bezzi')
     expect(page).to have_css 'h2', text: 'Manutenzione'
     expect(page).to have_css 'p', text: 'Imponibile: 100'
   end

@@ -2,10 +2,8 @@ require 'rails_helper'
 
 feature 'user' do
   scenario 'deletes invoice', js: true do
-    company = company('Bezzi')
-    vehicle("ER354BS")
-    create_passive_invoice(company)
-    visits_passive_invoices_of_company
+    create_passive_record('Bezzi',"ER354BS")
+    visits_passive_invoices('Bezzi')
     click_button "Elimina fattura"
     expect(page).not_to have_css 'td', text: 'Manutenzione'
   end
