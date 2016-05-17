@@ -2,6 +2,7 @@ class InvoicesController < ApplicationController
 
   def active_index
     @invoices = Invoice.active
+    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def passive_index

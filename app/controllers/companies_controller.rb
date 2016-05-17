@@ -31,6 +31,7 @@ class CompaniesController < ApplicationController
 
   def passive_invoices
     @invoices = Company.find(params[:company_id]).invoices.passive
+    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
     end
@@ -38,6 +39,7 @@ class CompaniesController < ApplicationController
 
   def active_invoices
     @invoices = Company.find(params[:company_id]).invoices.active
+    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
     end
