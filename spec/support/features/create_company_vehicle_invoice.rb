@@ -12,10 +12,10 @@ module Features
                             total:110,
                             total_vat:10,
                             vehicle_id: nil,
-                            date_of_issue:'01/04/2015',
+                            date_of_issue: Time.now,
                             type_of_invoice: 'attiva',
                             total_taxable:100,
-                            deadline:'30/04/2015')
+                            deadline:'30/04/2016')
   end
 
 
@@ -24,10 +24,10 @@ module Features
                             total:110,
                             total_vat:10,
                             vehicle_id: vehicle_id,
-                            date_of_issue:'01/04/2015',
+                            date_of_issue: Time.now,
                             type_of_invoice: 'passiva',
                             total_taxable:100,
-                            deadline:'30/04/2015')
+                            deadline:'30/04/2016')
   end
 
   def create_payment(invoice, amount=100)

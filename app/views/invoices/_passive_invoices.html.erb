@@ -1,6 +1,6 @@
-<%= link_to 'Anno precedente', company_passive_invoices_path(params[:company_id], year_param: params[:year_param].to_i - 1), :remote => true %>
 <h2>Anno: <%= params[:year_param]%></h2>
-<%= link_to 'Anno successivo', company_passive_invoices_path(params[:company_id], year_param: params[:year_param].to_i + 1), :remote => true %>
+<%= previos_year_menu("passive") %>
+<%= next_year_menu("passive") %>
 <% @invoices_month.each do |month, invoices| %>
 	<h2><%= month.strftime('%B') %></h2>
 	<table>

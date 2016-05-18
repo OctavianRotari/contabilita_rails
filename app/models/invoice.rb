@@ -9,12 +9,12 @@ class Invoice < ActiveRecord::Base
     find(params_id).payments
   end
 
-  def self.active
-    where(type_of_invoice: 'attiva')
+  def self.active_ord_by_year(params)
+    where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).where(type_of_invoice: 'attiva')
   end
 
-  def self.passive
-    where(type_of_invoice: 'passiva')
+  def self.passive_ord_by_year(params)
+    where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).where(type_of_invoice: 'passiva')
   end
 
   def company_name

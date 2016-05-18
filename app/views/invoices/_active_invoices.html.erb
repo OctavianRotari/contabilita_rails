@@ -1,13 +1,6 @@
-<% url =  request.original_url %>
-<% if url.include? 'company'%>
-	<%= link_to 'Anno precedente', company_active_invoices_path(params[:company_id], year_param: params[:year_param].to_i - 1), :remote => true %>
-	<h2>Anno: <%= params[:year_param]%></h2>
-	<%= link_to 'Anno successivo', company_active_invoices_path(params[:company_id], year_param: params[:year_param].to_i + 1), :remote => true %>
-<%else%>
-	<%= link_to 'Anno precedente', active_invoices_path(year_param: params[:year_param].to_i - 1) %>
-	<h2>Anno: <%= params[:year_param]%></h2>
-	<%= link_to 'Anno successivo', active_invoices_path(year_param: params[:year_param].to_i + 1) %>
-<%end%>
+<h2>Anno: <%= params[:year_param]%></h2>
+<%= previos_year_menu("active") %>
+<%= next_year_menu("active") %>
 <% @invoices_month.each do |month, invoices| %>
 	<h2><%= month.strftime('%B') %></h2>
 	<table>
