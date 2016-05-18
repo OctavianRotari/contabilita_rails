@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :companies do
     get 'passive_invoices' => 'companies#passive_invoices'
     get 'active_invoices' => 'companies#active_invoices'
+    get 'summary' => 'companies#summary'
     resources :invoices do
       resources :payments, only: [:new, :create, :update, :edit, :destroy]
     end

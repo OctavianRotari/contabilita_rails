@@ -1,7 +1,8 @@
 <%= link_to "Aggiungi fattura", new_company_invoice_path(@company.id) %>
 <h2><%= @company.name %></h2>
-<%url = request.path_info%>
-<%= link_to 'Fatture passive', company_passive_invoices_path(@company.id), :remote => true %>
-<%= link_to 'Fatture attive', company_active_invoices_path(@company.id), :remote => true %>
+<%= link_to 'Fatture passive', company_passive_invoices_path(@company.id, year_param: Time.now.year), :remote => true %>
+<%= link_to 'Fatture attive', company_active_invoices_path(@company.id, year_param: Time.now.year), :remote => true %>
+<%= link_to 'Riepilogo', company_summary_path(@company.id), :remote => true %>
 <div id="invoices">
+	<%= render 'company_summary'%>
 </div>

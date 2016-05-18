@@ -1,12 +1,13 @@
 class InvoicesController < ApplicationController
 
   def active_index
-    @invoices = Invoice.active
+    @invoices = Invoice.where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).active
     @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def passive_index
-    @invoices = Invoice.passive
+    @invoices = Invoice.where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).passive
+    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def new

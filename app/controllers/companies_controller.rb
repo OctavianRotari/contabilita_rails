@@ -29,8 +29,15 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:company_id] || params[:id])
   end
 
+  def summary
+    @invoices = Company.find(params[:company_id]).invoices
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def passive_invoices
-    @invoices = Company.find(params[:company_id]).invoices.passive
+    @invoices = Company.find(params[:company_id]).invoices.where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).passive
     @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
@@ -38,7 +45,7 @@ class CompaniesController < ApplicationController
   end
 
   def active_invoices
-    @invoices = Company.find(params[:company_id]).invoices.active
+    @invoices = Company.find(params[:company_id]).invoices.where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] ).active
     @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
