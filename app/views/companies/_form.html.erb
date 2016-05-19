@@ -20,6 +20,17 @@
 		<%= form.text_field :number, require: true %>
 	</div>
 	<div>
+		<%= form.label 'Categoria azienda' %>
+		<%= form.select(:category_of_company_id) do %>
+			<% if !@category_of_company.empty? %>
+				<% @category_of_company.each do |category| %>
+					<%= content_tag(:option, category.category , value: category.id) %>
+				<%end%>
+			<%end%>
+			<%= content_tag(:option, "Aggiungi categoria") %>
+		<%end%>
+	</div>
+	<div>
 		<%= form.submit "Aggiungi azienda" %>
 	</div>
 <% end %>

@@ -5,6 +5,7 @@ class CompaniesController < ApplicationController
   end
 
   def new
+    @category_of_company = CategoryOfCompany.all
     @company = Company.new
   end
 
