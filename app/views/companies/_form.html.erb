@@ -21,16 +21,21 @@
 	</div>
 	<div>
 		<%= form.label 'Categoria azienda' %>
-		<%= form.select(:category_of_company_id) do %>
+		<%= form.select(:category_of_company_id, { include_blank: true, onchange: "alert_me_test()" }) do %>
 			<% if !@category_of_company.empty? %>
 				<% @category_of_company.each do |category| %>
 					<%= content_tag(:option, category.category , value: category.id) %>
 				<%end%>
 			<%end%>
-			<%= content_tag(:option, "Aggiungi categoria") %>
+			<%= content_tag(:option, "Aggiungi categoria", value: "1") %>
 		<%end%>
 	</div>
 	<div>
 		<%= form.submit "Aggiungi azienda" %>
 	</div>
-<% end %>
+<% end %>p
+<script>
+  $(function() {
+    $( "#dialog" ).dialog();
+  });
+</script>
