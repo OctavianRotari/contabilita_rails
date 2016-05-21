@@ -1,0 +1,2 @@
+class CategoryOfCompanyController < ApplicationController
+end
