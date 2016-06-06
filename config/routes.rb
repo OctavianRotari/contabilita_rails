@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :vehicles do
+    get 'passive_invoices' => 'vehicles#passive_invoices'
+    get 'active_invoices' => 'vehicles#active_invoices'
+    get 'summary' => 'companies#summary'
     resources :invoices, only: [:index]
   end
 end
