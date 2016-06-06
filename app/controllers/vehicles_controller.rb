@@ -9,6 +9,8 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
+    @invoices = @vehicle.invoices
+    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def edit
