@@ -11,16 +11,18 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
+    @category_of_company = CategoryOfCompany.all
   end
 
   def update
+    @category_of_company = CategoryOfCompany.all
     company  = Company.find(params[:id])
     company.update(company_params)
     redirect_to companies_path
   end
 
   def destroy
-    company = Company.find(params[:id])
+    @company = Company.find(params[:id])
     company.destroy
     flash[:notice] = 'Azienda elliminata'
     redirect_to companies_path
@@ -65,5 +67,9 @@ class CompaniesController < ApplicationController
   private
   def company_params
     params.require(:company).permit(:name, :adress, :number)
+  end
+
+  def company
+    @_company ||= Company.find(params[:id])
   end
 end

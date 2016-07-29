@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'active_invoices' => 'invoices#active_index'
   get 'passive_invoices' => 'invoices#passive_index'
 
+  resources :company_invoices_dashboard, only: [:show]
+
   resources :companies do
     get 'passive_invoices' => 'companies#passive_invoices'
     get 'active_invoices' => 'companies#active_invoices'
