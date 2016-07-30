@@ -8,9 +8,9 @@ class PaymentsController < ApplicationController
     payment = Payment.new(payment_params)
     payment.invoice_id = invoice_id
     if payment.save
-      redirect_to company_invoice_path(company_id: company_id, id: invoice_id)
+      redirect_to invoice_path(id: invoice_id)
     else
-      new_company_invoice_payment_path(company_id:company.id, invoice_id: invoice_id)
+      new_invoice_payment_path(invoice_id: invoice_id)
     end
   end
 
@@ -28,7 +28,7 @@ class PaymentsController < ApplicationController
     payment = Payment.find(params[:id])
     payment.destroy
     flash[:notice] = 'Pagamento elliminata'
-    redirect_to company_invoice_path(company_id:company_id, id: invoice_id)
+    redirect_to invoice_path(id: invoice_id)
   end
 
   private

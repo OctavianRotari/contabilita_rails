@@ -9,11 +9,12 @@ Rails.application.routes.draw do
     get 'active_invoices' => 'company_invoices_dashboard#active_invoices'
   end
 
+  resources :invoices do
+    resources :payments, only: [:new, :create, :update, :edit, :destroy]
+  end
+
   resources :companies do
     get 'summary' => 'companies#summary'
-    resources :invoices do
-      resources :payments, only: [:new, :create, :update, :edit, :destroy]
-    end
   end
 
   resources :vehicles do

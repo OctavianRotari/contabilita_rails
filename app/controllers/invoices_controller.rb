@@ -12,11 +12,13 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @companies = Company.all
     @vehicles = Vehicle.all
   end
 
   def edit
     @vehicles = Vehicle.all
+    @companies = Company.all
     @invoice = Invoice.find(params[:id])
   end
 
@@ -41,18 +43,17 @@ class InvoicesController < ApplicationController
   def create
     params = BuildInvoice.new(invoice_params).build
     invoice = Invoice.new(params)
-    invoice.company_id = company_id
     if invoice.save
-      redirect_to company_invoice_path(company_id:company_id, id: invoice.id)
+      redirect_to invoice_path(id: invoice.id)
     else
-      render new_company_invoice
+      render new_invoice
     end
   end
 
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:date_of_issue,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
+    params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
 
   def company_id
