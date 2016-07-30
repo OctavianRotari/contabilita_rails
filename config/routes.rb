@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   get 'active_invoices' => 'invoices#active_index'
   get 'passive_invoices' => 'invoices#passive_index'
 
-  resources :company_invoices_dashboard, only: [:show]
+  resources :company_invoices_dashboard, param: :id, only: [:show] do
+    get 'passive_invoices' => 'company_invoices_dashboard#passive_invoices'
+    get 'active_invoices' => 'company_invoices_dashboard#active_invoices'
+  end
 
   resources :companies do
-    get 'passive_invoices' => 'companies#passive_invoices'
-    get 'active_invoices' => 'companies#active_invoices'
     get 'summary' => 'companies#summary'
     resources :invoices do
       resources :payments, only: [:new, :create, :update, :edit, :destroy]
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
   resources :vehicles do
     get 'passive_invoices' => 'vehicles#passive_invoices'
     get 'active_invoices' => 'vehicles#active_invoices'
-    get 'summary' => 'companies#summary'
     resources :invoices, only: [:index]
   end
 end

@@ -10,4 +10,8 @@ class CompanyInvoicesDashboard
     Company.find(@company_id).name
   end
 
+  def passive_invoices
+    Invoice.where(company_id: company_id)
+  end
+
 end
