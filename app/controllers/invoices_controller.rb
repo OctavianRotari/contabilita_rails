@@ -26,7 +26,7 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     params = BuildInvoice.new(invoice_params).build
     invoice.update(params)
-    redirect_to company_invoice_path(company_id:company_id, invoice_id: invoice.id)
+    redirect_to invoice_path(invoice_id: invoice.id)
   end
 
   def show
