@@ -1,9 +1,9 @@
-class CompanyInvoicesDashboard < InvoicesDashboard
+class CompanyDashboard < InvoicesDashboard
 
   attr_reader :company_id
 
   def initialize params
-    @company_id = params[:company_invoices_dashboard_id]
+    @company_id = params[:id]
     @params = params
   end
 

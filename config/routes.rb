@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   get 'active_invoices' => 'invoices#active_index'
   get 'passive_invoices' => 'invoices#passive_index'
 
-  resources :company_invoices_dashboard, param: :id, only: [:show] do
-    get 'passive_invoices' => 'company_invoices_dashboard#passive_invoices'
-    get 'active_invoices' => 'company_invoices_dashboard#active_invoices'
+  resources :company_dashboard, only: [:show] do
+    member do
+      get 'passive_invoices' => 'company_dashboard#passive_invoices'
+      get 'active_invoices' => 'company_dashboard#active_invoices'
+    end
   end
 
   resources :invoices do

@@ -1,7 +1,7 @@
-class CompanyInvoicesDashboardController < ApplicationController
+class CompanyDashboardController < ApplicationController
 
   def show
-    @company_invoices_dashboard = CompanyInvoicesDashboard.new(params)
+    @company_invoices_dashboard = CompanyDashboard.new(params)
   end
 
   def passive_invoices
@@ -12,7 +12,7 @@ class CompanyInvoicesDashboardController < ApplicationController
   end
 
   def active_invoices
-    @invoices_month = company_active_invoices.group_by { |t| t.date_of_issue.beginning_of_month }
+    @company_dashboard = CompanyDashboard.new(params)
     respond_to do |format|
       format.js
     end
@@ -29,7 +29,7 @@ class CompanyInvoicesDashboardController < ApplicationController
   end
 
   def company_dashboard
-    CompanyInvoicesDashboard.new(params)
+    CompanyDashboard.new(params)
   end
 
 end

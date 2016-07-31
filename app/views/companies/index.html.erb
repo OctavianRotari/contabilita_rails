@@ -1,7 +1,7 @@
 <%=link_to 'Aggiungi azienda', new_company_path %><br>
 <br>
 <% @companies.each do |company| %>
-	<%= link_to company.name, company_invoices_dashboard_path(company.id) %><br>
+	<%= link_to company.name, company_dashboard_path(company.id) %><br>
 	<%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
 	<%= button_to 'Elimina azienda', company_path(company.id), method: :delete %><br>
 <%end%>
