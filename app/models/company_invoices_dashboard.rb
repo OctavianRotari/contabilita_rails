@@ -1,9 +1,10 @@
-class CompanyInvoicesDashboard
-  
+class CompanyInvoicesDashboard < InvoicesDashboard
+
   attr_reader :company_id
 
-  def initialize company_id
-    @company_id = company_id
+  def initialize params
+    @company_id = params[:company_invoices_dashboard_id]
+    @params = params
   end
 
   def company_name
@@ -11,7 +12,20 @@ class CompanyInvoicesDashboard
   end
 
   def passive_invoices
-    Invoice.where(company_id: company_id)
+    company_invoices.passive_ord_by_year(@params)
   end
 
+  def active_invoices
+    company_invoices.active_ord_by_year(@params)
+  end
+
+  private
+
+  def company
+    Company.find(company_id)
+  end
+
+  def company_invoices
+    company.invoices
+  end
 end

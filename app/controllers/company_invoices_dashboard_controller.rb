@@ -1,20 +1,18 @@
 class CompanyInvoicesDashboardController < ApplicationController
 
   def show
-    @company_invoices_dashboard = CompanyInvoicesDashboard.new(params[:id])
+    @company_invoices_dashboard = CompanyInvoicesDashboard.new(params)
   end
 
   def passive_invoices
-    @invoices = company.invoices.passive_ord_by_year(params[:year_param])
-    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
+    @invoices_month = company_passive_invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
     end
   end
 
   def active_invoices
-    @invoices = company.invoices.active_ord_by_year(params)
-    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
+    @invoices_month = company_active_invoices.group_by { |t| t.date_of_issue.beginning_of_month }
     respond_to do |format|
       format.js
     end
@@ -22,8 +20,16 @@ class CompanyInvoicesDashboardController < ApplicationController
 
   private
 
-  def company
-    Company.find(params[:company_invoices_dashboard_id])
+  def company_active_invoices
+    company_dashboard.active_invoices
+  end
+
+  def company_passive_invoices
+    company_dashboard.passive_invoices
+  end
+
+  def company_dashboard
+    CompanyInvoicesDashboard.new(params)
   end
 
 end
