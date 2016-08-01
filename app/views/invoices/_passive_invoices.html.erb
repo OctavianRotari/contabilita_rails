@@ -35,11 +35,11 @@
 					<td><%=invoice.total_vat %></td>
 					<td><%=paid_per_invoice(invoice.id) %></td>
 					<td><%=to_pay_per_invoice(invoice.id) %></td>
-					<td><%=link_to invoice.reason,company_invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
+					<td><%=link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
 					<td><%=invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 					<td><%=link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
 					<td><%=invoice.deadline.strftime("%d-%m-%Y")%></td>
-					<td><%=button_to "Elimina fattura", company_invoice_path(company_id: invoice.company_id, id: invoice.id), method: :delete %></td>
+					<td><%=button_to "Elimina fattura", invoice_path(company_id: invoice.company_id, id: invoice.id), method: :delete %></td>
 				</tr>
 			<%end%>
 		</tbody>
