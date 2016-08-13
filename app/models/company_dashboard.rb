@@ -19,6 +19,11 @@ class CompanyDashboard < InvoicesDashboard
     company_invoices.active_ord_by_year(@params)
   end
 
+  def totals_invoice
+    totals = TotalsInvoice.new
+    totals.calc
+  end
+
   private
 
   def company
