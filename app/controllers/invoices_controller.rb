@@ -1,15 +1,5 @@
 class InvoicesController < ApplicationController
 
-  def active_index
-    @invoices = Invoice.active_ord_by_year(params)
-    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
-  end
-
-  def passive_index
-    @invoices = Invoice.passive_ord_by_year(params)
-    @invoices_month = @invoices.group_by { |t| t.date_of_issue.beginning_of_month }
-  end
-
   def new
     @invoice = Invoice.new
     @companies = Company.all

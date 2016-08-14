@@ -32,13 +32,6 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:company_id] || params[:id])
   end
 
-  def summary
-    @invoices = Company.find(params[:company_id]).invoices
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def create
     company = Company.new(company_params)
     if company.save
