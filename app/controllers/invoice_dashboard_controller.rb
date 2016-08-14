@@ -14,10 +14,10 @@ class InvoiceDashboardController < ApplicationController
   end
 
   def passive(params)
-    invoice_dashboard.passive_ord_by_year(params)
+    invoice_dashboard.passive(params)
   end
 
   def active(params)
-    invoice_dashboard.active_ord_by_year(params)
+    invoice_dashboard.active(params)
   end
 end
