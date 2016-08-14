@@ -1,6 +1,6 @@
 <h2>Anno: <%= params[:year_param]%></h2>
-<%= previos_year_menu("passive") %>
-<%= next_year_menu("passive") %>
+<%= previos_year_menu("active") %>
+<%= next_year_menu("active") %>
 <% @invoices.each do |month, invoices| %>
 	<h2><%= month.strftime('%B') %></h2>
 	<table>

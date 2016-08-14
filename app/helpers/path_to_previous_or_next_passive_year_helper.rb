@@ -30,7 +30,7 @@ module PathToPreviousOrNextPassiveYearHelper
   end
 
   def invoices(type_of_invoice)
-    method(("#{type_of_invoice}_invoices_path").to_sym)
+    method(("#{type_of_invoice}_invoices_dashboard_index_path").to_sym)
   end
 
   def url

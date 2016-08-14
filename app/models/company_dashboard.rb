@@ -1,4 +1,4 @@
-class CompanyDashboard < InvoicesDashboard
+class CompanyDashboard < InvoiceDashboard
 
   attr_reader :company_id
 
@@ -12,11 +12,11 @@ class CompanyDashboard < InvoicesDashboard
   end
 
   def passive_invoices
-    company_invoices.passive_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
+    company_invoices.passive_ord_by_year(@params)
   end
 
   def active_invoices
-    company_invoices.active_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
+    company_invoices.active_ord_by_year(@params)
   end
 
   def totals_invoice
