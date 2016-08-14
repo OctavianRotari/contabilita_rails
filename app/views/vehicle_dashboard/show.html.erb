@@ -1,0 +1,7 @@
+<h2><%= @vehicle_dashboard.plate %></h2>
+<%= link_to 'Fatture passive', passive_invoices_vehicle_path(@vehicle_dashboard.vehicle_id, year_param: Time.now.year), :remote => true %>
+<%= link_to 'Fatture attive', active_invoices_vehicle_path(@vehicle_dashboard.vehicle_id, year_param: Time.now.year), :remote => true %>
+<%#<%= link_to 'Riepilogo', company_summary_path(@company_invoices_dashboard.company_id), :remote => true %>
+<div id="invoices">
+	<%= render 'vehicle_summary'%>
+</div>

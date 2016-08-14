@@ -1,7 +1,7 @@
 class CompanyDashboardController < ApplicationController
 
   def show
-    @company_invoices_dashboard = CompanyDashboard.new(params)
+    @company_dashboard = CompanyDashboard.new(params)
   end
 
   def passive_invoices
