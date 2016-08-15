@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get 'active' => 'invoice_dashboard#active_invoices'
       get 'passive' => 'invoice_dashboard#passive_invoices'
     end
-    resources :payments, only: [:new, :create, :update, :edit, :destroy]
+    resources :payments
   end
 
   resources :companies do

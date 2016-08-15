@@ -4,8 +4,7 @@ feature 'user' do
   scenario 'adds a new invoice', js: true do
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/companies'
-    click_on 'Bezzi'
+    visit '/'
     click_link 'Aggiungi fattura'
     fill_in_new_invoice
     click_button 'Conferma'
@@ -15,8 +14,7 @@ feature 'user' do
   scenario 'adds a new invoice with two taxable', js: true do
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/companies'
-    click_on 'Bezzi'
+    visit '/'
     click_link 'Aggiungi fattura'
     click_link 'Aggiungi imponibile'
     fill_in_new_invoice

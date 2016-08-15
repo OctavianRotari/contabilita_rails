@@ -7,11 +7,11 @@ module Features
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
   end
 
-  def create_active_invoice(parent, reason='Manutenzione')
+  def create_active_invoice(parent, reason='Manutenzione', vehicle_id = 1)
     parent.invoices.create(reason:reason,
                             total:110,
                             total_vat:10,
-                            vehicle_id: nil,
+                            vehicle_id: vehicle_id,
                             date_of_issue: Time.now,
                             type_of_invoice: 'attiva',
                             total_taxable:100,

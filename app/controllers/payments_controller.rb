@@ -15,13 +15,14 @@ class PaymentsController < ApplicationController
   end
 
   def edit
+    @invoice = Invoice.find(params[:invoice_id])
     @payment = Payment.find(params[:id])
   end
 
   def update
     payment = Payment.find(params[:id])
     payment.update(payment_params)
-    redirect_to company_invoice_path(company_id:company_id, id: invoice_id)
+    redirect_to invoice_path(id: invoice_id)
   end
 
   def destroy

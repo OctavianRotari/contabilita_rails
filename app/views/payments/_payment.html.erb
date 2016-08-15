@@ -1,8 +1,8 @@
 <p>Pagamenti:</p>
 <% @invoice.payments.each do |payment|%>
-	<p>Totale pagamento:<%=payment.paid%></p> 
-	<p>Metodo pagamento:<%=payment.method_of_payment%></p> 
-	<p>Data pagamento:<%=payment.payment_date.strftime("%d-%m-%Y")%></p> 
+	<p>Totale pagamento:<%=payment.paid%></p>
+	<p>Metodo pagamento:<%=payment.method_of_payment%></p>
+	<p>Data pagamento:<%=payment.payment_date.strftime("%d-%m-%Y")%></p>
 	<%= link_to 'Aggiorna pagamento', edit_invoice_payment_path(invoice_id: @invoice.id, id:payment.id)%>
 	<br>
 	<br>
