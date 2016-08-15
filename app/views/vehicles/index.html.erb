@@ -1,7 +1,3 @@
 <%=link_to 'Aggiungi mezzo', new_vehicle_path %><br>
 <br>
-<% @vehicles.each do |vehicle| %>
-	<%= link_to vehicle.plate, dashboard_vehicle_path(vehicle.id) %><br>
-	<%= link_to 'Aggiorna mezzo', edit_vehicle_path(vehicle.id) %><br>
-	<%= button_to 'Elimina mezzo', vehicle_path(vehicle.id), method: :delete %><br>
-<%end%>
+<%= render @vehicles %>
