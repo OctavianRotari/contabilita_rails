@@ -4,6 +4,14 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @companies = Company.all
     @vehicles = Vehicle.all
+    @company = Company.new
+    @category_of_company = CategoryOfCompany.all
+    if params[:commit] == 'Aggiungi azienda'
+      company = Company.new(company_params)
+      if company.save
+        redirect_to new_invoice_path
+      end
+    end
   end
 
   def edit
@@ -50,4 +58,7 @@ class InvoicesController < ApplicationController
     params[:company_id]
   end
 
+  def company_params
+    params.require(:company).permit(:name, :adress, :number)
+  end
 end

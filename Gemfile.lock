@@ -76,6 +76,7 @@ GEM
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    magnific-popup-rails (1.1.0)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (3.0)
@@ -185,6 +186,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  magnific-popup-rails (~> 1.1.0)
   poltergeist
   rails (= 4.2.1)
   rspec-rails
@@ -196,4 +198,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
