@@ -1,17 +1,16 @@
 class InvoicesController < ApplicationController
+  include CreateCompanyFromInvoiceNew
+  include CreateVehicleFromInvoiceNew
 
   def new
     @invoice = Invoice.new
     @companies = Company.all
     @vehicles = Vehicle.all
-    @company = Company.new
     @category_of_company = CategoryOfCompany.all
-    if params[:commit] == 'Aggiungi azienda'
-      company = Company.new(company_params)
-      if company.save
-        redirect_to new_invoice_path
-      end
-    end
+    @company = Company.new
+    @vehicle = Vehicle.new
+    create_company
+    create_vehicle
   end
 
   def edit
@@ -61,4 +60,9 @@ class InvoicesController < ApplicationController
   def company_params
     params.require(:company).permit(:name, :adress, :number)
   end
+
+  def vehicle_params
+    params.require(:vehicle).permit(:plate, :type_of_vehicle)
+  end
+
 end
