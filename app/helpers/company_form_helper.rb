@@ -1,5 +1,5 @@
 module CompanyFormHelper
-  def company_from_view
+  def company_instance
     @company || @new_invoice.new_company
   end
 end

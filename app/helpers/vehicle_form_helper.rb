@@ -1,5 +1,5 @@
 module VehicleFormHelper
-  def vehicle_from_view
+  def vehicle_instance
     @vehicle || @new_invoice.new_vehicle
   end
 end

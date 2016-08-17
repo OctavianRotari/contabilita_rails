@@ -1,8 +1,8 @@
-<%= form_for company_from_view do |form| %>
-	<% if company_from_view.errors.any? %>
-		<%= pluralize(company_from_view.errors.count, "error") %> prevented your account from being created:
+<%= form_for company_instance do |form| %>
+	<% if company_instance.errors.any? %>
+		<%= pluralize(company_instance.errors.count, "error") %> prevented your account from being created:
 		<ul>
-			<% company_from_view.errors.full_messages.each do |error_message| %>
+			<% company_instance.errors.full_messages.each do |error_message| %>
 				<li><%= error_message %></li>
 			<% end %>
 		</ul>
@@ -22,8 +22,8 @@
 	<div>
 		<%= form.label 'Categoria azienda' %>
 		<%= form.select(:category_of_company_id) do %>
-			<% if !category_of_company_from_view.empty? %>
-				<% @category_of_company_from_view.each do |category| %>
+			<% if !category_of_company_instance.empty? %>
+				<% category_of_company_instance.each do |category| %>
 					<%= content_tag(:option, category.category , value: category.id) %>
 				<%end%>
 			<%end%>
