@@ -3,12 +3,7 @@ class InvoicesController < ApplicationController
   include CreateVehicleFromInvoiceNew
 
   def new
-    @invoice = Invoice.new
-    @companies = Company.all
-    @vehicles = Vehicle.all
-    @category_of_company = CategoryOfCompany.all
-    @company = Company.new
-    @vehicle = Vehicle.new
+    @new_invoice = NewInvoice.new
     create_company
     create_vehicle
   end

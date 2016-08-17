@@ -6,7 +6,7 @@ module CreateVehicleFromInvoiceNew
         redirect_to new_invoice_path
       else
         redirect_to new_invoice_path
-        flash[:notice] = 'Azienda non inserita'
+        flash[:notice] = 'Veicolo non inserita'
       end
     end
   end

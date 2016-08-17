@@ -1,6 +1,6 @@
-<%= form_for @vehicle do |form| %>
-	<% if @vehicle.errors.any? %>
-		<%= pluralize(@vehicle.errors.count, "error") %> prevented your account from being created:
+<%= form_for vehicle_from_view do |form| %>
+	<% if vehicle_from_view.errors.any? %>
+		<%= pluralize(vehicle_from_view.errors.count, "error") %> prevented your account from being created:
 		<ul>
 			<% @vehicle.errors.full_messages.each do |error_message| %>
 				<li><%= error_message %></li>
