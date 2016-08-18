@@ -23,4 +23,9 @@ class NewInvoice
   def new_vehicle
     Vehicle.new
   end
+
+  def specific_invoice(params)
+    Invoice.find(params[:id])
+  end
+
 end

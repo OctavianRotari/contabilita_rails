@@ -9,9 +9,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    @vehicles = Vehicle.all
-    @companies = Company.all
-    @invoice = Invoice.find(params[:id])
+    @new_invoice = NewInvoice.new
   end
 
   def update

@@ -1,4 +1,4 @@
-<%= form_for @new_invoice.new_invoice do |form|%>
+<%= form_for current_page?(new_invoice_path) ?  @new_invoice.new_invoice : @new_invoice.specific_invoice(params)  do |form|%>
 	<% if @new_invoice.new_invoice.errors.any? %>
 		<%= pluralize(@new_invoice.new_invoice.errors.count, "error") %> prevented your account from being created:
 		<ul>
@@ -23,20 +23,12 @@
 	</div>
 	<div>
 		<%= form.label 'Azienda' %>
-		<%= form.select(:company_id) do %>
-			<% @new_invoice.all_companies.each do |company| %>
-				<%= content_tag(:option, company.name , value: company.id) %>
-			<%end%>
-		<%end%>
+		<%= form.select(:company_id, options_from_collection_for_select(@new_invoice.all_companies, "id", "name", @new_invoice.specific_invoice(params).company.id )) %>
 	</div>
 	<a class="popup-with-form" href="#company-form">Aggiungi azienda</a>
 	<div>
 		<%= form.label 'Mezzo' %>
-		<%= form.select(:vehicle_id) do %>
-			<% @new_invoice.all_vehicles.each do |vehicle| %>
-				<%= content_tag(:option, vehicle.plate , value: vehicle.id) %>
-			<%end%>
-		<%end%>
+		<%= form.select(:vehicle_id, options_from_collection_for_select(@new_invoice.all_vehicles, "id", "plate", @new_invoice.specific_invoice(params).vehicle.id )) %>
 	</div>
 	<a class="popup-with-form" href="#vehicle-form">Aggiungi mezzo</a>
 	<div>
