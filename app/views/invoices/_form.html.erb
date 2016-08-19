@@ -23,12 +23,12 @@
 	</div>
 	<div>
 		<%= form.label 'Azienda' %>
-		<%= form.select(:company_id, options_from_collection_for_select(@new_invoice.all_companies, "id", "name", @new_invoice.specific_invoice(params).company.id )) %>
+		<%= list_of_companies_selected_value(form) %>
 	</div>
 	<a class="popup-with-form" href="#company-form">Aggiungi azienda</a>
 	<div>
 		<%= form.label 'Mezzo' %>
-		<%= form.select(:vehicle_id, options_from_collection_for_select(@new_invoice.all_vehicles, "id", "plate", @new_invoice.specific_invoice(params).vehicle.id )) %>
+		<%= list_of_vehicles_selected_value(form) %>
 	</div>
 	<a class="popup-with-form" href="#vehicle-form">Aggiungi mezzo</a>
 	<div>

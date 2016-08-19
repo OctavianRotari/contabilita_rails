@@ -6,7 +6,7 @@ feature 'user' do
     vehicle
     create_passive_invoice(company)
     visit '/companies'
-    click_on 'Bezzi'
+    click_on 'Fatture'
     click_link 'Fatture passive'
     click_link 'Manutenzione'
     click_link 'Aggiorna'
