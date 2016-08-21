@@ -5,9 +5,4 @@ class Company < ActiveRecord::Base
     find(params_id).invoices
   end
 
-  def self.build invoice, company_id
-    company = self.invoices(company_id)
-    company.build(invoice)
-  end
-
 end

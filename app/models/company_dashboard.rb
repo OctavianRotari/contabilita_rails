@@ -19,9 +19,6 @@ class CompanyDashboard
     company_invoices.active_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
-  def totals_invoice
-  end
-
   private
 
   def company
