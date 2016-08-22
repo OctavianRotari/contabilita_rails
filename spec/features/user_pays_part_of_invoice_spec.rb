@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'user sees individual invoice', js: true do
+  scenario 'user pays part of invoice', js: true do
     create_passive_record('Bezzi',"ER354BS")
-    visits_individual_invoice('Bezzi')
+    visits_individual_invoice
     click_link 'Effettua pagamento'
     fill_in 'payment[paid]', with: 50
     fill_in 'payment[method_of_payment]', with: 'cassa'

@@ -4,7 +4,7 @@ feature 'user' do
   scenario 'updates a payment', js: true do
     invoice = create_passive_record('Bezzi',"ER354BS")
     create_payment(invoice)
-    visits_individual_invoice('Bezzi')
+    visits_individual_invoice
     click_link 'Aggiorna pagamento'
     fill_in 'payment[paid]', with: 70
     click_button 'Effettua pagamento'

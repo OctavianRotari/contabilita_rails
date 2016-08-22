@@ -8,7 +8,7 @@ feature 'user' do
     end
 
     scenario "user sees company's passive invoice's totals", js: true do
-      visits_passive_invoices('Bezzi')
+      visits_passive_invoices("Aziende")
       expect(page).to have_css 'tr.totals', text: '110'
       expect(page).to have_css 'tr.totals', text: '10'
     end
@@ -27,7 +27,7 @@ feature 'user' do
     end
 
     scenario "user sees company's active invoice's totals", js: true do
-      visits_active_invoices('Bezzi')
+      visits_active_invoices("Aziende")
       expect(page).to have_css 'tr.totals', text: '110'
       expect(page).to have_css 'tr.totals', text: '10'
     end

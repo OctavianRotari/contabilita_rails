@@ -1,14 +1,11 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'updates company' do
+  scenario 'sees active invoices for a specific vehicle', js: true do
+    company = company('Bezzi')
     vehicle('RB342BD')
-    visit '/'
-    click_link 'Mezzi'
-    click_link 'Aggiorna mezzo'
-    fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'
-    fill_in 'vehicle[plate]', with: 'ER345BR'
-    click_button "Aggiungi mezzo"
-    expect(page).to have_css 'a', text: 'ER345BR'
+    create_passive_invoice(company,'Montaggio gomme')
+    visits_passive_invoices("Mezzi")
+    expect(page).to have_css 'td', text: 'Montaggio gomme'
   end
 end

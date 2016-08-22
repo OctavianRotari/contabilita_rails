@@ -9,28 +9,28 @@ module Features
     click_link 'Fatture passive'
   end
 
-  def visits_active_invoices(company_name)
+  def visits_active_invoices(type_of_category)
     visit '/'
-    click_link 'Aziende'
+    click_link type_of_category
     click_link 'Fatture'
     click_link 'Fatture attive'
   end
 
-  def visits_passive_invoices(company_name)
+  def visits_passive_invoices(type_of_category)
     visit '/'
-    click_link 'Aziende'
+    click_link type_of_category
     click_link "Fatture"
     click_link 'Fatture passive'
   end
 
-  def visits_new_invoice(company_name)
+  def visits_new_invoice
     visit '/'
     click_link 'Aziende'
     click_link "Fatture"
     click_link 'Aggiungi fattura'
   end
 
-  def visits_individual_invoice(company_name)
+  def visits_individual_invoice
     visit '/'
     click_link 'Aziende'
     click_link "Fatture"
