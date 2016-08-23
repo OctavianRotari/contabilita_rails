@@ -1,11 +1,9 @@
 class InvoicesController < ApplicationController
-  include CreateCompanyFromInvoiceNew
-  include CreateVehicleFromInvoiceNew
+  include CreateCompanyOrVehicleFromInvoiceNew
+  include CheckIfCompanyAndVehicleExists
 
   def new
-    @new_invoice = NewInvoice.new
-    create_company
-    create_vehicle
+    check_if_company_and_vehicle_exists
   end
 
   def edit
@@ -36,7 +34,7 @@ class InvoicesController < ApplicationController
     if invoice.save
       redirect_to invoice_path(id: invoice.id)
     else
-      render new_invoice
+      redirect_to new_invoice_path
     end
   end
 

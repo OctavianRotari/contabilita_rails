@@ -1,8 +1,8 @@
-<%= form_for current_page?(new_invoice_path) ?  @new_invoice.new_invoice : @new_invoice.specific_invoice(params)  do |form|%>
+<%= form_for invoice_new_or_edit  do |form|%>
 	<% if @new_invoice.new_invoice.errors.any? %>
-		<%= pluralize(@new_invoice.new_invoice.errors.count, "error") %> prevented your account from being created:
+		<%= pluralize(invoice_new_or_edit.errors.count, "error") %> prevented your account from being created:
 		<ul>
-			<% @new_invoice.new_invoice.errors.full_messages.each do |error_message| %>
+			<% invoice_new_or_edit.errors.full_messages.each do |error_message| %>
 				<li><%= error_message %></li>
 			<% end %>
 		</ul>
