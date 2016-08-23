@@ -29,11 +29,11 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    vehicle = Vehicle.new(vehicle_params)
-    if vehicle.save
+    @vehicle = Vehicle.new(vehicle_params)
+    if @vehicle.save
       redirect_to vehicles_path
     else
-      redirect_to vehicle_new_path
+      render new_vehicle_path
     end
   end
 

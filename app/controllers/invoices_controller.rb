@@ -3,10 +3,12 @@ class InvoicesController < ApplicationController
   include CheckIfCompanyAndVehicleExists
 
   def new
+    @invoice = Invoice.new
     check_if_company_and_vehicle_exists
   end
 
   def edit
+    @invoice = Invoice.find(params[:id])
     @new_invoice = NewInvoice.new
   end
 
@@ -30,11 +32,11 @@ class InvoicesController < ApplicationController
 
   def create
     params = BuildInvoice.new(invoice_params).build
-    invoice = Invoice.new(params)
-    if invoice.save
+    @invoice = Invoice.new(params)
+    if @invoice.save
       redirect_to invoice_path(id: invoice.id)
     else
-      redirect_to new_invoice_path
+      render new_invoice_path
     end
   end
 

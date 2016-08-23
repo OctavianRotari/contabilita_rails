@@ -1,9 +1,5 @@
 class NewInvoice
 
-  def new_invoice
-    Invoice.new
-  end
-
   def all_companies
     Company.all
   end

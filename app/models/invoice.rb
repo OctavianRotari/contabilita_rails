@@ -5,7 +5,17 @@ class Invoice < ActiveRecord::Base
   belongs_to :vehicle
   accepts_nested_attributes_for :taxable_vat_fields, allow_destroy: true
 
-  validates :vehicle_id, presence: true
+  validates_presence_of :date_of_issue,
+                        :deadline,
+                        :created_at,
+                        :updated_at,
+                        :company_id,
+                        :total_vat,
+                        :total,
+                        :reason,
+                        :total_taxable,
+                        :vehicle_id,
+                        :type_of_invoice
 
   def self.payments params_id
     find(params_id).payments

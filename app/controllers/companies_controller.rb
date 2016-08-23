@@ -33,11 +33,12 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    company = Company.new(company_params)
-    if company.save
+    @company = Company.new(company_params)
+    @category_of_company = CategoryOfCompany.all
+    if @company.save
       redirect_to companies_path
     else
-      redirect_to company_new_path
+      render new_company_path
     end
   end
 

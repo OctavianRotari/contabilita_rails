@@ -1,5 +1,5 @@
 <%= form_for invoice_new_or_edit  do |form|%>
-	<% if @new_invoice.new_invoice.errors.any? %>
+	<% if invoice_new_or_edit.errors.any? %>
 		<%= pluralize(invoice_new_or_edit.errors.count, "error") %> prevented your account from being created:
 		<ul>
 			<% invoice_new_or_edit.errors.full_messages.each do |error_message| %>
