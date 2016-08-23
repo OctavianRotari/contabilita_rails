@@ -21,7 +21,7 @@ module CheckIfCompanyAndVehicleExists
 
   def vehicle_exists?
     if Vehicle.all.empty?
-      flash[:notice] = "Aggiungere almeno un veicolo"
+      flash[:notice] = "Aggiungere almeno un mezzo"
       false
     else
       true

@@ -1,6 +1,23 @@
 require 'rails_helper'
 
 feature 'user' do
+
+  scenario 'cant add a new invoice if there is no companies', js: true do
+    vehicle("ER354BS")
+    visit '/'
+    click_link 'Aggiungi fattura'
+    expect(current_path).to eq root_path
+    expect(page).to have_content "Aggiungere almeno un'azienda"
+  end
+
+  scenario 'cant add a new invoice if there is no vehicles', js: true do
+    company('Bezzi')
+    visit '/'
+    click_link 'Aggiungi fattura'
+    expect(current_path).to eq root_path
+    expect(page).to have_content "Aggiungere almeno un mezzo"
+  end
+
   scenario 'adds a new invoice', js: true do
     company('Bezzi')
     vehicle("ER354BS")
