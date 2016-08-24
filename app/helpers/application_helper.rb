@@ -15,4 +15,12 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", f: builder)
     end
   end
+
+  def current_request?(*requests)
+    return true if requests.include?({
+      controller: controller.controller_name,
+      action: controller.action_name
+    })
+    false
+  end
 end

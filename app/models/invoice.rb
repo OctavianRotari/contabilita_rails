@@ -7,8 +7,6 @@ class Invoice < ActiveRecord::Base
 
   validates_presence_of :date_of_issue,
                         :deadline,
-                        :created_at,
-                        :updated_at,
                         :company_id,
                         :total_vat,
                         :total,
