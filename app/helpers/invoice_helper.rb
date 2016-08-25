@@ -7,7 +7,7 @@ module InvoiceHelper
     #end
   #end
 
-  def invoice_url_include_edit?
-    request.path_info.include? 'edit' 
+  def invoice_url_include_new?
+    current_request?(controller: 'invoices', action: 'new')
   end
 end

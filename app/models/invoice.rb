@@ -6,6 +6,7 @@ class Invoice < ActiveRecord::Base
   accepts_nested_attributes_for :taxable_vat_fields, allow_destroy: true
 
   validates_presence_of :date_of_issue,
+                        :taxable_vat_fields,
                         :deadline,
                         :company_id,
                         :total_vat,

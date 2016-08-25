@@ -10,10 +10,10 @@
 	<%= form.fields_for :taxable_vat_fields do |builder| %>
 		<%= render 'taxable_vat_field_fields', f: builder %>
 	<% end %>
-	<% if !invoice_url_include_edit? %>
-		<%=default_fields form , :taxable_vat_fields%>
+	<% if invoice_url_include_new? %>
+		<%= default_fields form , :taxable_vat_fields %>
 	<% end %>
-	<%=link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
+	<%= link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
 	<div>
 		<%= form.label 'Tipo fattura' %>
 		<%= form.select(:type_of_invoice) do %>
