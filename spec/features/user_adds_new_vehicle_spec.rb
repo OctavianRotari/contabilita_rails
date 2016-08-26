@@ -10,4 +10,13 @@ feature 'user' do
     click_button "Aggiungi mezzo"
     expect(page).to have_css 'a', text: 'ER345BR'
   end
+
+  scenario 'cant add new vehicle if fields arent filled' do
+    visit '/'
+    click_link 'Mezzi'
+    click_link 'Aggiungi mezzo'
+    click_button "Aggiungi mezzo"
+    expect(page).to have_content "Inserire targa del veicolo"
+    expect(page).to have_content "Selezionare tipo di veicolo"
+  end
 end

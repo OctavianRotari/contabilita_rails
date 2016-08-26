@@ -28,3 +28,16 @@ en:
         date_of_issue: ""
         reason: ""
         deadline: ""
+    models:
+      company: ""
+    attributes:
+      company:
+        name: ""
+        adress: ""
+        number: ""
+    models:
+      vehicle: ""
+    attributes:
+      vehicle:
+        plate: ""
+        type_of_vehicle: ""
