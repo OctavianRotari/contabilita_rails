@@ -18,26 +18,14 @@ feature 'user' do
     expect(page).to have_content "Aggiungere almeno un mezzo"
   end
 
-  scenario 'adds a new invoice', js: true do
+  scenario 'when user ads a new invoice is redirected to the invoice page', js: true do
     company('Bezzi')
     vehicle("ER354BS")
     visit '/'
     click_link 'Aggiungi fattura'
     fill_in_new_invoice
     click_button 'Conferma'
-    expect(page).to have_css 'h2', text: 'Manutenzione'
-  end
-
-  scenario 'cant add new invoice if form doesnt have taxable', js: true do
-    company('Bezzi')
-    vehicle("ER354BS")
-    visit '/'
-    click_link 'Aggiungi fattura'
-    click_button 'Conferma'
-    expect(page).to have_content 'Taxable vat fields taxable Inserire imponibile'
-    expect(page).to have_content 'Selezionare data di emissione'
-    expect(page).to have_content 'Selezionare data di scadenza'
-    expect(page).to have_content 'Selezionare il motivo della fattura'
+    expect(current_path).to eq '/invoices/1'
   end
 
   scenario 'adds a new invoice with two taxable', js: true do
