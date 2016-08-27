@@ -1,5 +1,9 @@
 class CompanyDashboardController < ApplicationController
 
+  def index
+    @companies = Company.all
+  end
+
   def show
     @company_dashboard = CompanyDashboard.new(params)
   end

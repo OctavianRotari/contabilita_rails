@@ -9,7 +9,13 @@ Rails.application.routes.draw do
     resources :payments
   end
 
+  resources :category_of_companies, only: [:new, :create, :delete, :update]
+
   resources :companies do
+    collection do
+      get 'dashboard' => 'company_dashboard#index'
+    end
+
     member do
       get 'dashboard' => 'company_dashboard#show'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'
@@ -17,6 +23,7 @@ Rails.application.routes.draw do
     end
     get 'summary' => 'companies#summary'
   end
+
 
   resources :vehicles do
     member do
