@@ -11,6 +11,7 @@ feature 'user' do
   end
 
   scenario 'cant add a new invoice if there is no vehicles', js: true do
+    category
     company('Bezzi')
     visit '/'
     click_link 'Aggiungi fattura'
@@ -18,7 +19,8 @@ feature 'user' do
     expect(page).to have_content "Aggiungere almeno un mezzo"
   end
 
-  scenario 'when user ads a new invoice is redirected to the invoice page', js: true do
+  scenario 'ads a new invoice is redirected to the invoice page', js: true do
+    category
     company('Bezzi')
     vehicle("ER354BS")
     visit '/'
@@ -29,6 +31,7 @@ feature 'user' do
   end
 
   scenario 'adds a new invoice with two taxable', js: true do
+    category
     company('Bezzi')
     vehicle("ER354BS")
     visit '/'

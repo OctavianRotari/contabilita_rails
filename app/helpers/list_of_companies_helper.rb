@@ -3,7 +3,7 @@ module ListOfCompaniesHelper
     if current_request?(controller: 'invoices', action: 'update')
       form.select(:company_id, options_from_collection_for_select(@new_invoice.all_companies, "id", "name", invoice_new_or_edit.company.id ))
     else
-      form.select(:company_id, options_from_collection_for_select(@new_invoice.all_companies, "id", "name"))
+      form.select(:company_id, options_from_collection_for_select(@new_invoice.all_companies, "id", "name"), prompt: "Aziende")
     end
   end
 end

@@ -17,6 +17,7 @@
 	<div>
 		<%= form.label 'Tipo fattura' %>
 		<%= form.select(:type_of_invoice) do %>
+			<%= content_tag(:option, 'Tipo' , value: nil) %>
 			<%= content_tag(:option, 'Attiva' , value: 'attiva') %>
 			<%= content_tag(:option, 'Passiva' , value: 'passiva') %>
 		<%end%>

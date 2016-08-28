@@ -1,7 +1,7 @@
 class CompanyDashboardController < ApplicationController
 
   def index
-    @companies = Company.all
+    @companies = Company.all.group_by { |t| t.category_of_company_id }
   end
 
   def show

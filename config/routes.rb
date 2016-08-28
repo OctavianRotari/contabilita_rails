@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :payments
   end
 
-  resources :category_of_companies, only: [:new, :create, :delete, :update]
+  resources :category_of_companies, only: [:new, :edit, :create, :delete, :update]
 
   resources :companies do
     collection do

@@ -3,7 +3,7 @@ module ListOfVehiclesHelper
     if current_request?(controller: 'invoices', action: 'update')
       form.select(:vehicle_id, options_from_collection_for_select(@new_invoice.all_vehicles, "id", "plate", invoice_new_or_edit.vehicle.id ))
     else
-      form.select(:vehicle_id, options_from_collection_for_select(@new_invoice.all_vehicles, "id", "plate"))
+      form.select(:vehicle_id, options_from_collection_for_select(@new_invoice.all_vehicles, "id", "plate"), prompt: "Mezzi")
     end
   end
 end

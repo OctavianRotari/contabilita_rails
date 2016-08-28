@@ -40,6 +40,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @category_of_company = CategoryOfCompany.all
+    @company.category_of_company_id = category_of_company_id
     if @company.save
       redirect_to dashboard_companies_path
     else
@@ -54,5 +55,9 @@ class CompaniesController < ApplicationController
 
   def company
     @_company ||= Company.find(params[:id])
+  end
+
+  def category_of_company_id
+    company_params[:category_of_company_id]
   end
 end

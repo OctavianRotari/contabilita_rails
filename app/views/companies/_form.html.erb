@@ -21,12 +21,8 @@
 	</div>
 	<div>
 		<%= form.label 'Categoria azienda' %>
-		<%= form.select(:category_of_company_id) do %>
-			<% if !category_of_company_instance.empty? %>
-				<% category_of_company_instance.each do |category| %>
-					<%= content_tag(:option, category.category , value: category.id) %>
-				<%end%>
-			<%end%>
+		<% if !category_of_company_instance.empty? %>
+			<%= form.select(:category_of_company_id, options_from_collection_for_select(category_of_company_instance.all, "id", "category"), prompt: "Categorie") %>
 		<%end%>
 	</div>
 	<div>

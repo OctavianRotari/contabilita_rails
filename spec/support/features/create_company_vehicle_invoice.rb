@@ -1,10 +1,14 @@
 module Features
   def company(name)
-    Company.create(name:name,adress:'Ravenna',number:'345')
+    Company.create(name:name,adress:'Ravenna',number:'345', category_of_company_id: 1)
   end
 
   def vehicle(plate="ER341GF")
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
+  end
+
+  def category(category="officina")
+    CategoryOfCompany.create(category: category)
   end
 
   def create_active_invoice(parent, reason='Manutenzione', vehicle_id = 1)
