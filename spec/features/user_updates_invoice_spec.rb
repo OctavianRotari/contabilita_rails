@@ -5,7 +5,7 @@ feature 'user' do
     company = company('Bezzi')
     vehicle
     create_passive_invoice(company)
-    visit '/companies'
+    visit '/companies/dashboard'
     click_on 'Fatture'
     click_link 'Fatture passive'
     click_link 'Manutenzione'

@@ -1,12 +1,17 @@
 class CompaniesController < ApplicationController
+  include CheckIfCategoryOfCompanyExists
 
   def index
     @companies = Company.all
   end
 
   def new
-    @category_of_company = CategoryOfCompany.all
-    @company = Company.new
+    if category_of_company_exists?
+      @category_of_company = CategoryOfCompany.all
+      @company = Company.new
+    else
+      redirect_to dashboard_companies_path
+    end
   end
 
   def edit
@@ -18,14 +23,14 @@ class CompaniesController < ApplicationController
     @category_of_company = CategoryOfCompany.all
     company  = Company.find(params[:id])
     company.update(company_params)
-    redirect_to companies_path
+    redirect_to dashboard_companies_path
   end
 
   def destroy
     @company = Company.find(params[:id])
     company.destroy
     flash[:notice] = 'Azienda elliminata'
-    redirect_to companies_path
+    redirect_to dashboard_companies_path
   end
 
   def show
@@ -36,7 +41,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     @category_of_company = CategoryOfCompany.all
     if @company.save
-      redirect_to companies_path
+      redirect_to dashboard_companies_path
     else
       render new_company_path
     end
@@ -44,7 +49,7 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :adress, :number)
+    params.require(:company).permit(:name, :adress, :number, :category_of_company_id)
   end
 
   def company

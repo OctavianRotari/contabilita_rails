@@ -1,7 +1,22 @@
-class CategoryOfCompanyController < ApplicationController
+class CategoryOfCompaniesController < ApplicationController
 
   def new
     @category_of_company = CategoryOfCompany.new
+  end
+
+  def create
+    @category_of_company = CategoryOfCompany.new(category_params)
+    if @category_of_company.save
+      redirect_to dashboard_companies_path
+    else
+      render new_category_of_company_path
+    end
+  end
+
+  private
+
+  def category_params
+    params.require(:category_of_company).permit(:category)
   end
 
 end
