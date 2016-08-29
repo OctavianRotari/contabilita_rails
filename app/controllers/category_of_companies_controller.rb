@@ -4,6 +4,16 @@ class CategoryOfCompaniesController < ApplicationController
     @category_of_company = CategoryOfCompany.new
   end
 
+  def edit
+    @category_of_company = CategoryOfCompany.find(params[:id])
+  end
+
+  def update
+    @category_of_company = CategoryOfCompany.find(params[:id])
+    @category_of_company.update(category_params)
+    redirect_to dashboard_companies_path
+  end
+
   def create
     @category_of_company = CategoryOfCompany.new(category_params)
     if @category_of_company.save

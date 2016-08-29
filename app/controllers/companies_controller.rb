@@ -21,14 +21,17 @@ class CompaniesController < ApplicationController
 
   def update
     @category_of_company = CategoryOfCompany.all
-    company  = Company.find(params[:id])
-    company.update(company_params)
-    redirect_to dashboard_companies_path
+    @company  = Company.find(params[:id])
+    if company.update(company_params)
+      redirect_to dashboard_companies_path
+    else
+      redirect_to edit_company_path(@company.id)
+    end
   end
 
   def destroy
     @company = Company.find(params[:id])
-    company.destroy
+    @company.destroy
     flash[:notice] = 'Azienda elliminata'
     redirect_to dashboard_companies_path
   end
