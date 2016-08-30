@@ -19,4 +19,5 @@
 // = require_tree .
 // = require magnific-popup
 // = require popup_form
+// = require category_fails_to_save
 //

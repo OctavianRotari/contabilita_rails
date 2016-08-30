@@ -9,9 +9,13 @@ class CategoryOfCompaniesController < ApplicationController
   end
 
   def update
-    @category_of_company = CategoryOfCompany.find(params[:id])
-    @category_of_company.update(category_params)
-    redirect_to dashboard_companies_path
+    category_of_company = CategoryOfCompany.find(params[:id])
+    if category_of_company.update(category_params)
+      redirect_to dashboard_companies_path
+    else
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_category_of_company_path(params[:id])
+    end
   end
 
   def create
