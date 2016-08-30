@@ -13,8 +13,12 @@ class InvoicesController < ApplicationController
   def update
     invoice = Invoice.find(params[:id])
     params = BuildInvoice.new(invoice_params).build
-    invoice.update(params)
-    redirect_to invoice_path(invoice_id: invoice.id)
+    if invoice.update(params)
+      redirect_to invoice_path(invoice_id: invoice.id)
+    else
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_invoice_path(invoice_id: params[:id])
+    end
   end
 
   def show

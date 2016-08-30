@@ -17,8 +17,12 @@ class VehiclesController < ApplicationController
 
   def update
     vehicle = Vehicle.find(params[:id])
-    vehicle.update(vehicle_params)
-    redirect_to vehicles_path
+    if vehicle.update(vehicle_params)
+      redirect_to vehicles_path
+    else
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_vehicle_path(params[:id])
+    end
   end
 
   def destroy

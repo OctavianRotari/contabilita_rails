@@ -22,7 +22,12 @@ class PaymentsController < ApplicationController
   def update
     payment = Payment.find(params[:id])
     payment.update(payment_params)
-    redirect_to invoice_path(id: invoice_id)
+    if payment.update(payment_params)
+      redirect_to invoice_path(id: invoice_id)
+    else
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_invoice_payment_path(invoice_id: invoice_id, id:payment.id)
+    end
   end
 
   def destroy

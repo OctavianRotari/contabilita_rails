@@ -25,7 +25,8 @@ class CompaniesController < ApplicationController
     if company.update(company_params)
       redirect_to dashboard_companies_path
     else
-      redirect_to edit_company_path(@company.id)
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_company_path(params[:id])
     end
   end
 
