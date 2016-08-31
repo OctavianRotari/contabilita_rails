@@ -26,12 +26,16 @@
 		<%= form.label 'Azienda' %>
 		<%= list_of_companies_selected_value(form) %>
 	</div>
-	<a class="popup-with-form" href="#company-form">Aggiungi azienda</a>
+	<div id="company">
+		<a class="popup-with-form" id="pop_up_company" href="#company-form">Aggiungi azienda</a>
+	</div>
 	<div>
 		<%= form.label 'Mezzo' %>
 		<%= list_of_vehicles_selected_value(form) %>
 	</div>
-	<a class="popup-with-form" href="#vehicle-form">Aggiungi mezzo</a>
+	<div id="vehicle">
+		<a class="popup-with-form" id="pop_up_vehicle" href="#vehicle-form">Aggiungi mezzo</a>
+	</div>
 	<div>
 		<%= form.label 'Motivo' %>
 		<%= form.text_field :reason, require: true %>
@@ -56,3 +60,18 @@
 	<h1>Form</h1>
 	<%= render "vehicles/form"  %>
 </form>
+<% if params[:commit] == "Aggiungi azienda" %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#company').find('#pop_up_company').trigger('click');
+		}
+		);
+	</script>
+<% elsif params[:commit] == "Aggiungi mezzo" %>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#vehicle').find('#pop_up_vehicle').trigger('click');
+		}
+		);
+	</script>
+<% end %>
