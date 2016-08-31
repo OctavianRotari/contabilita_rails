@@ -18,6 +18,6 @@
 // = require jquery-ui/datepicker
 // = require_tree .
 // = require magnific-popup
-// = require popup_form
 // = require category_fails_to_save
+// = require popup_form
 //
