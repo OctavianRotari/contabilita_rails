@@ -26,7 +26,8 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
-    @category_of_company = CategoryOfCompany.all
+    @category_of_companies = CategoryOfCompany.all
+    @category_of_company = CategoryOfCompany.new
   end
 
   def update

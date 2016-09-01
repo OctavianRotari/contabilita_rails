@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
+    @category_of_companies = CategoryOfCompany.all
     @new_invoice = NewInvoice.new
   end
 
@@ -55,7 +56,7 @@ class InvoicesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :adress, :number)
+    params.require(:company).permit(:name, :adress, :number, :category_of_company_id)
   end
 
   def vehicle_params
