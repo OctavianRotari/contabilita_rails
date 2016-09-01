@@ -1,9 +1,5 @@
 <%=link_to 'Aggiungi azienda', new_company_path %><br>
-<div id="category">
-	<a class="popup-with-form" id="pop_up" href="#category_of_company-form" > Aggiungi categoria azienda</a>
-</div>
-
-<%#<%=link_to 'Aggiungi categoria', new_category_of_company_path %><br>
+<%=link_to 'Aggiungi categoria', new_category_of_company_path %> <br>
 <br>
 <div class="companies">
 	<% @companies.each do |category_id, companies| %>
@@ -14,17 +10,3 @@
 		<%= render companies %>
 	<% end %>
 </div>
-
-<% if params[:commit] == "Aggiungi categoria" %>
-	<script type="text/javascript">
-		$(document).ready(function(){
-				$('#category').find('#pop_up').trigger('click');
-			}
-		);
-	</script>
-<% end %>
-
-<form id="category_of_company-form" class="mfp-hide white-popup">
-	<h1>Form</h1>
-	<%= render template: "category_of_companies/new" %>
-</form>

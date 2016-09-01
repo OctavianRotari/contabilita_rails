@@ -12,6 +12,10 @@ class NewInvoice
     CategoryOfCompany.all
   end
 
+  def new_category_of_company
+    CategoryOfCompany.new
+  end
+
   def new_company
     Company.new
   end

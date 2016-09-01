@@ -63,14 +63,14 @@
 <% if params[:commit] == "Aggiungi azienda" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#company').find('#pop_up_company').trigger('click');
+			company_fails_to_post()
 		}
 		);
 	</script>
 <% elsif params[:commit] == "Aggiungi mezzo" %>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#vehicle').find('#pop_up_vehicle').trigger('click');
+			vehicle_fails_to_post()
 		}
 		);
 	</script>

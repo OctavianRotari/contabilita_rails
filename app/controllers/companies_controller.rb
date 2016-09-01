@@ -7,8 +7,18 @@ class CompaniesController < ApplicationController
 
   def new
     if category_of_company_exists?
-      @category_of_company = CategoryOfCompany.all
+      @category_of_companies = CategoryOfCompany.all
+      @category_of_company = CategoryOfCompany.new
       @company = Company.new
+      if params[:commit] == 'Aggiungi categoria'
+        @category_of_company = CategoryOfCompany.new(category_params)
+        if @category_of_company.save
+          flash[:notice] = 'Categoria inserita'
+          redirect_to new_company_path
+        else
+          render "new"
+        end
+      end
     else
       redirect_to dashboard_companies_path
     end
@@ -62,5 +72,9 @@ class CompaniesController < ApplicationController
 
   def category_of_company_id
     company_params[:category_of_company_id]
+  end
+
+  def category_params
+    params.require(:category_of_company).permit(:category)
   end
 end

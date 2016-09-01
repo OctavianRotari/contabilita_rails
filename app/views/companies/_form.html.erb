@@ -20,12 +20,32 @@
 		<%= form.text_field :number, require: true %>
 	</div>
 	<div>
+		<%#da modificare%>
 		<%= form.label 'Categoria azienda' %>
-		<% if !category_of_company_instance.empty? %>
-			<%= form.select(:category_of_company_id, options_from_collection_for_select(category_of_company_instance.all, "id", "category"), prompt: "Categorie") %>
+		<% if !@category_of_companies.empty? %>
+			<%= form.select(:category_of_company_id, options_from_collection_for_select(@category_of_companies.all, "id", "category"), prompt: "Categorie") %>
 		<%end%>
 	</div>
+	<% if !current_request?(controller: 'invoices', action: 'new') %>
+		<div id="category">
+			<a class="popup-with-form" id="pop_up" href="#category_of_company-form" > Aggiungi categoria azienda</a>
+		</div>
+	<% end %>
 	<div>
 		<%= form.submit "Aggiungi azienda" %>
 	</div>
+<% end %>
+
+<% if !current_request?(controller: 'invoices', action: 'new') %>
+	<% if params[:commit] == "Aggiungi categoria" %>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				category_fails_to_post()
+			});
+		</script>
+	<% end %>
+	<form id="category_of_company-form" class="mfp-hide white-popup">
+		<h1>Form</h1>
+		<%= render template: "category_of_companies/new" %>
+	</form>
 <% end %>

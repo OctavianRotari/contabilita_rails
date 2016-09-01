@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
   include CheckIfCompanyAndVehicleExists
 
   def new
+    @category_of_companies = CategoryOfCompany.all
     check_if_company_and_vehicle_exists
   end
 
