@@ -1,10 +1,14 @@
 module Unit
   def company(name)
-    Company.create(name:name,adress:'Ravenna',number:'345')
+    Company.create(name:name,adress:'Ravenna',number:'345', category_of_company_id: 1)
   end
 
   def create_vehicle(plate="ER354BS")
     Vehicle.create(plate:plate,type_of_vehicle:'trattore')
+  end
+
+  def create_category_of_company(category = "officina")
+    CategoryOfCompany.create(category: category)
   end
 
   def create_passive_record(company)

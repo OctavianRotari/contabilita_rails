@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'updates company' do
+  scenario 'deletes company' do
+    category
     company('Bezzi')
     visit '/'
     click_link 'Aziende'

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'user' do
   scenario 'updates invoice', js: true do
+    category
     company = company('Bezzi')
     vehicle
     create_passive_invoice(company)
