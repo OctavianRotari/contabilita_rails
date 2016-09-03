@@ -11,10 +11,12 @@ module PathAfterSave
   end
 
   def path_after_save_fail
-    if action_name == 'new'
-      render "new"
-    elsif action_name == 'edit'
-      render "edit"
+    if controller_name == "invocies"
+      fails_invoice_controller_path
+    elsif controller_name == "companies"
+      fails_company_controller_path
+    elsif controller_name == "vehicles"
+      fails_vehicle_controller_path
     end
   end
 
@@ -34,6 +36,22 @@ module PathAfterSave
 
   def vehicle_controller_path
     redirect_to vehicles_path
+  end
+
+  def fails_invoice_controller_path
+    if action_name == 'new'
+      render "new"
+    elsif action_name == 'edit'
+      render "edit"
+    end
+  end
+
+  def fails_company_controller_path
+    render "new"
+  end
+
+  def fails_vehicle_controller_path
+    render "index"
   end
 
 end

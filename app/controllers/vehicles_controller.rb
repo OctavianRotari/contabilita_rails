@@ -3,6 +3,10 @@ class VehiclesController < ApplicationController
 
   def index
     @vehicles = Vehicle.all
+    @vehicle = Vehicle.new
+    if params[:commit] == "Aggiungi mezzo"
+      create_vehicle
+    end
   end
 
   def new
@@ -18,7 +22,13 @@ class VehiclesController < ApplicationController
   end
 
   def update
-    create_vehicle
+    vehicle = Vehicle.find(params[:id])
+    if vehicle.update(vehicle_params)
+      redirect_to vehicles_path
+    else
+      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
+      redirect_to edit_vehicle_path(params[:id])
+    end
   end
 
   def destroy

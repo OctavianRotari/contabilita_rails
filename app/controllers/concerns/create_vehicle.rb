@@ -8,6 +8,7 @@ module CreateVehicle
       path_after_save_success
     else
       flash[:notice] = 'Veicolo non inserito'
+      #byebug
       path_after_save_fail
     end
   end
