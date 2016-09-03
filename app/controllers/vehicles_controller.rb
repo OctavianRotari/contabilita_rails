@@ -1,4 +1,6 @@
 class VehiclesController < ApplicationController
+  include CreateVehicle
+
   def index
     @vehicles = Vehicle.all
   end
@@ -16,13 +18,7 @@ class VehiclesController < ApplicationController
   end
 
   def update
-    vehicle = Vehicle.find(params[:id])
-    if vehicle.update(vehicle_params)
-      redirect_to vehicles_path
-    else
-      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
-      redirect_to edit_vehicle_path(params[:id])
-    end
+    create_vehicle
   end
 
   def destroy
@@ -33,12 +29,7 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.new(vehicle_params)
-    if @vehicle.save
-      redirect_to vehicles_path
-    else
-      render new_vehicle_path
-    end
+    create_vehicle
   end
 
   private

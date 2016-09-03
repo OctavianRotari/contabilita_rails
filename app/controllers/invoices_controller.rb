@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-  include CreateCompanyOrVehicleFromInvoiceNew
   include CheckIfCompanyAndVehicleExists
 
   def new
@@ -10,6 +9,7 @@ class InvoicesController < ApplicationController
   def edit
     @category_of_companies = CategoryOfCompany.all
     @new_invoice = NewInvoice.new
+    create_company_or_vehicle
   end
 
   def update

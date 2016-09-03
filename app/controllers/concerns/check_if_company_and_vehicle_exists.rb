@@ -1,4 +1,7 @@
 module CheckIfCompanyAndVehicleExists
+  include CreateCompany
+  include CreateVehicle
+
   def check_if_company_and_vehicle_exists
     if company_exists? && vehicle_exists?
       @new_invoice = NewInvoice.new
@@ -16,6 +19,14 @@ module CheckIfCompanyAndVehicleExists
       false
     else
       true
+    end
+  end
+
+  def create_company_or_vehicle
+    if params[:commit] == 'Aggiungi azienda'
+      create_company
+    elsif params[:commit] == 'Aggiungi mezzo'
+      create_vehicle
     end
   end
 
