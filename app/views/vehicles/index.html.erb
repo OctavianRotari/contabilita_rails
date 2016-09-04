@@ -1,8 +1,8 @@
 <%#<%=link_to 'Aggiungi mezzo', new_vehicle_path %><br>
 <div id="vehicle">
-	<a class="popup-with-form" id="pop_up_vehicle" href="#vehicle-form">Aggiungi mezzo</a>
+	<a class="popup-with-form" id="pop_up_vehicle" href="#new_vehicle-form" >Aggiungi mezzo</a>
 </div>
-<form id="vehicle-form" class="mfp-hide white-popup">
+<form id="new_vehicle-form" class="mfp-hide white-popup">
 	<%= render template: "vehicles/new"  %>
 </form>
 <% if params[:commit] == "Aggiungi mezzo" %>

@@ -35,7 +35,6 @@
 		<%= form.submit "Aggiungi azienda" %>
 	</div>
 <% end %>
-
 <% if !current_request?(controller: 'invoices', action: 'new') %>
 	<% if params[:commit] == "Aggiungi categoria" %>
 		<script type="text/javascript">

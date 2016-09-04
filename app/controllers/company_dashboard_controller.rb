@@ -1,8 +1,12 @@
 class CompanyDashboardController < ApplicationController
+  include CreateCategoryOfCompany
 
   def index
     @category_of_company = CategoryOfCompany.new
     @companies = Company.all.group_by { |t| t.category_of_company_id }
+    if params[:commit] == 'Aggiungi categoria'
+      category_of_company
+    end
   end
 
   def show
@@ -27,6 +31,10 @@ class CompanyDashboardController < ApplicationController
 
   def company_dashboard
     CompanyDashboard.new(params)
+  end
+
+  def category_params
+    params.require(:category_of_company).permit(:category)
   end
 
 end
