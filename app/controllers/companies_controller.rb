@@ -23,6 +23,9 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @category_of_companies = CategoryOfCompany.all
     @category_of_company = CategoryOfCompany.new
+    if params[:commit] == 'Aggiungi categoria'
+      category_of_company
+    end
   end
 
   def update
@@ -48,7 +51,8 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @category_of_company = CategoryOfCompany.all
+    @category_of_companies = CategoryOfCompany.all
+    @category_of_company = CategoryOfCompany.new
     @company.category_of_company_id = category_of_company_id
     if @company.save
       redirect_to dashboard_companies_path

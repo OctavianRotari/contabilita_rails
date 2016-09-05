@@ -9,17 +9,9 @@
 		<h2><%= category_of_company(category_id) %></h2>
 		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %>
 		<br>
-		<br>
 		<%= render companies %>
 	<% end %>
 </div>
-<% if params[:commit] == "Aggiungi categoria" %>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			category_fails_to_post()
-		});
-	</script>
-<% end %>
 <form id="category_of_company-form" class="mfp-hide white-popup">
 	<%= render template: "category_of_companies/new" %>
 </form>

@@ -21,16 +21,21 @@ class CategoryOfCompaniesController < ApplicationController
   def create
     @category_of_company = CategoryOfCompany.new(category_params)
     if @category_of_company.save
-      redirect_to dashboard_companies_path
+      respond_to do |format|
+        format.json {head :ok}
+      end
     else
-      render new_category_of_company_path
+      respond_to do |format|
+        format.html { redirect_to company_dashboard_path, notice: 'Client was not successfully created.' }
+        format.json
+      end
     end
   end
 
   private
 
   def category_params
-    params.require(:category_of_company).permit(:category)
+    params.permit(:category)
   end
 
 end

@@ -13,7 +13,24 @@ $(document).ready(
 					} else {
 						this.st.focus = '#name';
 					}
-				}
+				},
 			}
 		});
-	});
+		$('#add_category').click(function() {
+				$.ajax({
+					type: "POST",
+					url: "/category_of_companies",
+					dataType: 'html',
+					data: { category: $('#category_of_company_category').val() },
+					success: function(data){
+						alert('ok');
+						alert(data); // show response from the php script.
+					},
+					error: function(data) {
+						alert('not ok');
+						alert(data); // show response from the php script.
+					}
+				});
+		});
+	}
+);
