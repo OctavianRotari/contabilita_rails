@@ -26,7 +26,6 @@ class CategoryOfCompaniesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to company_dashboard_path, notice: 'Client was not successfully created.' }
         format.json
       end
     end
