@@ -23,13 +23,8 @@ $(document).ready(
 					dataType: 'html',
 					data: { category: $('#category_of_company_category').val() },
 					success: function(data){
-						alert('ok');
-						alert(data); // show response from the php script.
+						window.location.href = "/companies/dashboard"
 					},
-					error: function(data) {
-						alert('not ok');
-						alert(data); // show response from the php script.
-					}
 				});
 		});
 	}

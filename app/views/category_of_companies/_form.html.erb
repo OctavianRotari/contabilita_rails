@@ -1,11 +1,14 @@
 <%= form_for category_of_company_instance, remote: true do |form| %>
-	<% if category_of_company_instance.errors.any? %>
-		<%= pluralize(category_of_company_instance.errors.count, "error") %> prevented your account from being created:
-		<ul>
-			<% category_of_company_instance.errors.full_messages.each do |error_message| %>
-				<li><%= error_message %></li>
-			<% end %>
-		</ul>
+	<% if session[:category_of_company_errors] %>
+		<% if session[:category_of_company_errors] %>
+		<% if session[:category_of_company_errors].any? %>
+			<%= pluralize(session[:category_of_company_errors].count, "error") %> prevented your account from being created:
+			<ul>
+				<% session[:category_of_company_errors].full_messages.each do |error_message| %>
+					<li><%= error_message %></li>
+				<% end %>
+			</ul>
+		<% end %>
 	<% end %>
 	<div>
 		<%= form.label 'Categoria' %>
@@ -13,6 +16,7 @@
 	</div>
 	<br>
 	<div>
-		<%= form.submit "Aggiungi categoria", id: "add_category"%>
+		<button id="add_category">Aggiungi categoria</button>
+		<%#<%= form.submit "Aggiungi categoria", id: "add_category"%>
 	</div>
 <% end %>

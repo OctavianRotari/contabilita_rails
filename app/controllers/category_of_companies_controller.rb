@@ -25,8 +25,10 @@ class CategoryOfCompaniesController < ApplicationController
         format.json {head :ok}
       end
     else
+      session[:category_of_company_errors] = @category_of_company.errors
       respond_to do |format|
         format.json
+        format.html { redirect_to(dashboard_companies_path)}
       end
     end
   end
