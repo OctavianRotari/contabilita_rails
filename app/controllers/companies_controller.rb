@@ -9,7 +9,6 @@ class CompaniesController < ApplicationController
     if category_of_company_exists?
       @category_of_companies = CategoryOfCompany.all
       @company = Company.new
-      @category_of_company = CategoryOfCompany.new
     else
       redirect_to dashboard_companies_path
     end
