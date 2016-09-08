@@ -1,8 +1,8 @@
-<%= form_for company_instance do |form| %>
-	<% if company_instance.errors.any? %>
-		<%= pluralize(company_instance.errors.count, "error") %> prevented your account from being created:
+<%= form_for @company do |form| %>
+	<% if @company.errors.any? %>
+		<%= pluralize(@company.errors.count, "error") %> prevented your account from being created:
 		<ul>
-			<% company_instance.errors.full_messages.each do |error_message| %>
+			<% @company.errors.full_messages.each do |error_message| %>
 				<li><%= error_message %></li>
 			<% end %>
 		</ul>
@@ -20,31 +20,10 @@
 		<%= form.text_field :number, require: true %>
 	</div>
 	<div>
-		<%#da modificare%>
 		<%= form.label 'Categoria azienda' %>
-		<% if !@category_of_companies.empty? %>
-			<%= form.select(:category_of_company_id, options_from_collection_for_select(@category_of_companies.all, "id", "category"), prompt: "Categorie") %>
-		<%end%>
+		<%= list_of_categories_selected_value(form) %>
 	</div>
-	<% if !current_request?(controller: 'invoices', action: 'new') %>
-		<div id="category">
-			<a class="popup-with-form" id="pop_up" href="#category_of_company-form" > Aggiungi categoria azienda</a>
-		</div>
-	<% end %>
 	<div>
 		<%= form.submit "Aggiungi azienda" %>
 	</div>
-<% end %>
-<% if !current_request?(controller: 'invoices', action: 'new') %>
-	<% if params[:commit] == "Aggiungi categoria" %>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				category_fails_to_post()
-			});
-		</script>
-	<% end %>
-	<form id="category_of_company-form" class="mfp-hide white-popup">
-		<h1>Form</h1>
-		<%= render template: "category_of_companies/new" %>
-	</form>
 <% end %>

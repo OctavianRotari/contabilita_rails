@@ -1,11 +1,8 @@
 module CheckIfCompanyAndVehicleExists
-  include CreateCompany
-  include CreateVehicle
 
   def check_if_company_and_vehicle_exists
     if company_exists? && vehicle_exists?
       @new_invoice = NewInvoice.new
-      create_company_or_vehicle
     else
       redirect_to root_path
     end

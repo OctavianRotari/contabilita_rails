@@ -1,9 +1,5 @@
 <%=link_to 'Aggiungi azienda', new_company_path %><br>
-<%#<%=link_to 'Aggiungi categoria', new_category_of_company_path %>
-<div id="category">
-	<a class="popup-with-form" id="pop_up" href="#category_of_company-form" >Aggiungi categoria</a>
-</div>
-<br>
+<%=link_to 'Aggiungi categoria', new_category_of_company_path %>
 <div class="companies">
 	<% @companies.each do |category_id, companies| %>
 		<h2><%= category_of_company(category_id) %></h2>
@@ -12,6 +8,3 @@
 		<%= render companies %>
 	<% end %>
 </div>
-<form id="category_of_company-form" class="mfp-hide white-popup">
-	<%= render template: "category_of_companies/new" %>
-</form>

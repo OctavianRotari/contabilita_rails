@@ -9,34 +9,29 @@ class CategoryOfCompaniesController < ApplicationController
   end
 
   def update
-    category_of_company = CategoryOfCompany.find(params[:id])
-    if category_of_company.update(category_params)
+    @category_of_company = CategoryOfCompany.find(params[:id])
+    if @category_of_company.update(category_params)
+      flash[:notice] = 'Categoria modificata'
       redirect_to dashboard_companies_path
     else
-      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
-      redirect_to edit_category_of_company_path(params[:id])
+      render "edit"
     end
   end
 
   def create
     @category_of_company = CategoryOfCompany.new(category_params)
     if @category_of_company.save
-      respond_to do |format|
-        format.json {head :ok}
-      end
+      flash[:notice] = "Categoria aggiunta"
+      redirect_to dashboard_companies_path
     else
-      session[:category_of_company_errors] = @category_of_company.errors
-      respond_to do |format|
-        format.json
-        format.html { redirect_to(dashboard_companies_path)}
-      end
+      render "new"
     end
   end
 
   private
 
   def category_params
-    params.permit(:category)
+    params.require(:category_of_company).permit(:category)
   end
 
 end

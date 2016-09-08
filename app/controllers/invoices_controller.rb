@@ -2,7 +2,6 @@ class InvoicesController < ApplicationController
   include CheckIfCompanyAndVehicleExists
 
   def new
-    @category_of_companies = CategoryOfCompany.all
     check_if_company_and_vehicle_exists
   end
 
@@ -13,13 +12,13 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    invoice = Invoice.find(params[:id])
+    @invoice = Invoice.find(params[:id])
     params = BuildInvoice.new(invoice_params).build
-    if invoice.update(params)
-      redirect_to invoice_path(invoice_id: invoice.id)
+    if @invoice.update(params)
+      flash[:notice] = "La fattura e' stata aggiornata"
+      redirect_to invoice_path(invoice_id: @invoice.id)
     else
-      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
-      redirect_to edit_invoice_path(invoice_id: params[:id])
+      render "edit"
     end
   end
 
@@ -41,7 +40,7 @@ class InvoicesController < ApplicationController
     if @invoice.save
       redirect_to invoice_path(id: @invoice.id)
     else
-      render new_invoice_path
+      render "new"
     end
   end
 
@@ -53,14 +52,6 @@ class InvoicesController < ApplicationController
 
   def company_id
     params[:company_id]
-  end
-
-  def company_params
-    params.require(:company).permit(:name, :adress, :number, :category_of_company_id)
-  end
-
-  def vehicle_params
-    params.require(:vehicle).permit(:plate, :type_of_vehicle)
   end
 
 end

@@ -1,6 +1,5 @@
 class CompaniesController < ApplicationController
   include CheckIfCategoryOfCompanyExists
-  include CreateCategoryOfCompany
 
   def index
     @companies = Company.all
@@ -11,9 +10,6 @@ class CompaniesController < ApplicationController
       @category_of_companies = CategoryOfCompany.all
       @company = Company.new
       @category_of_company = CategoryOfCompany.new
-      if params[:commit] == 'Aggiungi categoria'
-        category_of_company
-      end
     else
       redirect_to dashboard_companies_path
     end
@@ -22,19 +18,16 @@ class CompaniesController < ApplicationController
   def edit
     @company = Company.find(params[:id])
     @category_of_companies = CategoryOfCompany.all
-    @category_of_company = CategoryOfCompany.new
-    if params[:commit] == 'Aggiungi categoria'
-      category_of_company
-    end
   end
 
   def update
-    company  = Company.find(params[:id])
-    if company.update(company_params)
+    @company  = Company.find(params[:id])
+    @category_of_companies = CategoryOfCompany.all
+    if @company.update(company_params)
+      flash[:notice] = 'La compania e stata aggiornata'
       redirect_to dashboard_companies_path
     else
-      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
-      redirect_to edit_company_path(params[:id])
+      render "edit"
     end
   end
 
@@ -52,12 +45,11 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @category_of_companies = CategoryOfCompany.all
-    @category_of_company = CategoryOfCompany.new
     @company.category_of_company_id = category_of_company_id
     if @company.save
       redirect_to dashboard_companies_path
     else
-      render new_company_path
+      render "new"
     end
   end
 
@@ -74,7 +66,4 @@ class CompaniesController < ApplicationController
     company_params[:category_of_company_id]
   end
 
-  def category_params
-    params.require(:category_of_company).permit(:category)
-  end
 end

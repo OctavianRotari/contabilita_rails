@@ -16,25 +16,15 @@
 	<%= link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
 	<div>
 		<%= form.label 'Tipo fattura' %>
-		<%= form.select(:type_of_invoice) do %>
-			<%= content_tag(:option, 'Tipo' , value: nil) %>
-			<%= content_tag(:option, 'Attiva' , value: 'attiva') %>
-			<%= content_tag(:option, 'Passiva' , value: 'passiva') %>
-		<%end%>
+		<%= list_of_types_of_invoices_selected_value(form) %>
 	</div>
 	<div>
 		<%= form.label 'Azienda' %>
 		<%= list_of_companies_selected_value(form) %>
 	</div>
-	<div id="company">
-		<a class="popup-with-form" id="pop_up_company" href="#company-form">Aggiungi azienda</a>
-	</div>
 	<div>
 		<%= form.label 'Mezzo' %>
 		<%= list_of_vehicles_selected_value(form) %>
-	</div>
-	<div id="vehicle">
-		<a class="popup-with-form" id="pop_up_vehicle" href="#vehicle-form">Aggiungi mezzo</a>
 	</div>
 	<div>
 		<%= form.label 'Motivo' %>
@@ -51,27 +41,4 @@
 	<div>
 		<%= form.submit "Conferma" %>
 	</div>
-<% end %>
-<form id="company-form" class="mfp-hide white-popup">
-	<h1>Form</h1>
-	<%= render "companies/form"   %>
-</form>
-<form id="vehicle-form" class="mfp-hide white-popup">
-	<h1>Form</h1>
-	<%= render "vehicles/form"  %>
-</form>
-<% if params[:commit] == "Aggiungi azienda" %>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			company_fails_to_post()
-		}
-		);
-	</script>
-<% elsif params[:commit] == "Aggiungi mezzo" %>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			vehicle_fails_to_post()
-		}
-		);
-	</script>
 <% end %>
