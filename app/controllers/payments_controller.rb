@@ -6,12 +6,12 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = Payment.new(payment_params)
-    payment.invoice_id = invoice_id
-    if payment.save
+    @payment = Payment.new(payment_params)
+    @payment.invoice_id = invoice_id
+    if @payment.save
       redirect_to invoice_path(id: invoice_id)
     else
-      new_invoice_payment_path(invoice_id: invoice_id)
+      render 'new'
     end
   end
 
@@ -21,13 +21,13 @@ class PaymentsController < ApplicationController
   end
 
   def update
-    payment = Payment.find(params[:id])
-    payment.update(payment_params)
-    if payment.update(payment_params)
+    @payment = Payment.find(params[:id])
+    @payment.update(payment_params)
+    if @payment.update(payment_params)
+      flash[:notice] = 'Pagamento aggiornato'
       redirect_to invoice_path(id: invoice_id)
     else
-      flash[:notice] = 'La modifica non e andata a buon fine controllare i dati inseriti'
-      redirect_to edit_invoice_payment_path(invoice_id: invoice_id, id:payment.id)
+      render 'edit'
     end
   end
 

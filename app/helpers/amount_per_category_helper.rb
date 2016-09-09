@@ -1,4 +1,4 @@
-module AmountToPayPerCategoryHelper
+module AmountPerCategoryHelper
 
   def passive_amount_to_pay(companies)
     total_passive = 0

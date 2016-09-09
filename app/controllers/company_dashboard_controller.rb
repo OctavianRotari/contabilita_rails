@@ -10,6 +10,7 @@ class CompanyDashboardController < ApplicationController
     @company_dashboard = CompanyDashboard.new(params)
   end
 
+
   def passive_invoices
     @invoices = company_dashboard.passive_invoices
     respond_to do |format|

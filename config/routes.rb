@@ -21,8 +21,8 @@ Rails.application.routes.draw do
       get 'dashboard' => 'company_dashboard#show'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'
       get 'active_invoices' => 'company_dashboard#active_invoices'
+      get 'summary' => 'company_dashboard#summary'
     end
-    get 'summary' => 'companies#summary'
   end
 
 

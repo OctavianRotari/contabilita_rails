@@ -1,8 +1,7 @@
 <h2><%= @company_dashboard.company_name %></h2>
-<%= link_to 'Fatture passive', passive_invoices_company_path(@company_dashboard.company_id, year_param: Time.now.year), :remote => true %>
-<%= link_to 'Fatture attive', active_invoices_company_path(@company_dashboard.company_id, year_param: Time.now.year), :remote => true %>
-<%#<%= link_to 'Riepilogo', company_summary_path(@company_invoices_dashboard.company_id), :remote => true %>
-
+<%= link_to 'Fatture passive', passive_invoices_company_path(@company_dashboard.company_id, year_param: Time.now.year), remote: true %>
+<%= link_to 'Fatture attive', active_invoices_company_path(@company_dashboard.company_id, year_param: Time.now.year), remote: true %>
+<%= link_to 'Riepilogo', dashboard_company_path(@company_dashboard.company_id) %>
 <div id="invoices">
 	<%= render 'company_summary'%>
 </div>
