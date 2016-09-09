@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
 
   resources :vehicles do
+    collection do
+      get 'dashboard' => 'vehicle_dashboard#index'
+    end
     member do
       get 'dashboard' => 'vehicle_dashboard#show'
       get 'passive_invoices' => 'vehicle_dashboard#passive_invoices'

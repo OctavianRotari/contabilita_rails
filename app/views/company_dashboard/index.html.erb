@@ -1,7 +1,16 @@
 <div class="companies">
 	<% @companies.each do |category_id, companies| %>
-		<h2><%= category_of_company(category_id) %></h2>
-		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %>
+		<h2 style="margin-bottom: 0px"><%= category_of_company(category_id) %></h2>
+		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %><br>
+		<div style="display: inline-block;">
+			<h3>Fatture passive</h3>
+			<p>da pagare: <%= passive_amount_to_pay(companies) %> </p>
+		</div>
+		<div style="display: inline-block;">
+			<h3>Fatture attive</h3>
+			<p>da incassare: <%= active_amount_to_collect(companies) %> </p>
+		</div>
+		<br>
 		<br>
 		<%= render companies %>
 	<% end %>

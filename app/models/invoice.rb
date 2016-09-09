@@ -24,6 +24,14 @@ class Invoice < ActiveRecord::Base
     order_by_year(params).where(type_of_invoice: 'passiva')
   end
 
+  def self.active
+    where(type_of_invoice: 'attiva')
+  end
+
+  def self.passive
+    where(type_of_invoice: 'passiva')
+  end
+
   def company_name
     company.name
   end
