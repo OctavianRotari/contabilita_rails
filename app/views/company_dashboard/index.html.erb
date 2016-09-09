@@ -1,5 +1,3 @@
-<%=link_to 'Aggiungi azienda', new_company_path %><br>
-<%=link_to 'Aggiungi categoria', new_category_of_company_path %>
 <div class="companies">
 	<% @companies.each do |category_id, companies| %>
 		<h2><%= category_of_company(category_id) %></h2>

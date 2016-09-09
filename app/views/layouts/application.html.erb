@@ -7,6 +7,18 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
+		<% if user_signed_in? %>
+			<%= link_to current_user.email, root_path %>
+			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+			<br>
+			<%= link_to 'Aggiungi azienda', new_company_path %>
+			<%= link_to 'Aggiungi categoria', new_category_of_company_path %>
+			<%= link_to "Aggiungi fattura", new_invoice_path %>
+			<%= link_to 'Aggiungi mezzo', new_vehicle_path %>
+		<% else %>
+				<%= link_to "Accedere", new_user_session_path %>
+				<%= link_to "Registrarsi", new_user_registration_path %>
+		<% end %>
 		<%= notice %>
 		<%= alert %>
 		<%= yield %>

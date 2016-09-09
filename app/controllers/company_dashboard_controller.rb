@@ -1,4 +1,5 @@
 class CompanyDashboardController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @category_of_company = CategoryOfCompany.new

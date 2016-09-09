@@ -37,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.4)
     capybara (2.5.0)
@@ -57,6 +58,12 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
     database_cleaner (1.5.1)
+    devise (4.2.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.1)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -76,7 +83,6 @@ GEM
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    magnific-popup-rails (1.1.0)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mime-types (3.0)
@@ -87,6 +93,7 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    orm_adapter (0.5.0)
     poltergeist (1.8.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -120,6 +127,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.0)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -168,6 +177,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    warden (1.2.6)
+      rack (>= 1.0)
     websocket (1.2.1)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
@@ -183,10 +194,10 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
+  devise
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
-  magnific-popup-rails (~> 1.1.0)
   poltergeist
   rails (= 4.2.1)
   rspec-rails

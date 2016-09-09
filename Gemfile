@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
-gem 'magnific-popup-rails', '~> 1.1.0'
+gem 'devise'
 
 group :development do
   gem 'spring'

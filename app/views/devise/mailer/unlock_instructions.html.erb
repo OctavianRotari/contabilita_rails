@@ -1,0 +1,7 @@
+<p>Buongiorno <%= @resource.email %>!</p>
+
+<p>L'account e stato bloccato a causa dei numerosi tentativi di accesso non andati a buon fine.</p>
+
+<p>Cliccare il link sottostante per riattivare l'account:</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>

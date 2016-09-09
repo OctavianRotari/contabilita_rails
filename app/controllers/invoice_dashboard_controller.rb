@@ -1,4 +1,6 @@
 class InvoiceDashboardController < ApplicationController
+  before_action :authenticate_user!
+
   def active_invoices
     @invoices = active(params)
   end

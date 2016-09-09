@@ -1,4 +1,5 @@
 class CategoryOfCompaniesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @category_of_company = CategoryOfCompany.new

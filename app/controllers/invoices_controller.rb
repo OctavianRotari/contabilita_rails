@@ -1,4 +1,6 @@
 class InvoicesController < ApplicationController
+  before_action :authenticate_user!
+
   include CheckIfCompanyAndVehicleExists
 
   def new

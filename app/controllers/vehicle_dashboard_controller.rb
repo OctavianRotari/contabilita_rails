@@ -1,4 +1,5 @@
 class VehicleDashboardController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @vehicle_dashboard = VehicleDashboard.new(params)
