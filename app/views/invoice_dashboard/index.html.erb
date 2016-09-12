@@ -1,0 +1,41 @@
+<h1>Contabilita</h1>
+<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
+<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
+<%= link_to 'Aziende', dashboard_companies_path %>
+<%= link_to 'Mezzi', dashboard_vehicles_path %>
+<h2>Fatture da pagare</h2>
+<table>
+<thead>
+	<tr>
+		<th>Fornitore</th>
+		<th>Totale</th>
+		<th>Iva</th>
+		<th>Pagato</th>
+		<th>Da pagare</th>
+		<th>Motivo</th>
+		<th>Data di emmissione</th>
+		<th>Targa</th>
+		<th>Scadenza</th>
+		<th>Elimina</th>
+	</tr>
+</thead>
+<%= render @invoice_dashboard.not_paid_invoices %>
+</table>
+<h2>Fatture da incassare</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Fornitore</th>
+			<th>Totale</th>
+			<th>Iva</th>
+			<th>Incassato</th>
+			<th>Da incassare</th>
+			<th>Motivo</th>
+			<th>Data di emmissione</th>
+			<th>Targa</th>
+			<th>Scadenza</th>
+			<th>Elimina</th>
+		</tr>
+	</thead>
+<%= render @invoice_dashboard.not_collected_invoices %>
+</table>

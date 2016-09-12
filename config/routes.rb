@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "accounting#index"
+  root to: "invoice_dashboard#index"
 
   resources :invoices do
     collection do

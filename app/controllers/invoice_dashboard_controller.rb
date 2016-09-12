@@ -1,6 +1,10 @@
 class InvoiceDashboardController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @invoice_dashboard = InvoiceDashboard.new
+  end
+
   def active_invoices
     @invoices = active(params)
   end
