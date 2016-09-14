@@ -1,11 +1,11 @@
 <h3> <%= link_to company.name, company_path(company.id) %></h3>
 <div style="display: inline-block;">
 	<h4>Fatture passive</h4>
-	<p>da pagare: <%= total_remaining_all_invoices(company.invoices.passive) %> </p>
+	<p>da pagare: <%= @calculator.total_remaining_all(company.invoices.passive) %> </p>
 </div>
 <div style="display: inline-block;">
 	<h4>Fatture attive</h4>
-	<p>da incassare: <%= total_remaining_all_invoices(company.invoices.active) %></p>
+	<p>da incassare: <%= @calculator.total_remaining_all(company.invoices.active) %></p>
 </div>
 <br>
 <%= link_to 'Fatture', dashboard_company_path(company.id) %><br>

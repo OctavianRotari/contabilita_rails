@@ -4,15 +4,17 @@
 		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %><br>
 		<div style="display: inline-block;">
 			<h4>Fatture passive</h4>
-			<p>da pagare: <%= passive_amount_to_pay(companies) %> </p>
+			<%byebug%>
+			<p>da pagare: <%= @calculator.passive_amount_to_pay(companies) %> </p>
 		</div>
 		<div style="display: inline-block;">
 			<h4>Fatture attive</h4>
-			<p>da incassare: <%= active_amount_to_collect(companies) %> </p>
+			<p>da incassare: <%= @calculator.active_amount_to_collect(companies) %> </p>
 		</div>
 		<div style="display: inline-block;">
 			<h4>Totale spese</h4>
-			<p>mese corrente: !vuoto!</p>
+			<p>Mese corrente: <%= @calculator.total_costs_current_month(category_id) %></p>
+			<p>Anno corrente: <%= @calculator.total_costs_current_year(category_id) %></p>
 		</div>
 		<br>
 		<br>

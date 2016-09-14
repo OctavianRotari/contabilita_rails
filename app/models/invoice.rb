@@ -37,7 +37,11 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.current_month_passive_invoices
-    passive.where('date_of_issue' == Date.today.month )
+    passive.where('date_of_issue.month' === Date.today.month )
+  end
+
+  def self.current_year_passive_invoices
+    passive.where('date_of_issue.year' === Date.today.year )
   end
 
   private

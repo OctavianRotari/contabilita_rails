@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:notice] = 'Fattura elliminata'
-    redirect_to company_path(id:company_id)
+    redirect_to :back
   end
 
   def create

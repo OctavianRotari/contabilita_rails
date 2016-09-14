@@ -27,13 +27,29 @@ class Calculator < ActiveRecord::Base
   end
 
   def total_remaining_all(invoices)
-    total = 0
-    invoices.each do |invoice|
-      invoice.payments.each do |payment|
-        total += payment.paid
+    total_all(invoices) - total_paid_or_collected_all(invoices)
+  end
+
+  def total_costs_current_month(category_id)
+    #non funziona
+    invoices = []
+    category(category_id).companies.each do |company|
+      company.invoices.current_month_passive_invoices.each do |invoice|
+        invoices.push(invoice)
       end
     end
-    total_all(invoices) - total
+    total_all(invoices)
+  end
+
+  def total_costs_current_year(category_id)
+    #non funziona
+    invoices = []
+    category(category_id).companies.each do |company|
+      company.invoices.current_year_passive_invoices.each do |invoice|
+        invoices.push(invoice)
+      end
+    end
+    total_all(invoices)
   end
 
   def paid_per(invoice)
@@ -45,11 +61,31 @@ class Calculator < ActiveRecord::Base
   end
 
   def to_pay_per(invoice)
-    total = 0
-    invoice.payments.each do |payment|
-      total += payment.paid
+    invoice.total - paid_per(invoice)
+  end
+
+  def passive_amount_to_pay(companies)
+    total_passive = 0
+    companies.each do |company|
+      invoices = company.invoices
+      total_passive += total_remaining_all(invoices.passive)
     end
-    invoice.total - total
+    total_passive
+  end
+
+  def active_amount_to_collect(companies)
+    total_active = 0
+    companies.each do |company|
+      invoices = company.invoices
+      total_active += total_remaining_all(invoices.active)
+    end
+    total_active
+  end
+
+  private
+
+  def category(category_id)
+    CategoryOfCompany.find(category_id)
   end
 
 end

@@ -2,11 +2,13 @@ class CompanyDashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @calculator = Calculator.new
     @category_of_company = CategoryOfCompany.new
     @companies = Company.all.group_by { |t| t.category_of_company_id }
   end
 
   def show
+    @calculator = Calculator.new
     @company_dashboard = CompanyDashboard.new(params)
   end
 
