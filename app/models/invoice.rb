@@ -36,6 +36,10 @@ class Invoice < ActiveRecord::Base
     company.name
   end
 
+  def self.current_month_passive_invoices
+    passive.where('date_of_issue' == Date.today.month )
+  end
+
   private
 
   def self.order_by_year(params)

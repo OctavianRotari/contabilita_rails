@@ -3,12 +3,16 @@
 		<h2 style="margin-bottom: 0px"><%= category_of_company(category_id) %></h2>
 		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %><br>
 		<div style="display: inline-block;">
-			<h3>Fatture passive</h3>
+			<h4>Fatture passive</h4>
 			<p>da pagare: <%= passive_amount_to_pay(companies) %> </p>
 		</div>
 		<div style="display: inline-block;">
-			<h3>Fatture attive</h3>
+			<h4>Fatture attive</h4>
 			<p>da incassare: <%= active_amount_to_collect(companies) %> </p>
+		</div>
+		<div style="display: inline-block;">
+			<h4>Totale spese</h4>
+			<p>mese corrente: !vuoto!</p>
 		</div>
 		<br>
 		<br>

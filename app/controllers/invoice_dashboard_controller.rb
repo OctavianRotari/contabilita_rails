@@ -2,14 +2,17 @@ class InvoiceDashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @calculator = Calculator.new
     @invoice_dashboard = InvoiceDashboard.new
   end
 
   def active_invoices
+    @calculator = Calculator.new
     @invoices = active(params)
   end
 
   def passive_invoices
+    @calculator = Calculator.new
     @invoices = passive(params)
   end
 

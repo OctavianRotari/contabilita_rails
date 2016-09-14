@@ -21,25 +21,25 @@
 		<tfoot>
 			<tr class="totals">
 				<td>Totale:</td>
-				<td><%= total_all_invoices(invoices)%> </td>
-				<td><%= total_vat_all_invoices(invoices)%> </td>
-				<td><%= total_paid_or_collected_all_invoices(invoices)%> </td>
-				<td><%= total_remaining_all_invoices(invoices)%> </td>
+				<td><%= @calculator.total_all(invoices) %></td>
+				<td><%= @calculator.total_vat_all(invoices) %></td>
+				<td><%= @calculator.total_paid_or_collected_all(invoices) %></td>
+				<td><%= @calculator.total_remaining_all(invoices) %></td>
 			</tr>
 		</tfoot>
 		<tbody>
 			<% for invoice in invoices %>
 				<tr>
-					<td><%=link_to invoice.company_name, company_path(invoice.company_id) %></td>
-					<td><%=invoice.total %></td>
-					<td><%=invoice.total_vat %></td>
-					<td><%=paid_per_invoice(invoice.id) %></td>
-					<td><%=to_pay_per_invoice(invoice.id) %></td>
-					<td><%=link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
-					<td><%=invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
-					<td><%=link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
-					<td><%=invoice.deadline.strftime("%d-%m-%Y")%></td>
-					<td><%=button_to "Elimina fattura", invoice_path(company_id: invoice.company_id, id: invoice.id), method: :delete %></td>
+					<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
+					<td><%= invoice.total %></td>
+					<td><%= invoice.total_vat %></td>
+					<td><%= @calculator.paid_per(invoice) %></td>
+					<td><%= @calculator.to_pay_per(invoice) %></td>
+					<td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
+					<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
+					<td><%= link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
+					<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+					<td><%= button_to "Elimina fattura", invoice_path(company_id: invoice.company_id, id: invoice.id), method: :delete %></td>
 				</tr>
 			<%end%>
 		</tbody>
