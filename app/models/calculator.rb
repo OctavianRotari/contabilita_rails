@@ -31,7 +31,6 @@ class Calculator < ActiveRecord::Base
   end
 
   def total_costs_current_month(category_id)
-    #non funziona
     invoices = []
     category(category_id).companies.each do |company|
       company.invoices.current_month_passive_invoices.each do |invoice|
@@ -42,7 +41,7 @@ class Calculator < ActiveRecord::Base
   end
 
   def total_costs_current_year(category_id)
-    #non funziona
+    byebug
     invoices = []
     category(category_id).companies.each do |company|
       company.invoices.current_year_passive_invoices.each do |invoice|

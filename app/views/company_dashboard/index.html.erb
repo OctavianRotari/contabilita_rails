@@ -4,7 +4,6 @@
 		<%= link_to "Modifica categoria", edit_category_of_company_path(category_id)  %><br>
 		<div style="display: inline-block;">
 			<h4>Fatture passive</h4>
-			<%byebug%>
 			<p>da pagare: <%= @calculator.passive_amount_to_pay(companies) %> </p>
 		</div>
 		<div style="display: inline-block;">
