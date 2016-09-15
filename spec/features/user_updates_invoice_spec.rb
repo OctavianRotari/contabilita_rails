@@ -6,6 +6,7 @@ feature 'user' do
     company = company('Bezzi')
     vehicle
     create_passive_invoice(company)
+    sign_up
     visit '/companies/dashboard'
     click_on 'Fatture'
     click_link 'Fatture passive'

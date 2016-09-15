@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'user' do
   scenario 'updates company' do
     vehicle('RB342BD')
-    visit '/'
+    sign_up
+    visit '/invoices/dashboard'
     click_link 'Mezzi'
     click_link 'Aggiorna mezzo'
     fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'

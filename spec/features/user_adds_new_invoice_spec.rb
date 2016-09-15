@@ -2,20 +2,24 @@ require 'rails_helper'
 
 feature 'user' do
 
+  before :each do
+    sign_up
+  end
+
   scenario 'cant add a new invoice if there is no companies', js: true do
     vehicle("ER354BS")
-    visit '/'
+    visit '/invoices/dashboard'
     click_link 'Aggiungi fattura'
-    expect(current_path).to eq root_path
+    expect(current_path).to eq dashboard_invoices_path
     expect(page).to have_content "Aggiungere almeno un'azienda"
   end
 
   scenario 'cant add a new invoice if there is no vehicles', js: true do
     category
     company('Bezzi')
-    visit '/'
+    visit '/invoices/dashboard'
     click_link 'Aggiungi fattura'
-    expect(current_path).to eq root_path
+    expect(current_path).to eq dashboard_invoices_path
     expect(page).to have_content "Aggiungere almeno un mezzo"
   end
 
@@ -23,7 +27,7 @@ feature 'user' do
     category
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/'
+    visit '/invoices/dashboard'
     click_link 'Aggiungi fattura'
     fill_in_new_invoice
     click_button 'Conferma'
@@ -34,7 +38,7 @@ feature 'user' do
     category
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/'
+    visit '/invoices/dashboard'
     click_link 'Aggiungi fattura'
     click_link 'Aggiungi imponibile'
     fill_in_new_invoice

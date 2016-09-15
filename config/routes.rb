@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   resources :invoices do
     collection do
-      get 'index' => 'invoice_dashboard#index'
+      get 'dashboard' => 'invoice_dashboard#index'
       get 'active' => 'invoice_dashboard#active_invoices'
       get 'passive' => 'invoice_dashboard#passive_invoices'
     end
+
     resources :payments
+
   end
 
   resources :category_of_companies, only: [:new, :edit, :create, :delete, :update]

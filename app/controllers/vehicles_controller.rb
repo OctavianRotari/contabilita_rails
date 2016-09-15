@@ -31,7 +31,7 @@ class VehiclesController < ApplicationController
     vehicle = Vehicle.find(params[:id])
     vehicle.destroy
     flash[:notice] = 'Mezzo elliminato'
-    redirect_to vehicles_path
+    redirect_to dashboard_vehicles_path
   end
 
   def create

@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @invoice = Invoice.find(params[:invoice_id])
     @payment = Payment.new
   end
 

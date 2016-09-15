@@ -4,7 +4,8 @@ feature 'user' do
   scenario 'updates company' do
     category
     company('Bezzi')
-    visit '/'
+    sign_up
+    visit '/invoices/dashboard'
     click_link 'Aziende'
     click_link 'Aggiorna azienda'
     fill_in 'company[name]', with: 'Maca'

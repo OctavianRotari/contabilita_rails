@@ -2,8 +2,9 @@ require 'rails_helper'
 
 feature 'user' do
   scenario 'adds new company' do
+    sign_up
     category
-    visit '/'
+    visit '/invoices/dashboard'
     click_link 'Aziende'
     click_link 'Aggiungi azienda'
     fill_in 'company[name]', with: 'Bezzi'

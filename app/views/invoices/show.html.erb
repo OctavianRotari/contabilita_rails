@@ -12,5 +12,4 @@
 	<%= render @invoice.payments %>
 <%end%>
 <%= link_to 'Aggiorna', edit_invoice_path(invoice_id: @invoice.id) %>
-<%= link_to "Effettua pagamento", 
-	new_invoice_payment_path(invoice_id: @invoice.id)%>
+<%= link_to "Effettua pagamento", 	new_invoice_payment_path(invoice_id: @invoice.id) %>
