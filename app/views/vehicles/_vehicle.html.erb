@@ -1,8 +1,18 @@
 <h2><%= vehicle.plate %></h2>
 <div style="display: inline-block;">
-	<h3>Spese</h3>
-	<p>per veicolo: <%= total_all_invoices(vehicle.invoices) %></p>
+	<h4>Fatture passive</h4>
+	<p>da pagare: <%= @calculator.total_remaining_all(vehicle.invoices.passive) %> </p>
 </div>
+<div style="display: inline-block;">
+	<h4>Fatture attive</h4>
+	<p>da incassare: <%= @calculator.total_remaining_all(vehicle.invoices.active) %></p>
+</div>
+<div style="display: inline-block;">
+	<h4>Totale spese</h4>
+	<p>Mese corrente: <%= @calculator.total_costs_current_month_vehicle(vehicle.id) %></p>
+	<p>Anno corrente: <%= @calculator.total_costs_current_year_vehicle(vehicle.id) %></p>
+</div>
+<br>
 <br>
 <%= link_to "Fatture", dashboard_vehicle_path(vehicle.id) %><br>
 <%= link_to 'Aggiorna mezzo', edit_vehicle_path(vehicle.id) %><br>
