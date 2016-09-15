@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "invoice_dashboard#index"
+  root to: "accounting#index"
 
   resources :invoices do
     collection do
+      get 'index' => 'invoice_dashboard#index'
       get 'active' => 'invoice_dashboard#active_invoices'
       get 'passive' => 'invoice_dashboard#passive_invoices'
     end
