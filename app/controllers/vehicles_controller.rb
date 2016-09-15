@@ -21,7 +21,7 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.find(params[:id])
     if @vehicle.update(vehicle_params)
       flash[:notice] = 'Mezzo aggiornato'
-      redirect_to vehicle_dashboard_path
+      redirect_to dashboard_vehicles_path
     else
       render "edit"
     end
@@ -38,7 +38,7 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
       flash[:notice] = 'Mezzo aggiunto'
-      redirect_to vehicle_dashboard_path
+      redirect_to dashboard_vehicles_path
     else
       render 'new'
     end

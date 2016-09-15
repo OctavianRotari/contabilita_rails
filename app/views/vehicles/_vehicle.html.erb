@@ -1,4 +1,4 @@
-<h2><%= vehicle.plate %></h2>
+<h2><%=link_to vehicle.plate, vehicle_path(vehicle.id) %></h2>
 <div style="display: inline-block;">
 	<h4>Fatture passive</h4>
 	<p>da pagare: <%= @calculator.total_remaining_all(vehicle.invoices.passive) %> </p>
