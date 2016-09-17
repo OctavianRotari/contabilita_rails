@@ -44,10 +44,38 @@ class Invoice < ActiveRecord::Base
     passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_year, Time.now.end_of_year )
   end
 
+  def self.not_paid
+    not_paid_invoices = []
+    passive.each do |invoice|
+      if invoice.total != total_payments(invoice.id)
+        not_paid_invoices.push(invoice)
+      end
+    end
+    not_paid_invoices
+  end
+
+  def self.not_collected
+    not_collected_invoices = []
+    active.each do |invoice|
+      if invoice.total != total_payments(invoice.id)
+        not_collected_invoices.push(invoice)
+      end
+    end
+    not_collected_invoices
+  end
+
   private
 
   def self.order_by_year(params)
     where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] )
+  end
+
+  def self.total_payments(invoice_id)
+    total_payments = 0
+    payments(invoice_id).each do |payment|
+      total_payments = payment.paid
+    end
+    total_payments
   end
 
 end
