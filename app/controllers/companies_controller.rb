@@ -1,15 +1,15 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
 
-  include CheckIfCategoryOfCompanyExists
+  include CheckIfCategoryExists
 
   def index
     @companies = Company.all
   end
 
   def new
-    if category_of_company_exists?
-      @category_of_companies = CategoryOfCompany.all
+    if category_exists?
+      @category = Category.all
       @company = Company.new
     else
       redirect_to dashboard_companies_path
@@ -18,12 +18,12 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find(params[:id])
-    @category_of_companies = CategoryOfCompany.all
+    @category = Category.all
   end
 
   def update
     @company  = Company.find(params[:id])
-    @category_of_companies = CategoryOfCompany.all
+    @category = Category.all
     if @company.update(company_params)
       flash[:notice] = 'La compania e stata aggiornata'
       redirect_to dashboard_companies_path
@@ -45,8 +45,8 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @category_of_companies = CategoryOfCompany.all
-    @company.category_of_company_id = category_of_company_id
+    @category = Category.all
+    @company.category_id = category_id
     if @company.save
       redirect_to dashboard_companies_path
     else
@@ -56,15 +56,15 @@ class CompaniesController < ApplicationController
 
   private
   def company_params
-    params.require(:company).permit(:name, :adress, :number, :category_of_company_id)
+    params.require(:company).permit(:name, :adress, :number, :category_id)
   end
 
   def company
     @_company ||= Company.find(params[:id])
   end
 
-  def category_of_company_id
-    company_params[:category_of_company_id]
+  def category_id
+    company_params[:category_id]
   end
 
 end

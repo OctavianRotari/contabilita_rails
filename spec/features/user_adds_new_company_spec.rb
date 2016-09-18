@@ -10,7 +10,7 @@ feature 'user' do
     fill_in 'company[name]', with: 'Bezzi'
     fill_in 'company[adress]', with: 'Ravenna Bagnacavallo'
     fill_in 'company[number]', with: '0293-143352'
-    page.select 'officina', from: 'company[category_of_company_id]'
+    page.select 'officina', from: 'company[category_id]'
     click_button "Aggiungi azienda"
     expect(page).to have_css 'a', text: 'Bezzi'
   end

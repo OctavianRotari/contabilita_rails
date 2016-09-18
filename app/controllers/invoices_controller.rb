@@ -8,7 +8,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    @category_of_companies = CategoryOfCompany.all
+    @category = Category.all
     @new_invoice = NewInvoice.new
     create_company_or_vehicle
   end
@@ -37,6 +37,7 @@ class InvoicesController < ApplicationController
 
   def create
     params = BuildInvoice.new(invoice_params).build
+    params[:category_id] = category_id
     @new_invoice = NewInvoice.new
     @invoice = Invoice.new(params)
     if @invoice.save
@@ -48,12 +49,16 @@ class InvoicesController < ApplicationController
 
   private
 
+  def category_id
+    Company.find(company_id).category_id
+  end
+
   def invoice_params
-    params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
+    params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
 
   def company_id
-    params[:company_id]
+    invoice_params[:company_id]
   end
 
 end

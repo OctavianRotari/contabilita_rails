@@ -26,6 +26,10 @@ class BuildInvoice
     @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable)
   end
 
+  def company_id
+    @invoice_params[:company_id]
+  end
+
   def total
     @total_vat + @total_taxable
   end

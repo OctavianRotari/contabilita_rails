@@ -3,6 +3,7 @@ class Invoice < ActiveRecord::Base
   has_many :taxable_vat_fields
   belongs_to :company
   belongs_to :vehicle
+  belongs_to :category
   accepts_nested_attributes_for :taxable_vat_fields, allow_destroy: true
 
   validates :date_of_issue, presence: {message: "Selezionare data di emissione"}

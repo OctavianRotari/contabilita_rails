@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :category_of_companies, only: [:new, :edit, :create, :delete, :update]
+  resources :categories, only: [:new, :edit, :create, :delete, :update]
 
   resources :companies do
     collection do

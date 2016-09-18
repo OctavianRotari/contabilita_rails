@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914113841) do
+ActiveRecord::Schema.define(version: 20160918131628) do
 
   create_table "calculators", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_of_companies", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20160914113841) do
     t.string   "name"
     t.string   "adress"
     t.integer  "number"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "category_of_company_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
 
-  add_index "companies", ["category_of_company_id"], name: "index_companies_on_category_of_company_id"
+  add_index "companies", ["category_id"], name: "index_companies_on_category_id"
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160914113841) do
     t.decimal  "total_taxable"
     t.integer  "vehicle_id"
     t.string   "type_of_invoice"
+    t.integer  "category_id"
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"

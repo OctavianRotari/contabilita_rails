@@ -1,6 +1,6 @@
-module CheckIfCategoryOfCompanyExists
-  def category_of_company_exists?
-    if CategoryOfCompany.all.empty?
+module CheckIfCategoryExists
+  def category_exists?
+    if Category.all.empty?
       flash[:notice] = "Aggiungere almeno una categoria di aziende"
       false
     else

@@ -30,33 +30,6 @@ class Calculator < ActiveRecord::Base
     total_all(invoices) - total_paid_or_collected_all(invoices)
   end
 
-  #should belong to another class
-  def total_costs_current_month(category_id)
-    invoices = category_current_month_passive_invoices(category_id)
-    total_all(invoices)
-  end
-
-  def total_costs_current_year(category_id)
-    invoices = category_current_year_passive_invoices(category_id)
-    total_all(invoices)
-  end
-
-  def total_costs_current_month_vehicle(vehicle_id)
-    invoices = []
-    vehicle(vehicle_id).invoices.current_month_passive_invoices.each do |invoice|
-      invoices.push(invoice)
-    end
-    total_all(invoices)
-  end
-
-  def total_costs_current_year_vehicle(vehicle_id)
-    invoices = []
-    vehicle(vehicle_id).invoices.current_year_passive_invoices.each do |invoice|
-      invoices.push(invoice)
-    end
-    total_all(invoices)
-  end
-
   def paid_per(invoice)
     total = 0
     invoice.payments.each do |payment|
@@ -87,34 +60,35 @@ class Calculator < ActiveRecord::Base
     total_active
   end
 
+  #should belong to another class
+  def total_costs_current_month(category_id)
+    invoices = Invoice.where( category_id: category_id ).current_month_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_year(category_id)
+    invoices = Invoice.where( category_id: category_id ).current_year_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_month_vehicle(vehicle_id)
+    invoices = Invoice.where( vehicle_id: vehicle_id ).current_month_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_year_vehicle(vehicle_id)
+    invoices = Invoice.where( vehicle_id: vehicle_id ).current_year_passive_invoices
+    total_all(invoices)
+  end
+
   private
 
   def category(category_id)
-    CategoryOfCompany.find(category_id)
+    Category.find(category_id)
   end
 
   def vehicle(vehicle_id)
     Vehicle.find(vehicle_id)
-  end
-
-  def category_current_month_passive_invoices(category_id)
-    invoices = []
-    category(category_id).companies.each do |company|
-      company.invoices.current_month_passive_invoices.each do |invoice|
-        invoices.push(invoice)
-      end
-    end
-    invoices
-  end
-
-  def category_current_year_passive_invoices(category_id)
-    invoices = []
-    category(category_id).companies.each do |company|
-      company.invoices.current_year_passive_invoices.each do |invoice|
-        invoices.push(invoice)
-      end
-    end
-    invoices
   end
 
 end

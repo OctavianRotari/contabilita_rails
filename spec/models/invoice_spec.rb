@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Invoice, type: :unit do
   before :each do
-    create_category_of_company
+    create_category
     @params = { year_param: "2015"}
     company = company('Octav')
     @passive_invoice = create_passive_record(company)

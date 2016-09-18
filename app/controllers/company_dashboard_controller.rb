@@ -3,8 +3,8 @@ class CompanyDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @category_of_company = CategoryOfCompany.new
-    @companies = Company.all.group_by { |t| t.category_of_company_id }
+    @category_of_company = Category.new
+    @companies = Company.all.group_by { |t| t.category_id }
   end
 
   def show
@@ -36,7 +36,7 @@ class CompanyDashboardController < ApplicationController
   end
 
   def category_params
-    params.require(:category_of_company).permit(:category)
+    params.require(:category).permit(:category)
   end
 
 end
