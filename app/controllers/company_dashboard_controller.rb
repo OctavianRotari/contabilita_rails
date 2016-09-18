@@ -3,7 +3,6 @@ class CompanyDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @category_of_company = Category.new
     @companies = Company.all.group_by { |t| t.category_id }
   end
 

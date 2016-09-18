@@ -60,14 +60,13 @@ class Calculator < ActiveRecord::Base
     total_active
   end
 
-  #should belong to another class
-  def total_costs_current_month(category_id)
-    invoices = Invoice.where( category_id: category_id ).current_month_passive_invoices
+  def total_costs_current_month(invoices)
+    invoices = invoices.current_month_passive_invoices
     total_all(invoices)
   end
 
-  def total_costs_current_year(category_id)
-    invoices = Invoice.where( category_id: category_id ).current_year_passive_invoices
+  def total_costs_current_year(invoices)
+    invoices = invoices.current_year_passive_invoices
     total_all(invoices)
   end
 
