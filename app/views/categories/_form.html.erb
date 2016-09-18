@@ -1,0 +1,18 @@
+<%= form_for @category do |form| %>
+		<% if @category.errors.any? %>
+			<%= pluralize(@category.errors.count, "error") %> prevented your account from being created:
+			<ul>
+				<% @category.errors.full_messages.each do |error_message| %>
+					<li><%= error_message %></li>
+				<% end %>
+			</ul>
+	<% end %>
+	<div>
+		<%= form.label 'Categoria' %>
+		<%= form.text_field :category, require: true %>
+	</div>
+	<br>
+	<div>
+		<%= form.submit "Aggiungi categoria" %>
+	</div>
+<% end %>
