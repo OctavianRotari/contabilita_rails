@@ -1,14 +1,19 @@
 <tbody>
-	<tr>
-		<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
-		<td><%= invoice.total %></td>
-		<td><%= invoice.total_vat %></td>
-		<td><%= @calculator.paid_per(invoice) %></td>
-		<td><%= @calculator.to_pay_per(invoice) %></td>
-		<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
-		<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
-		<td><%= link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
-		<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-		<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete %></td>
-	</tr>
+<tr>
+	<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
+	<td><%= invoice.total %></td>
+	<td><%= invoice.total_vat %></td>
+	<td><%= @calculator.paid_per(invoice) %></td>
+	<td><%= @calculator.to_pay_per(invoice) %></td>
+	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
+	<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
+	<td><%= link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
+	<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+	<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete %></td>
+	<% if invoice.type_of_invoice == "passiva" %>
+		<td><%= link_to "Paga", new_invoice_payment_path(invoice_id: invoice.id) %></td>
+	<% else %>
+		<td><%= link_to "Incassa", new_invoice_payment_path(invoice_id: invoice.id) %></td>
+	<% end%>
+</tr>
 </tbody>

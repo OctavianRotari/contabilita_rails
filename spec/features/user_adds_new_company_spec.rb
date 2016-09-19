@@ -5,7 +5,6 @@ feature 'user' do
     sign_up
     category
     visit '/invoices/dashboard'
-    click_link 'Aziende'
     click_link 'Aggiungi azienda'
     fill_in 'company[name]', with: 'Bezzi'
     fill_in 'company[adress]', with: 'Ravenna Bagnacavallo'

@@ -12,6 +12,7 @@
 		<th>Targa</th>
 		<th>Scadenza</th>
 		<th>Elimina</th>
+		<th>Paga</th>
 	</tr>
 </thead>
 <%= render @invoice_dashboard.not_paid_invoices %>
@@ -30,6 +31,7 @@
 			<th>Targa</th>
 			<th>Scadenza</th>
 			<th>Elimina</th>
+			<th>Incassa</th>
 		</tr>
 	</thead>
 <%= render @invoice_dashboard.not_collected_invoices %>
