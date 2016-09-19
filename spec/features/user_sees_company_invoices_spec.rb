@@ -11,4 +11,49 @@ feature 'user clicks on the company' do
     expect(page).to have_css 'td', text: 'Manutenzione'
     expect(page).to have_css 'td', text: 'Montaggio gomme'
   end
+
+
+  scenario 'sees the amout it has to be paid for the category' do
+    create_passive_record('Bezzi',"ER354BS")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#passive_amount_to_pay', text: '110'
+  end
+
+  scenario 'sees that the amout is changing if a part is paid' do
+    invoice = create_passive_record('Bezzi',"ER354BS")
+    create_payment(invoice)
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#passive_amount_to_pay', text: '10'
+  end
+
+  scenario 'sees the amout it has to be collected for the category' do
+    create_active_record('Bezzi',"ER354BS")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#active_amount_to_collect', text: '110'
+  end
+
+  scenario 'sees that the amout is changing if a part is collected' do
+    invoice = create_active_record('Bezzi',"ER354BS")
+    create_payment(invoice)
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#active_amount_to_collect', text: '10'
+  end
+
+  scenario 'sees the costs for the current month' do
+    create_passive_record('Bezzi',"ER354BS")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    byebug
+    expect(page).to have_css 'p#current_month_costs', text: '110'
+  end
+
 end

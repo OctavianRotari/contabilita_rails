@@ -14,11 +14,6 @@
 			<br>
 			<br>
 			<%= link_to 'Home', dashboard_invoices_path %>
-		<% else %>
-			<%= link_to "Accedi", new_user_session_path %>
-			<%= link_to "Registrati", new_user_registration_path %>
-		<% end %>
-		<% if !current_page?(root_path) %>
 			<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
 			<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
 			<%= link_to 'Aziende', dashboard_companies_path %>
@@ -29,7 +24,11 @@
 			<%= link_to 'Aggiungi categoria', new_category_path %>
 			<%= link_to "Aggiungi fattura", new_invoice_path %>
 			<%= link_to 'Aggiungi mezzo', new_vehicle_path %>
+		<% else %>
+			<%= link_to "Accedi", new_user_session_path %>
+			<%= link_to "Registrati", new_user_registration_path %>
 		<% end %>
+		<br>
 		<%= notice %>
 		<%= alert %>
 		<%= yield %>
