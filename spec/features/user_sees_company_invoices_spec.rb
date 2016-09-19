@@ -52,7 +52,6 @@ feature 'user clicks on the company' do
     sign_up
     visit '/invoices/dashboard'
     click_link "Aziende"
-    byebug
     expect(page).to have_css 'p#current_month_costs', text: '110'
   end
 
