@@ -36,6 +36,18 @@ module Features
                             deadline: Time.now)
   end
 
+  def create_passive_invoice_different_date(parent, date, reason='Manutenzione',vehicle_id = 1)
+    parent.invoices.create(reason:reason,
+                            total:110,
+                            total_vat:10,
+                            category_id: 1,
+                            vehicle_id: vehicle_id,
+                            date_of_issue: date,
+                            type_of_invoice: 'passiva',
+                            total_taxable:100,
+                            deadline: Time.now)
+  end
+
   def create_payment(invoice, amount=100)
     invoice.payments.create(paid:amount,method_of_payment:'cassa',payment_date:'01/04/2015')
   end

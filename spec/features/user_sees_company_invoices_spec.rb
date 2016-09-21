@@ -21,6 +21,7 @@ feature 'user clicks on the company' do
     expect(page).to have_css 'p#passive_amount_to_pay', text: '110'
   end
 
+
   scenario 'sees that the amout is changing if a part is paid' do
     invoice = create_passive_record('Bezzi',"ER354BS")
     create_payment(invoice)
@@ -55,4 +56,40 @@ feature 'user clicks on the company' do
     expect(page).to have_css 'p#current_month_costs', text: '110'
   end
 
+  scenario 'sees the amout it has to be paid for the company' do
+    create_passive_record('Bezzi',"ER354BS")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#passive_amont_to_pay_per_company', text: '110'
+  end
+
+  scenario 'sees the amout it has to be collected for the company' do
+    create_active_record('Bezzi',"ER354BS")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#active_amout_to_collect_per_company', text: '110'
+  end
+
+
+  scenario 'sees the costs for the category for the current month' do
+    create_passive_record('Bezzi',"ER354BS")
+    company = Company.first
+    create_passive_invoice_different_date(company, "2016-08-21 10:02:38")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#current_month_costs', text: '110'
+  end
+
+  scenario 'sees the costs for the category for the current year' do
+    create_passive_record('Bezzi',"ER354BS")
+    company = Company.first
+    create_passive_invoice_different_date(company, "2015-08-21 10:02:38")
+    sign_up
+    visit '/invoices/dashboard'
+    click_link "Aziende"
+    expect(page).to have_css 'p#current_year_costs', text: '110'
+  end
 end
