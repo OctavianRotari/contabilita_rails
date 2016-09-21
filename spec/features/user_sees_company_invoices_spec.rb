@@ -33,6 +33,9 @@ feature 'user clicks on the company' do
 
   scenario 'sees the amout it has to be collected for the category' do
     create_active_record('Bezzi',"ER354BS")
+    category("commercialista")
+    company = company('Rossi', 2)
+    create_passive_invoice(company, 'buste paga')
     sign_up
     visit '/invoices/dashboard'
     click_link "Aziende"
@@ -48,7 +51,7 @@ feature 'user clicks on the company' do
     expect(page).to have_css 'p#active_amount_to_collect', text: '10'
   end
 
-  scenario 'sees the costs for the current month' do
+  scenario 'sees the costs for the category for the current month' do
     create_passive_record('Bezzi',"ER354BS")
     sign_up
     visit '/invoices/dashboard'

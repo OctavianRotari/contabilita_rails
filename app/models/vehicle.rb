@@ -5,8 +5,11 @@ class Vehicle < ActiveRecord::Base
 
   validates :plate, uniqueness: {message: "Veicolo con questa targa gia registrata"}
 
-  def self.invoices params_id
-    find(params_id).invoices
+  def passive_invoices
+    invoices.passive
   end
 
+  def active_invoices
+    invoices.active
+  end
 end

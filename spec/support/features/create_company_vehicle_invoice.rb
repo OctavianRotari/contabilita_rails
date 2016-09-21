@@ -1,6 +1,6 @@
 module Features
-  def company(name)
-    Company.create(name:name,adress:'Ravenna',number:'345', category_id: 1)
+  def company(name, category_id = 1)
+    Company.create(name:name,adress:'Ravenna',number:'345', category_id: category_id)
   end
 
   def vehicle(plate="ER341GF")
