@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160918131628) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "calculators", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.integer  "category_id"
   end
 
-  add_index "companies", ["category_id"], name: "index_companies_on_category_id"
+  add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
@@ -50,8 +53,8 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.integer  "category_id"
   end
 
-  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"
-  add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id"
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
+  add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "method_of_payment"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.decimal  "paid"
   end
 
-  add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id"
+  add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
 
   create_table "taxable_vat_fields", force: :cascade do |t|
     t.decimal  "taxable"
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "taxable_vat_fields", ["invoice_id"], name: "index_taxable_vat_fields_on_invoice_id"
+  add_index "taxable_vat_fields", ["invoice_id"], name: "index_taxable_vat_fields_on_invoice_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -89,8 +92,8 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vehicles", force: :cascade do |t|
     t.string   "plate"
@@ -99,4 +102,9 @@ ActiveRecord::Schema.define(version: 20160918131628) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "companies", "categories"
+  add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "vehicles"
+  add_foreign_key "payments", "invoices"
+  add_foreign_key "taxable_vat_fields", "invoices"
 end

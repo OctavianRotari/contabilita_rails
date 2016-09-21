@@ -40,7 +40,7 @@
 					<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 					<td><%= link_to invoice.vehicle.plate, vehicle_path(invoice.vehicle_id)%></td>
 					<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-					<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete %></td>
+					<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} %></td>
 					<td><%= link_to "Incassa", 	new_invoice_payment_path(invoice_id: invoice.id) %></td>
 				</tr>
 			<%end%>

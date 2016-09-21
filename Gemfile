@@ -10,6 +10,8 @@ gem 'turbolinks'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
+gem 'pg'
+gem 'rails_12factor', group: :production
 
 group :development do
   gem 'spring'

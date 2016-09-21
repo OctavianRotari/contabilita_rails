@@ -10,4 +10,4 @@
 <br>
 <%= link_to 'Fatture', dashboard_company_path(company.id) %><br>
 <%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
-<%= button_to 'Elimina azienda', company_path(company.id), method: :delete %><br>
+<%= button_to 'Elimina azienda', company_path(company.id), method: :delete, data: {confirm: "L'elliminazione di quest'azienda elliminera automaticamente anche le fatture registrate su di essa, si e sicuri di volerla elliminare?"} %><br>

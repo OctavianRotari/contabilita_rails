@@ -16,4 +16,4 @@
 <br>
 <%= link_to "Fatture", dashboard_vehicle_path(vehicle.id) %><br>
 <%= link_to 'Aggiorna mezzo', edit_vehicle_path(vehicle.id) %><br>
-<%= button_to 'Elimina mezzo', vehicle_path(vehicle.id), method: :delete %><br>
+<%= button_to 'Elimina mezzo', vehicle_path(vehicle.id), method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} %><br>
