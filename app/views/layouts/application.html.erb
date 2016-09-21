@@ -14,8 +14,10 @@
 			<br>
 			<br>
 			<%= link_to 'Home', dashboard_invoices_path %>
-			<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
-			<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
+			<% if Invoice.all.any?%>
+				<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
+				<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
+			<% end %>
 			<%= link_to 'Aziende', dashboard_companies_path %>
 			<%= link_to 'Mezzi', dashboard_vehicles_path %>
 			<br>
