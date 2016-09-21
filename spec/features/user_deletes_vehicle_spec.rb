@@ -7,6 +7,7 @@ feature 'user' do
     visit '/invoices/dashboard'
     click_link 'Mezzi'
     click_button 'Elimina mezzo'
-    expect(page).not_to have_css 'a', text: 'ER323ZE'
+    vehicles = Vehicle.all
+    expect(vehicles).to be_empty
   end
 end

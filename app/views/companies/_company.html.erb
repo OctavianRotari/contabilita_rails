@@ -1,4 +1,4 @@
-<h3> <%= link_to company.name, company_path(company.id) %></h3>
+<h3 class="company_name"> <%= link_to company.name, company_path(company.id) %></h3>
 <div style="display: inline-block;">
 	<h4>Fatture passive</h4>
 	<p id="passive_amont_to_pay_per_company" >da pagare: <%= @calculator.total_remaining_all(company.invoices.passive) %> </p>

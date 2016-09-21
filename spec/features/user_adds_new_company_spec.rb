@@ -11,6 +11,7 @@ feature 'user' do
     fill_in 'company[number]', with: '0293-143352'
     page.select 'officina', from: 'company[category_id]'
     click_button "Aggiungi azienda"
-    expect(page).to have_css 'a', text: 'Bezzi'
+    company_name = Company.first.name
+    expect(company_name).to eq "Bezzi"
   end
 end

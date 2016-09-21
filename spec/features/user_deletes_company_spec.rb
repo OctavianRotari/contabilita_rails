@@ -8,6 +8,7 @@ feature 'user' do
     visit '/invoices/dashboard'
     click_link 'Aziende'
     click_button 'Elimina azienda'
-    expect(page).not_to have_css 'a', text: 'Bezzi'
+    companies = Company.all
+    expect(companies).to be_empty
   end
 end

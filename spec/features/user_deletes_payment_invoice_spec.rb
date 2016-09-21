@@ -6,6 +6,7 @@ feature 'user' do
     create_payment(invoice)
     visits_individual_invoice
     click_button 'Elimina pagamento'
-    expect(page).not_to have_css 'p', text: 'Totale pagamento:100.0'
+    payments = Payment.all
+    expect(payments).to be_empty
   end
 end

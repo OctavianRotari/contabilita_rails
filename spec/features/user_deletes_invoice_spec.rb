@@ -2,9 +2,11 @@ require 'rails_helper'
 
 feature 'user' do
   scenario 'deletes invoice', js: true do
+    sign_up
     create_passive_record('Bezzi',"ER354BS")
-    visits_passive_invoices("Aziende")
+    visit '/invoices/dashboard'
     click_button "Elimina fattura"
-    expect(page).not_to have_css 'td', text: 'Manutenzione'
+    invoices = Invoice.all
+    expect(invoices).to be_empty
   end
 end
