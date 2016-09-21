@@ -16,7 +16,8 @@
 			<%= link_to 'Home', dashboard_invoices_path %>
 			<% if Invoice.active.any?%>
 				<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
-			<% elsif Invoice.passive.any?%>
+			<% end %>
+			<% if Invoice.passive.any?%>
 				<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
 			<% end %>
 			<%= link_to 'Aziende', dashboard_companies_path %>
