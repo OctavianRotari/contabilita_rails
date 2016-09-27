@@ -68,7 +68,7 @@ class Invoice < ActiveRecord::Base
   private
 
   def self.order_by_year(params)
-    where("cast(strftime('%Y', date_of_issue) as int) = ?", params[:year_param] )
+    where("extract(year from date_of_issue) = ?", params[:year_param] )
   end
 
   def self.total_payments(invoice_id)
