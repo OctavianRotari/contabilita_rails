@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Vehicle, type: :unit do
   describe '#invoices' do
     it 'should have many invoices' do
+      create_category
       company = company('Octav')
       vehicle = create_vehicle
       create_passive_record(company)

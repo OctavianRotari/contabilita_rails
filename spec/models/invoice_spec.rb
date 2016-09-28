@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Invoice, type: :unit do
   before :each do
+    create_vehicle
     create_category
     @params = { year_param: "2015"}
     company = company('Octav')

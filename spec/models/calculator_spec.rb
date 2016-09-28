@@ -6,6 +6,7 @@ describe Calculator, type: :unit do
 
   before :each do
     @calculator = Calculator.new
+    create_category
     create_vehicle
     company = company('Octav')
     company_1 = company('Rotari')
