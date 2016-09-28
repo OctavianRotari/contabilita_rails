@@ -1,36 +1,44 @@
-<h2>Fatture da pagare</h2>
-<table>
-<thead>
-	<tr>
-		<th>Fornitore</th>
-		<th>Totale</th>
-		<th>Iva</th>
-		<th>Pagato</th>
-		<th>Da pagare</th>
-		<th>Motivo</th>
-		<th>Data di emmissione</th>
-		<th>Targa</th>
-		<th>Scadenza</th>
-		<th>Elimina</th>
-	</tr>
-</thead>
-<%= render @company_dashboard.not_paid_invoices %>
-</table>
-<h2>Fatture da incassare</h2>
-<table>
-	<thead>
-		<tr>
-			<th>Fornitore</th>
-			<th>Totale</th>
-			<th>Iva</th>
-			<th>Incassato</th>
-			<th>Da incassare</th>
-			<th>Motivo</th>
-			<th>Data di emmissione</th>
-			<th>Targa</th>
-			<th>Scadenza</th>
-			<th>Elimina</th>
-		</tr>
-	</thead>
-<%= render @company_dashboard.not_collected_invoices %>
-</table>
+<% if !@company_dashboard.not_paid_invoices.empty? %>
+	<h2>Fatture da pagare</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Fornitore</th>
+				<th>Totale</th>
+				<th>Iva</th>
+				<th>Pagato</th>
+				<th>Da pagare</th>
+				<th>Motivo</th>
+				<th>Data di emmissione</th>
+				<th>Targa</th>
+				<th>Scadenza</th>
+				<th>Elimina</th>
+			</tr>
+		</thead>
+		<%= render @company_dashboard.not_paid_invoices %>
+	</table>
+<% else %>
+	<p>Non ci sono fatture da pagare</p>
+<% end %>
+<% if !@company_dashboard.not_collected_invoices.empty? %>
+	<h2>Fatture da incassare</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Fornitore</th>
+				<th>Totale</th>
+				<th>Iva</th>
+				<th>Incassato</th>
+				<th>Da incassare</th>
+				<th>Motivo</th>
+				<th>Data di emmissione</th>
+				<th>Targa</th>
+				<th>Scadenza</th>
+				<th>Elimina</th>
+			</tr>
+		</thead>
+		<%= render @company_dashboard.not_collected_invoices %>
+	</table>
+<% else %>
+	<p>Non ci sono fatture da incassare</p>
+<% end %>
