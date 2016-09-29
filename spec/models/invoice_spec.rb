@@ -60,5 +60,4 @@ describe Invoice, type: :unit do
       expect(invoice.errors.messages).to eq(errors_should_apear)
     end
   end
-
 end

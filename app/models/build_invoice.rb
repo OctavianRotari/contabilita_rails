@@ -30,7 +30,7 @@ class BuildInvoice
     if @invoice_params[:vehicle_id] == "garage"
       @invoice_params[:vehicle_id] = nil
       "Officina"
-    else
+    elsif !@invoice_params[:vehicle_id].empty?
       "Veicolo"
     end
   end

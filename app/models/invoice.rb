@@ -1,6 +1,6 @@
 class Invoice < ActiveRecord::Base
   has_many :payments, dependent: :destroy
-  has_many :taxable_vat_fields
+  has_many :taxable_vat_fields, dependent: :destroy
   belongs_to :company
   belongs_to :vehicle
   belongs_to :category
@@ -11,7 +11,7 @@ class Invoice < ActiveRecord::Base
   validates :company_id, presence: {message: "Selezionare azienda la quale ha emesso o ricevuto la fattura"}
   validates :reason, presence: {message: "Selezionare il motivo della fattura"}
   validates :type_of_invoice, presence: {message: "Selezionare il tipo di fattura"}
-  #validates :vehicle_id, presence: {message: "Selezionare il veicolo a su cui e stata registrata la fattura"}
+  validates :at_the_expense_of, presence: {message: "Selezionare a carrico di cosa e registrata la fattura"}
 
   def self.payments params_id
     find(params_id).payments
