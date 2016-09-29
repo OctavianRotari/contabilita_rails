@@ -1,4 +1,3 @@
-<h2>Officina</h2>
 <div style="display: inline-block;">
 	<h4>Totale spese</h4>
 	<p id="current_month_costs">Mese corrente: <%= @calculator.total_costs_current_month(@garage_invoices.invoices) %></p>
@@ -6,4 +5,3 @@
 	<p id="current_year_costs_per_vehicle">Spese per mezzo mese corrente: <%= @calculator.total_costs_month_garage_divided(@garage_invoices.invoices) %></p>
 	<p id="current_year_costs_per_vehicle">Spese per mezzo anno corrente: <%= @calculator.total_costs_year_garage_divided(@garage_invoices.invoices) %></p>
 </div>
-<br>

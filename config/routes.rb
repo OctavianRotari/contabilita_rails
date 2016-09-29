@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "accounting#index"
 
-  resource :garage
+  resources :garages, only: [:index] do
+    collection do
+      get 'active_invoices' => 'garages#active_invoices'
+      get 'passive_invoices' => 'garages#passive_invoices'
+    end
+  end
 
   resources :invoices do
     collection do
