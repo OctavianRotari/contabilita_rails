@@ -80,6 +80,14 @@ class Calculator < ActiveRecord::Base
     total_all(invoices)
   end
 
+  def total_costs_year_garage_divided(invoices)
+    total_costs_current_year(invoices) / number_of_vehicles
+  end
+
+  def total_costs_month_garage_divided(invoices)
+    total_costs_current_month(invoices) / number_of_vehicles
+  end
+
   private
 
   def category(category_id)
@@ -88,6 +96,10 @@ class Calculator < ActiveRecord::Base
 
   def vehicle(vehicle_id)
     Vehicle.find(vehicle_id)
+  end
+
+  def number_of_vehicles
+    Vehicle.count
   end
 
 end
