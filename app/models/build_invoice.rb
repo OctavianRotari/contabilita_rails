@@ -23,7 +23,16 @@ class BuildInvoice
   private
 
   def updated_invoice
-    @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable)
+    @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable, at_the_expense_of: at_the_expense_of)
+  end
+
+  def at_the_expense_of
+    if @invoice_params[:vehicle_id] == "garage"
+      @invoice_params[:vehicle_id] = nil
+      "Officina"
+    else
+      "Veicolo"
+    end
   end
 
   def company_id

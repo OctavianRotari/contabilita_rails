@@ -6,7 +6,10 @@
 <p>Iva: <%=@invoice.total_vat %></p>
 <p>Totale: <%=@invoice.total %></p>
 <p>Data emissione: <%=@invoice.date_of_issue.strftime("%d-%m-%Y") %></p>
-<p>Targa: <%=@invoice.vehicle.plate %></p>
+<p>A carrico del: <%= @invoice.at_the_expense_of %></p>
+<% if @invoice.at_the_expense_of == 'Veicolo' %>
+	<p>Targa: <%=@invoice.vehicle.plate %></p>
+<% end %>
 <p>Scadenza: <%=@invoice.deadline.strftime("%d-%m-%Y") %></p>
 <%if !@invoice.payments.empty? %>
 	<%= render @invoice.payments %>

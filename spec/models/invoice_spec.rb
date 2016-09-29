@@ -56,7 +56,6 @@ describe Invoice, type: :unit do
                               :deadline=>["Selezionare data di scadenza"],
                               :company_id=>["Selezionare azienda la quale ha emesso o ricevuto la fattura"],
                               :reason=>["Selezionare il motivo della fattura"],
-                              :vehicle_id=>["Selezionare il veicolo a su cui e stata registrata la fattura"],
                               :type_of_invoice=>["Selezionare il tipo di fattura"]}
       expect(invoice.errors.messages).to eq(errors_should_apear)
     end

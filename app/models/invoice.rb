@@ -10,19 +10,19 @@ class Invoice < ActiveRecord::Base
   validates :deadline, presence: {message: "Selezionare data di scadenza"}
   validates :company_id, presence: {message: "Selezionare azienda la quale ha emesso o ricevuto la fattura"}
   validates :reason, presence: {message: "Selezionare il motivo della fattura"}
-  validates :vehicle_id, presence: {message: "Selezionare il veicolo a su cui e stata registrata la fattura"}
   validates :type_of_invoice, presence: {message: "Selezionare il tipo di fattura"}
+  #validates :vehicle_id, presence: {message: "Selezionare il veicolo a su cui e stata registrata la fattura"}
 
   def self.payments params_id
     find(params_id).payments
   end
 
   def self.active_ord_by_year(params)
-    order_by_year(params).where(type_of_invoice: 'attiva')
+    order_by_year(params).active
   end
 
   def self.passive_ord_by_year(params)
-    order_by_year(params).where(type_of_invoice: 'passiva')
+    order_by_year(params).passive
   end
 
   def self.active

@@ -10,7 +10,6 @@ class InvoicesController < ApplicationController
   def edit
     @category = Category.all
     @new_invoice = NewInvoice.new
-    create_company_or_vehicle
   end
 
   def update
