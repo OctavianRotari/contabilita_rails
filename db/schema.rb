@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918131628) do
+ActiveRecord::Schema.define(version: 20160929094152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_invoices", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "total_vat"
+    t.decimal  "total"
+    t.string   "reason"
+    t.decimal  "total_taxable"
+  end
 
   create_table "calculators", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -41,20 +50,30 @@ ActiveRecord::Schema.define(version: 20160918131628) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
     t.datetime "deadline"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "company_id"
+    t.integer  "vehicle_id"
+    t.integer  "category_id"
+    t.string   "content_type"
+    t.integer  "content_id"
+  end
+
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
+  add_index "invoices", ["content_type", "content_id"], name: "index_invoices_on_content_type_and_content_id", using: :btree
+  add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id", using: :btree
+
+  create_table "passive_invoices", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.decimal  "total_vat"
     t.decimal  "total"
     t.string   "reason"
     t.decimal  "total_taxable"
     t.integer  "vehicle_id"
-    t.string   "type_of_invoice"
-    t.integer  "category_id"
   end
 
-  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
-  add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id", using: :btree
+  add_index "passive_invoices", ["vehicle_id"], name: "index_passive_invoices_on_vehicle_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "method_of_payment"
@@ -105,6 +124,7 @@ ActiveRecord::Schema.define(version: 20160918131628) do
   add_foreign_key "companies", "categories"
   add_foreign_key "invoices", "companies"
   add_foreign_key "invoices", "vehicles"
+  add_foreign_key "passive_invoices", "vehicles"
   add_foreign_key "payments", "invoices"
   add_foreign_key "taxable_vat_fields", "invoices"
 end
