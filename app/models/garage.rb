@@ -9,8 +9,6 @@ class Garage < ActiveRecord::Base
     active_invoices.not_collected
   end
 
-  private
-
   def garage_passive_invoices
     invoices.passive
   end

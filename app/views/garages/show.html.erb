@@ -1,36 +1,7 @@
-<h2>Fatture da pagare</h2>
-<table>
-<thead>
-	<tr>
-		<th>Fornitore</th>
-		<th>Totale</th>
-		<th>Iva</th>
-		<th>Pagato</th>
-		<th>Da pagare</th>
-		<th>Motivo</th>
-		<th>Data di emmissione</th>
-		<th>Targa</th>
-		<th>Scadenza</th>
-		<th>Elimina</th>
-	</tr>
-</thead>
-<%= render @garage_invoices.not_paid_invoices %>
-</table>
-<h2>Fatture da incassare</h2>
-<table>
-	<thead>
-		<tr>
-			<th>Fornitore</th>
-			<th>Totale</th>
-			<th>Iva</th>
-			<th>Incassato</th>
-			<th>Da incassare</th>
-			<th>Motivo</th>
-			<th>Data di emmissione</th>
-			<th>Targa</th>
-			<th>Scadenza</th>
-			<th>Elimina</th>
-		</tr>
-	</thead>
-<%= render @garage_invoices.not_collected_invoices %>
-</table>
+<h2>Officina</h2>
+<div style="display: inline-block;">
+	<h4>Totale spese</h4>
+	<p id="current_month_costs">Mese corrente: <%= @calculator.total_costs_current_month(@garage_invoices.invoices) %></p>
+	<p id="current_year_costs">Anno corrente: <%= @calculator.total_costs_current_year(@garage_invoices.invoices) %></p>
+</div>
+<br>
