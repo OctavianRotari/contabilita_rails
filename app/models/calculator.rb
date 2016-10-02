@@ -99,7 +99,7 @@ class Calculator < ActiveRecord::Base
   end
 
   def number_of_vehicles
-    Vehicle.count
+    Vehicle.where(type_of_vehicle: 'Trattore').count
   end
 
 end

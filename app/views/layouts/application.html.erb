@@ -2,38 +2,60 @@
 <html>
 	<head>
 		<title>ContabilitaRails</title>
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet" type="text/css">
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
-		<h1><%= link_to 'Contabilita', root_path %></h1>
-		<% if user_signed_in? %>
-			<%= current_user.email %>
-			<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-			<br>
-			<br>
-			<%= link_to 'Home', dashboard_invoices_path %>
-			<% if Invoice.active.any?%>
-				<%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %>
-			<% end %>
-			<% if Invoice.passive.any?%>
-				<%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %>
-			<% end %>
-			<%= link_to 'Aziende', dashboard_companies_path %>
-			<%= link_to 'Mezzi', dashboard_vehicles_path %>
-			<%= link_to 'Officina', garages_path %>
-			<br>
-			<br>
-			<%= link_to 'Aggiungi azienda', new_company_path %>
-			<%= link_to 'Aggiungi categoria', new_category_path %>
-			<%= link_to "Aggiungi fattura", new_invoice_path %>
-			<%= link_to 'Aggiungi mezzo', new_vehicle_path %>
-		<% else %>
-			<%= link_to "Accedi", new_user_session_path %>
-			<%= link_to "Registrati", new_user_registration_path %>
-		<% end %>
-		<br>
+		<header>
+			<div class="row">
+				<div class="top-section">
+					<div class="col span-1-of-3">
+						<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+					</div>
+					<div class="col span-1-of-3">
+						<% if user_signed_in? %>
+							<h2 class="company-name" ><%= current_user.email %></h2>
+						<% end %>
+					</div>
+					<div class="log-section col span-1-of-3">
+						<% if user_signed_in? %>
+							<h3 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
+						<% else %>
+							<h3 class="log-section">
+								<%= link_to "Accedi", new_user_session_path %>
+								<%= link_to "Registrati", new_user_registration_path %>
+							</h3>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<nav>
+				<div class="row">
+					<% if user_signed_in? %>
+						<ul class="main-nav">
+							<li><%= link_to 'Home', dashboard_invoices_path %></li>
+							<% if Invoice.active.any?%>
+								<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
+							<% end %>
+							<% if Invoice.passive.any?%>
+								<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
+							<% end %>
+							<li><%= link_to 'Aziende', dashboard_companies_path %></li>
+							<li><%= link_to 'Mezzi', dashboard_vehicles_path %></li>
+							<li><%= link_to 'Officina', garages_path %></li>
+						</ul>
+						<ul class="add-new-nav">
+							<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
+							<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
+							<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
+							<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+						</ul>
+					<% end %>
+				</div>
+			</nav>
+		</header>
 		<%= notice %>
 		<%= alert %>
 		<%= yield %>

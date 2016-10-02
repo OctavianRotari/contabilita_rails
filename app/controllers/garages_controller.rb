@@ -1,4 +1,5 @@
 class GaragesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @calculator = Calculator.new
