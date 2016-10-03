@@ -35,29 +35,59 @@
 				<div class="row">
 					<% if user_signed_in? %>
 						<ul class="main-nav">
-							<li><%= link_to 'Home', dashboard_invoices_path %></li>
-							<% if Invoice.active.any?%>
-								<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
-							<% end %>
-							<% if Invoice.passive.any?%>
-								<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
-							<% end %>
-							<li><%= link_to 'Aziende', dashboard_companies_path %></li>
-							<li><%= link_to 'Mezzi', dashboard_vehicles_path %></li>
-							<li><%= link_to 'Officina', garages_path %></li>
-						</ul>
-						<ul class="add-new-nav">
-							<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
-							<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
-							<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
-							<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+							<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
+							<span><li><%= link_to 'Officina', garages_path %></li></span>
+							<div class="dropdown">
+								<span>Fatture</span>
+								<div class="dropdown-content">
+									<ul>
+										<% if Invoice.active.any?%>
+											<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
+										<% end %>
+										<% if Invoice.passive.any?%>
+											<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
+										<% end %>
+										<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
+									</ul>
+								</div>
+							</div>
+							<div class="dropdown">
+								<span>Aziende</span>
+								<div class="dropdown-content">
+									<ul>
+										<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
+										<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
+									</ul>
+								</div>
+							</div>
+							<div class="dropdown">
+								<span>Mezzi</span>
+								<div class="dropdown-content">
+									<ul>
+										<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
+										<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+									</ul>
+								</div>
+							</div>
+							<div class="dropdown">
+								<span>Categorie</span>
+								<div class="dropdown-content">
+									<ul>
+										<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
+									</ul>
+								</div>
+							</div>
 						</ul>
 					<% end %>
 				</div>
 			</nav>
 		</header>
-		<%= notice %>
-		<%= alert %>
-		<%= yield %>
+		<div class="row">
+			<%= notice %>
+			<%= alert %>
+		</div>
+		<div class="row">
+			<%= yield %>
+		</div>
 	</body>
 </html>
