@@ -11,23 +11,23 @@
 		<header>
 			<div class="row">
 				<div class="top-section">
-					<div class="col span-1-of-3">
+					<div class="logo-title col span-1-of-3">
 						<div class="app-logo"><%=image_tag("accounting.png")%></div>
 						<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
 					</div>
-					<div class="col span-1-of-3">
+					<div class="company-name col span-1-of-3">
 						<% if user_signed_in? %>
-							<h2 class="company-name" ><%= current_user.email %></h2>
+							<h2><%= current_user.email %></h2>
 						<% end %>
 					</div>
 					<div class="log-section col span-1-of-3">
 						<% if user_signed_in? %>
-							<h3 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h3>
+							<h2 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h2>
 						<% else %>
-							<h3 class="log-section">
+							<h2 class="log-section">
 								<%= link_to "Accedi", new_user_session_path %>
 								<%= link_to "Registrati", new_user_registration_path %>
-							</h3>
+							</h2>
 						<% end %>
 					</div>
 				</div>

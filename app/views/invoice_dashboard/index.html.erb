@@ -1,38 +1,90 @@
-<h2>Fatture da pagare</h2>
-<table>
-<thead>
-	<tr>
-		<th>Fornitore</th>
-		<th>Totale</th>
-		<th>Iva</th>
-		<th>Pagato</th>
-		<th>Da pagare</th>
-		<th>Motivo</th>
-		<th>Data di emmissione</th>
-		<th>Targa</th>
-		<th>Scadenza</th>
-		<th>Elimina</th>
-		<th>Paga</th>
-	</tr>
-</thead>
-<%= render @invoice_dashboard.not_paid_invoices %>
-</table>
-<h2>Fatture da incassare</h2>
-<table>
-	<thead>
-		<tr>
-			<th>Fornitore</th>
-			<th>Totale</th>
-			<th>Iva</th>
-			<th>Incassato</th>
-			<th>Da incassare</th>
-			<th>Motivo</th>
-			<th>Data di emmissione</th>
-			<th>Targa</th>
-			<th>Scadenza</th>
-			<th>Elimina</th>
-			<th>Incassa</th>
-		</tr>
-	</thead>
-<%= render @invoice_dashboard.not_collected_invoices %>
-</table>
+<div class="row">
+<div class="home">
+	<div class="invoices">
+		<h3 class="title">Fatture da pagare</h3>
+		<table>
+			<thead>
+				<tr>
+					<div class="col span-1-of-11">
+						<th>Fornitore</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Totale</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Iva</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Pagato</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Da pagare</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Motivo</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Data di emmissione</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Targa</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Scadenza</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Elimina</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Paga</th>
+					</div>
+				</tr>
+			</thead>
+			<%= render @invoice_dashboard.not_paid_invoices %>
+		</table>
+	</div>
+	<div class="invoices">
+		<h3 class="title">Fatture da incassare</h3>
+		<table>
+			<thead>
+				<tr>
+					<div class="col span-1-of-11">
+						<th>Fornitore</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Totale</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Iva</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Incassato</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Da incassare</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Motivo</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Data di emmissione</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Targa</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Scadenza</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Elimina</th>
+					</div>
+					<div class="col span-1-of-11">
+						<th>Incassa</th>
+					</div>
+				</tr>
+			</thead>
+			<%= render @invoice_dashboard.not_collected_invoices %>
+		</table>
+	</div>
+</div>
+</div>
