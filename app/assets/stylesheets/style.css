@@ -84,6 +84,17 @@ span {
 /*HEADER*/
 /*-------------------------------------------------------------------------*/
 
+.app-logo {
+	margin-left:10px;
+	height:50px;
+	display:inline-block;
+	float:left;
+}
+
+.app-logo img{
+	height:100%;
+}
+
 .top-section {
 	display:block;
 	height:75px;
@@ -130,6 +141,25 @@ span {
 	font-size: 70%;
 	padding: 8px 3px;
 	text-transform: uppercase;
+	text-align:center;
+}
+
+.main-nav .static{
+	text-align:center;
+	margin-left:0;
+}
+
+.main-nav:last-child{
+	padding-right:20px;
+	margin-left:0;
+}
+
+.main-nav .dropdown:last-child{
+	margin-left:0;
+}
+
+.main-nav span:first-child{
+	margin-right:0;
 }
 
 .main-nav li a:link,
