@@ -63,6 +63,8 @@ h3:after {
 	margin-bottom: 20px;
 }
 
+/*------Table------*/
+
 .invoices:after{
 	display: block;
 	height: 1px;
@@ -73,6 +75,12 @@ h3:after {
 	margin-top: 30px;
 	margin-bottom: 60px;
 }
+
+.invoices th {
+	border-bottom: 1px solid #2c3e50;
+	width:8.56%;
+}
+
 
 /*------Generic links------*/
 

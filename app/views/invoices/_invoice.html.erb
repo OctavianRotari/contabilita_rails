@@ -6,10 +6,12 @@
 	<td><%= @calculator.paid_per(invoice) %></td>
 	<td><%= @calculator.to_pay_per(invoice) %></td>
 	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
-	<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 	<td><%= link_to_at_the_expense_of(invoice) %></td>
 	<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-	<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} %></td>
+	<td><%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+		<i class="ion-ios-trash"></i>
+	<% end%>
+	</td>
 	<% if invoice.type_of_invoice == "passiva" %>
 		<td><%= link_to "Paga", new_invoice_payment_path(invoice_id: invoice.id) %></td>
 	<% else %>
