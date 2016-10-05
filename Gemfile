@@ -12,6 +12,7 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'pg'
 gem 'rails_12factor', group: :production
+gem "font-ionicons-rails"
 
 group :development do
   gem 'spring'

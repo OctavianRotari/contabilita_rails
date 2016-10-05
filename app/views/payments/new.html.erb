@@ -1,2 +1,6 @@
-<h2>Effettua pagamento</h2>
+<% if @invoice.type_of_invoice == 'attiva' %>
+	<h4>Incassa pagamento</h4>
+<% else %>
+	<h4>Effettua pagamento</h4>
+<%end%>
 <%= render 'form'%>

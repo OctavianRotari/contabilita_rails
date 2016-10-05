@@ -8,14 +8,15 @@
 	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
 	<td><%= link_to_at_the_expense_of(invoice) %></td>
 	<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-	<td><%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
-		<i class="ion-ios-trash"></i>
-	<% end%>
+	<td class="cash-invoice">
+		<%= link_to new_invoice_payment_path(invoice_id: invoice.id) do %>
+			<i class="ion-cash"></i>
+		<% end%>
 	</td>
-	<% if invoice.type_of_invoice == "passiva" %>
-		<td><%= link_to "Paga", new_invoice_payment_path(invoice_id: invoice.id) %></td>
-	<% else %>
-		<td><%= link_to "Incassa", new_invoice_payment_path(invoice_id: invoice.id) %></td>
-	<% end%>
+	<td class="delete-invoice">
+		<%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+			<i class="ion-ios-trash"></i>
+		<% end%>
+	</td>
 </tr>
 </tbody>

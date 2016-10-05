@@ -81,7 +81,6 @@ h3:after {
 	width:8.56%;
 }
 
-
 /*------Generic links------*/
 
 a:link,
@@ -256,6 +255,35 @@ a:active {
 /*HOME*/
 /*-------------------------------------------------------------------------*/
 
-.home {
+.home-invoices {
 	text-align:center;
+}
+
+.invoices {
+	background-color: #fdfdf6;
+}
+
+.invoices th.delete-invoice,
+.invoices th.cash-invoice {
+	width: 3%;
+	border-bottom: 1px solid transparent;
+}
+
+.invoices td.delete-invoice a,
+.invoices td.cash-invoice a {
+	font-size: 120%;
+	color:#698aac;
+	transition: color 0.2s;
+}
+
+.invoices td.delete-invoice a:hover, 
+.invoices td.delete-invoice a:active {
+	color:#e74c3c;
+	border-bottom: none;
+}
+
+.invoices td.cash-invoice a:hover,
+.invoices td.cash-invoice a:active {
+	color:#27ae60;
+	border-bottom: none;
 }
