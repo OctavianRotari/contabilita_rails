@@ -33,7 +33,13 @@
 				</div>
 			</div>
 			<nav>
-				<div class="row">
+				<div class="row js--main-navigation">
+					<div class="logo-sticky">
+						<%=image_tag("accounting.png")%>
+					</div>
+					<div class="app-title-sticky">
+						<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+					</div>
 					<% if user_signed_in? %>
 						<ul class="main-nav col span-1-of-2">
 							<div class="static col span-1-of-6">
@@ -94,5 +100,7 @@
 		<div class="row">
 			<%= yield %>
 		</div>
+		<footer>
+		</footer>
 	</body>
 </html>

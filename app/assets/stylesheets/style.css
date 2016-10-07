@@ -141,8 +141,24 @@ a:active {
 
 .app-logo {
 	margin-left:10px;
-	height:45px;
+	height:30px;
 	display:inline-block;
+	float:left;
+}
+
+.logo-sticky{
+	display:none;
+	margin:5px 0;
+	height:30px;
+	width:auto;
+	float:left;
+}
+
+.app-title-sticky{
+	display:none;
+	margin:5px 0;
+	height:30px;
+	width:auto;
 	float:left;
 }
 
@@ -151,6 +167,7 @@ a:active {
 }
 
 .top-section {
+	width:100%;
 	display:block;
 	height:65px;
 	background-color:#2c3e50;
@@ -250,6 +267,43 @@ a:active {
 	border-bottom: 2px solid #2c3e50;
 }
 
+/*------Sticky navigation------*/
+
+.sticky .main-nav {
+	margin-top: 10px;
+	margin-bottom: 0px;
+	float:right;
+}
+
+.sticky{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	background-color: #27ae60;
+	box-shadow: 0 2px 2px #efefef;
+	z-index: 9999; /*stacks the element at the top of the others;*/
+}
+
+.sticky .logo-sticky{
+	margin-top: 15px;
+	display:inline-block;
+}
+
+.sticky .logo-sticky img{
+	height:100%;
+}
+
+.sticky .app-title-sticky .app-title{
+	margin:0;
+	height:100%;
+}
+
+.sticky .app-title-sticky {
+	margin-top: 15px;
+	display:inline-block;
+	font-size: 60%;
+}
 
 /*-------------------------------------------------------------------------*/
 /*HOME*/
@@ -261,6 +315,7 @@ a:active {
 
 .invoices {
 	background-color: #fdfdf6;
+	text-align:center;
 }
 
 .invoices th.delete-invoice,
@@ -286,4 +341,13 @@ a:active {
 .invoices td.cash-invoice a:active {
 	color:#27ae60;
 	border-bottom: none;
+}
+
+/*-------------------------------------------------------------------------*/
+/*FOOTER*/
+/*-------------------------------------------------------------------------*/
+
+footer {
+	height:50px;
+	background-color:#2c3e50;
 }

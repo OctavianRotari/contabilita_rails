@@ -82,6 +82,8 @@ GEM
       turbolinks
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
+    jquery-waypoints-rails (2.0.5)
+      rails (>= 3.1.0)
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -206,6 +208,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  jquery-waypoints-rails (~> 2.0, >= 2.0.5)
   pg
   poltergeist
   rails (= 4.2.1)

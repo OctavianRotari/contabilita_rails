@@ -13,6 +13,7 @@ gem 'devise'
 gem 'pg'
 gem 'rails_12factor', group: :production
 gem "font-ionicons-rails"
+gem 'jquery-waypoints-rails', '~> 2.0', '>= 2.0.5'
 
 group :development do
   gem 'spring'
