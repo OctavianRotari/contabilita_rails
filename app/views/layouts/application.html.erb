@@ -98,8 +98,15 @@
 			</nav>
 		</header>
 		<div class="row">
-			<%= notice %>
-			<%= alert %>
+			<% if notice %>
+				<div class="notice">
+					<script type="text/javascript">
+						$('.notice').addClass('visible');
+					</script>
+					<h4><%= notice %></h4>
+					<h4><%= alert %></h4>
+				</div>
+			<% end %>
 		</div>
 		<div class="row page-wrap">
 			<%= yield %>
