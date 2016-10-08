@@ -9,87 +9,91 @@
 	</head>
 	<body>
 		<header>
-			<div class="row">
-				<div class="top-section">
-					<div class="logo-title col span-1-of-3">
-						<div class="app-logo"><%=image_tag("accounting.png")%></div>
-						<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
-					</div>
-					<div class="company-name col span-1-of-3">
-						<% if user_signed_in? %>
-							<h2><%= current_user.email %></h2>
-						<% end %>
-					</div>
-					<div class="log-section col span-1-of-3">
-						<% if user_signed_in? %>
-							<h2 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h2>
-						<% else %>
-							<h2 class="log-section">
-								<%= link_to "Accedi", new_user_session_path %>
-								<%= link_to "Registrati", new_user_registration_path %>
-							</h2>
-						<% end %>
+			<div class="top-section-background">
+				<div class="row">
+					<div class="top-section">
+						<div class="logo-title col span-1-of-3">
+							<div class="app-logo"><%=image_tag("accounting.png")%></div>
+							<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+						</div>
+						<div class="company-name col span-1-of-3">
+							<% if user_signed_in? %>
+								<h2><%= current_user.email %></h2>
+							<% end %>
+						</div>
+						<div class="log-section col span-1-of-3">
+							<% if user_signed_in? %>
+								<h2 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h2>
+							<% else %>
+								<h2 class="log-section">
+									<%= link_to "Accedi", new_user_session_path %>
+									<%= link_to "Registrati", new_user_registration_path %>
+								</h2>
+							<% end %>
+						</div>
 					</div>
 				</div>
 			</div>
 			<nav>
-				<div class="row js--main-navigation">
-					<div class="logo-sticky">
-						<%=image_tag("accounting.png")%>
+				<div class="main-nav-background">
+					<div class="row js--main-navigation">
+						<div class="logo-sticky">
+							<%=image_tag("accounting.png")%>
+						</div>
+						<div class="app-title-sticky">
+							<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+						</div>
+						<% if user_signed_in? %>
+							<ul class="main-nav col span-1-of-2">
+								<div class="static col span-1-of-6">
+									<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
+								</div>
+								<div class="static col span-1-of-6">
+									<span><li><%= link_to 'Officina', garages_path %></li></span>
+								</div>
+								<div class="dropdown col span-1-of-6">
+									<span>Fatture</span>
+									<div class="dropdown-content">
+										<ul>
+											<% if Invoice.active.any?%>
+												<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
+											<% end %>
+											<% if Invoice.passive.any?%>
+												<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
+											<% end %>
+											<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
+										</ul>
+									</div>
+								</div>
+								<div class="dropdown col span-1-of-6">
+									<span>Aziende</span>
+									<div class="dropdown-content">
+										<ul>
+											<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
+											<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
+										</ul>
+									</div>
+								</div>
+								<div class="dropdown col span-1-of-6">
+									<span>Mezzi</span>
+									<div class="dropdown-content">
+										<ul>
+											<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
+											<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+										</ul>
+									</div>
+								</div>
+								<div class="dropdown col span-1-of-6">
+									<span>Categorie</span>
+									<div class="dropdown-content">
+										<ul>
+											<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
+										</ul>
+									</div>
+								</div>
+							</ul>
+						<% end %>
 					</div>
-					<div class="app-title-sticky">
-						<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
-					</div>
-					<% if user_signed_in? %>
-						<ul class="main-nav col span-1-of-2">
-							<div class="static col span-1-of-6">
-								<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
-							</div>
-							<div class="static col span-1-of-6">
-								<span><li><%= link_to 'Officina', garages_path %></li></span>
-							</div>
-							<div class="dropdown col span-1-of-6">
-								<span>Fatture</span>
-								<div class="dropdown-content">
-									<ul>
-										<% if Invoice.active.any?%>
-											<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
-										<% end %>
-										<% if Invoice.passive.any?%>
-											<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
-										<% end %>
-										<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
-									</ul>
-								</div>
-							</div>
-							<div class="dropdown col span-1-of-6">
-								<span>Aziende</span>
-								<div class="dropdown-content">
-									<ul>
-										<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
-										<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
-									</ul>
-								</div>
-							</div>
-							<div class="dropdown col span-1-of-6">
-								<span>Mezzi</span>
-								<div class="dropdown-content">
-									<ul>
-										<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
-										<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
-									</ul>
-								</div>
-							</div>
-							<div class="dropdown col span-1-of-6">
-								<span>Categorie</span>
-								<div class="dropdown-content">
-									<ul>
-										<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
-									</ul>
-								</div>
-							</div>
-						</ul>
-					<% end %>
 				</div>
 			</nav>
 		</header>
@@ -97,10 +101,12 @@
 			<%= notice %>
 			<%= alert %>
 		</div>
-		<div class="row">
+		<div class="row page-wrap">
 			<%= yield %>
 		</div>
-		<footer>
-		</footer>
+		<div class="site-footer">
+			<footer>
+			</footer>
+		</div>
 	</body>
 </html>
