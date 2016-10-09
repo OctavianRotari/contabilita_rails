@@ -1,19 +1,20 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
+  before_action do |record|
+    if Category.all.empty?
+      flash[:error] = "Aggiungere almeno una categoria"
+      redirect_to :back
+    end
+  end
 
-  include CheckIfCategoryExists
 
   def index
     @companies = Company.all
   end
 
   def new
-    if category_exists?
-      @category = Category.all
-      @company = Company.new
-    else
-      redirect_to dashboard_companies_path
-    end
+    @category = Category.all
+    @company = Company.new
   end
 
   def edit

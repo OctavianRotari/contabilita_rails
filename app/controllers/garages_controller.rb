@@ -2,7 +2,7 @@ class GaragesController < ApplicationController
   before_action :authenticate_user!
   before_action do |record|
     if Vehicle.all.empty?
-      flash[:error] = "Aggiungere almeno un veicolo"
+      flash[:error] = "Aggiungere almeno un mezzo"
       redirect_to :back
     end
   end

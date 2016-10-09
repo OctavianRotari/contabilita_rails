@@ -1,10 +1,17 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
-
-  include CheckIfCompanyAndVehicleExists
+  before_action  do |controller|
+    if Company.all.empty?
+      flash[:error] = "Aggiungere almeno un'azienda"
+      redirect_to :back
+    elsif Vehicle.all.empty?
+      flash[:error] = "Aggiungere almeno un veicolo"
+      redirect_to :back
+    end
+  end
 
   def new
-    check_if_company_and_vehicle_exists
+    @new_invoice = NewInvoice.new
   end
 
   def edit
