@@ -25,7 +25,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
     @payment.update(payment_params)
     if @payment.update(payment_params)
-      flash[:notice] = 'Pagamento aggiornato'
+      flash[:success] = 'Pagamento aggiornato'
       redirect_to invoice_path(id: invoice_id)
     else
       render 'edit'
@@ -35,7 +35,7 @@ class PaymentsController < ApplicationController
   def destroy
     payment = Payment.find(params[:id])
     payment.destroy
-    flash[:notice] = 'Pagamento elliminata'
+    flash[:success] = 'Pagamento elliminata'
     redirect_to invoice_path(id: invoice_id)
   end
 

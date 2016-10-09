@@ -1,5 +1,11 @@
 class GaragesController < ApplicationController
   before_action :authenticate_user!
+  before_action do |record|
+    if Vehicle.all.empty?
+      flash[:error] = "Aggiungere almeno un veicolo"
+      redirect_to :back
+    end
+  end
 
   def index
     @calculator = Calculator.new

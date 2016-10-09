@@ -12,7 +12,7 @@ module CheckIfCompanyAndVehicleExists
 
   def company_exists?
     if Company.all.empty?
-      flash[:notice] = "Aggiungere almeno un'azienda"
+      flash[:error] = "Aggiungere almeno un'azienda"
       false
     else
       true
@@ -29,7 +29,7 @@ module CheckIfCompanyAndVehicleExists
 
   def vehicle_exists?
     if Vehicle.all.empty?
-      flash[:notice] = "Aggiungere almeno un mezzo"
+      flash[:error] = "Aggiungere almeno un mezzo"
       false
     else
       true

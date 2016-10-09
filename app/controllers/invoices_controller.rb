@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     params = BuildInvoice.new(invoice_params).build
     if @invoice.update(params)
-      flash[:notice] = "La fattura e' stata aggiornata"
+      flash[:success] = "La fattura e' stata aggiornata"
       redirect_to invoice_path(invoice_id: @invoice.id)
     else
       render "edit"
@@ -30,7 +30,7 @@ class InvoicesController < ApplicationController
   def destroy
     invoice = Invoice.find(params[:id])
     invoice.destroy
-    flash[:notice] = 'Fattura elliminata'
+    flash[:success] = 'Fattura elliminata'
     redirect_to :back
   end
 

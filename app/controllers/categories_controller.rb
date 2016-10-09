@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      flash[:notice] = 'Categoria modificata'
+      flash[:success] = 'Categoria modificata'
       redirect_to dashboard_companies_path
     else
       render "edit"
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:notice] = "Categoria aggiunta"
+      flash[:success] = "Categoria aggiunta"
       redirect_to dashboard_companies_path
     else
       render "new"

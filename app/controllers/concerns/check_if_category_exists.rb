@@ -1,7 +1,7 @@
 module CheckIfCategoryExists
   def category_exists?
     if Category.all.empty?
-      flash[:notice] = "Aggiungere almeno una categoria di aziende"
+      flash[:error] = "Aggiungere almeno una categoria di aziende"
       false
     else
       true

@@ -332,26 +332,45 @@ a:active {
 }
 
 /*------Error messages------*/
-.notice{
+.error{
 	display:none;
 	opacity:0;
 }
 
-.notice.visible {
+.error.visible {
 	opacity:1;
 	display:block;
 	text-align:left;
 	background-color: #e74c3c;
 }
 
-.notice.visible h4 {
+.error.visible h4 {
 	font-size:80%;
 	color: #fdfdf6;
 	font-weight:300;
-	padding-top: 10px;
-	padding-left: 10px;
+	padding: 5px 10px;
 }
 
+/*------Success messages------*/
+
+.success{
+	display:none;
+	opacity:0;
+}
+
+.success.visible {
+	opacity:1;
+	display:block;
+	text-align:left;
+	background-color: #2dca6f;
+}
+
+.success.visible h4 {
+	font-size:80%;
+	color: #fdfdf6;
+	font-weight:300;
+	padding: 5px 10px;
+}
 /*-------------------------------------------------------------------------*/
 /*HOME*/
 /*-------------------------------------------------------------------------*/

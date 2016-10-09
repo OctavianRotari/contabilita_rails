@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "accounting#index"
+
+  devise_for :users
 
   resources :garages, only: [:index] do
     collection do

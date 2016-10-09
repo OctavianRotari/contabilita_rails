@@ -20,7 +20,7 @@ class VehiclesController < ApplicationController
   def update
     @vehicle = Vehicle.find(params[:id])
     if @vehicle.update(vehicle_params)
-      flash[:notice] = 'Mezzo aggiornato'
+      flash[:success] = 'Mezzo aggiornato'
       redirect_to dashboard_vehicles_path
     else
       render "edit"
@@ -30,14 +30,14 @@ class VehiclesController < ApplicationController
   def destroy
     vehicle = Vehicle.find(params[:id])
     vehicle.destroy
-    flash[:notice] = 'Mezzo elliminato'
+    flash[:success] = 'Mezzo elliminato'
     redirect_to dashboard_vehicles_path
   end
 
   def create
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
-      flash[:notice] = 'Mezzo aggiunto'
+      flash[:success] = 'Mezzo aggiunto'
       redirect_to dashboard_vehicles_path
     else
       render 'new'

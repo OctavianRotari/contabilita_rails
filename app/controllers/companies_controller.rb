@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
     @company  = Company.find(params[:id])
     @category = Category.all
     if @company.update(company_params)
-      flash[:notice] = 'La compania e stata aggiornata'
+      flash[:success] = 'La compania e stata aggiornata'
       redirect_to dashboard_companies_path
     else
       render "edit"
@@ -35,7 +35,7 @@ class CompaniesController < ApplicationController
   def destroy
     company = Company.find(params[:id])
     company.destroy
-    flash[:notice] = 'Azienda elliminata'
+    flash[:success] = 'Azienda elliminata'
     redirect_to dashboard_companies_path
   end
 
