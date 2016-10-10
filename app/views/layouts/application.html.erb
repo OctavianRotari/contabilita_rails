@@ -12,23 +12,33 @@
 			<div class="top-section-background">
 				<div class="row">
 					<div class="top-section">
-						<div class="logo-title col span-1-of-3">
-							<div class="app-logo"><%=image_tag("accounting.png")%></div>
-							<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+						<div class="col span-1-of-3">
+							<div class="logo-title">
+								<div class="app-logo"><%=image_tag("accounting.png")%></div>
+								<div class="app-title"><h1><%= link_to 'Contabilita', root_path %></h1></div>
+							</div>
 						</div>
 						<div class="company-name col span-1-of-3">
 							<% if user_signed_in? %>
 								<h2><%= current_user.email %></h2>
 							<% end %>
 						</div>
-						<div class="log-section col span-1-of-3">
+						<div class="col span-1-of-3">
 							<% if user_signed_in? %>
-								<h2 class="log-section"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></h2>
+								<div class="log-section">
+									<%= link_to destroy_user_session_path, :method => :delete do %>
+										<h2>Logout</h2><i class="icon-big ion-log-out"></i>
+									<% end %>
+								</div>
 							<% else %>
-								<h2 class="log-section">
-									<%= link_to "Accedi", new_user_session_path %>
-									<%= link_to "Registrati", new_user_registration_path %>
-								</h2>
+								<div class="log-section">
+									<h2>
+										<%= link_to "Accedi", new_user_session_path %>
+									</h2>
+									<h2>
+										<%= link_to "Registrati", new_user_registration_path %>
+									</h2>
+								</div>
 							<% end %>
 						</div>
 					</div>
@@ -98,7 +108,7 @@
 			</nav>
 		</header>
 		<div class="row">
-			<%=display_errors(flash) %>
+			<%= display_errors(flash) %>
 		</div>
 		<div class="row page-wrap">
 			<%= yield %>
