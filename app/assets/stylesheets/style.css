@@ -211,16 +211,14 @@ a:active {
 }
 
 .company-name {
-	padding:0 20px;
 	display:inline-block;
-	background-color:#fff;
-	height:55px;
 	text-align:center;
 }
 
 .company-name h2{
 	font-size:130%;
 	font-weight:300;
+	color:#fff;
 }
 
 .log-section {
@@ -414,6 +412,25 @@ a:active {
 .invoices td.cash-invoice a:active {
 	color:#27ae60;
 	border-bottom: none;
+}
+
+/*-------------------------------------------------------------------------*/
+/*GARAGE*/
+/*-------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------------------*/
+/*INVOICES*/
+/*-------------------------------------------------------------------------*/
+
+.invoices-by-year{
+	padding:20px 0;
+	text-align:center;
+}
+
+.invoices-by-year h4{
+	display:inline-block;
+	padding:0 10px;
 }
 
 /*-------------------------------------------------------------------------*/

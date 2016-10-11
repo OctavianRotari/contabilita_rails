@@ -1,6 +1,12 @@
-<h2>Anno: <%= params[:year_param]%></h2>
-<%= previos_year_menu("active") %>
-<%= next_year_menu("active") %>
+<div class="row">
+<div class="invoices-by-year">
+	<h3>Anno: <%= params[:year_param]%></h3>
+	<h4><%= previos_year_menu("passive") %></h4>
+	<h4><%= next_year_menu("passive") %></h4>
+</div>
+</div>
+<div class="row">
+<div class="invoices">
 <% @invoices.each do |month, invoices| %>
 	<h2><%= month.strftime('%B') %></h2>
 	<table>
@@ -15,8 +21,8 @@
 				<th>Data di emmissione</th>
 				<th>Targa</th>
 				<th>Scadenza</th>
-				<th>Elimina</th>
-				<th>Incassa</th>
+				<th class="cash-invoice"></th>
+				<th class="delete-invoice"></th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -40,10 +46,20 @@
 					<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 					<td><%= link_to_at_the_expense_of(invoice)%></td>
 					<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-					<td><%= button_to "Elimina fattura", invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} %></td>
-					<td><%= link_to "Incassa", 	new_invoice_payment_path(invoice_id: invoice.id) %></td>
+					<td class="cash-invoice">
+						<%= link_to new_invoice_payment_path(invoice_id: invoice.id) do %>
+							<i class="ion-cash"></i>
+						<% end%>
+					</td>
+					<td class="delete-invoice">
+						<%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+							<i class="ion-ios-trash"></i>
+						<% end%>
+					</td>
 				</tr>
 			<%end%>
 		</tbody>
 	</table>
 <%end%>
+</div>
+</div>

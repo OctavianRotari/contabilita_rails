@@ -1,0 +1,60 @@
+<nav>
+	<div class="main-nav-background">
+		<div class="row js--main-navigation">
+			<div class="logo-sticky">
+				<%=image_tag("accounting.png")%>
+			</div>
+			<div class="app-title-sticky">
+				<h1 class="app-title" ><%= link_to 'Contabilita', root_path %></h1>
+			</div>
+			<ul class="main-nav col span-1-of-2">
+				<div class="static col span-1-of-6">
+					<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
+				</div>
+				<div class="static col span-1-of-6">
+					<span><li><%= link_to 'Officina', garages_path %></li></span>
+				</div>
+				<div class="dropdown col span-1-of-6">
+					<span>Fatture</span>
+					<div class="dropdown-content">
+						<ul>
+							<% if Invoice.active.any?%>
+								<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
+							<% end %>
+							<% if Invoice.passive.any?%>
+								<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
+							<% end %>
+							<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
+						</ul>
+					</div>
+				</div>
+				<div class="dropdown col span-1-of-6">
+					<span>Aziende</span>
+					<div class="dropdown-content">
+						<ul>
+							<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
+							<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
+						</ul>
+					</div>
+				</div>
+				<div class="dropdown col span-1-of-6">
+					<span>Mezzi</span>
+					<div class="dropdown-content">
+						<ul>
+							<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
+							<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+						</ul>
+					</div>
+				</div>
+				<div class="dropdown col span-1-of-6">
+					<span>Categorie</span>
+					<div class="dropdown-content">
+						<ul>
+							<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
+						</ul>
+					</div>
+				</div>
+			</ul>
+		</div>
+	</div>
+</nav>
