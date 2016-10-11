@@ -1,4 +1,4 @@
-class GaragesController < ApplicationController
+class GarageController < ApplicationController
   before_action :authenticate_user!
   before_action do |record|
     if Vehicle.all.empty?
@@ -9,7 +9,7 @@ class GaragesController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @garage_invoices = Garage.new
+    @garage_invoices = Garage.new(params)
   end
 
   def passive_invoices
@@ -31,6 +31,6 @@ class GaragesController < ApplicationController
   private
 
   def garage_invoices
-    Garage.new
+    Garage.new(params)
   end
 end

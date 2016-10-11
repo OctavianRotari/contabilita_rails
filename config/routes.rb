@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :garages, only: [:index] do
+  resources :garage, only: [:index] do
     collection do
-      get 'active_invoices' => 'garages#active_invoices'
-      get 'passive_invoices' => 'garages#passive_invoices'
+      get 'active_invoices' => 'garage#active_invoices'
+      get 'passive_invoices' => 'garage#passive_invoices'
     end
   end
 

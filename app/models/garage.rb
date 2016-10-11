@@ -1,4 +1,9 @@
 class Garage < ActiveRecord::Base
+
+  def initialize params
+    @params = params
+  end
+
   def not_paid_invoices
     passive_invoices.not_paid
   end
@@ -16,11 +21,11 @@ class Garage < ActiveRecord::Base
   end
 
   def active_invoices_grouped
-    active_invoices.group_by { |t| t.date_of_issue.beginning_of_month }
+    active_invoices.active_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def passive_invoices_grouped
-    passive_invoices.group_by { |t| t.date_of_issue.beginning_of_month }
+    passive_invoices.passive_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def invoices
