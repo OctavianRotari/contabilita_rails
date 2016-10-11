@@ -1,10 +1,18 @@
-<% if !Vehicle.all.empty? %>
-	<div style="display: inline-block;">
-		<h4>Totale spese</h4>
-		<p id="current_month_costs">Mese corrente: <%= @calculator.total_costs_current_month(@garage_invoices.invoices) %></p>
-		<p id="current_year_costs">Anno corrente: <%= @calculator.total_costs_current_year(@garage_invoices.invoices) %></p>
-		<h4>Spese per mezzo</h4>
-		<p id="current_year_costs_per_vehicle">Mese corrente: <%= @calculator.total_costs_month_garage_divided(@garage_invoices.invoices) %></p>
-		<p id="current_year_costs_per_vehicle">Anno corrente: <%= @calculator.total_costs_year_garage_divided(@garage_invoices.invoices) %></p>
+<div class="row">
+<div class="garage-totals">
+	<div class="col span-1-of-2">
+		<div class="total">
+			<h3>Totale spese</h3>
+			<h5>Mese corrente: </h5><p id="current_month_costs"><%= @calculator.total_costs_current_month(@garage_invoices.invoices) %></p>
+			<h5>Anno corrente: </h5><p id="current_year_costs"><%= @calculator.total_costs_current_year(@garage_invoices.invoices) %></p>
+		</div>
 	</div>
-<% end %>
+	<div class="col span-1-of-2">
+		<div class="total">
+			<h3>Spese per mezzo</h3>
+			<h5>Mese corrente: </h5><p id="current_year_costs_per_vehicle"><%= @calculator.total_costs_month_garage_divided(@garage_invoices.invoices) %></p>
+			<h5>Anno corrente: </h5><p id="current_year_costs_per_vehicle"><%= @calculator.total_costs_year_garage_divided(@garage_invoices.invoices) %></p>
+		</div>
+	</div>
+</div>
+</div>

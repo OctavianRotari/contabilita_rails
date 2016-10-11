@@ -101,7 +101,7 @@ a:visited{
 	text-decoration: none;
 	padding-bottom: 1px;
 	border-bottom: 1px solid transparent;
-	transition: border-bottom 0.2, color 0.2;
+	transition: border-bottom 0.2s, color 0.2s;
 }
 
 a:hover,
@@ -238,7 +238,7 @@ a:active {
 	color: #fff;
 	float:right;
 	padding-bottom: 1px;
-	transition: color 0.2;
+	transition: color 0.2s;
 }
 
 .log-section a:hover,
@@ -418,6 +418,58 @@ a:active {
 /*GARAGE*/
 /*-------------------------------------------------------------------------*/
 
+.garage{
+	text-align:center;
+	padding-top:20px;
+}
+
+.garage .nav:after{
+	display: block;
+	height: 2px;
+	background-color: #555;
+	content: " ";
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 1px;
+	margin-bottom: 20px;
+}
+
+.garage h4{
+	display:inline-block;
+	padding: 10px 10px 0 10px;
+	text-transform: uppercase;
+	font-weight:300;
+}
+
+.garage h4 a:link,
+.garage h4 a:visited{
+	color:#2c3e50;
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.2s;
+}
+
+
+.garage h4 a:hover,
+.garage h4 a:active{
+	border-bottom: 2px solid #fdfdf6;
+}
+
+.garage-totals{
+	margin-top:20px;
+	text-align:center;
+}
+
+.garage-totals .total{
+	background-color:#fdfdf6;
+}
+
+.garage-totals .total h5{
+	display:inline-block;
+}
+
+/*-------------------------------------------------------------------------*/
+/*ADD INVOICE*/
+/*-------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------------*/
 /*INVOICES*/
