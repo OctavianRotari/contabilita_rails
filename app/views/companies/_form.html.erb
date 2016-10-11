@@ -1,29 +1,53 @@
-<%= form_for @company do |form| %>
-	<% if @company.errors.any? %>
-		<%= pluralize(@company.errors.count, "error") %> prevented your account from being created:
-		<ul>
-			<% @company.errors.full_messages.each do |error_message| %>
-				<li><%= error_message %></li>
+<div class="row">
+<div class="new">
+	<%= form_for @company do |form| %>
+		<div class="row">
+			<% if @company.errors.any? %>
+				<%= pluralize(@company.errors.count, "error") %> prevented your account from being created:
+				<ul>
+					<% @company.errors.full_messages.each do |error_message| %>
+						<li><%= error_message %></li>
+					<% end %>
+				</ul>
 			<% end %>
-		</ul>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Nome' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :name, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Indirizzo' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :adress, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Numero' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :number, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Categoria azienda' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= list_of_categories_selected_value(form) %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-3-of-3 submit">
+				<%= form.submit "Conferma", class: "btn btn-big" %>
+			</div>
+		</div>
 	<% end %>
-	<div>
-		<%= form.label 'Nome' %>
-		<%= form.text_field :name, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Indirizzo' %>
-		<%= form.text_field :adress, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Numero' %>
-		<%= form.text_field :number, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Categoria azienda' %>
-		<%= list_of_categories_selected_value(form) %>
-	</div>
-	<div>
-		<%= form.submit "Aggiungi azienda" %>
-	</div>
-<% end %>
+</div>
+</div>

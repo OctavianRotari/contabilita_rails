@@ -483,15 +483,15 @@ input[type=submit] {
 }
 
 /*-------------------------------------------------------------------------*/
-/*ADD INVOICE*/
+/*FORMS*/
 /*-------------------------------------------------------------------------*/
 
-.new-invoice h3,
-.new-invoice .submit{
+.new h3,
+.new .submit{
 	text-align:center;
 }
 
-.new-invoice{
+.new{
 	width:60%;
 	margin:0 auto;
 }

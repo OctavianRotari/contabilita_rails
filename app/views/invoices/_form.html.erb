@@ -1,6 +1,7 @@
 <div class="row">
-<div class="new-invoice">
+<div class="new">
 	<%= form_for invoice_new_or_edit  do |form| %>
+		<div class="row">
 		<% if invoice_new_or_edit.errors.any? %>
 			<%= pluralize(invoice_new_or_edit.errors.count, "error") %> prevented your account from being created:
 			<ul>
@@ -9,6 +10,7 @@
 				<% end %>
 			</ul>
 		<% end %>
+		</div>
 		<%= form.fields_for :taxable_vat_fields do |builder| %>
 			<%= render 'taxable_vat_field_fields', f: builder %>
 		<% end %>
