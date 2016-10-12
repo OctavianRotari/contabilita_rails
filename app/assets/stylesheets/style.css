@@ -132,6 +132,47 @@ input[type=submit] {
 	cursor:pointer;
 }
 
+/*------index------*/
+
+.index{
+	text-align:center;
+	padding-top:20px;
+}
+
+.index .col{
+	margin:0;
+}
+
+.index .nav:after{
+	display: block;
+	height: 2px;
+	background-color: #555;
+	content: " ";
+	width: 32.26%;
+	margin: 0 auto;
+	margin-top: 1px;
+	margin-bottom: 20px;
+}
+
+.index h4{
+	display:inline-block;
+	padding: 10px 10px 0 10px;
+	text-transform: uppercase;
+	font-weight:300;
+}
+
+.index h4 a:link,
+.index h4 a:visited{
+	color:#2c3e50;
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.2s;
+}
+
+
+.index h4 a:hover,
+.index h4 a:active{
+	border-bottom: 2px solid #fdfdf6;
+}
 /*-------------------------------------------------------------------------*/
 /*DROP DOWN MENU*/
 /*-------------------------------------------------------------------------*/
@@ -143,6 +184,9 @@ input[type=submit] {
 	font-size: 70%;
 	padding: 8px 3px;
 	text-transform: uppercase;
+	margin-left: 0px;
+	text-align:center;
+	text-align:center;
 }
 
 .dropdown span a{
@@ -433,41 +477,6 @@ input[type=submit] {
 /*GARAGE*/
 /*-------------------------------------------------------------------------*/
 
-.garage{
-	text-align:center;
-	padding-top:20px;
-}
-
-.garage .nav:after{
-	display: block;
-	height: 2px;
-	background-color: #555;
-	content: " ";
-	width: 100%;
-	margin: 0 auto;
-	margin-top: 1px;
-	margin-bottom: 20px;
-}
-
-.garage h4{
-	display:inline-block;
-	padding: 10px 10px 0 10px;
-	text-transform: uppercase;
-	font-weight:300;
-}
-
-.garage h4 a:link,
-.garage h4 a:visited{
-	color:#2c3e50;
-	border-bottom: 2px solid transparent;
-	transition: border-bottom 0.2s;
-}
-
-
-.garage h4 a:hover,
-.garage h4 a:active{
-	border-bottom: 2px solid #fdfdf6;
-}
 
 .garage-totals{
 	margin-top:20px;

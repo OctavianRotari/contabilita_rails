@@ -1,14 +1,10 @@
 <div class="row">
-<div class="garage">
+<div class="index">
 	<h2>Officina</h2>
-	<div class="col span-1-of-3">
-	</div>
-	<div class="col span-1-of-3">
-		<div class="nav">
-			<h4><%= link_to 'Passive', passive_invoices_garage_index_path(year_param: Time.now.year), :remote => true %></h4>
-			<h4><%= link_to 'Riepilogo', garage_index_path %></h4>
-			<h4><%= link_to 'Attive', active_invoices_garage_index_path(year_param: Time.now.year), :remote => true %></h4>
-		</div>
+	<div class="nav">
+		<h4><%= link_to 'Passive', passive_invoices_garage_index_path(year_param: Time.now.year), :remote => true %></h4>
+		<h4><%= link_to 'Riepilogo', garage_index_path %></h4>
+		<h4><%= link_to 'Attive', active_invoices_garage_index_path(year_param: Time.now.year), :remote => true %></h4>
 	</div>
 </div>
 </div>
