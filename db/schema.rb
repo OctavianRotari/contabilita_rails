@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20161013153348) do
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "adress"
-    t.integer  "number"
+    t.string   "number"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"

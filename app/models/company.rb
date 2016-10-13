@@ -5,7 +5,7 @@ class Company < ActiveRecord::Base
   belongs_to :category
 
   validates :name, presence:true
-  validates :number, presence:true
+  phony_normalize :number, default_country_code: 'IT'
   validates :adress, presence:true
 
   validates :category_id, presence:true
