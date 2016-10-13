@@ -14,4 +14,11 @@ class Company < ActiveRecord::Base
     find(params_id).invoices
   end
 
+  def passive_invoices
+    invoices.passive
+  end
+
+  def active_invoices
+    invoices.active
+  end
 end

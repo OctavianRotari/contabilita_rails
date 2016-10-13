@@ -8,4 +8,12 @@ class Category < ActiveRecord::Base
     find(category_id).invoices
   end
 
+  def passive_invoices
+    invoices.passive
+  end
+
+  def active_invoices
+    invoices.active
+  end
+
 end

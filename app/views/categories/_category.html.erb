@@ -1,17 +1,54 @@
-<h2 style="margin-bottom: 0px"><%= category.category %></h2>
-<%= link_to 'Fatture', dashboard_category_path(category.id), id: "fatture_#{category.category}" %><br>
-<%= link_to "Modifica categoria", edit_category_path(category.id)  %><br>
-<%= button_to 'Elimina categoria', category_path(category.id), method: :delete, data: {confirm: "L'elliminazione di questa categoria elliminera automaticamente anche le fatture registrate su di essa, si e sicuri di volerla elliminare?"} %><br>
-<div style="display: inline-block;">
-	<h4>Fatture passive</h4>
-	<p id="passive_amount_to_pay" >da pagare: <%= @calculator.passive_amount_to_pay(category.companies) %> </p>
-</div>
-<div style="display: inline-block;">
-	<h4>Fatture attive</h4>
-	<p id="active_amount_to_collect">da incassare: <%= @calculator.active_amount_to_collect(category.companies) %> </p>
-</div>
-<div style="display: inline-block;">
-	<h4>Totale spese</h4>
-	<p id="current_month_costs"> Mese corrente: <%= @calculator.total_costs_current_month(category.invoices) %></p>
-	<p id="current_year_costs"> Anno corrente: <%= @calculator.total_costs_current_year(category.invoices) %></p>
+<div class="col span-1-of-2 summary">
+	<div class="title">
+		<h2><%=link_to category.category, category_path(category.id) %></h2>
+	</div>
+	<%= link_to edit_category_path(category.id), title: "Modifica veicolo." do %>
+		<i class="ion-ios-compose icon-small-compose"></i>
+	<% end %>
+	<%= link_to category_path(category.id), title: "Elimina veicolo." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
+		<i class="ion-ios-trash icon-small-trash"></i>
+	<% end %>
+	<%= link_to dashboard_category_path(category.id), title: "Visualizza fatture." do%>
+		<i class="ion-ios-list icon-small-list"></i>
+	<% end %>
+	<div class="data-summary">
+		<div class="row">
+			<div class="col span-1-of-3">
+				<h4>Fatture passive</h4>
+				<p>da pagare:</p>
+			</div>
+			<div class="col span-2-of-3 data">
+				<br>
+				<p id="passive_amont_to_pay_per_category"><%= @calculator.total_remaining_all(category.passive_invoices) %> </p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<h4>Fatture attive</h4>
+				<p>da incassare:</p>
+			</div>
+			<div class="col span-2-of-3 data">
+				<br>
+				<p id="active_amout_to_collect_per_category"><%= @calculator.total_remaining_all(category.active_invoices) %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<h4>Totale spese</h4>
+				<p>Mese corrente:</p>
+			</div>
+			<div class="col span-2-of-3 data">
+				<br>
+				<p id="current_month_costs"><%= @calculator.total_costs_current_month_category(category.id) %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<p>Anno corrente: </p>
+			</div>
+			<div class="col span-2-of-3 data">
+				<p id="current_year_costs"><%= @calculator.total_costs_current_year_category(category.id) %></p>
+			</div>
+		</div>
+	</div>
 </div>

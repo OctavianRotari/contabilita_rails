@@ -17,6 +17,15 @@
 		</tr>
 	</thead>
 	<%= render @company_dashboard.not_paid_invoices %>
+	<tfoot>
+		<tr class="totals">
+			<td>Totale:</td>
+			<td><%= @calculator.total_all(@company_dashboard.not_paid_invoices) %></td>
+			<td><%= @calculator.total_vat_all(@company_dashboard.not_paid_invoices) %></td>
+			<td><%= @calculator.total_paid_or_collected_all(@company_dashboard.not_paid_invoices) %></td>
+			<td><%= @calculator.total_remaining_all(@company_dashboard.not_paid_invoices) %></td>
+		</tr>
+	</tfoot>
 </table>
 </div>
 <div class="invoices">
@@ -37,6 +46,15 @@
 			</tr>
 		</thead>
 		<%= render @company_dashboard.not_collected_invoices %>
+		<tfoot>
+			<tr class="totals">
+				<td>Totale:</td>
+				<td><%= @calculator.total_all(@company_dashboard.not_collected_invoices) %></td>
+				<td><%= @calculator.total_vat_all(@company_dashboard.not_collected_invoices) %></td>
+				<td><%= @calculator.total_paid_or_collected_all(@company_dashboard.not_collected_invoices) %></td>
+				<td><%= @calculator.total_remaining_all(@company_dashboard.not_collected_invoices) %></td>
+			</tr>
+		</tfoot>
 	</table>
 </div>
 </div>

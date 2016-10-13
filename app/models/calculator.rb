@@ -80,12 +80,32 @@ class Calculator < ActiveRecord::Base
     total_all(invoices)
   end
 
+  def total_costs_current_month_company(company_id)
+    invoices = Invoice.where( company_id: company_id ).current_month_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_year_company(company_id)
+    invoices = Invoice.where( company_id: company_id ).current_year_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_month_category(category_id)
+    invoices = Invoice.where( category_id: category_id ).current_month_passive_invoices
+    total_all(invoices)
+  end
+
+  def total_costs_current_year_category(category_id)
+    invoices = Invoice.where( category_id: category_id ).current_year_passive_invoices
+    total_all(invoices)
+  end
+
   def total_costs_year_garage_divided(invoices)
-    total_costs_current_year(invoices) / number_of_vehicles
+    (total_costs_current_year(invoices) / number_of_vehicles).round(2)
   end
 
   def total_costs_month_garage_divided(invoices)
-    total_costs_current_month(invoices) / number_of_vehicles
+    (total_costs_current_month(invoices) / number_of_vehicles).round(2)
   end
 
   private
