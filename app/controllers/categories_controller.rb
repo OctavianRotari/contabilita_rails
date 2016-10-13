@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category[:user_id] = current_user[:id]
     if @category.save
       flash[:success] = "Categoria aggiunta"
       redirect_to dashboard_companies_path

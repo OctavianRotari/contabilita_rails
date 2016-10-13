@@ -23,7 +23,7 @@ class BuildInvoice
   private
 
   def updated_invoice
-    @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable, at_the_expense_of: at_the_expense_of)
+    @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable, at_the_expense_of: at_the_expense_of, category_id:category_id)
   end
 
   def at_the_expense_of
@@ -34,6 +34,15 @@ class BuildInvoice
       "Veicolo"
     end
   end
+
+  def category_id
+    if !company_id.empty? 
+      Company.find(company_id).category_id
+    else
+      nil
+    end
+  end
+
 
   def company_id
     @invoice_params[:company_id]

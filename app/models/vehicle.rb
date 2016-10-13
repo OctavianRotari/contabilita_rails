@@ -1,9 +1,8 @@
 class Vehicle < ActiveRecord::Base
+  belongs_to :user
   has_many :invoices, dependent: :destroy
-  validates :plate, presence: {message: "Inserire targa del veicolo"}
-  validates :type_of_vehicle, presence: {message: "Selezionare tipo di veicolo"}
-
-  validates :plate, uniqueness: {message: "Veicolo con questa targa gia registrata"}
+  validates :plate, presence: true
+  validates :type_of_vehicle, presence: true
 
   def passive_invoices
     invoices.passive

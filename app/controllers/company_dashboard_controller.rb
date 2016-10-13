@@ -3,12 +3,12 @@ class CompanyDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @companies = Company.all
+    @companies = current_user.companies
   end
 
   def show
     @calculator = Calculator.new
-    @company_dashboard = CompanyDashboard.new(params)
+    @company_dashboard = CompanyDashboard.new(params, current_user)
   end
 
 
@@ -31,11 +31,6 @@ class CompanyDashboardController < ApplicationController
   private
 
   def company_dashboard
-    CompanyDashboard.new(params)
+    CompanyDashboard.new(params, current_user)
   end
-
-  def category_params
-    params.require(:category).permit(:category)
-  end
-
 end

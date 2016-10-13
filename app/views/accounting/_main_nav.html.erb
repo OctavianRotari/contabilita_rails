@@ -18,10 +18,10 @@
 					<span>Fatture</span>
 					<div class="dropdown-content">
 						<ul>
-							<% if Invoice.active.any?%>
+							<% if current_user.invoices.active.any?%>
 								<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
 							<% end %>
-							<% if Invoice.passive.any?%>
+							<% if current_user.invoices.passive.any?%>
 								<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
 							<% end %>
 							<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>

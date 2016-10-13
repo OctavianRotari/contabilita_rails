@@ -1,22 +1,25 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action  do |controller|
-    if Company.all.empty?
+    if current_user.companies.empty?
       flash[:error] = "Aggiungere almeno un'azienda"
       redirect_to :back
-    elsif Vehicle.all.empty?
+    elsif current_user.vehicles.empty?
       flash[:error] = "Aggiungere almeno un veicolo"
       redirect_to :back
     end
   end
 
   def new
-    @new_invoice = NewInvoice.new
+    @companies = current_user.companies
+    @vehicles = current_user.vehicles
+    @invoice = Invoice.new
   end
 
   def edit
-    @category = Category.all
-    @new_invoice = NewInvoice.new
+    @companies = current_user.companies
+    @vehicles = current_user.vehicles
+    @invoice = Invoice.find(params[:id])
   end
 
   def update
@@ -42,10 +45,11 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    @companies = current_user.companies
+    @vehicles = current_user.vehicles
     params = BuildInvoice.new(invoice_params).build
-    params[:category_id] = category_id
-    @new_invoice = NewInvoice.new
     @invoice = Invoice.new(params)
+    @invoice[:user_id] = current_user[:id]
     if @invoice.save
       redirect_to invoice_path(id: @invoice.id)
     else
@@ -54,10 +58,6 @@ class InvoicesController < ApplicationController
   end
 
   private
-
-  def category_id
-    Company.find(company_id).category_id
-  end
 
   def invoice_params
     params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])

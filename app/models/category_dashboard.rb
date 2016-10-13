@@ -1,10 +1,12 @@
 class CategoryDashboard
 
-  attr_reader :category_id
-
-  def initialize params
-    @category_id = params[:id]
+  def initialize params, current_user
     @params = params
+    @current_user = current_user
+  end
+
+  def category_id
+    @params[:id]
   end
 
   def category_name
@@ -32,7 +34,7 @@ class CategoryDashboard
   private
 
   def category
-    Category.find(category_id)
+    @current_user.categories.find(category_id)
   end
 
   def category_invoices

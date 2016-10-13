@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+  belongs_to :user
   has_many :payments, dependent: :destroy
   has_many :taxable_vat_fields, dependent: :destroy
   belongs_to :company
@@ -6,12 +7,12 @@ class Invoice < ActiveRecord::Base
   belongs_to :category
   accepts_nested_attributes_for :taxable_vat_fields, allow_destroy: true
 
-  validates :date_of_issue, presence: {message: "Selezionare data di emissione"}
-  validates :deadline, presence: {message: "Selezionare data di scadenza"}
-  validates :company_id, presence: {message: "Selezionare azienda la quale ha emesso o ricevuto la fattura"}
-  validates :reason, presence: {message: "Selezionare il motivo della fattura"}
-  validates :type_of_invoice, presence: {message: "Selezionare il tipo di fattura"}
-  validates :at_the_expense_of, presence: {message: "Selezionare a carrico di cosa e registrata la fattura"}
+  validates :date_of_issue, presence:true
+  validates :deadline, presence:true
+  validates :company_id, presence:true
+  validates :reason, presence:true
+  validates :type_of_invoice, presence:true
+  validates :at_the_expense_of, presence:true
 
   def self.payments params_id
     find(params_id).payments

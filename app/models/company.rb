@@ -1,14 +1,14 @@
 class Company < ActiveRecord::Base
+  belongs_to :user
   has_many :invoices, dependent: :destroy
 
   belongs_to :category
 
-  validates :name, presence: {message: "Inserire nome dell'azienda"}
-  validates :number, presence: {message: "Inserire numero telefonico dell'azienda"}
-  validates :adress, presence: {message: "Inserire indirizzo dell'azienda"}
+  validates :name, presence:true
+  validates :number, presence:true
+  validates :adress, presence:true
 
-  validates :category_id, presence: {message: "Inserire categoria dell'azienda"}
-  validates :name, uniqueness: {message: "Azienda con questo nome gia registrata"}
+  validates :category_id, presence:true
 
   def self.invoices params_id
     find(params_id).invoices

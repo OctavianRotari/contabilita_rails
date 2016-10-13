@@ -9,7 +9,7 @@ class GarageController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @garage_invoices = Garage.new(params)
+    @garage_invoices = Garage.new(params, current_user)
   end
 
   def passive_invoices
@@ -31,6 +31,6 @@ class GarageController < ApplicationController
   private
 
   def garage_invoices
-    Garage.new(params)
+    Garage.new(params, current_user)
   end
 end

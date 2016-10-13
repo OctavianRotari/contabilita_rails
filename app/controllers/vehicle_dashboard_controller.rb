@@ -3,12 +3,12 @@ class VehicleDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @vehicles = Vehicle.all
+    @vehicles = current_user.vehicles
   end
 
   def show
     @calculator = Calculator.new
-    @vehicle_dashboard = VehicleDashboard.new(params)
+    @vehicle_dashboard = VehicleDashboard.new(params, current_user)
   end
 
   def passive_invoices
@@ -30,7 +30,6 @@ class VehicleDashboardController < ApplicationController
   private
 
   def vehicle_dashboard
-    VehicleDashboard.new(params)
+    VehicleDashboard.new(params, current_user)
   end
-
 end

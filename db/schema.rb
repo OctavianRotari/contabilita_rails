@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929133123) do
+ActiveRecord::Schema.define(version: 20161013153348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20160929133123) do
     t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -34,9 +37,11 @@ ActiveRecord::Schema.define(version: 20160929133123) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
+    t.integer  "user_id"
   end
 
   add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "garages", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -57,9 +62,11 @@ ActiveRecord::Schema.define(version: 20160929133123) do
     t.string   "type_of_invoice"
     t.integer  "category_id"
     t.string   "at_the_expense_of"
+    t.integer  "user_id"
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
+  add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
   add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
@@ -106,11 +113,18 @@ ActiveRecord::Schema.define(version: 20160929133123) do
     t.string   "type_of_vehicle"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "user_id"
   end
 
+  add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id", using: :btree
+
+  add_foreign_key "categories", "users"
   add_foreign_key "companies", "categories"
+  add_foreign_key "companies", "users"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "users"
   add_foreign_key "invoices", "vehicles"
   add_foreign_key "payments", "invoices"
   add_foreign_key "taxable_vat_fields", "invoices"
+  add_foreign_key "vehicles", "users"
 end

@@ -1,7 +1,8 @@
 class Garage < ActiveRecord::Base
 
-  def initialize params
+  def initialize params, current_user
     @params = params
+    @current_user = current_user
   end
 
   def not_paid_invoices
@@ -29,6 +30,6 @@ class Garage < ActiveRecord::Base
   end
 
   def invoices
-    Invoice.where(at_the_expense_of: "Officina")
+    @current_user.invoices.where(at_the_expense_of: "Officina")
   end
 end

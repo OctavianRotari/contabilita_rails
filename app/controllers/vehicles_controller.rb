@@ -36,6 +36,7 @@ class VehiclesController < ApplicationController
 
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    @vehicle[:user_id] = current_user[:id]
     if @vehicle.save
       flash[:success] = 'Mezzo aggiunto'
       redirect_to dashboard_vehicles_path

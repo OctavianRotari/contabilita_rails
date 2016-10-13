@@ -3,7 +3,7 @@ class InvoiceDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @invoice_dashboard = InvoiceDashboard.new
+    @invoice_dashboard = InvoiceDashboard.new(current_user)
   end
 
   def active_invoices
@@ -19,7 +19,7 @@ class InvoiceDashboardController < ApplicationController
   private
 
   def invoice_dashboard
-    InvoiceDashboard.new
+    InvoiceDashboard.new(current_user)
   end
 
   def passive(params)

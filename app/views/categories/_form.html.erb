@@ -2,16 +2,6 @@
 <div class="new">
 	<%= form_for @category do |form| %>
 		<div class="row">
-			<% if @category.errors.any? %>
-				<%= pluralize(@category.errors.count, "error") %> prevented your account from being created:
-				<ul>
-					<% @category.errors.full_messages.each do |error_message| %>
-						<li><%= error_message %></li>
-					<% end %>
-				</ul>
-			<% end %>
-		</div>
-		<div class="row">
 			<div class="col span-1-of-3">
 				<%= form.label 'Categoria' %>
 			</div>

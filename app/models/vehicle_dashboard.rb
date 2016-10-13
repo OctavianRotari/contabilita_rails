@@ -1,14 +1,16 @@
 class VehicleDashboard
 
-  attr_reader :vehicle_id
-
-  def initialize params
-    @vehicle_id = params[:id]
+  def initialize params, current_user
     @params = params
+    @current_user = current_user
   end
 
   def plate
     vehicle.plate
+  end
+
+  def vehicle_id
+    @params[:id]
   end
 
   def passive_invoices
@@ -32,7 +34,7 @@ class VehicleDashboard
   private
 
   def vehicle
-    Vehicle.find(vehicle_id)
+    @current_user.vehicles.find(vehicle_id)
   end
 
   def vehicle_invoices

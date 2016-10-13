@@ -47,6 +47,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @category = Category.all
+    @company[:user_id] = current_user[:id]
     @company.category_id = category_id
     if @company.save
       redirect_to dashboard_companies_path

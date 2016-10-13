@@ -1,12 +1,14 @@
 class CategoryDashboardController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @categories = Category.all
+    @categories = current_user.categories
     @calculator = Calculator.new
   end
 
   def show
     @calculator = Calculator.new
-    @category_dashboard = CategoryDashboard.new(params)
+    @category_dashboard = CategoryDashboard.new(params, current_user)
   end
 
 
@@ -29,7 +31,7 @@ class CategoryDashboardController < ApplicationController
   private
 
   def category_dashboard
-    CategoryDashboard.new(params)
+    CategoryDashboard.new(params, current_user)
   end
 
   def category_params

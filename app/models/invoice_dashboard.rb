@@ -1,5 +1,9 @@
 class InvoiceDashboard
 
+  def initialize(current_user)
+    @current_user = current_user
+  end
+
   def active(params)
     active_invoices(params).group_by { |t| t.date_of_issue.beginning_of_month }
   end
@@ -41,7 +45,7 @@ class InvoiceDashboard
   private
 
   def all_invoices
-    Invoice.all
+    @current_user.invoices
   end
 
   def active_invoices(params)

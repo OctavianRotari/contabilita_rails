@@ -2,9 +2,13 @@ class CompanyDashboard
 
   attr_reader :company_id
 
-  def initialize params
-    @company_id = params[:id]
+  def initialize params, current_user
     @params = params
+    @current_user = current_user
+  end
+
+  def company_id
+    @params[:id]
   end
 
   def company_name
@@ -32,7 +36,7 @@ class CompanyDashboard
   private
 
   def company
-    Company.find(company_id)
+    @current_user.companies.find(company_id)
   end
 
   def company_invoices

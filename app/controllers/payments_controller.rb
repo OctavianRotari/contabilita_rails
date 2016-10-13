@@ -1,5 +1,11 @@
 class PaymentsController < ApplicationController
   before_action :authenticate_user!
+  before_action  do |controller|
+    if current_user.invoices.empty?
+      flash[:error] = "Aggiungere almeno un'azienda"
+      redirect_to :back
+    end
+  end
 
   def new
     @invoice = Invoice.find(params[:invoice_id])
