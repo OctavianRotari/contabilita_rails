@@ -1,23 +1,3 @@
 <div class="companies">
-	<% @companies.each do |category_id, companies| %>
-		<h2 style="margin-bottom: 0px"><%= category(category_id) %></h2>
-		<%= link_to "Modifica categoria", edit_category_path(category_id)  %><br>
-		<div style="display: inline-block;">
-			<h4>Fatture passive</h4>
-			<p id="passive_amount_to_pay" >da pagare: <%= @calculator.passive_amount_to_pay(companies) %> </p>
-		</div>
-		<div style="display: inline-block;">
-			<h4>Fatture attive</h4>
-			<p id="active_amount_to_collect">da incassare: <%= @calculator.active_amount_to_collect(companies) %> </p>
-		</div>
-		<div style="display: inline-block;">
-			<h4>Totale spese</h4>
-			<% invoices = Category.invoices(category_id) %>
-			<p id="current_month_costs"> Mese corrente: <%= @calculator.total_costs_current_month(invoices) %></p>
-			<p id="current_year_costs"> Anno corrente: <%= @calculator.total_costs_current_year(invoices) %></p>
-		</div>
-		<br>
-		<br>
-		<%= render companies %>
-	<% end %>
+<%= render @companies %>
 </div>

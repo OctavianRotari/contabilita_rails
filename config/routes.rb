@@ -21,7 +21,18 @@ Rails.application.routes.draw do
 
   end
 
-  resources :categories, only: [:new, :edit, :create, :delete, :update]
+  resources :categories do
+    collection do
+      get 'dashboard' => 'category_dashboard#index'
+    end
+
+    member do
+      get 'dashboard' => 'category_dashboard#show'
+      get 'passive_invoices' => 'category_dashboard#passive_invoices'
+      get 'active_invoices' => 'category_dashboard#active_invoices'
+      get 'summary' => 'category_dashboard#summary'
+    end
+  end
 
   resources :companies do
     collection do

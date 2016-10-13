@@ -1,0 +1,42 @@
+<div class="row">
+<div class="invoices">
+<h3 class="title">Fatture da pagare</h3>
+<table>
+	<thead>
+		<tr>
+			<th>Fornitore</th>
+			<th>Totale</th>
+			<th>Iva</th>
+			<th>Pagato</th>
+			<th>Da pagare</th>
+			<th>Motivo</th>
+			<th>Targa</th>
+			<th>Scadenza</th>
+			<th class="cash-invoice"></th>
+			<th class="delete-invoice"></th>
+		</tr>
+	</thead>
+	<%= render @category_dashboard.not_paid_invoices %>
+</table>
+</div>
+<div class="invoices">
+	<h3 class="title">Fatture da incassare</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Fornitore</th>
+				<th>Totale</th>
+				<th>Iva</th>
+				<th>Incassato</th>
+				<th>Da incassare</th>
+				<th>Motivo</th>
+				<th>Targa</th>
+				<th>Scadenza</th>
+				<th class="cash-invoice"></th>
+				<th class="delete-invoice"></th>
+			</tr>
+		</thead>
+		<%= render @category_dashboard.not_collected_invoices %>
+	</table>
+</div>
+</div>

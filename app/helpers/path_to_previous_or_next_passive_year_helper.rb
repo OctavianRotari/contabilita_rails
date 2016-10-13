@@ -6,6 +6,8 @@ module PathToPreviousOrNextPassiveYearHelper
       link_to 'Anno precedente', vehicle(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
     elsif url.include? 'garage'
       link_to 'Anno precedente', garage(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
+    elsif url.include? 'categories'
+      link_to 'Anno precedente', category(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
     else
       link_to 'Anno precedente', invoices(type_of_invoice).call(year_param: params[:year_param].to_i - 1)
     end
@@ -18,6 +20,8 @@ module PathToPreviousOrNextPassiveYearHelper
       link_to 'Anno successivo', vehicle(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
     elsif url.include? 'garage'
       link_to 'Anno successivo', garage(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
+    elsif url.include? 'categories'
+      link_to 'Anno precedente', category(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
     else
       link_to 'Anno successivo', invoices(type_of_invoice).call(year_param: params[:year_param].to_i + 1)
     end
@@ -35,6 +39,10 @@ module PathToPreviousOrNextPassiveYearHelper
 
   def garage(type_of_invoice)
     method(("#{type_of_invoice}_invoices_garage_index_path").to_sym)
+  end
+
+  def category(type_of_invoice)
+    method(("#{type_of_invoice}_invoices_category_path").to_sym)
   end
 
   def invoices(type_of_invoice)

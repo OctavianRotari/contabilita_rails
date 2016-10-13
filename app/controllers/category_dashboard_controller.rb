@@ -1,19 +1,17 @@
-class CompanyDashboardController < ApplicationController
-  before_action :authenticate_user!
-
+class CategoryDashboardController < ApplicationController
   def index
+    @categories = Category.all
     @calculator = Calculator.new
-    @companies = Company.all
   end
 
   def show
     @calculator = Calculator.new
-    @company_dashboard = CompanyDashboard.new(params)
+    @category_dashboard = CategoryDashboard.new(params)
   end
 
 
   def passive_invoices
-    @invoices = company_dashboard.passive_invoices
+    @invoices = category_dashboard.passive_invoices
     @calculator = Calculator.new
     respond_to do |format|
       format.js
@@ -21,7 +19,7 @@ class CompanyDashboardController < ApplicationController
   end
 
   def active_invoices
-    @invoices = company_dashboard.active_invoices
+    @invoices = category_dashboard.active_invoices
     @calculator = Calculator.new
     respond_to do |format|
       format.js
@@ -30,8 +28,8 @@ class CompanyDashboardController < ApplicationController
 
   private
 
-  def company_dashboard
-    CompanyDashboard.new(params)
+  def category_dashboard
+    CategoryDashboard.new(params)
   end
 
   def category_params

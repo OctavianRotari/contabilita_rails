@@ -1,4 +1,7 @@
 <h3 class="company_name"> <%= link_to company.name, company_path(company.id) %></h3>
+<%= link_to 'Fatture', dashboard_company_path(company.id), id: "fatture_#{company.name}" %><br>
+<%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
+<%= button_to 'Elimina azienda', company_path(company.id), method: :delete, data: {confirm: "L'elliminazione di quest'azienda elliminera automaticamente anche le fatture registrate su di essa, si e sicuri di volerla elliminare?"} %><br>
 <div style="display: inline-block;">
 	<h4>Fatture passive</h4>
 	<p id="passive_amont_to_pay_per_company" >da pagare: <%= @calculator.total_remaining_all(company.invoices.passive) %> </p>
@@ -8,6 +11,3 @@
 	<p id="active_amout_to_collect_per_company">da incassare: <%= @calculator.total_remaining_all(company.invoices.active) %></p>
 </div>
 <br>
-<%= link_to 'Fatture', dashboard_company_path(company.id), id: "fatture_#{company.name}" %><br>
-<%= link_to 'Aggiorna azienda', edit_company_path(company.id) %><br>
-<%= button_to 'Elimina azienda', company_path(company.id), method: :delete, data: {confirm: "L'elliminazione di quest'azienda elliminera automaticamente anche le fatture registrate su di essa, si e sicuri di volerla elliminare?"} %><br>
