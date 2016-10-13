@@ -99,6 +99,10 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    phony (2.15.32)
+    phony_rails (0.14.4)
+      activesupport (>= 3.0)
+      phony (~> 2.15)
     poltergeist (1.8.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -210,6 +214,7 @@ DEPENDENCIES
   jquery-ui-rails
   jquery-waypoints-rails (~> 2.0, >= 2.0.5)
   pg
+  phony_rails
   poltergeist
   rails (= 4.2.1)
   rails_12factor
