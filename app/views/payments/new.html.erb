@@ -1,6 +1,10 @@
+<div class="row">
+<div class="new">
 <% if @invoice.type_of_invoice == 'attiva' %>
-	<h4>Incassa pagamento</h4>
+	<h3>Incassa pagamento</h3>
 <% else %>
-	<h4>Effettua pagamento</h4>
+	<h3>Effettua pagamento</h3>
 <%end%>
+</div>
+</div>
 <%= render 'form'%>

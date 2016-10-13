@@ -580,6 +580,7 @@ select{
 .summary .icon-small-compose{
 	margin:0 5px;
 }
+
 .summary a.icon-small-trash:hover,
 .summary a.icon-small-list:hover,
 .summary a.icon-small-compose:hover{
@@ -611,7 +612,45 @@ select{
 	margin-bottom: 20px;
 }
 
-h3:after {
+/*-------------------------------------------------------------------------*/
+/*SHOW*/
+/*-------------------------------------------------------------------------*/
+
+.show{
+	background-color:#fdfdf6;
+	text-align:center;
+	padding: 20px 0;
+}
+
+/*-------------------------------------------------------------------------*/
+/*INVOICE SHOW*/
+/*-------------------------------------------------------------------------*/
+
+.invoice-show{
+	background-color:#fdfdf6;
+	text-align:center;
+	padding: 20px 0;
+}
+
+.invoice-show .icon-small-trash,
+.invoice-show .icon-small-list,
+.invoice-show .icon-small-compose{
+	margin:0 5px;
+}
+
+.invoice-show h3{
+	display:inline-block;
+	width:200px;
+}
+
+.invoice-show h2{
+	margin:20px 0;
+}
+
+/*------Pagamenti------*/
+
+.pagamenti .data{
+	text-align:right
 }
 
 /*-------------------------------------------------------------------------*/

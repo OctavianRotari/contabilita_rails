@@ -19,12 +19,19 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    category = Category.find(params[:id])
+    category.destroy
+    flash[:success] = 'Categoria elliminata'
+    redirect_to dashboard_categories_path
+  end
+
   def create
     @category = Category.new(category_params)
     @category[:user_id] = current_user[:id]
     if @category.save
       flash[:success] = "Categoria aggiunta"
-      redirect_to dashboard_companies_path
+      redirect_to dashboard_categories_path
     else
       render "new"
     end

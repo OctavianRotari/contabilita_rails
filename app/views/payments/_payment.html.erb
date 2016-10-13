@@ -1,8 +1,26 @@
-<p>Pagamenti:</p>
-<p>Totale pagamento:<%=payment.paid%></p>
-<p>Metodo pagamento:<%=payment.method_of_payment%></p>
-<p>Data pagamento:<%=payment.payment_date.strftime("%d-%m-%Y")%></p>
-<%= link_to 'Aggiorna pagamento', edit_invoice_payment_path(invoice_id: @invoice.id, id:payment.id)%>
-<br>
-<br>
-<%= button_to 'Elimina pagamento', invoice_payment_path(invoice_id: @invoice.id, id:payment.id),method: :delete%>
+<div class="row">
+<div class="pagamenti">
+	<h3><%=payment.method_of_payment%></h3>
+	<%= link_to edit_invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Modifica veicolo." do %>
+		<i class="ion-ios-compose icon-small-compose"></i>
+	<% end %>
+	<%= link_to invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Elimina veicolo." , method: :delete, data: {confirm: "Si e sicuri di volerlo elliminare?"} do%>
+		<i class="ion-ios-trash icon-small-trash"></i>
+	<% end %>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Totale pagamento:</h4>
+		</div>
+		<div class="col span-1-of-2">
+			<p><%=payment.paid%></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Data pagamento:</h4>
+		</div>
+		<div class="col span-1-of-2">
+			<p><%=payment.payment_date.strftime("%d-%m-%Y")%></p>
+		</div>
+	</div>
+</div>

@@ -1,5 +1,11 @@
 class VehicleDashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action do |record|
+    if current_user.vehicles.empty?
+      flash[:error] = "Aggiungere almeno un mezzo"
+      redirect_to :back
+    end
+  end
 
   def index
     @calculator = Calculator.new

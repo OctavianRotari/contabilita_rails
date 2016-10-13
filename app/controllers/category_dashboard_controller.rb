@@ -1,5 +1,11 @@
 class CategoryDashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action do |record|
+    if current_user.categories.empty?
+      flash[:error] = "Aggiungere almeno una categoria"
+      redirect_to :back
+    end
+  end
 
   def index
     @categories = current_user.categories

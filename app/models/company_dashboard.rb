@@ -1,7 +1,5 @@
 class CompanyDashboard
 
-  attr_reader :company_id
-
   def initialize params, current_user
     @params = params
     @current_user = current_user

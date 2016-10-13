@@ -1,18 +1,93 @@
-<h4><%= @invoice.company.name %></h4>
-<h5><%= @invoice.reason %></h5>
-<p>Motivo: <%=@invoice.reason%></p>
-<p>Tipo fattura: <%=@invoice.type_of_invoice%></p>
-<p>Imponibile: <%=@invoice.total_taxable %></p>
-<p>Iva: <%=@invoice.total_vat %></p>
-<p>Totale: <%=@invoice.total %></p>
-<p>Data emissione: <%=@invoice.date_of_issue.strftime("%d-%m-%Y") %></p>
-<p>A carrico del: <%= @invoice.at_the_expense_of %></p>
-<% if @invoice.at_the_expense_of == 'Veicolo' %>
-	<p>Targa: <%=@invoice.vehicle.plate %></p>
-<% end %>
-<p>Scadenza: <%=@invoice.deadline.strftime("%d-%m-%Y") %></p>
-<%if !@invoice.payments.empty? %>
-	<%= render @invoice.payments %>
-<%end%>
-<%= link_to 'Aggiorna', edit_invoice_path(invoice_id: @invoice.id) %>
-<%= link_to "Effettua pagamento", 	new_invoice_payment_path(invoice_id: @invoice.id) %>
+<div class="row">
+<div class="invoice-show">
+	<h2><%= @invoice.company.name %></h2>
+	<div class="title">
+		<h3><%= @invoice.reason %></h3>
+		<%= link_to edit_invoice_path(invoice_id: @invoice.id), title: "Modifica fattura." do %>
+			<i class="ion-ios-compose icon-small-compose"></i>
+		<% end %>
+		<%= link_to new_invoice_payment_path(invoice_id: @invoice.id) do %>
+			<i class="ion-cash icon-small-cash"></i>
+		<% end%>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Motivo:</h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.reason%></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Tipo fattura:</h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.type_of_invoice%></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Imponibile: </h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.total_taxable %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Iva:</h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.total_vat %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Totale:</h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.total %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Data emissione: </h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.date_of_issue.strftime("%d-%m-%Y") %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>A carrico del:</h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%= @invoice.at_the_expense_of %></p>
+			<% if @invoice.at_the_expense_of == 'Veicolo' %>
+			</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Targa: </h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.vehicle.plate %></p>
+		<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Scadenza: </h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.deadline.strftime("%d-%m-%Y") %></p>
+		</div>
+	</div>
+	<%if !@invoice.payments.empty? %>
+		<h2>Pagamenti</h2>
+		<%= render @invoice.payments %>
+	<%end%>
+</div>
+</div>
+</div>

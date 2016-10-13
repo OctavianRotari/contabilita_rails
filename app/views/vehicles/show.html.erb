@@ -1,9 +1,15 @@
-<h2><%= @vehicle.plate %></h2>
-<div>
-	<h4>Targa</h4>
-	<%= @vehicle.plate %>
+<div class="row">
+<div class="show">
+	<div class="title">
+		<h3><%= @vehicle.plate %></h3>
+	</div>
+	<div>
+		<h4>Targa</h4>
+		<%= @vehicle.plate %>
+	</div>
+	<div>
+		<h4>Tipo mezzo</h4>
+		<%= @vehicle.type_of_vehicle %>
+	</div>
 </div>
-<div>
-	<h4>Tipo mezzo</h4>
-	<%= @vehicle.type_of_vehicle %>
 </div>

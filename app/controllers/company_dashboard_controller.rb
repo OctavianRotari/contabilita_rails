@@ -1,5 +1,11 @@
 class CompanyDashboardController < ApplicationController
   before_action :authenticate_user!
+  before_action do |record|
+    if current_user.companies.empty?
+      flash[:error] = "Aggiungere almeno un'azienda"
+      redirect_to :back
+    end
+  end
 
   def index
     @calculator = Calculator.new

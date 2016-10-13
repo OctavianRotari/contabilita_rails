@@ -62,12 +62,12 @@ class Calculator < ActiveRecord::Base
 
   def total_costs_current_month(invoices)
     invoices = invoices.current_month_passive_invoices
-    total_all(invoices)
+    total_all(invoices).round(2)
   end
 
   def total_costs_current_year(invoices)
     invoices = invoices.current_year_passive_invoices
-    total_all(invoices)
+    total_all(invoices).round(2)
   end
 
   def total_costs_current_month_vehicle(vehicle_id)
