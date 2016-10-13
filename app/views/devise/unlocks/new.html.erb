@@ -1,16 +1,27 @@
-<h2>Resend unlock instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Manda di nuovo le istruzioni per lo sblocco" %>
-  </div>
-<% end %>
+<div class="row">
+<div class="new">
+	<h3>Manda di nuovo le istruzioni per lo sblocco</h3>
+</div>
+</div>
+<div class="row">
+	<div class="new">
+		<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
+			<div class="row">
+				<div class="col span-1-of-3">
+					<%= f.label :email %><br />
+				</div>
+				<div class="col span-2-of-3">
+					<%= f.email_field :email, autofocus: true %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col span-3-of-3 submit">
+					<%= f.submit "Manda di nuovo le istruzioni per lo sblocco" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
 
 <%= render "devise/shared/links" %>

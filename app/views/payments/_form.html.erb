@@ -1,25 +1,43 @@
-<%= form_for(@payment,  url: payment_edit_or_new ) do |form| %>
-	<% if @payment.errors.any? %>
-		<%= pluralize(@payment.errors.count, "error") %> prevented your account from being created:
-		<ul>
-			<% @payment.errors.full_messages.each do |error_message| %>
-				<li><%= error_message %></li>
-			<% end %>
-		</ul>
+<div class="row">
+<div class="new">
+	<%= form_for(@payment,  url: payment_edit_or_new ) do |form| %>
+		<% if @payment.errors.any? %>
+			<%= pluralize(@payment.errors.count, "error") %> prevented your account from being created:
+			<ul>
+				<% @payment.errors.full_messages.each do |error_message| %>
+					<li><%= error_message %></li>
+				<% end %>
+			</ul>
+		<% end %>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Totale' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :paid, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Metodo di pagamento' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :method_of_payment, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-1-of-3">
+				<%= form.label 'Data pagamento' %>
+			</div>
+			<div class="col span-2-of-3">
+				<%= form.text_field :payment_date, require: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col span-3-of-3 submit">
+				<%= form.submit 'Effettua pagamento' %>
+			</div>
+		</div>
 	<% end %>
-	<div>
-		<%= form.label 'Totale' %>
-		<%= form.text_field :paid, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Metodo di pagamento' %>
-		<%= form.text_field :method_of_payment, require: true %>
-	</div>
-	<div>
-		<%= form.label 'Data pagamento' %>
-		<%= form.text_field :payment_date, require: true %>
-	</div>
-		<%= form.submit 'Effettua pagamento' %>
-	</div>
-<% end %>
-
+</div>
+</div>

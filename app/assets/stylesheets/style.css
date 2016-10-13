@@ -435,6 +435,17 @@ input[type=submit] {
 	font-weight:300;
 	padding: 5px 10px;
 }
+
+/*-------------------------------------------------------------------------*/
+/*REGISTRATION*/
+/*-------------------------------------------------------------------------*/
+
+.shared-log-in-links{
+	text-align:center;
+}
+.shared-log-in-links .link{
+	margin-top:10px;
+}
 /*-------------------------------------------------------------------------*/
 /*HOME*/
 /*-------------------------------------------------------------------------*/
@@ -507,6 +518,7 @@ input[type=submit] {
 
 input[type=text],
 input[type=email],
+input[type=password],
 select{
 	width:100%;
 	padding:7px;
