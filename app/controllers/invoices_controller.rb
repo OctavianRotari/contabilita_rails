@@ -41,7 +41,11 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:success] = 'Fattura elliminata'
-    redirect_to :back
+    if Invoice.count > 0
+        redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
   end
 
   def create

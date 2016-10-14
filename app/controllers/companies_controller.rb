@@ -37,7 +37,11 @@ class CompaniesController < ApplicationController
     company = Company.find(params[:id])
     company.destroy
     flash[:success] = 'Azienda elliminata'
-    redirect_to dashboard_companies_path
+    if Company.count > 0
+      redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
   end
 
   def show
@@ -48,7 +52,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     @category = Category.all
     @company[:user_id] = current_user[:id]
-    @company.category_id = category_id
+    @company[:category_id] = category_id
     if @company.save
       redirect_to dashboard_companies_path
     else

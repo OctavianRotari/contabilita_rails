@@ -23,7 +23,11 @@ class CategoriesController < ApplicationController
     category = Category.find(params[:id])
     category.destroy
     flash[:success] = 'Categoria elliminata'
-    redirect_to dashboard_categories_path
+    if Category.count > 0
+      redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
   end
 
   def create

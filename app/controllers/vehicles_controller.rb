@@ -31,7 +31,11 @@ class VehiclesController < ApplicationController
     vehicle = Vehicle.find(params[:id])
     vehicle.destroy
     flash[:success] = 'Mezzo elliminato'
-    redirect_to dashboard_vehicles_path
+    if Vehicle.count > 0
+      redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
   end
 
   def create
