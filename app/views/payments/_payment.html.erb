@@ -1,10 +1,10 @@
 <div class="row">
 <div class="pagamenti">
 	<h3><%=payment.method_of_payment%></h3>
-	<%= link_to edit_invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Modifica veicolo." do %>
+	<%= link_to edit_invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Modifica pagamento." do %>
 		<i class="ion-ios-compose icon-small-compose"></i>
 	<% end %>
-	<%= link_to invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Elimina veicolo." , method: :delete, data: {confirm: "Si e sicuri di volerlo elliminare?"} do%>
+	<%= link_to invoice_payment_path(invoice_id: @invoice.id, id:payment.id), title: "Elimina pagamento." , method: :delete, data: {confirm: "Si e sicuri di volerlo elliminare?"} do%>
 		<i class="ion-ios-trash icon-small-trash"></i>
 	<% end %>
 	<div class="row">

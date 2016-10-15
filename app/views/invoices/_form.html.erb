@@ -1,6 +1,14 @@
 <div class="row">
 <div class="new">
 	<%= form_for @invoice do |form| %>
+		<% if @invoice.errors.any? %>
+			A causa di questi errori non e' stato possibile creare la fattura:
+			<ul>
+				<% @invoice.errors.messages.each do |name, error| %>
+					<li><%= error[0] %></li>
+				<% end %>
+			</ul>
+		<% end %>
 		<%= form.fields_for :taxable_vat_fields do |builder| %>
 			<%= render 'taxable_vat_field_fields', f: builder %>
 		<% end %>

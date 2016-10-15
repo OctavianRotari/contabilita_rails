@@ -4,11 +4,11 @@ class Company < ActiveRecord::Base
 
   belongs_to :category
 
-  validates :name, presence:true
   phony_normalize :number, default_country_code: 'IT'
-  validates :adress, presence:true
-
-  validates :category_id, presence:true
+  validates :name, presence: {message: "Inserire nome dell'azienda"}
+  validates :adress, presence: {message: "Inserire indirizzo dell'azienda"}
+  validates :number, presence: {message: "Inserire numero telefonico dell'azienda"}
+  validates :category_id, presence: {message: "Selezionare categoria dell'azienda"}
 
   def self.invoices params_id
     find(params_id).invoices

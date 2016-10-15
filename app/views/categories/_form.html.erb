@@ -1,6 +1,14 @@
 <div class="row">
 <div class="new">
 	<%= form_for @category do |form| %>
+		<% if @category.errors.any? %>
+			A causa di questi errori non e' stato possibile creare la categoria:
+			<ul>
+				<% @category.errors.messages.each do |name, error| %>
+					<li><%= error[0] %></li>
+				<% end %>
+			</ul>
+		<% end %>
 		<div class="row">
 			<div class="col span-1-of-3">
 				<%= form.label 'Categoria' %>
