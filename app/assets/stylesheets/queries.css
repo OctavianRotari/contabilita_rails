@@ -51,14 +51,16 @@
 		margin-top:3px;
 	}
 	.app-logo { height:20px; }
-	.company-name h2{display:none; }
+	.company-name h2{display:none;}
 	.log-section {
 		padding:0 10px;
 		text-align:left;
 		float:right;
 	}
+	.log-section .log-in{display:inline-block}
+	.log-section .log-in h2{padding:3px 2px}
 	.app-logo { height:20px; }
-	.log-section h2{ font-size:90%; }
+	.log-section h2{ font-size:80%; }
 	.index .nav:after{ width: 60%; }
 
 	.summary.col{

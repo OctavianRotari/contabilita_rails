@@ -14,6 +14,7 @@ gem 'pg'
 gem "font-ionicons-rails"
 gem 'jquery-waypoints-rails', '~> 2.0', '>= 2.0.5'
 gem 'phony_rails'
+gem 'rails_real_favicon'
 
 group :production do
   gem 'rails_12factor'

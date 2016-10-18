@@ -1,0 +1,12 @@
+{
+	"name": "Contabilita'",
+	"icons": [
+		{
+			"src": "/assets/favicon/android-chrome-192x192-741ebf2566c050692774d0804a3b039a5103c39e944c92c85a55e8925ccda789.png",
+			"sizes": "192x192",
+			"type": "image\/png"
+		}
+	],
+	"theme_color": "#698aac",
+	"display": "standalone"
+}
