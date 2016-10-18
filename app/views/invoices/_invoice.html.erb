@@ -3,11 +3,11 @@
 	<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 	<td><%= invoice.total %></td>
 	<td class="vat"><%= invoice.total_vat %></td>
-	<td><%= @calculator.paid_per(invoice) %></td>
+	<td class="paid"><%= @calculator.paid_per(invoice) %></td>
 	<td><%= @calculator.to_pay_per(invoice) %></td>
 	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
-	<td><%= link_to_at_the_expense_of(invoice) %></td>
-	<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+	<td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
+	<td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
 	<td class="cash-invoice">
 		<%= link_to new_invoice_payment_path(invoice_id: invoice.id) do %>
 			<i class="ion-cash icon-small-cash"></i>

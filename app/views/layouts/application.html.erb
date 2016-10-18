@@ -16,7 +16,10 @@
 						<div class="col span-1-of-3">
 							<div class="logo-title">
 								<div class="app-logo"><%=image_tag("accounting.png")%></div>
-								<div class="app-title"><h1><%= link_to 'Contabilita', root_path %></h1></div>
+								<div class="app-title"><%= link_to root_path do %>
+									<h1>Contabilita</h1>
+								<% end %>
+								</div>
 							</div>
 						</div>
 						<div class="company-name col span-1-of-3">

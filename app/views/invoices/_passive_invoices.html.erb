@@ -15,12 +15,12 @@
 						<th>Fornitore</th>
 						<th>Totale</th>
 						<th class="vat">Iva</th>
-						<th>Pagato</th>
+						<th class="paid">Pagato</th>
 						<th>Da pagare</th>
 						<th>Motivo</th>
 						<th class="date-of-issue">Data di emmissione</th>
-						<th>Targa</th>
-						<th>Scadenza</th>
+						<th class="at-the-expense-of">A carrico di</th>
+						<th class="deadline">Scadenza</th>
 						<th class="cash-invoice"></th>
 						<th class="delete-invoice"></th>
 					</tr>
@@ -29,8 +29,8 @@
 					<tr class="totals">
 						<td>Totale:</td>
 						<td><%= @calculator.total_all(invoices) %></td>
-						<td><%= @calculator.total_vat_all(invoices) %></td>
-						<td><%= @calculator.total_paid_or_collected_all(invoices) %></td>
+						<td class="vat"><%= @calculator.total_vat_all(invoices) %></td>
+						<td class="paid"><%= @calculator.total_paid_or_collected_all(invoices) %></td>
 						<td><%= @calculator.total_remaining_all(invoices) %></td>
 					</tr>
 				</tfoot>
@@ -40,20 +40,20 @@
 							<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 							<td><%= invoice.total %></td>
 							<td class="vat"><%= invoice.total_vat %></td>
-							<td><%= @calculator.paid_per(invoice) %></td>
+							<td class="paid"><%= @calculator.paid_per(invoice) %></td>
 							<td><%= @calculator.to_pay_per(invoice) %></td>
 							<td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
 							<td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
-							<td><%= link_to_at_the_expense_of(invoice) %></td>
-							<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+							<td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
+							<td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
 							<td class="cash-invoice">
 								<%= link_to new_invoice_payment_path(invoice_id: invoice.id), title: "Effettua pagamento." do %>
-									<i class="ion-cash"></i>
+									<i class="ion-cash icon-small-cash"></i>
 								<% end%>
 							</td>
 							<td class="delete-invoice">
 								<%= link_to invoice_path(id: invoice.id), class: 'delete-invoice', title: "Ellimina fattura.", method: :delete, data: {confirm: "Si e sicuri?"} do%>
-									<i class="ion-ios-trash"></i>
+									<i class="ion-ios-trash icon-small-trash"></i>
 								<% end%>
 							</td>
 						</tr>
