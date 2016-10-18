@@ -44,7 +44,7 @@ h1 {
 	color: #fff;
 	font-size: 170%; /*its 200 % of the font size setted in the html tag*/
 	font-weight: 200;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	letter-spacing: 1px;
 	word-spacing: 4px;
 }

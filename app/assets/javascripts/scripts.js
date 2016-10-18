@@ -9,10 +9,13 @@ $(document).ready(function(){
 		}
 	});
 
-	$(window).ready(function() {
+	$(window).on('resize', function mobileNavMenu() {
 		var viewportWidth = $(window).width();
-		if (viewportWidth < 767) {
+		if (  viewportWidth < 767 ) {
 			$(".main-nav").removeClass("span-1-of-2").addClass("span-2-of-2");
+		}
+		if (  viewportWidth > 767 ){
+			$(".main-nav").removeClass("span-2-of-2").addClass("span-1-of-2");
 		}
 	});
 });

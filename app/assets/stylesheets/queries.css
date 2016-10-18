@@ -69,7 +69,7 @@
 	.summary{
 		margin:20px 0;
 		text-align:initial;
-	} 
+	}
 
 	.invoice-show{
 		margin:20px 0;
@@ -91,4 +91,21 @@
 
 /*small phones from 0 to 480*/
 @media only screen and (max-width: 480px) {
+
+	.app-title h1{
+		font-size:80%;
+		margin-top:7px;
+	}
+	.app-logo { height:18px; }
+	.log-section {
+		font-size:80%;
+		margin-top:7px;
+	}
+	.top-section .company-name.span-1-of-3{ height:10px; }
+	.top-section .span-1-of-3{ width:32.26%; display:block; }
+	.top-section .col{ display:block; }
+	.main-nav{ text-align:center; }
+	.main-nav .span-1-of-6{ width:15.33%; }
+
+	.main-nav-background { height: 30px; }
 }
