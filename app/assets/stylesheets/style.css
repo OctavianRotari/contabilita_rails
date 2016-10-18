@@ -347,7 +347,7 @@ input[type=submit] {
 .main-nav-background {
 	margin-top:22px;
 	background-color:#27ae60;
-	height: 40px;
+	height: 50px;
 }
 
 .main-nav {
@@ -392,7 +392,6 @@ input[type=submit] {
 }
 
 /*------Sticky navigation------*/
-
 .sticky .main-nav {
 	margin-top: 10px;
 	margin-bottom: 0px;
@@ -409,6 +408,15 @@ input[type=submit] {
 	box-shadow: 0 2px 2px #efefef;
 	z-index: 9999; /*stacks the element at the top of the others;*/
 }
+
+.sticky.main-nav-background {
+	display:none;
+}
+
+header.white-space{
+	height:130px;
+}
+
 
 .sticky .logo-sticky{
 	margin-top: 15px;
