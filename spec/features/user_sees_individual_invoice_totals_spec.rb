@@ -4,11 +4,13 @@ feature 'user' do
 
   context 'passive invoices' do
     before :each do
+      sign_up
       create_passive_record('Bezzi', 'ER859BS')
     end
 
     scenario "user sees company's passive invoice's totals", js: true do
-      visits_passive_invoices("Aziende", "#fatture_Bezzi")
+      visit('/categories/1/dashboard')
+      click_link 'Passive'
       expect(page).to have_css 'tr.totals', text: '110'
       expect(page).to have_css 'tr.totals', text: '10'
     end
@@ -23,11 +25,13 @@ feature 'user' do
 
   context 'active invoices' do
     before :each do
+      sign_up
       create_active_record('Bezzi', 'ER859BS')
     end
 
     scenario "user sees company's active invoice's totals", js: true do
-      visits_active_invoices("Aziende", "#fatture_Bezzi")
+      visit('/categories/1/dashboard')
+      click_link 'Attive'
       expect(page).to have_css 'tr.totals', text: '110'
       expect(page).to have_css 'tr.totals', text: '10'
     end

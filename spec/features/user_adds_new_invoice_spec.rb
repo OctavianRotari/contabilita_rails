@@ -8,18 +8,16 @@ feature 'user' do
 
   scenario 'cant add a new invoice if there is no companies', js: true do
     vehicle("ER354BS")
-    visit '/invoices/dashboard'
+    find('#fatture').click
     click_link 'Aggiungi fattura'
-    expect(current_path).to eq dashboard_invoices_path
     expect(page).to have_content "Aggiungere almeno un'azienda"
   end
 
   scenario 'cant add a new invoice if there is no vehicles', js: true do
     category
     company('Bezzi')
-    visit '/invoices/dashboard'
+    find('#fatture').click
     click_link 'Aggiungi fattura'
-    expect(current_path).to eq dashboard_invoices_path
     expect(page).to have_content "Aggiungere almeno un mezzo"
   end
 
@@ -27,8 +25,7 @@ feature 'user' do
     category
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/invoices/dashboard'
-    click_link 'Aggiungi fattura'
+    visit '/invoices/new'
     fill_in_new_invoice
     click_button 'Conferma'
     expect(current_path).to eq '/invoices/1'
@@ -38,8 +35,7 @@ feature 'user' do
     category
     company('Bezzi')
     vehicle("ER354BS")
-    visit '/invoices/dashboard'
-    click_link 'Aggiungi fattura'
+    visit '/invoices/new'
     click_link 'Aggiungi imponibile'
     fill_in_new_invoice
     fill_in 'invoice[taxable_vat_fields_attributes][2][taxable]', with: 100

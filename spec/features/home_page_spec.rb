@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'sees unpaid invoices' do
+
+  before :each do
     sign_up
+  end
+
+  scenario 'sees unpaid invoices' do
     category
     create_passive_record('Bezzi', 'ER859BS')
     visit '/invoices/dashboard'
@@ -12,7 +16,6 @@ feature 'user' do
 
 
   scenario "doesn't see paid invoices" do
-    sign_up
     category
     invoice = create_passive_record('Giovanni', 'ER859BS')
     create_payment(invoice, 110)
@@ -22,7 +25,6 @@ feature 'user' do
   end
 
   scenario 'sees uncollected invoices' do
-    sign_up
     category
     create_active_record('Bezzi', 'ER859BS')
     visit '/invoices/dashboard'
@@ -32,7 +34,6 @@ feature 'user' do
 
 
   scenario "doesn't see collected invoices" do
-    sign_up
     category
     invoice = create_active_record('Giovanni', 'ER859BS')
     create_payment(invoice, 110)

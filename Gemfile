@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'coderay'
   gem "database_cleaner"
   gem 'capybara'
   gem 'selenium-webdriver'

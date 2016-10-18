@@ -52,7 +52,7 @@
 								<% end%>
 							</td>
 							<td class="delete-invoice">
-								<%= link_to invoice_path(id: invoice.id), title: "Ellimina fattura.", method: :delete, data: {confirm: "Si e sicuri?"} do%>
+								<%= link_to invoice_path(id: invoice.id), class: 'delete-invoice', title: "Ellimina fattura.", method: :delete, data: {confirm: "Si e sicuri?"} do%>
 									<i class="ion-ios-trash"></i>
 								<% end%>
 							</td>

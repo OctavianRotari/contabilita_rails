@@ -13,7 +13,7 @@
 			<i class="ion-cash icon-small-cash"></i>
 		<% end%>
 	</td>
-	<td class="delete-invoice">
+	<td class="delete-invoice_<%=invoice.id%>">
 		<%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
 			<i class="ion-ios-trash icon-small-trash"></i>
 		<% end%>

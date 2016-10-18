@@ -5,7 +5,7 @@ feature 'user' do
     sign_up
     create_passive_record('Bezzi',"ER354BS")
     visit '/invoices/dashboard'
-    click_button "Elimina fattura"
+    find('.delete-invoice_1').click
     invoices = Invoice.all
     expect(invoices).to be_empty
   end

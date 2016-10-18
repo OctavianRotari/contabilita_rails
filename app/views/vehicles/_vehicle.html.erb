@@ -2,10 +2,10 @@
 	<div class="title">
 		<h2><%=link_to vehicle.plate, vehicle_path(vehicle.id) %></h2>
 	</div>
-	<%= link_to edit_vehicle_path(vehicle.id), title: "Modifica veicolo." do %>
+	<%= link_to edit_vehicle_path(vehicle.id), class: 'edit-vehicle', title: "Modifica veicolo." do %>
 		<i class="ion-ios-compose icon-small-compose"></i>
 	<% end %>
-	<%= link_to vehicle_path(vehicle.id), title: "Elimina veicolo." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
+	<%= link_to vehicle_path(vehicle.id), class: 'delete-vehicle', title: "Elimina veicolo." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
 		<i class="ion-ios-trash icon-small-trash"></i>
 	<% end %>
 	<%= link_to dashboard_vehicle_path(vehicle.id), title: "Visualizza fatture." do%>

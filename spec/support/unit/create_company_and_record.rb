@@ -1,5 +1,5 @@
 module Unit
-  def company(name)
+  def create_company(name)
     Company.create(name:name,adress:'Ravenna',number:'345', category_id: 1)
   end
 
@@ -17,6 +17,7 @@ module Unit
                             total_taxable:100,
                             reason:'Manutenzione',
                             vehicle_id:1,
+                            at_the_expense_of: "Veicolo",
                             date_of_issue:'01/04/2015',
                             deadline:'30/04/2015',
                             type_of_invoice:'passiva')
@@ -28,6 +29,7 @@ module Unit
                             total_taxable:100,
                             reason:'Manutenzione',
                             vehicle_id:1,
+                            at_the_expense_of: "Veicolo",
                             date_of_issue:'01/04/2015',
                             deadline:'30/04/2015',
                             type_of_invoice:'attiva')

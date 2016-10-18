@@ -1,6 +1,4 @@
 require 'rails_helper'
-
-
 def sign_up
   visit '/'
   click_link 'Registrati'

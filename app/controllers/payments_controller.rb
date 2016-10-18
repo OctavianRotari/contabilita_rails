@@ -8,6 +8,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(payment_params)
+    @invoice = Invoice.find(params[:invoice_id])
     @payment.invoice_id = invoice_id
     if @payment.save
       redirect_to invoice_path(id: invoice_id)
@@ -23,6 +24,7 @@ class PaymentsController < ApplicationController
 
   def update
     @payment = Payment.find(params[:id])
+    @invoice = Invoice.find(params[:invoice_id])
     @payment.update(payment_params)
     if @payment.update(payment_params)
       flash[:success] = 'Pagamento aggiornato'

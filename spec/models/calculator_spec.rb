@@ -8,8 +8,8 @@ describe Calculator, type: :unit do
     @calculator = Calculator.new
     create_category
     create_vehicle
-    company = company('Octav')
-    company_1 = company('Rotari')
+    company = create_company('Octav')
+    company_1 = create_company('Rotari')
     invoice = create_passive_record(company)
     add_payment_to_invoice(invoice)
     create_passive_record(company_1)

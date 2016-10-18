@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 feature 'user' do
-  scenario 'updates company' do
-    vehicle('RB342BD')
+  scenario 'updates vehicle' do
     sign_up
-    visit '/invoices/dashboard'
-    click_link 'Mezzi'
-    click_link 'Aggiorna mezzo'
+    vehicle('RB342BD')
+    visit '/vehicles/1/edit'
     fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'
     fill_in 'vehicle[plate]', with: 'ER345BR'
-    click_button "Aggiungi mezzo"
+    click_button "Conferma"
     expect(page).to have_css 'a', text: 'ER345BR'
   end
 end

@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
       flash[:error] = "Aggiungere almeno un'azienda"
       redirect_to :back
     elsif current_user.vehicles.empty?
-      flash[:error] = "Aggiungere almeno un veicolo"
+      flash[:error] = "Aggiungere almeno un mezzo"
       redirect_to :back
     end
   end

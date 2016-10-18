@@ -3,10 +3,10 @@
 	<h2><%= @invoice.company.name %></h2>
 	<div class="title">
 		<h3><%= @invoice.reason %></h3>
-		<%= link_to edit_invoice_path(invoice_id: @invoice.id), title: "Modifica fattura." do %>
+		<%= link_to edit_invoice_path(invoice_id: @invoice.id), class: 'edit-invoice', title: "Modifica fattura." do %>
 			<i class="ion-ios-compose icon-small-compose"></i>
 		<% end %>
-		<%= link_to new_invoice_payment_path(invoice_id: @invoice.id) do %>
+		<%= link_to new_invoice_payment_path(invoice_id: @invoice.id), class: 'pay-invoice' do %>
 			<i class="ion-cash icon-small-cash"></i>
 		<% end%>
 	</div>

@@ -5,7 +5,7 @@ describe Invoice, type: :unit do
     create_vehicle
     create_category
     @params = { year_param: "2015"}
-    company = company('Octav')
+    company = create_company('Octav')
     @passive_invoice = create_passive_record(company)
     @active_invoice = create_active_record(company)
   end
@@ -52,11 +52,12 @@ describe Invoice, type: :unit do
                             vehicle_id: "",
                             type_of_invoice: "")
       invoice.save
-      errors_should_apear = { :date_of_issue=>["Selezionare data di emissione"],
-                              :deadline=>["Selezionare data di scadenza"],
-                              :company_id=>["Selezionare azienda la quale ha emesso o ricevuto la fattura"],
-                              :reason=>["Selezionare il motivo della fattura"],
-                              :type_of_invoice=>["Selezionare il tipo di fattura"]}
+      errors_should_apear = {:type_of_invoice=>["Selezionare il tipo di fattura"],
+                             :company_id=>["Selezionare l'azienda la quale ha emesso o ricevuto la fattura"],
+                             :at_the_expense_of=>["Selezionare a carrico di cosa e registrata la fattura"],
+                             :reason=>["Inserire il motivo della fattura"],
+                             :date_of_issue=>["Selezionare data di emissione"],
+                             :deadline=>["Selezionare data di scadenza"]}
       expect(invoice.errors.messages).to eq(errors_should_apear)
     end
   end
