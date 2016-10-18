@@ -215,9 +215,8 @@ input[type=submit] {
 	display:inline-block;
 	color: #fff;
 	font-size: 70%;
-	padding: 8px 3px;
+	padding: 8px 0;
 	text-transform: uppercase;
-	margin-left: 0px;
 	text-align:center;
 	text-align:center;
 }
@@ -288,7 +287,7 @@ input[type=submit] {
 .top-section {
 	width:100%;
 	display:block;
-	height:50px;
+	height:100%;
 	background-color:#2c3e50;
 }
 
@@ -358,17 +357,13 @@ input[type=submit] {
 	margin:0;
 	display:block;
 	font-size: 70%;
-	padding: 8px 3px;
+	padding: 8px 0;
 	text-transform: uppercase;
 	text-align:center;
 }
 
 .main-nav .static{
 	text-align:center;
-	margin-left:0;
-}
-
-.main-nav .dropdown:last-child{
 	margin-left:0;
 }
 

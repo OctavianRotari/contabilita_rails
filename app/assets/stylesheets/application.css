@@ -14,5 +14,6 @@
  *= require_self
  *= require jquery-ui/datepicker
  *= require ionicons
-*= require_tree .
+*= require style
+*= require queries
  */

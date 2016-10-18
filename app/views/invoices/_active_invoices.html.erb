@@ -1,8 +1,8 @@
 <div class="row">
 <div class="invoices-by-year">
 	<h3>Anno: <%= params[:year_param]%></h3>
-	<h4><%= previos_year_menu("passive") %></h4>
-	<h4><%= next_year_menu("passive") %></h4>
+	<h4><%= previos_year_menu("active") %></h4>
+	<h4><%= next_year_menu("active") %></h4>
 </div>
 </div>
 <div class="row">
@@ -14,11 +14,11 @@
 			<tr>
 				<th>Fornitore</th>
 				<th>Totale</th>
-				<th>Iva</th>
+				<th class="vat">Iva</th>
 				<th>Incassato</th>
 				<th>Da incassare</th>
 				<th>Motivo</th>
-				<th>Data di emmissione</th>
+				<th class="date-of-issue">Emmissione</th>
 				<th>Targa</th>
 				<th>Scadenza</th>
 				<th class="cash-invoice"></th>
@@ -39,11 +39,11 @@
 				<tr>
 					<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 					<td><%= invoice.total %></td>
-					<td><%= invoice.total_vat %></td>
+					<td class="vat"><%= invoice.total_vat %></td>
 					<td><%= @calculator.paid_per(invoice) %></td>
 					<td><%= @calculator.to_pay_per(invoice) %></td>
 					<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
-					<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
+					<td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 					<td><%= link_to_at_the_expense_of(invoice)%></td>
 					<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
 					<td class="cash-invoice">

@@ -2,7 +2,7 @@
 <tr>
 	<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 	<td><%= invoice.total %></td>
-	<td><%= invoice.total_vat %></td>
+	<td class="vat"><%= invoice.total_vat %></td>
 	<td><%= @calculator.paid_per(invoice) %></td>
 	<td><%= @calculator.to_pay_per(invoice) %></td>
 	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>

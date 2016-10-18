@@ -7,7 +7,7 @@
 				<tr>
 					<th>Fornitore</th>
 					<th>Totale</th>
-					<th>Iva</th>
+					<th class="vat">Iva</th>
 					<th>Pagato</th>
 					<th>Da pagare</th>
 					<th>Motivo</th>
@@ -22,7 +22,7 @@
 				<tr class="totals">
 					<td>Totale:</td>
 					<td><%= @calculator.total_all(@invoice_dashboard.not_paid_invoices) %></td>
-					<td><%= @calculator.total_vat_all(@invoice_dashboard.not_paid_invoices) %></td>
+					<td class="vat"><%= @calculator.total_vat_all(@invoice_dashboard.not_paid_invoices) %></td>
 					<td><%= @calculator.total_paid_or_collected_all(@invoice_dashboard.not_paid_invoices) %></td>
 					<td><%= @calculator.total_remaining_all(@invoice_dashboard.not_paid_invoices) %></td>
 				</tr>
@@ -36,7 +36,7 @@
 				<tr>
 					<th>Fornitore</th>
 					<th>Totale</th>
-					<th>Iva</th>
+					<th class="vat">Iva</th>
 					<th>Incassato</th>
 					<th>Da incassare</th>
 					<th>Motivo</th>
@@ -51,7 +51,7 @@
 				<tr class="totals">
 					<td>Totale:</td>
 					<td><%= @calculator.total_all(@invoice_dashboard.not_collected_invoices) %></td>
-					<td><%= @calculator.total_vat_all(@invoice_dashboard.not_collected_invoices) %></td>
+					<td class="vat"><%= @calculator.total_vat_all(@invoice_dashboard.not_collected_invoices) %></td>
 					<td><%= @calculator.total_paid_or_collected_all(@invoice_dashboard.not_collected_invoices) %></td>
 					<td><%= @calculator.total_remaining_all(@invoice_dashboard.not_collected_invoices) %></td>
 				</tr>

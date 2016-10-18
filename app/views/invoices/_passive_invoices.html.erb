@@ -14,11 +14,11 @@
 					<tr>
 						<th>Fornitore</th>
 						<th>Totale</th>
-						<th>Iva</th>
+						<th class="vat">Iva</th>
 						<th>Pagato</th>
 						<th>Da pagare</th>
 						<th>Motivo</th>
-						<th>Data di emmissione</th>
+						<th class="date-of-issue">Data di emmissione</th>
 						<th>Targa</th>
 						<th>Scadenza</th>
 						<th class="cash-invoice"></th>
@@ -39,11 +39,11 @@
 						<tr>
 							<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 							<td><%= invoice.total %></td>
-							<td><%= invoice.total_vat %></td>
+							<td class="vat"><%= invoice.total_vat %></td>
 							<td><%= @calculator.paid_per(invoice) %></td>
 							<td><%= @calculator.to_pay_per(invoice) %></td>
 							<td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
-							<td><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
+							<td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 							<td><%= link_to_at_the_expense_of(invoice) %></td>
 							<td><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
 							<td class="cash-invoice">
