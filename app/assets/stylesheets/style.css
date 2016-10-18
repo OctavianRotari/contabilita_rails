@@ -100,6 +100,7 @@ a:visited{
 	color: #698aac;
 	text-decoration: none;
 	padding-bottom: 1px;
+	-webkit-transition:color 0.2s;
 	transition:color 0.2s;
 }
 
@@ -127,6 +128,7 @@ a:active {
 .icon-small-cash {
 	font-size: 120%;
 	color:#698aac;
+	-webkit-transition:color 0.2s;
 	transition: color 0.2s;
 }
 
@@ -198,6 +200,7 @@ input[type=submit] {
 .index h4 a:visited{
 	color:#2c3e50;
 	border-bottom: 2px solid transparent;
+	-webkit-transition:border-bottom 0.2s;
 	transition: border-bottom 0.2s;
 }
 
@@ -226,6 +229,7 @@ input[type=submit] {
 
 .dropdown span {
 	border-bottom: 2px solid transparent;
+	-webkit-transition:border-bottom 0.2s;
 	transition: border-bottom 0.2s;
 }
 
@@ -330,6 +334,7 @@ input[type=submit] {
 	color: #fff;
 	float:right;
 	padding-bottom: 1px;
+	-webkit-transition:color 0.2s;
 	transition: color 0.2s;
 }
 
@@ -377,6 +382,7 @@ input[type=submit] {
 	text-decoration: none;
 	color: #fff;
 	border-bottom: 2px solid transparent;
+	-webkit-transition:border-bottom 0.2s;
 	transition: border-bottom 0.2s;
 }
 

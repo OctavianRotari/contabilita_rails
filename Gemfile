@@ -21,7 +21,9 @@ group :production do
 end
 
 group :development do
+  gem 'traceroute'
   gem 'spring'
+  gem "rails_best_practices"
 end
 
 group :development, :test do

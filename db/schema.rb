@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161013153348) do
     t.integer  "user_id"
   end
 
+  add_index "invoices", ["category_id"], name: "index_invoices_on_category_id", using: :btree
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
   add_index "invoices", ["vehicle_id"], name: "index_invoices_on_vehicle_id", using: :btree

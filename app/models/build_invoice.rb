@@ -36,7 +36,7 @@ class BuildInvoice
   end
 
   def category_id
-    if !company_id.empty? 
+    if !company_id.empty?
       Company.find(company_id).category_id
     else
       nil

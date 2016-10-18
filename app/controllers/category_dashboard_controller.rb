@@ -40,8 +40,4 @@ class CategoryDashboardController < ApplicationController
     CategoryDashboard.new(params, current_user)
   end
 
-  def category_params
-    params.require(:category).permit(:category)
-  end
-
 end

@@ -58,13 +58,13 @@ feature 'user clicks on the company' do
   scenario 'sees the amout it has to be paid for the company' do
     create_passive_record('Bezzi',"ER354BS")
     visit '/companies/dashboard'
-    expect(page).to have_css 'p#passive_amont_to_pay_per_company', text: '110'
+    expect(page).to have_css 'p#passive_amont_to_pay', text: '110'
   end
 
   scenario 'sees the amout it has to be collected for the company' do
     create_active_record('Bezzi',"ER354BS")
     visit '/companies/dashboard'
-    expect(page).to have_css 'p#active_amout_to_collect_per_company', text: '110'
+    expect(page).to have_css 'p#active_amout_to_collect', text: '110'
   end
 
 

@@ -14,11 +14,11 @@ class Company < ActiveRecord::Base
     find(params_id).invoices
   end
 
-  def passive_invoices
-    invoices.passive
+  def passive_invoices(id)
+    invoices.where(company_id: id).passive
   end
 
-  def active_invoices
-    invoices.active
+  def active_invoices(id)
+    invoices.where(company_id: id).active
   end
 end

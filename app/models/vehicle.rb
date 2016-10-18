@@ -4,11 +4,11 @@ class Vehicle < ActiveRecord::Base
   validates :plate, presence: {message: "Inserire targa del veicolo"}
   validates :type_of_vehicle, presence: {message: "Inserire tipo di veicolo"}
 
-  def passive_invoices
-    invoices.passive
+  def passive_invoices(id)
+    invoices.where(vehicle_id: id).passive
   end
 
-  def active_invoices
-    invoices.active
+  def active_invoices(id)
+    invoices.where(vehicle_id: id).active
   end
 end

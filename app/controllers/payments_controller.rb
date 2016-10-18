@@ -47,10 +47,6 @@ class PaymentsController < ApplicationController
     params.require(:payment).permit(:paid,:method_of_payment,:payment_date)
   end
 
-  def company_id
-    params[:company_id]
-  end
-
   def invoice_id
     params[:invoice_id]
   end

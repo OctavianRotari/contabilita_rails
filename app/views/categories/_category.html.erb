@@ -11,44 +11,5 @@
 	<%= link_to dashboard_category_path(category.id), title: "Visualizza fatture." do%>
 		<i class="ion-ios-list icon-small-list"></i>
 	<% end %>
-	<div class="data-summary">
-		<div class="row">
-			<div class="col span-1-of-3">
-				<h4>Fatture passive</h4>
-				<p>da pagare:</p>
-			</div>
-			<div class="col span-2-of-3 data">
-				<br>
-				<p id="passive_amont_to_pay_per_category"><%= @calculator.total_remaining_all(category.passive_invoices) %> </p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<h4>Fatture attive</h4>
-				<p>da incassare:</p>
-			</div>
-			<div class="col span-2-of-3 data">
-				<br>
-				<p id="active_amout_to_collect_per_category"><%= @calculator.total_remaining_all(category.active_invoices) %></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<h4>Totale spese</h4>
-				<p>Mese corrente:</p>
-			</div>
-			<div class="col span-2-of-3 data">
-				<br>
-				<p id="current_month_costs"><%= @calculator.total_costs_current_month_category(category.id) %></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<p>Anno corrente: </p>
-			</div>
-			<div class="col span-2-of-3 data">
-				<p id="current_year_costs"><%= @calculator.total_costs_current_year_category(category.id) %></p>
-			</div>
-		</div>
-	</div>
+	<%= render @calculator, group: category %>
 </div>

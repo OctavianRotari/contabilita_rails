@@ -10,18 +10,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :invoices do
+  resources :invoices, only: [:show, :new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'invoice_dashboard#index'
       get 'active' => 'invoice_dashboard#active_invoices'
       get 'passive' => 'invoice_dashboard#passive_invoices'
     end
 
-    resources :payments
+    resources :payments, only: [:new, :create, :edit, :update, :destroy]
 
   end
 
-  resources :categories do
+  resources :categories, only: [:new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'category_dashboard#index'
     end
@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       get 'dashboard' => 'category_dashboard#show'
       get 'passive_invoices' => 'category_dashboard#passive_invoices'
       get 'active_invoices' => 'category_dashboard#active_invoices'
-      get 'summary' => 'category_dashboard#summary'
     end
   end
 
@@ -43,7 +42,6 @@ Rails.application.routes.draw do
       get 'dashboard' => 'company_dashboard#show'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'
       get 'active_invoices' => 'company_dashboard#active_invoices'
-      get 'summary' => 'company_dashboard#summary'
     end
   end
 
