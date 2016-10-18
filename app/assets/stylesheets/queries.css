@@ -96,18 +96,19 @@
 
 	.app-title h1{
 		font-size:80%;
-		margin-top:7px;
+		margin-top:10px;
 	}
-	.app-logo { height:18px; }
+	.app-logo {
+		height:18px;
+		margin-top:10px;
+	}
 	.log-section {
 		font-size:80%;
-		margin-top:7px;
+		margin-top:10px;
+		text-align:right;
 	}
-	.top-section .company-name.span-1-of-3{ height:10px; }
-	.top-section .span-1-of-3{ width:32.26%; display:block; }
-	.top-section .col{ display:block; }
+	.top-section .span-1-of-2{ width:49.2%; display:inline-block; }
 	.main-nav{ text-align:center; }
 	.main-nav .span-1-of-6{ width:15.33%; }
-
 	.main-nav-background { height: 30px; }
 }

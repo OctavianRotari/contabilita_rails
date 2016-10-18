@@ -15,13 +15,11 @@
 			<div class="top-section-background">
 				<div class="row">
 					<div class="top-section">
-						<div class="col span-1-of-3">
-							<div class="logo-title">
-								<div class="app-logo"><%=image_tag("accounting.png")%></div>
-								<div class="app-title"><%= link_to root_path do %>
-									<h1>Contabilit&#224;</h1>
-								<% end %>
-								</div>
+						<div class="logo-title col span-1-of-3">
+							<div class="app-logo"><%=image_tag("accounting.png")%></div>
+							<div class="app-title"><%= link_to root_path do %>
+								<h1>Contabilit&#224;</h1>
+							<% end %>
 							</div>
 						</div>
 						<div class="company-name col span-1-of-3">
@@ -29,29 +27,25 @@
 								<h2><%= current_user.email %></h2>
 							<% end %>
 						</div>
-						<div class="col span-1-of-3">
+						<div class="log-section col span-1-of-3">
 							<% if user_signed_in? %>
-								<div class="log-section">
-									<%= link_to destroy_user_session_path, :method => :delete do %>
-										<h2>Logout</h2><i class="icon-big ion-log-out"></i>
-									<% end %>
-								</div>
+								<%= link_to destroy_user_session_path, :method => :delete do %>
+									<h2>Logout</h2><i class="icon-big ion-log-out"></i>
+								<% end %>
 							<% else %>
-								<div class="log-section">
-									<div class="log-in">
-										<h2>
-											<%= link_to new_user_session_path do %>
-												<h2>Accedi</h2><i class="icon-big ion-log-in"></i>
-											<% end %>
-										</h2>
-									</div>
-									<div class="log-in">
-										<h2>
-											<%= link_to new_user_registration_path do %>
-												<h2>Registrati</h2><i class="icon-big ion-person-add"></i>
-											<% end %>
-										</h2>
-									</div>
+								<div class="log-in">
+									<h2>
+										<%= link_to new_user_session_path do %>
+											<h2>Accedi</h2><i class="icon-big ion-log-in"></i>
+										<% end %>
+									</h2>
+								</div>
+								<div class="log-in">
+									<h2>
+										<%= link_to new_user_registration_path do %>
+											<h2>Registrati</h2><i class="icon-big ion-person-add"></i>
+										<% end %>
+									</h2>
 								</div>
 							<% end %>
 						</div>
