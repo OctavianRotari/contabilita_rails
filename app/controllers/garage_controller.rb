@@ -8,8 +8,7 @@ class GarageController < ApplicationController
   end
 
   def index
-    @calculator = Calculator.new
-    @garage_invoices = Garage.new(params, current_user)
+    @garage = Garage.new(params, current_user)
   end
 
   def passive_invoices

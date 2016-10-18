@@ -16,4 +16,8 @@ class Category < ActiveRecord::Base
     invoices.where(category_id: id).active
   end
 
+  def calculator
+    Calculator.new
+  end
+
 end

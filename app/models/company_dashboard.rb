@@ -9,6 +9,10 @@ class CompanyDashboard
     @params[:id]
   end
 
+  def calculator
+    Calculator.new
+  end
+
   def company_name
     company.name
   end

@@ -8,8 +8,7 @@ class CategoryDashboardController < ApplicationController
   end
 
   def index
-    @categories = current_user.categories
-    @calculator = Calculator.new
+    @category_dashboard = CategoryDashboard.new(params, current_user)
   end
 
   def show

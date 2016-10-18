@@ -1,0 +1,9 @@
+<tfoot>
+	<tr class="totals">
+		<td>Totale:</td>
+		<td><%= calculator.total_all(not_paid_invoices) %></td>
+		<td class="vat"><%= calculator.total_vat_all(not_paid_invoices) %></td>
+		<td><%= calculator.total_paid_or_collected_all(not_paid_invoices) %></td>
+		<td><%= calculator.total_remaining_all(not_paid_invoices) %></td>
+	</tr>
+</tfoot>

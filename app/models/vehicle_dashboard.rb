@@ -13,6 +13,10 @@ class VehicleDashboard
     @params[:id]
   end
 
+  def calculator
+    Calculator.new
+  end
+
   def passive_invoices
     vehicle_invoices.passive_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
   end

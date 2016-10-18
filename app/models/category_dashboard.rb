@@ -9,6 +9,10 @@ class CategoryDashboard
     @params[:id]
   end
 
+  def categories
+    @current_user.categories
+  end
+
   def calculator
     Calculator.new
   end

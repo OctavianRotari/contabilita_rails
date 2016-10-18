@@ -1,0 +1,18 @@
+<div class="row">
+<div class="garage-totals">
+	<div class="col span-1-of-2">
+		<div class="total">
+			<h3>Totale spese</h3>
+			<h5>Mese corrente: </h5><p id="current_month_costs"><%= garage.calculator.total_costs_current_month(garage.invoices) %></p>
+			<h5>Anno corrente: </h5><p id="current_year_costs"><%= garage.calculator.total_costs_current_year(garage.invoices) %></p>
+		</div>
+	</div>
+	<div class="col span-1-of-2">
+		<div class="total">
+			<h3>Spese per mezzo</h3>
+			<h5>Mese corrente: </h5><p id="current_year_costs_per_vehicle"><%= garage.calculator.total_costs_month_garage_divided(garage.invoices) %></p>
+			<h5>Anno corrente: </h5><p id="current_year_costs_per_vehicle"><%= garage.calculator.total_costs_year_garage_divided(garage.invoices) %></p>
+		</div>
+	</div>
+</div>
+</div>
