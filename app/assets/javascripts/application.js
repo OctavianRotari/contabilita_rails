@@ -18,4 +18,5 @@
 // = require_tree ../../../vendor/assets/javascripts/.
 // = require jquery-ui/datepicker
 // = require_tree .
+// = require scripts
 //
