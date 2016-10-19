@@ -54,6 +54,8 @@
 			</div>
 			<% if user_signed_in? %>
 				<%= render partial: "accounting/main_nav" %>
+			<% else %>
+				<%= render partial: "accounting/introduction_main_nav" %>
 			<% end %>
 		</header>
 		<div class="row">
