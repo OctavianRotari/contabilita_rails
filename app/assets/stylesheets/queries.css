@@ -24,6 +24,11 @@
 	.top-section-background { height:40px; }
 	.company-name h2{ font-size:120%;}
 	.sticky .main-nav {margin-right: 65px;}
+
+	header.white-space{
+		height:105px;
+	}
+
 	.dropdown-content {
 		font-size: 120%;
 		min-width:140px;
@@ -45,7 +50,7 @@
 /*small phones to small tablets from 481px to 767px */
 @media only screen and (max-width: 767px) {
 
-	.top-section-background { height:35px; }
+	.top-section-background { height:40px; }
 	.app-title h1{
 		font-size:90%;
 		margin-top:3px;
@@ -78,6 +83,10 @@
 		text-align:initial;
 	}
 
+	header.white-space{
+		height:100px;
+	}
+
 	.sticky .logo-sticky{ display:none; }
 	.sticky .main-nav {margin-right: auto;}
 	.sticky .main-nav {margin-right: auto;}
@@ -108,7 +117,13 @@
 		text-align:right;
 	}
 	.top-section .span-1-of-2{ width:49.2%; display:inline-block; }
-	.main-nav{ text-align:center; }
+	header.white-space{
+		height:90px;
+	}
+	.main-nav{
+		height:30px;
+		text-align:center;
+	}
 	.main-nav .span-1-of-6{ width:15.33%; }
 	.main-nav-background { height: 30px; }
 }

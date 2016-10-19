@@ -317,8 +317,7 @@ input[type=submit] {
 
 .log-section {
 	padding:3px 10px;
-	text-align:left;
-	float:right;
+	text-align:right;
 }
 
 .log-section h2{
@@ -347,7 +346,7 @@ input[type=submit] {
 .main-nav-background {
 	margin-top:22px;
 	background-color:#27ae60;
-	height: 50px;
+	height: 40px;
 }
 
 .main-nav {
@@ -393,7 +392,6 @@ input[type=submit] {
 
 /*------Sticky navigation------*/
 .sticky .main-nav {
-	margin-top: 10px;
 	margin-bottom: 0px;
 	float:right;
 }
@@ -414,12 +412,11 @@ input[type=submit] {
 }
 
 header.white-space{
-	height:130px;
+	height:115px;
 }
 
 
 .sticky .logo-sticky{
-	margin-top: 15px;
 	display:inline-block;
 }
 
@@ -433,7 +430,6 @@ header.white-space{
 }
 
 .sticky .app-title-sticky {
-	margin-top: 15px;
 	display:inline-block;
 	font-size: 60%;
 }
