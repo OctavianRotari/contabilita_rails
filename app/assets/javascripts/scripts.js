@@ -4,9 +4,13 @@ $(document).ready(function(){
 		if(direction == "down"){
 			$('header').addClass('white-space');
 			$('nav').addClass('sticky');
+			$('.js--main-navigation').addClass('animated fadeIn');
+			$('.js--main-nav').removeClass('animated fadeIn');
 		} else {
 			$('header').removeClass('white-space');
 			$('nav').removeClass('sticky');
+			$('.js--main-navigation').removeClass('animated fadeIn');
+			$('.js--main-nav').addClass('animated fadeIn');
 		}
 	});
 
@@ -28,4 +32,8 @@ $(document).ready(function(){
 			$(".log-section").removeClass("span-1-of-3").addClass("span-1-of-2");
 		}
 	});
+
+	$('.js--dropdown').hover(function(){
+		$('.js--dropdown-content').addClass('animated rollIn');
+	})
 });
