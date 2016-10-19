@@ -29,6 +29,10 @@
 		height:105px;
 	}
 
+	.page-wrap{
+		min-height:75%;
+	}
+
 	.dropdown-content {
 		font-size: 120%;
 		min-width:140px;
@@ -118,7 +122,13 @@
 		margin-top:10px;
 		text-align:right;
 	}
-	.top-section .span-1-of-2{ width:49.2%; display:inline-block; }
+	.top-section .span-1-of-2{ 
+		width:49.2%; 
+		display:inline-block; 
+	}
+
+	.main-nav .span-1-of-4{width:23.8%}
+
 	header.white-space{
 		height:90px;
 	}
