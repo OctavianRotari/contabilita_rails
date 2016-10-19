@@ -20,13 +20,22 @@ body {
 }
 
 .page-wrap{
-	min-height:100%;
+	min-height:70%;
 	margin-bottom: -100px;
 }
 
 .page-wrap:after{
 	content: "";
 	display:block;
+}
+
+.clearfix{zoom:1}
+.clearfix:after{
+	content: '.';
+	clear:both;
+	display: block;
+	height:0;
+	visibility:hidden;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -235,14 +244,13 @@ input[type=submit] {
 
 .dropdown-content {
 	display:none;
-	position:absolute;
 	background-color:#2dca6f;
 	font-size: 130%;
 	min-width:200px;
+	margin-left:-20px;
 	box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
 	padding:12px 16px;
-	z-index:1;
-	animation-duration: 20s;
+	z-index: 9999; /*stacks the element at the top of the others;*/
 }
 
 .dropdown-content.animated{
@@ -255,6 +263,20 @@ input[type=submit] {
 
 .dropdown:hover .dropdown-content {
 	display: block;
+	position:relative;
+}
+
+/*------Sticky navigation------*/
+
+.mobile-nav-icon{
+	float:right;
+	margin-top:-30px;
+	cursor:pointer;
+}
+
+.mobile-nav-icon i{
+	font-size:200%;
+	color:#fff;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -442,14 +464,16 @@ header.white-space{
 
 /*------Error messages------*/
 .error{
+	text-align:center;
 	display:none;
 	opacity:0;
 }
 
 .error.visible {
+	position:relative;
+	z-index:1;
 	opacity:1;
 	display:block;
-	text-align:left;
 	background-color: #e74c3c;
 }
 
@@ -463,14 +487,16 @@ header.white-space{
 /*------Success messages------*/
 
 .success{
+	text-align:center;
 	display:none;
 	opacity:0;
 }
 
 .success.visible {
+	position:relative;
+	z-index:1;
 	opacity:1;
 	display:block;
-	text-align:left;
 	background-color: #2dca6f;
 }
 
@@ -577,9 +603,10 @@ select{
 /*-------------------------------------------------------------------------*/
 
 .summary{
-	background-color:#fdfdf6;
 	margin-bottom:20px;
 	display:inline-block;
+	margin-left:0;
+	margin-right:0;
 }
 
 .title{
@@ -601,11 +628,17 @@ select{
 }
 
 .data-summary{
+
+	background-color:#fdfdf6;
 	margin-left:40px;
 }
 
 .data-summary h4{
 	margin-left:-20px;
+}
+
+.data-summary .titles{
+	display:block;
 }
 
 .data-summary .data{
@@ -638,19 +671,23 @@ select{
 /*INVOICE SHOW*/
 /*-------------------------------------------------------------------------*/
 
+.invoice-show-title,
 .invoice-show{
-	background-color:#fdfdf6;
 	text-align:center;
 	padding: 20px 0;
 }
 
-.invoice-show .icon-small-trash,
-.invoice-show .icon-small-list,
-.invoice-show .icon-small-compose{
+.invoice-show{
+	background-color:#fdfdf6;
+}
+
+.invoice-show-title .icon-small-trash,
+.invoice-show-title .icon-small-list,
+.invoice-show-title .icon-small-compose{
 	margin:0 5px;
 }
 
-.invoice-show h3{
+.invoice-show-title h3{
 	display:inline-block;
 	width:200px;
 }

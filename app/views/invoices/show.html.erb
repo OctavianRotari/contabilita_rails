@@ -1,5 +1,5 @@
 <div class="row">
-<div class="invoice-show">
+<div class="invoice-show-title">
 	<h2><%= @invoice.company.name %></h2>
 	<div class="title">
 		<h3><%= @invoice.reason %></h3>
@@ -10,6 +10,8 @@
 			<i class="ion-cash icon-small-cash"></i>
 		<% end%>
 	</div>
+</div>
+<div class="invoice-show">
 	<div class="row">
 		<div class="col span-1-of-2">
 			<h4>Motivo:</h4>
@@ -56,6 +58,14 @@
 		</div>
 		<div class="col span-1-of-2 data">
 			<p><%=@invoice.date_of_issue.strftime("%d-%m-%Y") %></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col span-1-of-2">
+			<h4>Data scadenza: </h4>
+		</div>
+		<div class="col span-1-of-2 data">
+			<p><%=@invoice.deadline.strftime("%d-%m-%Y") %></p>
 		</div>
 	</div>
 	<div class="row">

@@ -7,7 +7,7 @@
 			<div class="app-title-sticky">
 				<h1 class="app-title" ><%= link_to "Contabilita'", root_path %></h1>
 			</div>
-			<ul class="main-nav col span-1-of-2 js--main-nav">
+			<ul class="main-nav clearfix col span-1-of-2 js--main-nav">
 				<div class="static col span-1-of-6">
 					<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
 				</div>
@@ -31,7 +31,7 @@
 				<div class="dropdown col span-1-of-6 js--dropdown">
 					<span id="aziende">Aziende</span>
 					<div class="dropdown-content js--dropdown-content">
-						<ul>
+						<ul class="clearfix">
 							<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
 							<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
 						</ul>
@@ -40,7 +40,7 @@
 				<div class="dropdown col span-1-of-6 js--dropdown">
 					<span id="mezzi">Mezzi</span>
 					<div class="dropdown-content js--dropdown-content">
-						<ul>
+						<ul class="clearfix">
 							<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
 							<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
 						</ul>
@@ -49,7 +49,7 @@
 				<div class="dropdown col span-1-of-6 js--dropdown">
 					<span id="categorie">Categorie</span>
 					<div class="dropdown-content js--dropdown-content">
-						<ul>
+						<ul class="clearfix">
 							<li><%= link_to 'Visualiza categorie', dashboard_categories_path %></li>
 							<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
 						</ul>

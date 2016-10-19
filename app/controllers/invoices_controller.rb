@@ -55,6 +55,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(params)
     @invoice[:user_id] = current_user[:id]
     if @invoice.save
+      flash[:success] = "Fattura aggiunta"
       redirect_to invoice_path(id: @invoice.id)
     else
       render "new"
