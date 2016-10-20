@@ -7,7 +7,7 @@ describe Company, type: :unit do
       create_category
       company = create_company('Octav')
       create_passive_record(company)
-      expect(Company.invoices(1)).not_to be_empty
+      expect(company.invoices).not_to be_empty
     end
   end
 

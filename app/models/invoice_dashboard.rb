@@ -29,4 +29,9 @@ class InvoiceDashboard
   def category_invoices(id)
     @current_user.invoices.where(category_id: id)
   end
+
+  def calculator
+    Calculator.new
+  end
+
 end

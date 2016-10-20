@@ -96,7 +96,7 @@
 	</div>
 	<%if !@invoice.payments.empty? %>
 		<h2>Pagamenti</h2>
-		<%= render partial: @invoice.payments, locals:{invoice: @invoice} %>
+		<%= render @invoice.payments, invoice: @invoice %>
 	<%end%>
 </div>
 </div>
