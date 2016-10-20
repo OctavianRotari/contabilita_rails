@@ -13,7 +13,23 @@ class VehicleDashboard
     @params[:id]
   end
 
+  def calculator
+    Calculator.new
+  end
+
+  def vehicles
+    @current_user.vehicles
+  end
+
+  def invoices
+    invoices_dashboard.vehicle_invoices(vehicle_id)
+  end
+
   private
+
+  def invoices_dashboard
+    InvoiceDashboard.new(@current_user, @params)
+  end
 
   def vehicle
     @current_user.vehicles.find(vehicle_id)

@@ -59,7 +59,7 @@ class Invoice < ActiveRecord::Base
       if invoice.total != total_payments(invoice.id)
         invoice
       end
-    end
+    end.compact
   end
 
   def self.not_collected
@@ -67,7 +67,7 @@ class Invoice < ActiveRecord::Base
       if invoice.total != total_payments(invoice.id)
         invoice
       end
-    end
+    end.compact
   end
 
   private

@@ -11,5 +11,5 @@
 	<%= link_to dashboard_vehicle_path(vehicle.id), title: "Visualizza fatture." do%>
 		<i class="ion-ios-list icon-small-list"></i>
 	<% end %>
-	<%= render calculator, invoices: invoices_dashboard.vehicle_invoices(vehicle.id) %>
+	<%= render vehicle.calculator, invoices: vehicle.invoices %>
 </div>

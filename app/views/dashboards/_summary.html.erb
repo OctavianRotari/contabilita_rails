@@ -16,10 +16,8 @@
 				<th class="delete-invoice"></th>
 			</tr>
 		</thead>
-		<% if dashboard.invoices.not_paid != [nil] %>
-			<%= render dashboard.invoices.not_paid, calculator: dashboard.calculator %>
-			<%= render partial: "calculators/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_paid } %>
-		<%end%>
+		<%= render dashboard.invoices.not_paid, calculator: dashboard.calculator %>
+		<%= render partial: "calculators/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_paid } %>
 	</table>
 </div>
 <div class="invoices">
@@ -39,10 +37,8 @@
 				<th class="delete-invoice"></th>
 			</tr>
 		</thead>
-		<% if dashboard.invoices.not_collected != [nil] %>
-			<%= render dashboard.invoices.not_collected, calculator: dashboard.calculator  %>
-			<%= render partial: "calculators/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_collected} %>
-		<%end%>
+		<%= render dashboard.invoices.not_collected, calculator: dashboard.calculator  %>
+		<%= render partial: "calculators/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_collected} %>
 	</table>
 </div>
 </div>
