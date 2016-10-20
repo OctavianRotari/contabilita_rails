@@ -18,7 +18,7 @@ class CompanyDashboard
   end
 
   def companies
-    @current_user.companies
+    @current_user.companies.order(name: :asc)
   end
 
   def invoices

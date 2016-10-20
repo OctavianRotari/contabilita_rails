@@ -18,7 +18,7 @@ class VehicleDashboard
   end
 
   def vehicles
-    @current_user.vehicles
+    @current_user.vehicles.order(plate: :asc)
   end
 
   def invoices

@@ -7,7 +7,7 @@ class InvoiceDashboard
 
 
   def invoices
-    @current_user.invoices
+    @current_user.invoices.order(created_at: :desc)
   end
 
   def id

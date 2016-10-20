@@ -35,11 +35,11 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.active
-    where(type_of_invoice: 'attiva')
+    where(type_of_invoice: 'attiva').order(created_at: :desc)
   end
 
   def self.passive
-    where(type_of_invoice: 'passiva')
+    where(type_of_invoice: 'passiva').order(created_at: :desc)
   end
 
   def company_name
