@@ -3,30 +3,16 @@ class InvoiceDashboardController < ApplicationController
 
   def index
     @calculator = Calculator.new
-    @invoice_dashboard = InvoiceDashboard.new(current_user)
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
   end
 
   def active_invoices
     @calculator = Calculator.new
-    @invoices = active(params)
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
   end
 
   def passive_invoices
     @calculator = Calculator.new
-    @invoices = passive(params)
-  end
-
-  private
-
-  def invoice_dashboard
-    InvoiceDashboard.new(current_user)
-  end
-
-  def passive(params)
-    invoice_dashboard.passive(params)
-  end
-
-  def active(params)
-    invoice_dashboard.active(params)
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
   end
 end

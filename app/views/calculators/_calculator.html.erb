@@ -5,7 +5,7 @@
 		<p>da pagare:</p>
 	</div>
 	<div class="col span-3-of-3 data">
-		<p id="passive_amont_to_pay"><%= calculator.total_remaining_all(group.passive_invoices(group.id)) %> </p>
+		<p id="passive_amont_to_pay"><%= calculator.total_remaining_all(invoices.passive) %> </p>
 	</div>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
 		<p>da incassare:</p>
 	</div>
 	<div class="col span-3-of-3 data">
-		<p id="active_amout_to_collect"><%= calculator.total_remaining_all(group.active_invoices(group.id)) %></p>
+		<p id="active_amout_to_collect"><%= calculator.total_remaining_all(invoices.active) %></p>
 	</div>
 </div>
 <div class="row">
@@ -23,7 +23,7 @@
 		<p>Mese corrente:</p>
 	</div>
 	<div class="col span-3-of-3 data">
-		<p id="current_month_costs"><%= calculator.total_costs_current_month_group(group) %></p>
+		<p id="current_month_costs"><%= calculator.total_costs_current_month(invoices) %></p>
 	</div>
 </div>
 <div class="row">
@@ -31,7 +31,7 @@
 		<p>Anno corrente: </p>
 	</div>
 	<div class="col span-3-of-3 data">
-		<p id="current_year_costs"><%= calculator.total_costs_current_year_group(group) %></p>
+		<p id="current_year_costs"><%= calculator.total_costs_current_year(invoices) %></p>
 	</div>
 </div>
 </div>

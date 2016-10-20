@@ -8,11 +8,12 @@ class GarageController < ApplicationController
   end
 
   def index
-    @garage = Garage.new(params, current_user)
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
+    @calculator = Calculator.new
   end
 
   def passive_invoices
-    @invoices = garage_invoices.passive_invoices_grouped
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
     @calculator = Calculator.new
     respond_to do |format|
       format.js
@@ -20,16 +21,10 @@ class GarageController < ApplicationController
   end
 
   def active_invoices
-    @invoices = garage_invoices.active_invoices_grouped
+    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
     @calculator = Calculator.new
     respond_to do |format|
       format.js
     end
-  end
-
-  private
-
-  def garage_invoices
-    Garage.new(params, current_user)
   end
 end

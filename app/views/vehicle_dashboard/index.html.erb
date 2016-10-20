@@ -1,1 +1,3 @@
-<%= render @vehicles %>
+<div class="vehicles">
+<%= render partial: @vehicles, locals: { calculator: @calculator, invoices_dashboard: @invoices_dashboard } %>
+</div>

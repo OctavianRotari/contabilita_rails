@@ -9,6 +9,6 @@
 </div>
 </div>
 <div id="invoices">
-	<%= render 'garage_summary'%>
+	<%= render partial: "garage/summary", locals:{ invoices: @invoices_dashboard.garage_invoices, calculator: @calculator } %>
 </div>
 <br>

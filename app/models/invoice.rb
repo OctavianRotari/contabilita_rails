@@ -18,6 +18,14 @@ class Invoice < ActiveRecord::Base
     find(params_id).payments
   end
 
+  def self.active_by_year_and_month(params)
+    active_ord_by_year(params).group_by { |t| t.date_of_issue.beginning_of_month }
+  end
+
+  def self.passive_by_year_and_month(params)
+    passive_ord_by_year(params).group_by { |t| t.date_of_issue.beginning_of_month }
+  end
+
   def self.active_ord_by_year(params)
     order_by_year(params).active
   end
@@ -46,9 +54,9 @@ class Invoice < ActiveRecord::Base
     passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_year, Time.now.end_of_year )
   end
 
-  def self.not_paid
+  def self.not_paid(invoices)
     not_paid_invoices = []
-    passive.each do |invoice|
+    invoices.passive.each do |invoice|
       if invoice.total != total_payments(invoice.id)
         not_paid_invoices.push(invoice)
       end
@@ -56,9 +64,9 @@ class Invoice < ActiveRecord::Base
     not_paid_invoices
   end
 
-  def self.not_collected
+  def self.not_collected(invoices)
     not_collected_invoices = []
-    active.each do |invoice|
+    invoices.active.each do |invoice|
       if invoice.total != total_payments(invoice.id)
         not_collected_invoices.push(invoice)
       end

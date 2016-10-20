@@ -7,7 +7,7 @@
 </div>
 <div class="row">
 	<div class="invoices">
-		<% @invoices.each do |month, invoices| %>
+		<% invoices_dashboard.passive_by_year_and_month(params).each do |month, invoices| %>
 			<h2><%= month.strftime('%B') %></h2>
 			<table>
 				<thead>
@@ -25,23 +25,15 @@
 						<th class="delete-invoice"></th>
 					</tr>
 				</thead>
-				<tfoot>
-					<tr class="totals">
-						<td>Totale:</td>
-						<td><%= @calculator.total_all(invoices) %></td>
-						<td class="vat"><%= @calculator.total_vat_all(invoices) %></td>
-						<td class="paid"><%= @calculator.total_paid_or_collected_all(invoices) %></td>
-						<td><%= @calculator.total_remaining_all(invoices) %></td>
-					</tr>
-				</tfoot>
+				<%= render partial: "calculators/totals", locals: {calculator: calculator, invoices:invoices} %>
 				<tbody>
 					<% for invoice in invoices %>
 						<tr>
 							<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
 							<td><%= invoice.total %></td>
 							<td class="vat"><%= invoice.total_vat %></td>
-							<td class="paid"><%= @calculator.paid_per(invoice) %></td>
-							<td><%= @calculator.to_pay_per(invoice) %></td>
+							<td class="paid"><%= calculator.paid_per(invoice) %></td>
+							<td><%= calculator.to_pay_per(invoice) %></td>
 							<td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
 							<td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
 							<td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>

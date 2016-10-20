@@ -3,4 +3,4 @@
 	<h2>Fatture passive</h2>
 </div>
 </div>
-<%= render partial: 'invoices/passive_invoices' %>
+<%= render partial: 'invoices/passive_invoices', locals: {invoices_dashboard: @invoices_dashboard.invoices, calculator: @calculator } %>

@@ -1,45 +1,36 @@
 class InvoiceDashboard
 
-  def initialize(current_user)
+  def initialize(current_user, params)
     @current_user = current_user
+    @params = params
   end
 
-  def active(params)
-    active_invoices(params).group_by { |t| t.date_of_issue.beginning_of_month }
+  def passive
+    passive_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
-  def passive(params)
-    passive_invoices(params).group_by { |t| t.date_of_issue.beginning_of_month }
+  def invoices
+    @current_user.invoices
   end
 
-  def not_paid_invoices
-    not_paid_invoices = []
-    passive_invoices = all_invoices.passive
-    passive_invoices.each do |invoice|
-      total_paid = 0
-      invoice.payments.each do |payment|
-        total_paid = payment.paid
-      end
-      if invoice.total != total_paid
-        not_paid_invoices.push(invoice)
-      end
-    end
-    not_paid_invoices
+  def id
+    @params[:id]
   end
 
-  def not_collected_invoices
-    not_collected_invoices = []
-    active_invoices = all_invoices.active
-    active_invoices.each do |invoice|
-      total_paid = 0
-      invoice.payments.each do |payment|
-        total_paid = payment.paid
-      end
-      if invoice.total != total_paid
-        not_collected_invoices.push(invoice)
-      end
-    end
-    not_collected_invoices
+  def garage_invoices
+    @current_user.invoices.where(at_the_expense_of: "Officina")
+  end
+
+  def company_invoices(id)
+    @current_user.invoices.where(company_id: id)
+  end
+
+  def vehicle_invoices(id)
+    @current_user.invoices.where(vehicle_id: id)
+  end
+
+  def category_invoices(id)
+    @current_user.invoices.where(category_id: id)
   end
 
   private
