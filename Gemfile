@@ -24,6 +24,7 @@ group :development do
   gem 'traceroute'
   gem 'spring'
   gem "rails_best_practices"
+  gem "rubycritic", :require => false
 end
 
 group :development, :test do

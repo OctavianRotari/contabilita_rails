@@ -46,6 +46,10 @@ class Invoice < ActiveRecord::Base
     company.name
   end
 
+  def vehicle_plate
+    vehicle.plate
+  end
+
   def self.current_month_passive_invoices
     passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month )
   end

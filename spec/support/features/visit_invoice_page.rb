@@ -16,5 +16,4 @@ module Features
     find('#fatture').click
     click_link 'Aggiungi fattura'
   end
-
 end

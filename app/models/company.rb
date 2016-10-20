@@ -14,4 +14,8 @@ class Company < ActiveRecord::Base
     Calculator.new
   end
 
+  def category_name
+    category.category
+  end
+
 end
