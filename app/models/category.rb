@@ -8,14 +8,6 @@ class Category < ActiveRecord::Base
     find(category_id).invoices
   end
 
-  def passive_invoices(id)
-    invoices.where(category_id: id).passive
-  end
-
-  def active_invoices(id)
-    invoices.where(category_id: id).active
-  end
-
   def calculator
     Calculator.new
   end

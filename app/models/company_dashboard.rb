@@ -18,8 +18,4 @@ class CompanyDashboard
     @current_user.companies.find(company_id)
   end
 
-  def company_invoices
-    company.invoices
-  end
-
 end

@@ -66,8 +66,4 @@ class Calculator < ActiveRecord::Base
     Vehicle.count
   end
 
-  def class_name_lowercase(group)
-    group.class.name.downcase
-  end
-
 end

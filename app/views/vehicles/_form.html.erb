@@ -1,10 +1,10 @@
 <div class="row">
 <div class="new">
-	<%= form_for @vehicle do |form| %>
-		<% if @vehicle.errors.any? %>
+	<%= form_for vehicle do |form| %>
+		<% if vehicle.errors.any? %>
 			A causa di questi errori non e' stato possibile creare il veicolo:
 			<ul>
-				<% @vehicle .errors.messages.each do |name, error| %>
+				<% vehicle .errors.messages.each do |name, error| %>
 					<li><%= error[0] %></li>
 				<% end %>
 			</ul>

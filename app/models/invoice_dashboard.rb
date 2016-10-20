@@ -5,9 +5,6 @@ class InvoiceDashboard
     @params = params
   end
 
-  def passive
-    passive_ord_by_year(@params).group_by { |t| t.date_of_issue.beginning_of_month }
-  end
 
   def invoices
     @current_user.invoices
@@ -32,19 +29,4 @@ class InvoiceDashboard
   def category_invoices(id)
     @current_user.invoices.where(category_id: id)
   end
-
-  private
-
-  def all_invoices
-    @current_user.invoices
-  end
-
-  def active_invoices(params)
-    all_invoices.active_ord_by_year(params)
-  end
-
-  def passive_invoices(params)
-    all_invoices.passive_ord_by_year(params)
-  end
-
 end
