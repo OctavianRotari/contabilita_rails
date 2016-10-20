@@ -54,24 +54,20 @@ class Invoice < ActiveRecord::Base
     passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_year, Time.now.end_of_year )
   end
 
-  def self.not_paid(invoices)
-    not_paid_invoices = []
-    invoices.passive.each do |invoice|
+  def self.not_paid
+    passive.collect do |invoice|
       if invoice.total != total_payments(invoice.id)
-        not_paid_invoices.push(invoice)
+        invoice
       end
     end
-    not_paid_invoices
   end
 
-  def self.not_collected(invoices)
-    not_collected_invoices = []
-    invoices.active.each do |invoice|
+  def self.not_collected
+    active.collect do |invoice|
       if invoice.total != total_payments(invoice.id)
-        not_collected_invoices.push(invoice)
+        invoice
       end
     end
-    not_collected_invoices
   end
 
   private

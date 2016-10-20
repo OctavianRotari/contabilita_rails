@@ -8,15 +8,11 @@ class CompanyDashboardController < ApplicationController
   end
 
   def index
-    @calculator = Calculator.new
-    @companies = current_user.companies
-    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
+    @company_dashboard = CompanyDashboard.new(current_user, params)
   end
 
   def show
-    @calculator = Calculator.new
-    @company_dashboard = CompanyDashboard.new(params, current_user)
-    @invoices_dashboard = InvoiceDashboard.new(current_user, params)
+    @company_dashboard = CompanyDashboard.new(current_user, params)
   end
 
 

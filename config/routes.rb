@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard' => 'category_dashboard#index'
     end
-
     member do
       get 'dashboard' => 'category_dashboard#show'
       get 'passive_invoices' => 'category_dashboard#passive_invoices'
@@ -37,7 +36,6 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard' => 'company_dashboard#index'
     end
-
     member do
       get 'dashboard' => 'company_dashboard#show'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'

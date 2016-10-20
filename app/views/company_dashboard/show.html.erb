@@ -7,7 +7,7 @@
 		<h4><%= link_to 'Attive', active_invoices_company_path(@company_dashboard.company_id, year_param: Time.now.year), remote: true %></h4>
 	</div>
 	<div id="invoices">
-		<%= render partial: "dashboards/summary", locals:{ invoices: @invoices_dashboard.company_invoices(@company_dashboard.company_id), calculator: @calculator } %>
+		<%= render "dashboards/summary",  dashboard: @company_dashboard %>
 	</div>
 </div>
 </div>

@@ -9,11 +9,27 @@ class CategoryDashboard
     @params[:id]
   end
 
+  def categories
+    @current_user.categories
+  end
+
+  def calculator
+    Calculator.new
+  end
+
+  def invoices
+    invoices_dashboard.category_invoices(category_id)
+  end
+
   def category_name
     category.category
   end
 
   private
+
+  def invoices_dashboard
+    InvoiceDashboard.new(@current_user, @params)
+  end
 
   def category
     @current_user.categories.find(category_id)

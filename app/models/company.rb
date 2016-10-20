@@ -10,8 +10,8 @@ class Company < ActiveRecord::Base
   validates :number, presence: {message: "Inserire numero telefonico dell'azienda"}
   validates :category_id, presence: {message: "Selezionare categoria dell'azienda"}
 
-  def self.invoices params_id
-    find(params_id).invoices
+  def calculator
+    Calculator.new
   end
 
 end
