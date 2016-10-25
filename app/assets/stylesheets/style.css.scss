@@ -140,17 +140,17 @@ a:active {
 	transition: color 0.2s;
 }
 
-.icon-small-trash:hover, 
+.icon-small-trash:hover,
 .icon-small-trash:active {
 	color:#e74c3c;
 }
 
-.icon-small-compose:hover, 
+.icon-small-compose:hover,
 .icon-small-compose:active {
 	color:#3f39f1;
 }
 
-.icon-small-list:hover, 
+.icon-small-list:hover,
 .icon-small-list:active {
 	color:#145b32;
 }
@@ -162,7 +162,8 @@ a:active {
 
 /*------Btn------*/
 
-input[type=submit] {
+input[type=submit],
+.btn {
 	display: inline-block;
 	padding: 10px 30px;
 	margin:30px;
@@ -174,6 +175,19 @@ input[type=submit] {
 	color: #2c3e50;
 	cursor:pointer;
 }
+
+.btn-presentation:link,
+.btn-presentation:visited,{
+	padding-top:1px;
+	color: #fdfdf6;
+	border-bottom: 1px solid #fdfdf6;
+}
+
+.btn-presentation:hover,
+.btn-presentation:active,{
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
 
 /*------index------*/
 
@@ -510,12 +524,38 @@ header.white-space{
 /*Introduction page*/
 /*-------------------------------------------------------------------------*/
 
-.main-section {
+
+.introduction {
+	margin: 0 0;
+	height:calc(100vh - 55px);
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("vehicle-vintage-old-truck.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
-	height: 100vh;
+}
+
+
+.hero-text-box {
+	padding:20px 20px;
+	background-color: rgba(255, 255, 255, 0.3);
+	text-transform: uppercase;
+	position: absolute; /*it doesnt depend on other factors*/
+	width: 1140px; /*same with as the whole image but absolutelly positioned*/
+	top: 30%;
+	left: 50%;
+	text-height:100;
+	transform: translate(-50%, -50%); /*it translate the object half of its width and heigh left and top*/
+	color: #fff;
+	font-size:80%;
+}
+
+.features{
+	margin: 0 0;
+	height:calc(100vh - 55px);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("accounting.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 }
 
 /*-------------------------------------------------------------------------*/

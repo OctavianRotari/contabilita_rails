@@ -11,64 +11,58 @@
 		<%= render 'favicon' %>
 	</head>
 	<body>
-		<div class="main-section">
-			<header>
-				<div class="top-section-background">
-					<div class="row">
-						<div class="top-section">
-							<div class="logo-title col span-1-of-3">
-								<div class="app-logo"><%=image_tag("accounting.png")%></div>
-								<div class="app-title"><%= link_to root_path do %>
-									<h1>Contabilit&#224;</h1>
+		<header>
+			<div class="top-section-background">
+				<div class="row">
+					<div class="top-section">
+						<div class="logo-title col span-1-of-3">
+							<div class="app-logo"><%=image_tag("accounting.png")%></div>
+							<div class="app-title"><%= link_to root_path do %>
+								<h1>Contabilit&#224;</h1>
+							<% end %>
+							</div>
+						</div>
+						<div class="company-name col span-1-of-3">
+							<% if user_signed_in? %>
+								<h2><%= current_user.email %></h2>
+							<% end %>
+						</div>
+						<div class="log-section col span-1-of-3">
+							<% if user_signed_in? %>
+								<%= link_to destroy_user_session_path, :method => :delete do %>
+									<h2>Logout</h2><i class="icon-big ion-log-out"></i>
 								<% end %>
+							<% else %>
+								<div class="log-in">
+									<h2>
+										<%= link_to new_user_session_path do %>
+											<h2>Accedi</h2><i class="icon-big ion-log-in"></i>
+										<% end %>
+									</h2>
 								</div>
-							</div>
-							<div class="company-name col span-1-of-3">
-								<% if user_signed_in? %>
-									<h2><%= current_user.email %></h2>
-								<% end %>
-							</div>
-							<div class="log-section col span-1-of-3">
-								<% if user_signed_in? %>
-									<%= link_to destroy_user_session_path, :method => :delete do %>
-										<h2>Logout</h2><i class="icon-big ion-log-out"></i>
-									<% end %>
-								<% else %>
-									<div class="log-in">
-										<h2>
-											<%= link_to new_user_session_path do %>
-												<h2>Accedi</h2><i class="icon-big ion-log-in"></i>
-											<% end %>
-										</h2>
-									</div>
-									<div class="log-in">
-										<h2>
-											<%= link_to new_user_registration_path do %>
-												<h2>Registrati</h2><i class="icon-big ion-person-add"></i>
-											<% end %>
-										</h2>
-									</div>
-								<% end %>
-							</div>
+								<div class="log-in">
+									<h2>
+										<%= link_to new_user_registration_path do %>
+											<h2>Registrati</h2><i class="icon-big ion-person-add"></i>
+										<% end %>
+									</h2>
+								</div>
+							<% end %>
 						</div>
 					</div>
 				</div>
-				<% if user_signed_in? %>
-					<%= render partial: "accounting/main_nav" %>
-				<% end %>
-			</header>
-			<div class="row">
-				<%= display_errors(flash) %>
 			</div>
-			<div id="page-wrap" class="row page-wrap">
+			<% if user_signed_in? %>
+				<%= render partial: "accounting/main_nav" %>
+			<% end %>
+		</header>
+		<div class="main-section">
+			<%#<div class="row">%>
+				<%= display_errors(flash) %>
+			<%#</div>%>
+			<div id="page-wrap" class="page-wrap">
 				<%= yield %>
 			</div>
-			<%#<% if user_signed_in? %>%>
-				<%#<footer>%>
-					<%#<div class="site-footer">%>
-					<%#</div>%>
-				<%#</footer>%>
-			<%#<% end %>%>
 		</div>
 		</div>
 	</body>

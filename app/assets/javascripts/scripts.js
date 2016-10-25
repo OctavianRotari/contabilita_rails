@@ -54,7 +54,4 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.js--dropdown').hover(function(){
-		$('.js--dropdown-content').addClass('animated rollIn');
-	})
 });
