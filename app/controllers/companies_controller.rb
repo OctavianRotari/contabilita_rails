@@ -26,10 +26,10 @@ class CompaniesController < ApplicationController
     @company  = Company.find(params[:id])
     @category = Category.all
     if @company.update(company_params)
-      flash[:success] = 'La compania e stata aggiornata'
+      flash[:success] = 'Azienda aggiornata'
       redirect_to dashboard_companies_path
     else
-      render "edit"
+      render 'edit'
     end
   end
 

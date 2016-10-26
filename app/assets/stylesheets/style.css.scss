@@ -18,6 +18,10 @@ body {
 	text-rendering:optimizeLegibility;
 }
 
+.main-section{
+	margin-top:20px;
+}
+
 .page-wrap{
 	min-height:70%;
 	margin-bottom: -100px;
@@ -185,7 +189,8 @@ input[type=submit],
 
 .btn-presentation:hover,
 .btn-presentation:active,{
-	background-color: rgba(255, 255, 255, 0.3);
+	border-radius:3px;
+	background-color: rgba(104, 138, 172, 0.59);;
 }
 
 
@@ -525,8 +530,8 @@ header.white-space{
 /*-------------------------------------------------------------------------*/
 
 
-.introduction {
-	margin: 0 0;
+.section-introduction {
+	margin: -20px 0 0 0;
 	height:calc(100vh - 55px);
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("vehicle-vintage-old-truck.jpg");
 	background-attachment: fixed;
@@ -535,7 +540,7 @@ header.white-space{
 }
 
 
-.hero-text-box {
+.section-introduction .hero-text-box {
 	padding:20px 20px;
 	background-color: rgba(255, 255, 255, 0.3);
 	text-transform: uppercase;
@@ -549,14 +554,51 @@ header.white-space{
 	font-size:80%;
 }
 
-.features{
-	margin: 0 0;
-	height:calc(100vh - 55px);
+.section-features{
+	height:100vh;
+	background-color: #fdfdf6;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("accounting.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
 }
+
+.features{
+	border-radius: 5px;
+	margin:5% 20px 0 20px;
+	padding:20px 20px;
+	background-color:rgba(104, 138, 172, 0.59);
+}
+
+.features i{
+	color:#fdfdf6;
+	font-size:150%;
+}
+
+.features h3{
+	color:#fdfdf6;
+	display:inline-block;
+	font-size:100%;
+	text-align:center;
+}
+
+.features h3:after{
+	background-color:#fdfdf6;
+}
+
+.text-box{
+	border-radius: 5px;
+	padding:10px 10px;
+	background-color:#fdfdf6;
+	box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/*margin: 0 0;*/
+/*height:100vh;*/
+/*background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("accounting.jpg");*/
+/*background-attachment: fixed;*/
+/*background-size: cover;*/
+/*background-position: center;*/
 
 /*-------------------------------------------------------------------------*/
 /*REGISTRATION*/
