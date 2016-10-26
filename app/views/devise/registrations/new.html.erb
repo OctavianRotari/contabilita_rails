@@ -21,10 +21,10 @@
 					<%= f.label :password %>
 				</div>
 				<div class="col span-2-of-3">
-					<% if @minimum_password_length %>
-						<em>(<%= @minimum_password_length %> numero minimo di caratteri)</em>
-					<% end %><br />
 					<%= f.password_field :password, autocomplete: "off" %>
+					<% if @minimum_password_length %>
+						<em>(<%= @minimum_password_length %> caratteri minimo)</em>
+					<% end %><br />
 				</div>
 			</div>
 			<div class="row">

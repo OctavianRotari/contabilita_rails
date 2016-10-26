@@ -533,7 +533,7 @@ header.white-space{
 .section-introduction {
 	margin: -20px 0 0 0;
 	height:calc(100vh - 55px);
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("vehicle-vintage-old-truck.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("desk.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
@@ -541,23 +541,24 @@ header.white-space{
 
 
 .section-introduction .hero-text-box {
+	border-radius: 5px;
 	padding:20px 20px;
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(104, 138, 172, 0.59);
 	text-transform: uppercase;
 	position: absolute; /*it doesnt depend on other factors*/
 	width: 1140px; /*same with as the whole image but absolutelly positioned*/
-	top: 30%;
+	top: 70%;
 	left: 50%;
 	text-height:100;
 	transform: translate(-50%, -50%); /*it translate the object half of its width and heigh left and top*/
-	color: #fff;
+	color: #2c3e50;
 	font-size:80%;
 }
 
 .section-features{
 	height:100vh;
 	background-color: #fdfdf6;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("accounting.jpg");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("calculator.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
@@ -565,7 +566,7 @@ header.white-space{
 
 .features{
 	border-radius: 5px;
-	margin:5% 20px 0 20px;
+	margin:10% 20px 0 20px;
 	padding:20px 20px;
 	background-color:rgba(104, 138, 172, 0.59);
 }
