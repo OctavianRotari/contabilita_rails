@@ -6,11 +6,11 @@
 			la registrazione <br> delle fatture
 		</h2>
 	</div>
-	<a class="btn btn-presentation" href="#">Registrati</a>
-	<a class="btn btn-presentation" href="#">Introduzione</a>
+	<%= link_to "Registrati", new_user_registration_path, class: "btn btn-presentation"%>
+	<a class="btn btn-presentation  js--scroll-to-start" href="#">Funzionalita</a>
 </div>
 </section>
-<section class="section-features">
+<section class="section-features js--section-features">
 	<div class="row">
 		<div class="features">
 			<div class="row">
@@ -18,7 +18,7 @@
 					<i class="ion-document-text icon-big"></i>
 					<h3>Home</h3>
 					<div class="text-box">
-						<p>Si visualizzano le fatture non pagate, non incassate e la somma che e' gia stata pagata ed incassata.<br><br></p>
+						<p>Si visualizzano le fatture non pagate, non incassate e la somma che e' gia' stata pagata o incassata.<br><br></p>
 					</div>
 				</div>
 				<div class="col span-1-of-3">

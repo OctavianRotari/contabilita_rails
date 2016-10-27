@@ -549,15 +549,13 @@ header.white-space{
 	width: 1140px; /*same with as the whole image but absolutelly positioned*/
 	top: 70%;
 	left: 50%;
-	text-height:100;
 	transform: translate(-50%, -50%); /*it translate the object half of its width and heigh left and top*/
-	color: #2c3e50;
 	font-size:80%;
+	font-weight:300;
 }
 
 .section-features{
 	height:100vh;
-	background-color: #fdfdf6;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("calculator.jpg");
 	background-attachment: fixed;
 	background-size: cover;
@@ -574,32 +572,30 @@ header.white-space{
 .features i{
 	color:#fdfdf6;
 	font-size:150%;
+	margin-bottom:-50px;
 }
 
 .features h3{
 	color:#fdfdf6;
 	display:inline-block;
 	font-size:100%;
-	text-align:center;
+	font-weight:300;
+	margin-left:20px;
 }
 
 .features h3:after{
+	margin-top:10px;
 	background-color:#fdfdf6;
 }
 
 .text-box{
+	font-weight:300;
+	color: #fdfdf6;
 	border-radius: 5px;
 	padding:10px 10px;
-	background-color:#fdfdf6;
+	background-color:rgba(170, 188, 207, 0.7);
 	box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-
-/*margin: 0 0;*/
-/*height:100vh;*/
-/*background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("accounting.jpg");*/
-/*background-attachment: fixed;*/
-/*background-size: cover;*/
-/*background-position: center;*/
 
 /*-------------------------------------------------------------------------*/
 /*REGISTRATION*/
