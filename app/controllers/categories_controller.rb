@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     if @category.update(category_params)
       flash[:success] = 'Categoria modificata'
-      redirect_to dashboard_companies_path
+      redirect_to dashboard_categories_path
     else
       render "edit"
     end
@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:category)
+    params.require(:category).permit(:category, :gas_station)
   end
 
 end

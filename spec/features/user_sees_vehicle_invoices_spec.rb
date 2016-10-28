@@ -7,7 +7,7 @@ feature 'user' do
     create_passive_record('Bezzi',"ER354BS")
     company = Company.first
     create_passive_invoice_different_date(company, "2016-08-21 10:02:38")
-    visit 'companies/dashboard'
+    visit 'vehicles/dashboard'
     expect(page).to have_css 'p#current_month_costs', text: '110'
   end
 
@@ -16,7 +16,7 @@ feature 'user' do
     create_passive_record('Bezzi',"ER354BS")
     company = Company.first
     create_passive_invoice_different_date(company, "2015-08-21 10:02:38")
-    visit 'companies/dashboard'
+    visit 'vehicles/dashboard'
     expect(page).to have_css 'p#current_year_costs', text: '110'
   end
 end

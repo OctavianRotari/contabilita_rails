@@ -9,13 +9,14 @@ module Features
 
   def vehicle(plate = 'ER341GF')
     Vehicle.create(plate: plate,
-                   type_of_vehicle: 'trattore', 
+                   type_of_vehicle: 'trattore',
                    user_id: 1)
   end
 
-  def category(category = 'officina')
-    Category.create(category: category, 
-                    user_id: 1)
+  def category(category = 'officina', gas_station = false)
+    Category.create(category: category,
+                    user_id: 1,
+                    gas_station: gas_station)
   end
 
   def create_active_invoice(parent, reason = 'Manutenzione', vehicle_id = 1)

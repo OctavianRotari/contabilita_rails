@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   belongs_to :user
   has_many :invoices, dependent: :destroy
+  has_many :fuel_receipts
 
   belongs_to :category
 
@@ -12,6 +13,10 @@ class Company < ActiveRecord::Base
 
   def calculator
     Calculator.new
+  end
+
+  def self.gas_stations
+    where(category_id: Category.gas_station_id)
   end
 
   def category_name

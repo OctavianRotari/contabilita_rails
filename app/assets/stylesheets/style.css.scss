@@ -488,6 +488,7 @@ header.white-space{
 }
 
 .error.visible {
+	margin-top:-20px;
 	position:relative;
 	z-index:1;
 	opacity:1;
@@ -511,6 +512,7 @@ header.white-space{
 }
 
 .success.visible {
+	margin-top:-20px;
 	position:relative;
 	z-index:1;
 	opacity:1;
@@ -657,6 +659,15 @@ header.white-space{
 .new{
 	width:60%;
 	margin:0 auto;
+}
+
+.new .gas-station{
+	padding:20px 0;
+	text-align:center;
+}
+
+.new #category_gas_station{
+	margin-right:10px;
 }
 
 input[type=text],

@@ -17,6 +17,14 @@
 				<%= form.text_field :category, require: true %>
 			</div>
 		</div>
+		<% unless gas_station? %>
+			<div class="row">
+				<div class="gas-station col span-3-of-3">
+					<%= form.check_box(:gas_station)  %>
+					<%= form.label 'Selezionare la casella se la categoria indica i benzinaii' %>
+				</div>
+			</div>
+		<% end %>
 		<div class="row">
 			<div class="col span-3-of-3 submit">
 				<%= form.submit "Conferma", class: "btn btn-big" %>

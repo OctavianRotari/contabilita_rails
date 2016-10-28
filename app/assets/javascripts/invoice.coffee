@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 	$('#invoice_date_of_issue, #invoice_deadline, #invoice_payment_date').datepicker
-		dateFormat: 'yy-mm-dd'
+		dateFormat: 'dd-mm-yy'
 
 	$('form').on 'click', '.remove_fields', (event) ->
 		$(this).prev('input[type=hidden]').val('1')

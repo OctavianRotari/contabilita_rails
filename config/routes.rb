@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :fuel_receipts
+
   resources :invoices, only: [:show, :new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'invoice_dashboard#index'
