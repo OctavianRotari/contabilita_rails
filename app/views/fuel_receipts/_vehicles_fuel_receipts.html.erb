@@ -4,7 +4,7 @@
 		<p id="passive_amont_to_pay"><%= vehicle.plate %> </p>
 	</div>
 	<div class="col span-1-of-2 data">
-		<p id="passive_amont_to_pay"><%= fuel_receipts_calculator.total_per_vehicle(vehicle.fuel_receipts) %> $</p>
+		<p id="total_fuel_receipts_vehicle"><%= fuel_receipts_calculator.total(vehicle.fuel_receipts.company(company_id)) %> $</p>
 	</div>
 </div>
 </div>

@@ -4,4 +4,7 @@ class FuelReceipt < ActiveRecord::Base
   belongs_to :users
   belongs_to :vehicle
 
+  def self.company(company_id)
+    where(company_id: company_id)
+  end
 end

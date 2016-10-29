@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     end
 
     resources :payments, only: [:new, :create, :edit, :update, :destroy]
-
   end
 
   resources :categories, only: [:new, :create, :edit, :update, :destroy] do
@@ -40,11 +39,11 @@ Rails.application.routes.draw do
     end
     member do
       get 'dashboard' => 'company_dashboard#show'
+      get 'fuel_receipts' => 'fuel_receipt_dashboard#company_receipts'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'
       get 'active_invoices' => 'company_dashboard#active_invoices'
     end
   end
-
 
   resources :vehicles do
     collection do
@@ -52,6 +51,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'dashboard' => 'vehicle_dashboard#show'
+      get 'fuel_receipts' => 'fuel_receipt_dashboard#vehicle_receipts'
       get 'passive_invoices' => 'vehicle_dashboard#passive_invoices'
       get 'active_invoices' => 'vehicle_dashboard#active_invoices'
     end
