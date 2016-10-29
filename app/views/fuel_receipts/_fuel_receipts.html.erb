@@ -1,18 +1,21 @@
 <div class="row">
 <div class="fuel_receipts">
 	<h3 class="title">Scontrini gasolio</h3>
-	<table>
-		<thead>
-			<tr>
-				<th>Benzinaio</th>
-				<th>Targa</th>
-				<th>Data</th>
-				<th>Litri</th>
-				<th>Total</th>
-				<th></th>
-			</tr>
-		</thead>
-		<%= render fuel_receipts %>
-		<%#<%= render partial: "calculators/totals", locals: {calculator: dashboard.calculator, fuel_receipts: dashboard.invoices.not_paid } %>
-	</table>
+	<% fuel_receipts.each  do |month, fuel_receipts| %>
+		<h2 class="month"><%= month.strftime('%B') %></h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Benzinaio</th>
+					<th>Targa</th>
+					<th>Data</th>
+					<th>Litri</th>
+					<th>Total</th>
+					<th></th>
+				</tr>
+			</thea
+			<%= render fuel_receipts %>
+			<%= render partial: "fuel_receipts_total", locals: {calculator: fuel_receipts_calculator, fuel_receipts: fuel_receipts }%>
+		</table>
+	<% end %>
 </div>

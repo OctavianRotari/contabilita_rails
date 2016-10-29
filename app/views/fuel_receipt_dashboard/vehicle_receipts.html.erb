@@ -1,0 +1,8 @@
+<div class="row">
+<div class="index">
+	<h2><%= @fuel_receipts_dashboard.vehicle.plate %></h2>
+	<div id="fuel_receipts">
+		<%= render partial: "fuel_receipts/fuel_receipts",  locals: { fuel_receipts: @fuel_receipts_dashboard.vehicle_fuel_receipts, fuel_receipts_calculator: @fuel_receipts_calculator } %>
+	</div>
+</div>
+</div>

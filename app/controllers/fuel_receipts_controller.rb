@@ -18,6 +18,17 @@ class FuelReceiptsController < ApplicationController
     @vehicles = current_user.vehicles
   end
 
+  def destroy
+    fuel_receipt = FuelReceipt.find(params[:id])
+    fuel_receipt.destroy
+    flash[:success] = 'Scontrino elliminata'
+    if current_user.fuel_receipts.count > 0
+        redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
+  end
+
   def create
     @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles

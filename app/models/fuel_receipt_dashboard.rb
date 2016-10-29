@@ -12,8 +12,16 @@ class FuelReceiptDashboard
     Company.find(id)
   end
 
+  def vehicle
+    Vehicle.find(id)
+  end
+
+  def vehicle_fuel_receipts
+    vehicle.fuel_receipts.group_by { |t| t.date_of_issue.beginning_of_month }
+  end
+
   def company_fuel_receipts
-    company.fuel_receipts
+    company.fuel_receipts.group_by { |t| t.date_of_issue.beginning_of_month }
   end
 
   def gas_station_companies

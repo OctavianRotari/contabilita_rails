@@ -2,7 +2,7 @@
 <div class="index">
 	<h2><%= @fuel_receipts_dashboard.company.name %></h2>
 	<div id="fuel_receipts">
-		<%= render "fuel_receipts/fuel_receipts",  fuel_receipts: @fuel_receipts_dashboard.company_fuel_receipts %>
+		<%= render partial: "fuel_receipts/fuel_receipts",  locals: { fuel_receipts: @fuel_receipts_dashboard.company_fuel_receipts, fuel_receipts_calculator: @fuel_receipts_calculator } %>
 	</div>
 </div>
 </div>
