@@ -1,6 +1,19 @@
 class FuelReceiptDashboard
-  def initialize(current_user)
+  def initialize(params, current_user)
     @current_user = current_user
+    @params = params
+  end
+
+  def id
+    @params[:id]
+  end
+
+  def company
+    Company.find(id)
+  end
+
+  def company_fuel_receipts
+    company.fuel_receipts
   end
 
   def gas_station_companies

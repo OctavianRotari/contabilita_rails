@@ -8,18 +8,18 @@ class FuelReceiptsController < ApplicationController
   end
 
   def index
-    @fuel_receipt_dashboard = FuelReceiptDashboard.new(current_user)
+    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
     @fuel_receipts_calculator = FuelReceiptCalculator.new
   end
 
   def new
     @fuel_receipt = FuelReceipt.new
-    @companies = FuelReceiptDashboard.new(current_user).gas_station_companies
+    @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles
   end
 
   def create
-    @companies = FuelReceiptDashboard.new(current_user).gas_station_companies
+    @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles
     @fuel_receipt = FuelReceipt.new(fuel_receipt_params)
     @fuel_receipt[:user_id] = current_user[:id]
@@ -35,9 +35,14 @@ class FuelReceiptsController < ApplicationController
 
   def fuel_receipt_params
     params.require(:fuel_receipt).permit(:total,
+                                         :litres,
                                          :company_id,
                                          :vehicle_id,
                                          :date_of_issue)
+  end
+
+  def fuel_receipt_dashboard
+    FuelReceiptDashboard.new(params, current_user)
   end
 
 end

@@ -89,7 +89,8 @@ h3:after {
 
 /*------Table------*/
 
-.invoices:after{
+.invoices:after,
+.fuel_receipts:after{
 	display: block;
 	height: 1px;
 	background-color: #555;
@@ -100,7 +101,8 @@ h3:after {
 	margin-bottom: 60px;
 }
 
-.invoices th {
+.invoices th,
+.fuel_receipts th{
 	border-bottom: 1px solid #2c3e50;
 	width:8.56%;
 }

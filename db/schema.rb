@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028201211) do
+ActiveRecord::Schema.define(version: 20161029211021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161028201211) do
     t.integer  "company_id"
     t.integer  "vehicle_id"
     t.integer  "user_id"
+    t.integer  "litres"
   end
 
   add_index "fuel_receipts", ["company_id"], name: "index_fuel_receipts_on_company_id", using: :btree

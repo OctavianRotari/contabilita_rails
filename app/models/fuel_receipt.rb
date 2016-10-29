@@ -7,4 +7,8 @@ class FuelReceipt < ActiveRecord::Base
   def self.company(company_id)
     where(company_id: company_id)
   end
+
+  def company_name(id)
+    Company.find(id).name
+  end
 end
