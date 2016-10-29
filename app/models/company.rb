@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
   belongs_to :user
   has_many :invoices, dependent: :destroy
   has_many :fuel_receipts
+  has_many :vehicles, -> { uniq }, through: :fuel_receipts
 
   belongs_to :category
 

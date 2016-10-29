@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028195521) do
+ActiveRecord::Schema.define(version: 20161028201211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,40 +23,40 @@ ActiveRecord::Schema.define(version: 20161028195521) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.boolean  "gas_station"
-    t.integer  "fuel_receipt_id"
   end
 
-  add_index "categories", ["fuel_receipt_id"], name: "index_categories_on_fuel_receipt_id", using: :btree
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "adress"
     t.string   "number"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "category_id"
     t.integer  "user_id"
-    t.integer  "fuel_receipt_id"
   end
 
   add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
-  add_index "companies", ["fuel_receipt_id"], name: "index_companies_on_fuel_receipt_id", using: :btree
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "fuel_receipts", force: :cascade do |t|
     t.integer  "total"
     t.datetime "date_of_issue"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "company_id"
     t.integer  "vehicle_id"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
+
+  add_index "fuel_receipts", ["company_id"], name: "index_fuel_receipts_on_company_id", using: :btree
+  add_index "fuel_receipts", ["user_id"], name: "index_fuel_receipts_on_user_id", using: :btree
+  add_index "fuel_receipts", ["vehicle_id"], name: "index_fuel_receipts_on_vehicle_id", using: :btree
 
   create_table "garages", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -118,11 +118,9 @@ ActiveRecord::Schema.define(version: 20161028195521) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "fuel_receipt_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["fuel_receipt_id"], name: "index_users_on_fuel_receipt_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vehicles", force: :cascade do |t|
@@ -135,16 +133,16 @@ ActiveRecord::Schema.define(version: 20161028195521) do
 
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id", using: :btree
 
-  add_foreign_key "categories", "fuel_receipts"
   add_foreign_key "categories", "users"
   add_foreign_key "companies", "categories"
-  add_foreign_key "companies", "fuel_receipts"
   add_foreign_key "companies", "users"
+  add_foreign_key "fuel_receipts", "companies"
+  add_foreign_key "fuel_receipts", "users"
+  add_foreign_key "fuel_receipts", "vehicles"
   add_foreign_key "invoices", "companies"
   add_foreign_key "invoices", "users"
   add_foreign_key "invoices", "vehicles"
   add_foreign_key "payments", "invoices"
   add_foreign_key "taxable_vat_fields", "invoices"
-  add_foreign_key "users", "fuel_receipts"
   add_foreign_key "vehicles", "users"
 end
