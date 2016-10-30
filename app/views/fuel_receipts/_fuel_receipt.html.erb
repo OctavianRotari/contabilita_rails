@@ -1,6 +1,6 @@
 <tbody>
 <tr>
-	<td><%= fuel_receipt.company_name(fuel_receipt.company_id) %></td>
+	<td><%= fuel_receipt.company.name %></td>
 	<td><%= fuel_receipt.vehicle.plate %></td>
 	<td><%= fuel_receipt.date_of_issue.strftime("%d-%m-%Y") %></td>
 	<td><%= fuel_receipt.litres %></td>

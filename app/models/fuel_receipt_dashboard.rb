@@ -16,12 +16,16 @@ class FuelReceiptDashboard
     Vehicle.find(id)
   end
 
-  def vehicle_fuel_receipts
-    vehicle.fuel_receipts.group_by { |t| t.date_of_issue.beginning_of_month }
+  def vehicle_fuel_receipts_ord
+    vehicle_fuel_receipts.group_by do |ord|
+      ord.date_of_issue.beginning_of_month
+    end
   end
 
-  def company_fuel_receipts
-    company.fuel_receipts.group_by { |t| t.date_of_issue.beginning_of_month }
+  def company_fuel_receipts_ord
+    company_fuel_receipts.group_by do |ord|
+      ord.date_of_issue.beginning_of_month
+    end
   end
 
   def gas_station_companies
@@ -29,6 +33,14 @@ class FuelReceiptDashboard
   end
 
   private
+
+  def vehicle_fuel_receipts
+    vehicle.fuel_receipts
+  end
+
+  def company_fuel_receipts
+    company.fuel_receipts
+  end
 
   def current_user_companies
     @current_user.companies
