@@ -36,13 +36,10 @@ class BuildInvoice
   end
 
   def category_id
-    if !company_id.empty?
+    unless company_id.empty?
       Company.find(company_id).category_id
-    else
-      nil
     end
   end
-
 
   def company_id
     @invoice_params[:company_id]

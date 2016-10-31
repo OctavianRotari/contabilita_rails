@@ -1,45 +1,58 @@
 <div class="data-summary">
   <div class="row">
-    <div class="col span-1-of-3">
+    <div class="col span-1-of-2">
       <h4>Fatture passive</h4>
       <p>da pagare:</p>
     </div>
-    <div class="col span-3-of-3 data">
+    <div class="col span-1-of-2 data">
+      <br>
       <p id="passive_amont_to_pay"><%= calculator.total_remaining_all(invoices.passive) %> </p>
     </div>
   </div>
   <div class="row">
-    <div class="col span-1-of-3">
+    <div class="col span-1-of-2">
       <h4>Fatture attive</h4>
       <p>da incassare:</p>
     </div>
-    <div class="col span-3-of-3 data">
+    <div class="col span-1-of-2 data">
+      <br>
       <p id="active_amout_to_collect"><%= calculator.total_remaining_all(invoices.active) %></p>
     </div>
   </div>
   <div class="row">
-    <div class="col span-1-of-3">
+    <div class="col span-1-of-2">
       <h4>Totale spese</h4>
       <p>Mese corrente:</p>
     </div>
-    <div class="col span-3-of-3 data">
+    <div class="col span-1-of-2 data">
+      <br>
       <p id="current_month_costs"><%= calculator.total_costs_current_month(invoices, fuel_receipts) %></p>
     </div>
   </div>
   <div class="row">
-    <div class="col span-1-of-3">
+    <div class="col span-1-of-2">
       <p>Anno corrente: </p>
     </div>
-    <div class="col span-3-of-3 data">
+    <div class="col span-1-of-2 data">
       <p id="current_year_costs"><%= calculator.total_costs_current_year(invoices, fuel_receipts) %></p>
     </div>
   </div>
   <div class="row">
-    <div class="col span-1-of-3">
-      <p>Spese per gasolio: </p>
+    <div class="col span-1-of-2">
+      <h4>Spese gasolio</h4>
+      <p>Mese corrente: </p>
     </div>
-    <div class="col span-3-of-3 data">
+    <div class="col span-1-of-2 data">
+      <br>
       <p id="current_month_fuel_costs"><%= calculator.total_fuel_receipts_current_month(fuel_receipts) %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-1-of-2">
+      <p>Anno corrente: </p>
+    </div>
+    <div class="col span-1-of-2 data">
+      <p id="current_month_fuel_costs"><%= calculator.total_fuel_receipts_current_year(fuel_receipts) %></p>
     </div>
   </div>
 </div>

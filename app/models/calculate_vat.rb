@@ -4,6 +4,6 @@ module CalculateVat
     for i in 0..vats.length-1
       total_vat += taxables[i] * vats[i] / 100
     end
-    total_vat
+    total_vat.round(2)
   end
 end

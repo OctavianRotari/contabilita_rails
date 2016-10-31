@@ -4,6 +4,6 @@ module CalculateTaxable
     for i in 0..taxables.length-1
       total_taxable += taxables[i]
     end
-    total_taxable
+    total_taxable.round(2)
   end
 end

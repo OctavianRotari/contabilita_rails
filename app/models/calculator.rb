@@ -5,7 +5,7 @@ class Calculator < ActiveRecord::Base
     records.each do |record|
       total += record.total
     end
-    total
+    total.round(2)
   end
 
   def total_vat_all(invoices)
@@ -13,7 +13,7 @@ class Calculator < ActiveRecord::Base
     invoices.each do |invoice|
       total += invoice.total_vat
     end
-    total
+    total.round(2)
   end
 
   def total_paid_or_collected_all(invoices)
@@ -23,7 +23,7 @@ class Calculator < ActiveRecord::Base
         total += payment.paid
       end
     end
-    total
+    total.round(2)
   end
 
   def total_remaining_all(invoices)
@@ -35,11 +35,11 @@ class Calculator < ActiveRecord::Base
     invoice.payments.each do |payment|
       total += payment.paid
     end
-    total
+    total.round(2)
   end
 
   def to_pay_per(invoice)
-    invoice.total - paid_per(invoice)
+    (invoice.total - paid_per(invoice)).round(2)
   end
 
   def total_costs_current_month(invoices, fuel_receipts = nil)

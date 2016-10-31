@@ -4,6 +4,12 @@ class FuelReceipt < ActiveRecord::Base
   belongs_to :user
   belongs_to :vehicle
 
+  validates :total, presence: { message: 'Inserire il totale dello scontrino' }
+  validates :litres, presence: { message: 'Inserire i litri' }
+  validates :company_id, presence: { message: 'Selezionare azienda' }
+  validates :vehicle_id, presence: { message: 'Selezionare mezzo' }
+  validates :date_of_issue, presence: { message: 'Selezionare data di emissione' }
+
   def self.company(company_id)
     where(company_id: company_id)
   end
