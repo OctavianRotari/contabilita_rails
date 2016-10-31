@@ -1,15 +1,15 @@
 <div class="col span-1-of-2 summary">
-	<div class="title">
-		<h2><%=link_to company.name, company_path(company.id) %></h2>
-	</div>
-	<%= link_to edit_company_path(company.id), class: 'edit-company', title: "Modifica azienda." do %>
-		<i class="ion-ios-compose icon-small-compose"></i>
-	<% end %>
-	<%= link_to company_path(company.id), class: 'delete-company', title: "Elimina azienda." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
-		<i class="ion-ios-trash icon-small-trash"></i>
-	<% end %>
-	<%= link_to dashboard_company_path(company.id), title: "Visualizza fatture." do%>
-		<i class="ion-ios-list icon-small-list"></i>
-	<% end %>
-	<%= render company.calculator, invoices: company.invoices %>
+  <div class="title">
+    <h2><%=link_to company.name, company_path(company.id) %></h2>
+  </div>
+  <%= link_to edit_company_path(company.id), class: 'edit-company', title: "Modifica azienda." do %>
+    <i class="ion-ios-compose icon-small-compose"></i>
+  <% end %>
+  <%= link_to company_path(company.id), class: 'delete-company', title: "Elimina azienda." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
+    <i class="ion-ios-trash icon-small-trash"></i>
+  <% end %>
+  <%= link_to dashboard_company_path(company.id), title: "Visualizza fatture." do%>
+    <i class="ion-ios-list icon-small-list"></i>
+  <% end %>
+  <%= render company.calculator, invoices: company.invoices %>
 </div>

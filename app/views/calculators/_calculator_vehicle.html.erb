@@ -23,7 +23,7 @@
       <p>Mese corrente:</p>
     </div>
     <div class="col span-3-of-3 data">
-        <p id="current_month_costs"><%= calculator.total_costs_current_month(invoices) %></p>
+      <p id="current_month_costs"><%= calculator.total_costs_current_month(invoices, fuel_receipts) %></p>
     </div>
   </div>
   <div class="row">
@@ -31,7 +31,15 @@
       <p>Anno corrente: </p>
     </div>
     <div class="col span-3-of-3 data">
-        <p id="current_year_costs"><%= calculator.total_costs_current_year(invoices) %></p>
+      <p id="current_year_costs"><%= calculator.total_costs_current_year(invoices, fuel_receipts) %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-1-of-3">
+      <p>Spese per gasolio: </p>
+    </div>
+    <div class="col span-3-of-3 data">
+      <p id="current_month_fuel_costs"><%= calculator.total_fuel_receipts_current_month(fuel_receipts) %></p>
     </div>
   </div>
 </div>
