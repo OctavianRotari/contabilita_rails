@@ -1,14 +1,17 @@
 <tbody>
-<tr>
-	<td><%= fuel_receipt.company.name %></td>
-	<td><%= fuel_receipt.vehicle.plate %></td>
-	<td><%= fuel_receipt.date_of_issue.strftime("%d-%m-%Y") %></td>
-	<td><%= fuel_receipt.litres %></td>
-	<td><%= fuel_receipt.total %></td>
-	<td class="delete-fuel_receipt_<%=fuel_receipt.id%>">
-		<%= link_to fuel_receipt_path(id: fuel_receipt.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
-			<i class="ion-ios-trash icon-small-trash"></i>
-		<% end%>
-	</td>
-</tr>
+  <tr>
+    <td id='company_name'><%= fuel_receipt.company.name %></td>
+    <td id='vehicle_plate'><%= fuel_receipt.vehicle.plate %></td>
+    <td><%= fuel_receipt.date_of_issue.strftime("%d-%m-%Y") %></td>
+    <td><%= fuel_receipt.litres %></td>
+    <td id='total_fuel_receipt'><%= fuel_receipt.total %></td>
+    <td class="delete-fuel_receipt<%=fuel_receipt.id%>">
+      <%= link_to edit_fuel_receipt_path(fuel_receipt.id), class: 'edit-company', title: "Modifica scontrino." do %>
+        <i class="ion-ios-compose icon-small-compose"></i>
+      <% end %>
+      <%= link_to fuel_receipt_path(fuel_receipt.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+        <i class="ion-ios-trash icon-small-trash"></i>
+      <% end%>
+    </td>
+  </tr>
 </tbody>

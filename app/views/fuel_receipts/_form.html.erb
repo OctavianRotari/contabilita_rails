@@ -1,13 +1,13 @@
 <div class="row">
-<div class="new">
-	<%= form_for fuel_receipt do |form|%>
+	<div class="new">
+		<%= form_for fuel_receipt do |form|%>
 		<% if fuel_receipt.errors.any? %>
-			A causa di questi errori non e' stato possibile creare lo scontrino:
-			<ul>
-				<% fuel_receipt.errors.messages.each do |name, error| %>
-					<li><%= error[0] %></li>
-				<% end %>
-			</ul>
+		A causa di questi errori non e' stato possibile creare lo scontrino:
+		<ul>
+			<% fuel_receipt.errors.messages.each do |name, error| %>
+			<li><%= error[0] %></li>
+			<% end %>
+		</ul>
 		<% end %>
 		<div class="row">
 			<div class="col span-1-of-3">
@@ -38,7 +38,7 @@
 				<%= form.label 'A carico di'%>
 			</div>
 			<div class="col span-2-of-3">
-				<%= list_at_the_expence_of_selected_value(form) %>
+				<%= list_of_vehicles(form) %>
 			</div>
 		</div>
 		<div class="row">
@@ -54,6 +54,6 @@
 				<%= form.submit "Conferma", class: "btn btn-big" %>
 			</div>
 		</div>
-	<% end %>
-</div>
+		<% end %>
+	</div>
 </div>

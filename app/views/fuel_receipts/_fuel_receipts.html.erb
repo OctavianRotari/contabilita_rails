@@ -1,7 +1,7 @@
 <div class="row">
-<div class="fuel_receipts">
-	<h3 class="title">Scontrini gasolio</h3>
-	<% fuel_receipts.each  do |month, fuel_receipts| %>
+	<div class="fuel_receipts">
+		<h3 class="title">Scontrini gasolio</h3>
+		<% fuel_receipts.each  do |month, fuel_receipts| %>
 		<h2 class="month"><%= month.strftime('%B') %></h2>
 		<table>
 			<thead>
@@ -13,9 +13,10 @@
 					<th>Total</th>
 					<th></th>
 				</tr>
-			</thea
+			</thead>
 			<%= render fuel_receipts %>
 			<%= render partial: "fuel_receipts_total", locals: {calculator: fuel_receipts_calculator, fuel_receipts: fuel_receipts }%>
 		</table>
-	<% end %>
+		<% end %>
+	</div>
 </div>
