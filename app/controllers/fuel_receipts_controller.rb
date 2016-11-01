@@ -8,7 +8,7 @@ class FuelReceiptsController < ApplicationController
   end
 
   def index
-    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
+    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params[:id], current_user)
   end
 
   def new

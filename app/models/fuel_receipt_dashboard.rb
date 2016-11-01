@@ -1,14 +1,10 @@
 class FuelReceiptDashboard
   include CurrentUserRecords
-  attr_reader :params, :current_user
+  attr_reader :id, :current_user
 
-  def initialize(params, current_user)
-    @params = params
+  def initialize(id, current_user)
+    @id = id
     @current_user = current_user
-  end
-
-  def id
-    @params[:id]
   end
 
   def company

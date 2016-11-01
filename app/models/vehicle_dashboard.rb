@@ -1,6 +1,9 @@
 class VehicleDashboard
-  def initialize(params, current_user)
-    @params = params
+  include CurrentUserRecords
+  attr_reader :id, :current_user
+
+  def initialize(id, current_user)
+    @id = id
     @current_user = current_user
   end
 
@@ -8,29 +11,21 @@ class VehicleDashboard
     vehicle.plate
   end
 
-  def vehicle_id
-    @params[:id]
-  end
-
   def calculator
-    Calculator.new
+    @calculator ||= Calculator.new
   end
 
   def vehicles
-    @current_user.vehicles.order(plate: :asc)
+    current_user_vehicles.order(plate: :asc)
   end
 
   def invoices
-    invoices_dashboard.vehicle_invoices(vehicle_id)
+    vehicle.invoices
   end
 
   private
 
-  def invoices_dashboard
-    InvoiceDashboard.new(@current_user, @params)
-  end
-
   def vehicle
-    @current_user.vehicles.find(vehicle_id)
+    current_user_vehicles.find(id)
   end
 end

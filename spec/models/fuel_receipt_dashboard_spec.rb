@@ -3,8 +3,8 @@ require 'rails_helper'
 describe FuelReceiptDashboard, type: :unit do
   before :each do
     current_user = create(:user)
-    params = { 'controller' => 'fuel_receipts', 'action' => 'new', id: 1 }
-    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
+    id = 1
+    @fuel_receipt_dashboard = FuelReceiptDashboard.new(id, current_user)
   end
 
   describe '#gas_station_companies' do
