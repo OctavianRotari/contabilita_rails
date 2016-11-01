@@ -1,24 +1,4 @@
 module Features
-  def company(name, category_id = 1)
-    Company.create(name: name,
-                   adress: 'Ravenna',
-                   number: '345',
-                   category_id: category_id,
-                   user_id: 1)
-  end
-
-  def vehicle(plate = 'ER341GF')
-    Vehicle.create(plate: plate,
-                   type_of_vehicle: 'trattore',
-                   user_id: 1)
-  end
-
-  def category(category = 'officina', gas_station = false)
-    Category.create(category: category,
-                    user_id: 1,
-                    gas_station: gas_station)
-  end
-
   def create_active_invoice(parent, reason = 'Manutenzione', vehicle_id = 1)
     parent.invoices.create(reason: reason,
                            total: 110,
