@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
       flash[:success] = 'Categoria modificata'
       redirect_to dashboard_categories_path
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
     category = Category.find(params[:id])
     category.destroy
     flash[:success] = 'Categoria elliminata'
-    if Category.count > 0
+    if current_user.categories.count > 0
       redirect_to :back
     else
       redirect_to dashboard_invoices_path
@@ -34,10 +34,10 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category[:user_id] = current_user[:id]
     if @category.save
-      flash[:success] = "Categoria aggiunta"
+      flash[:success] = 'Categoria aggiunta'
       redirect_to dashboard_categories_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -46,5 +46,4 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:category, :gas_station)
   end
-
 end

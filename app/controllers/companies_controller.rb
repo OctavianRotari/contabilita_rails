@@ -1,29 +1,29 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-  before_action do |record|
+  before_action do
     if current_user.categories.empty?
-      flash[:error] = "Aggiungere almeno una categoria"
+      flash[:error] = 'Aggiungere almeno una categoria'
       redirect_to :back
     end
   end
 
   def index
-    @companies = Company.all
+    @companies = current_user.companies
   end
 
   def new
-    @category = Category.all
+    @category = current_user.categories
     @company = Company.new
   end
 
   def edit
     @company = Company.find(params[:id])
-    @category = Category.all
+    @category = current_user.categories
   end
 
   def update
     @company  = Company.find(params[:id])
-    @category = Category.all
+    @category = current_user.categories
     if @company.update(company_params)
       flash[:success] = 'Azienda aggiornata'
       redirect_to dashboard_companies_path
@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
     company = Company.find(params[:id])
     company.destroy
     flash[:success] = 'Azienda elliminata'
-    if Company.count > 0
+    if current_user.companies.count > 0
       redirect_to :back
     else
       redirect_to dashboard_invoices_path
@@ -49,13 +49,13 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @category = Category.all
+    @category = current_user.categories
     @company[:user_id] = current_user[:id]
     @company[:category_id] = category_id
     if @company.save
       redirect_to dashboard_companies_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -66,10 +66,10 @@ class CompaniesController < ApplicationController
 
   def company
     @_company ||= Company.find(params[:id])
+
   end
 
   def category_id
     company_params[:category_id]
   end
-
 end

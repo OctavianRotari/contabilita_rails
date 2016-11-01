@@ -23,7 +23,7 @@ class VehiclesController < ApplicationController
       flash[:success] = 'Mezzo aggiornato'
       redirect_to dashboard_vehicles_path
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -31,7 +31,7 @@ class VehiclesController < ApplicationController
     vehicle = Vehicle.find(params[:id])
     vehicle.destroy
     flash[:success] = 'Mezzo elliminato'
-    if Vehicle.count > 0
+    if current_user.vehicles.count > 0
       redirect_to :back
     else
       redirect_to dashboard_invoices_path

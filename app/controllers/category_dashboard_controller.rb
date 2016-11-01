@@ -1,8 +1,8 @@
 class CategoryDashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action do |record|
+  before_action do
     if current_user.categories.empty?
-      flash[:error] = "Aggiungere almeno una categoria"
+      flash[:error] = 'Aggiungere almeno una categoria'
       redirect_to :back
     end
   end
@@ -14,7 +14,6 @@ class CategoryDashboardController < ApplicationController
   def show
     @category_dashboard = CategoryDashboard.new(params, current_user)
   end
-
 
   def passive_invoices
     @invoices_dashboard = InvoiceDashboard.new(current_user, params)

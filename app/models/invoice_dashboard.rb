@@ -1,10 +1,8 @@
 class InvoiceDashboard
-
   def initialize(current_user, params)
     @current_user = current_user
     @params = params
   end
-
 
   def invoices
     @current_user.invoices.order(created_at: :desc)
@@ -15,7 +13,7 @@ class InvoiceDashboard
   end
 
   def garage_invoices
-    @current_user.invoices.where(at_the_expense_of: "Officina")
+    @current_user.invoices.where(at_the_expense_of: 'Officina')
   end
 
   def company_invoices(id)
@@ -33,5 +31,4 @@ class InvoiceDashboard
   def calculator
     Calculator.new
   end
-
 end

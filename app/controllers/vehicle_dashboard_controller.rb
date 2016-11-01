@@ -1,8 +1,8 @@
 class VehicleDashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action do |record|
+  before_action do
     if current_user.vehicles.empty?
-      flash[:error] = "Aggiungere almeno un mezzo"
+      flash[:error] = 'Aggiungere almeno un mezzo'
       redirect_to :back
     end
   end

@@ -1,8 +1,8 @@
 class FuelReceiptsController < ApplicationController
   before_action :authenticate_user!
-  before_action do |record|
-    if current_user.categories.gas_station_id == nil
-      flash[:error] = "Aggiungere una categoria che indichi i benzinaii e almeno una compagnia registrata su tale categoria"
+  before_action do
+    if current_user.categories.gas_station_id.nil?
+      flash[:error] = 'Aggiungere una categoria che indichi i benzinaii e almeno una compagnia registrata su tale categoria'
       redirect_to :back
     end
   end

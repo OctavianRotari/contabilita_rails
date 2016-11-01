@@ -1,11 +1,11 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action  do |controller|
+  before_action do
     if current_user.companies.empty?
       flash[:error] = "Aggiungere almeno un'azienda"
       redirect_to :back
     elsif current_user.vehicles.empty?
-      flash[:error] = "Aggiungere almeno un mezzo"
+      flash[:error] = 'Aggiungere almeno un mezzo'
       redirect_to :back
     end
   end
@@ -29,7 +29,7 @@ class InvoicesController < ApplicationController
       flash[:success] = "La fattura e' stata aggiornata"
       redirect_to invoice_path(invoice_id: @invoice.id)
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
     invoice.destroy
     flash[:success] = 'Fattura elliminata'
     if current_user.invoices.count > 0
-        redirect_to :back
+      redirect_to :back
     else
       redirect_to dashboard_invoices_path
     end
@@ -55,10 +55,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(params)
     @invoice[:user_id] = current_user[:id]
     if @invoice.save
-      flash[:success] = "Fattura aggiunta"
+      flash[:success] = 'Fattura aggiunta'
       redirect_to invoice_path(id: @invoice.id)
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -67,5 +67,4 @@ class InvoicesController < ApplicationController
   def invoice_params
     params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
-
 end

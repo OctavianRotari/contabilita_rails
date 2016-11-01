@@ -2,13 +2,13 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(invoice_id)
     @payment = Payment.new
   end
 
   def create
     @payment = Payment.new(payment_params)
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(invoice_id)
     @payment.invoice_id = invoice_id
     if @payment.save
       redirect_to invoice_path(id: invoice_id)
@@ -18,13 +18,13 @@ class PaymentsController < ApplicationController
   end
 
   def edit
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(invoice_id)
     @payment = Payment.find(params[:id])
   end
 
   def update
     @payment = Payment.find(params[:id])
-    @invoice = Invoice.find(params[:invoice_id])
+    @invoice = Invoice.find(invoice_id)
     @payment.update(payment_params)
     if @payment.update(payment_params)
       flash[:success] = 'Pagamento aggiornato'
@@ -48,6 +48,6 @@ class PaymentsController < ApplicationController
   end
 
   def invoice_id
-    params[:invoice_id]
+    @_invocie_id ||= params[:invoice_id]
   end
 end

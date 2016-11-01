@@ -1,10 +1,9 @@
 class Company < ActiveRecord::Base
   belongs_to :user
+  belongs_to :category
   has_many :invoices, dependent: :destroy
   has_many :fuel_receipts
   has_many :vehicles, -> { uniq }, through: :fuel_receipts
-
-  belongs_to :category
 
   phony_normalize :number, default_country_code: 'IT'
   validates :name, presence: {message: "Inserire nome dell'azienda"}
