@@ -1,5 +1,4 @@
-class Calculator < ActiveRecord::Base
-
+class Calculator
   def total_all(records)
     total = 0
     records.each do |record|
@@ -83,5 +82,4 @@ class Calculator < ActiveRecord::Base
   def number_of_vehicles
     Vehicle.count
   end
-
 end

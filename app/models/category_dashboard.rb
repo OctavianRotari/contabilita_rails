@@ -10,7 +10,7 @@ class CategoryDashboard
   end
 
   def categories
-    @current_user.categories.order(category: :asc)
+    @current_user.categories.order(name: :asc)
   end
 
   def calculator

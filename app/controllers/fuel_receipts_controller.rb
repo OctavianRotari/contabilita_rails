@@ -9,10 +9,10 @@ class FuelReceiptsController < ApplicationController
 
   def index
     @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
-    @fuel_receipts_calculator = FuelReceiptCalculator.new
   end
 
   def new
+    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
     @fuel_receipt = FuelReceipt.new
     @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles
@@ -73,5 +73,4 @@ class FuelReceiptsController < ApplicationController
   def fuel_receipt_dashboard
     FuelReceiptDashboard.new(params, current_user)
   end
-
 end

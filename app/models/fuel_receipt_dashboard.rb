@@ -1,7 +1,10 @@
 class FuelReceiptDashboard
+  include CurrentUserRecords
+  attr_reader :params, :current_user
+
   def initialize(params, current_user)
-    @current_user = current_user
     @params = params
+    @current_user = current_user
   end
 
   def id
@@ -14,6 +17,10 @@ class FuelReceiptDashboard
 
   def vehicle
     Vehicle.find(id)
+  end
+
+  def calculator
+    @calculator ||= Calculator.new
   end
 
   def vehicle_fuel_receipts_ord
@@ -40,9 +47,5 @@ class FuelReceiptDashboard
 
   def company_fuel_receipts
     company.fuel_receipts
-  end
-
-  def current_user_companies
-    @current_user.companies
   end
 end
