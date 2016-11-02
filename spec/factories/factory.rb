@@ -48,4 +48,11 @@ FactoryGirl.define do
     total_taxable(100)
     deadline(Time.zone.now + 1.month)
   end
+
+  factory :payment do
+    paid(100)
+    method_of_payment('cassa')
+    payment_date(Time.zone.now + 1.day)
+    invoice_id(1)
+  end
 end
