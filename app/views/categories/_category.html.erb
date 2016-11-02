@@ -11,5 +11,5 @@
   <%= link_to dashboard_category_path(category.id), title: "Visualizza fatture." do%>
     <i class="ion-ios-list icon-small-list"></i>
   <% end %>
-  <%= render category.calculator, invoices: category.invoices %>
+  <%= render partial: 'total_costs/total_costs', locals: { calculator: category.calculator, invoices: category.invoices } %>
 </div>

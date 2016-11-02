@@ -25,7 +25,9 @@ describe VehiclesController, type: :controller do
     it 'renders page with success' do
       create(:vehicle)
       delete :destroy, id: 1
+      vehicles = Vehicle.all
       expect(flash[:success]).to match('Mezzo elliminato')
+      expect(vehicles).to eq([])
     end
   end
 end

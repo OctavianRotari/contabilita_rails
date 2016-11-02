@@ -11,5 +11,5 @@
   <%= link_to dashboard_company_path(company.id), title: "Visualizza fatture." do%>
     <i class="ion-ios-list icon-small-list"></i>
   <% end %>
-  <%= render company.calculator, invoices: company.invoices %>
+  <%= render partial: 'total_costs/total_costs', locals: {calculator: company.calculator, invoices: company.invoices } %>
 </div>
