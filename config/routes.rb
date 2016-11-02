@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :vehicles do
+  resources :vehicles, only: [:new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'vehicle_dashboard#index'
     end

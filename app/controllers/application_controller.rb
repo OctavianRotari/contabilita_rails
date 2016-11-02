@@ -7,4 +7,23 @@ class ApplicationController < ActionController::Base
     dashboard_invoices_path
   end
 
+  def current_user_companies
+    current_user.companies
+  end
+
+  def current_user_categories
+    current_user.categories
+  end
+
+  def current_user_vehicles
+    current_user.vehicles
+  end
+
+  def redirect_after_destroy(collection)
+    if collection.count > 0
+      redirect_to :back
+    else
+      redirect_to dashboard_invoices_path
+    end
+  end
 end

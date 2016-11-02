@@ -5,6 +5,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
+require 'devise'
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
@@ -18,4 +19,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include Features, type: :feature
   config.include Unit, type: :unit
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
 end

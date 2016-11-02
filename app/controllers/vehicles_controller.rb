@@ -1,10 +1,6 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @vehicles = Vehicle.all
-  end
-
   def new
     @vehicle = Vehicle.new
   end
@@ -19,7 +15,7 @@ class VehiclesController < ApplicationController
 
   def update
     @vehicle = Vehicle.find(params[:id])
-    if @vehicle.update(vehicle_params)
+    if @vehicle.update(vehicle_params_user_id)
       flash[:success] = 'Mezzo aggiornato'
       redirect_to dashboard_vehicles_path
     else
@@ -31,26 +27,27 @@ class VehiclesController < ApplicationController
     vehicle = Vehicle.find(params[:id])
     vehicle.destroy
     flash[:success] = 'Mezzo elliminato'
-    if current_user.vehicles.count > 0
-      redirect_to :back
-    else
-      redirect_to dashboard_invoices_path
-    end
+    redirect_after_destroy(current_user_vehicles)
   end
 
   def create
-    @vehicle = Vehicle.new(vehicle_params)
-    @vehicle[:user_id] = current_user[:id]
+    @vehicle = Vehicle.new(vehicle_params_user_id)
     if @vehicle.save
       flash[:success] = 'Mezzo aggiunto'
       redirect_to dashboard_vehicles_path
     else
+      flash[:error] = 'Mezzo non aggiunto'
       render 'new'
     end
   end
 
   private
+
   def vehicle_params
     params.require(:vehicle).permit(:plate, :type_of_vehicle)
+  end
+
+  def vehicle_params_user_id
+    vehicle_params.merge!(user_id: current_user.id)
   end
 end
