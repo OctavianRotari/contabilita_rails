@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101164907) do
+ActiveRecord::Schema.define(version: 20161103145210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20161101164907) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
     t.datetime "deadline"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "company_id"
     t.decimal  "total_vat"
     t.decimal  "total"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20161101164907) do
     t.integer  "category_id"
     t.string   "at_the_expense_of"
     t.integer  "user_id"
+    t.boolean  "paid",              default: false
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree

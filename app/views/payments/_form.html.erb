@@ -1,43 +1,43 @@
 <div class="row">
-<div class="new">
-	<%= form_for(payment,  url: payment_edit_or_new ) do |form| %>
-		<% if payment.errors.any? %>
-			A causa di questi errori non e' stato possibile creare il pagamento:
-			<ul>
-				<% payment.errors.messages.each do |name, error| %>
-					<li><%= error[0] %></li>
-				<% end %>
-			</ul>
-		<% end %>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Totale' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :paid, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Metodo di pagamento' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :method_of_payment, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Data pagamento' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :payment_date, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-3-of-3 submit">
-				<%= form.submit 'Conferma' %>
-			</div>
-		</div>
-	<% end %>
-</div>
+  <div class="new">
+    <%= form_for [@invoice, @payment] do |form| %>
+      <% if payment.errors.any? %>
+        A causa di questi errori non e' stato possibile creare il pagamento:
+        <ul>
+          <% payment.errors.messages.each do |name, error| %>
+            <li><%= error[0] %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Totale' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :paid, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Metodo di pagamento' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :method_of_payment, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Data pagamento' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :payment_date, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-3-of-3 submit">
+          <%= form.submit 'Conferma' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

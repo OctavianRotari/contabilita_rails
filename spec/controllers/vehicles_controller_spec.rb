@@ -6,7 +6,7 @@ describe VehiclesController, type: :controller do
   describe 'when a vehicle is valid' do
     it 'renders page with success' do
       vehicle = attributes_for(:vehicle)
-      post :create, vehicle: { plate: vehicle[:plate], type_of_vehicle: vehicle[:type_of_vehicle]}
+      post :create, vehicle: vehicle
       expect(response).to redirect_to(dashboard_vehicles_path)
       expect(flash[:success]).to match('Mezzo aggiunto')
     end

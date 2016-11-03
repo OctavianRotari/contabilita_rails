@@ -1,10 +1,10 @@
 <div class="row">
-<div class="new">
-<% if @invoice.type_of_invoice == 'attiva' %>
-	<h3>Incassa pagamento</h3>
-<% else %>
-	<h3>Effettua pagamento</h3>
-<%end%>
-</div>
+  <div class="new">
+    <% if @invoice.type_of_invoice == 'attiva' %>
+      <h3>Incassa pagamento</h3>
+    <% else %>
+      <h3>Effettua pagamento</h3>
+    <%end%>
+  </div>
 </div>
 <%= render 'form', payment: @payment %>

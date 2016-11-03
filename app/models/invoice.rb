@@ -14,7 +14,7 @@ class Invoice < ActiveRecord::Base
   validates :date_of_issue, presence: {message: "Selezionare data di emissione"}
   validates :deadline, presence: {message: "Selezionare data di scadenza"}
 
-  def self.payments params_id
+  def self.payments(params_id)
     find(params_id).payments
   end
 
@@ -51,27 +51,23 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.current_month_passive_invoices
-    passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month )
+    passive.where('date_of_issue >= ? and created_at <= ?', Time.zone.now.beginning_of_month, Time.zone.now.end_of_month )
   end
 
   def self.current_year_passive_invoices
-    passive.where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_year, Time.now.end_of_year )
+    passive.where('date_of_issue >= ? and created_at <= ?', Time.zone.now.beginning_of_year, Time.zone.now.end_of_year )
   end
 
   def self.not_paid
-    passive.collect do |invoice|
-      if invoice.total != total_payments(invoice.id)
-        invoice
-      end
-    end.compact
+    passive.where(paid: false)
   end
 
   def self.not_collected
-    active.collect do |invoice|
-      if invoice.total != total_payments(invoice.id)
-        invoice
-      end
-    end.compact
+    active.where(paid: false)
+  end
+
+  def total_payments
+    payments.sum(:paid).to_i
   end
 
   private
@@ -79,13 +75,4 @@ class Invoice < ActiveRecord::Base
   def self.order_by_year(params)
     where("extract(year from date_of_issue) = ?", params[:year_param] )
   end
-
-  def self.total_payments(invoice_id)
-    total_payments = 0
-    payments(invoice_id).each do |payment|
-      total_payments = payment.paid
-    end
-    total_payments
-  end
-
 end
