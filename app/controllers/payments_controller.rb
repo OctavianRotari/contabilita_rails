@@ -11,6 +11,7 @@ class PaymentsController < ApplicationController
     @invoice = Invoice.find(invoice_id)
     @invoice.update(paid: payment_dashboard.check_total)
     if @payment.save
+      flash[:success] = 'Pagamento aggiunto'
       redirect_to invoice_path(id: invoice_id)
     else
       render 'new'
