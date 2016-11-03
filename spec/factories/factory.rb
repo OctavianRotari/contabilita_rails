@@ -47,6 +47,7 @@ FactoryGirl.define do
     type_of_invoice('attiva')
     total_taxable(100)
     deadline(Time.zone.now + 1.month)
+    paid(false)
   end
 
   factory :payment do
