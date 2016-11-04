@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     current_user.vehicles
   end
 
+  def current_user_invoices
+    current_user.invoices
+  end
+
   def redirect_after_destroy(collection)
     if collection.count > 0
       redirect_to :back

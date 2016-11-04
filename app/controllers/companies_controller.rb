@@ -66,7 +66,6 @@ class CompaniesController < ApplicationController
 
   def company
     @_company ||= Company.find(params[:id])
-
   end
 
   def category_id

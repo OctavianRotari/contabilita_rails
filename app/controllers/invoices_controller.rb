@@ -11,14 +11,14 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @companies = current_user.companies
-    @vehicles = current_user.vehicles
+    @companies = companies
+    @vehicles = vehicles
     @invoice = Invoice.new
   end
 
   def edit
-    @companies = current_user.companies
-    @vehicles = current_user.vehicles
+    @companies = companies
+    @vehicles = vehicles
     @invoice = Invoice.find(params[:id])
   end
 
@@ -41,13 +41,13 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:success] = 'Fattura elliminata'
-    redirect_after_destroy(curre_user_invoices)
+    redirect_after_destroy(current_user_invoices)
   end
 
   def create
-    @companies = current_user.companies
-    @vehicles = current_user.vehicles
-    params = BuildInvoice.new(invoice_params_user_id).build
+    @companies = companies
+    @vehicles = vehicles
+    params = build_invoice.build
     @invoice = Invoice.new(params)
     if @invoice.save
       flash[:success] = 'Fattura aggiunta'
@@ -65,5 +65,17 @@ class InvoicesController < ApplicationController
 
   def invoice_params_user_id
     invoice_params.merge!(user_id: current_user[:id])
+  end
+
+  def companies
+    @_companies ||= current_user_companies
+  end
+
+  def vehicles
+    @_vehicles ||= current_user_vehicles
+  end
+
+  def build_invoice
+    BuildInvoice.new(invoice_params_user_id)
   end
 end
