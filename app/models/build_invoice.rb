@@ -1,9 +1,6 @@
 class BuildInvoice
   attr_reader :invoice_params
 
-  include CalculateTaxable
-  include CalculateVat
-
   def initialize(invoice_params)
     @invoice_params = invoice_params
     @taxable = []
@@ -21,6 +18,22 @@ class BuildInvoice
   end
 
   private
+
+  def total_taxable(taxables)
+    total_taxable = 0
+    for i in 0..taxables.length-1
+      total_taxable += taxables[i]
+    end
+    total_taxable.round(2)
+  end
+
+  def total_vat(taxables, vats)
+    total_vat = 0
+    for i in 0..vats.length-1
+      total_vat += taxables[i] * vats[i] / 100
+    end
+    total_vat.round(2)
+  end
 
   def updated_invoice
     @invoice_params.merge(total: total,total_vat: @total_vat ,total_taxable: @total_taxable, at_the_expense_of: at_the_expense_of, category_id:category_id)
@@ -67,5 +80,4 @@ class BuildInvoice
       end
     end
   end
-
 end

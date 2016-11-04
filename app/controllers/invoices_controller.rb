@@ -41,19 +41,14 @@ class InvoicesController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     flash[:success] = 'Fattura elliminata'
-    if current_user.invoices.count > 0
-      redirect_to :back
-    else
-      redirect_to dashboard_invoices_path
-    end
+    redirect_after_destroy(curre_user_invoices)
   end
 
   def create
     @companies = current_user.companies
     @vehicles = current_user.vehicles
-    params = BuildInvoice.new(invoice_params).build
+    params = BuildInvoice.new(invoice_params_user_id).build
     @invoice = Invoice.new(params)
-    @invoice[:user_id] = current_user[:id]
     if @invoice.save
       flash[:success] = 'Fattura aggiunta'
       redirect_to invoice_path(id: @invoice.id)
@@ -66,5 +61,9 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
+  end
+
+  def invoice_params_user_id
+    invoice_params.merge!(user_id: current_user[:id])
   end
 end

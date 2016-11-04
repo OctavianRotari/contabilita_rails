@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe BuildInvoice, type: :unit do
   before :each do
-    create_category
-    create_company("name")
+    build_stubbed(:category)
+    build_stubbed(:company)
   end
 
   invoice_params = {taxable_vat_fields_attributes:
@@ -28,6 +28,7 @@ describe BuildInvoice, type: :unit do
   describe '#build' do
     it 'should calculate total taxable, vat and total' do
       taxable = BuildInvoice.new(invoice_params)
+      allow(:taxable).to receive(:category_id).and_return(1)
       taxable.build
       expect(taxable.invoice_params[:total_taxable]).to equal(200.0)
       expect(taxable.invoice_params[:total_vat]).to equal(8.0)
@@ -36,6 +37,7 @@ describe BuildInvoice, type: :unit do
 
     it 'should calculate total of two taxable, vat and total' do
       taxable = BuildInvoice.new(invoice_params_1)
+      allow(:taxable).to receive(:category_id) { 1 }
       taxable.build
       expect(taxable.invoice_params[:total_taxable]).to equal(1200.0)
       expect(taxable.invoice_params[:total_vat]).to equal(108.0)
@@ -44,6 +46,7 @@ describe BuildInvoice, type: :unit do
 
     it 'should calculate total of three taxable, vat and total' do
       taxable = BuildInvoice.new(invoice_params_2)
+      allow(:taxable).to receive(:category_id) { 1 }
       taxable.build
       expect(taxable.invoice_params[:total_taxable]).to equal(3100.0)
       expect(taxable.invoice_params[:total_vat]).to equal(310.0)
