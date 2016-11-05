@@ -20,7 +20,6 @@ class Company < ActiveRecord::Base
   end
 
   def category_name
-    category.category
+    category.name
   end
-
 end

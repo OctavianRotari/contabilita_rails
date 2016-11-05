@@ -28,6 +28,24 @@ describe PaymentsController, type: :controller do
       end
     end
 
+    describe 'when a payment is invalid' do
+      it 'redirects to new and shows error message with multiple payments' do
+        create(:payment, paid: 108)
+        payment = attributes_for(:payment, paid: 3)
+        post :create, payment: payment, invoice_id: payment[:invoice_id]
+        byebug
+        expect(flash[:error]).to match('Pagamento superiore al totale da pagare')
+        expect(response).to render_template('new')
+      end
+
+      it 'redirects to new and shows error message' do
+        payment = attributes_for(:payment, paid: 111)
+        post :create, payment: payment, invoice_id: payment[:invoice_id]
+        expect(flash[:error]).to match('Pagamento superiore al totale da pagare')
+        expect(response).to render_template('new')
+      end
+    end
+
     describe 'when payment is deleted' do
       it 'renders page with success' do
         create(:payment)

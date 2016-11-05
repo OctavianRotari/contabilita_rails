@@ -18,9 +18,7 @@ class Calculator
   def total_paid_or_collected_all(invoices)
     total = 0
     invoices.each do |invoice|
-      invoice.payments.each do |payment|
-        total += payment.paid
-      end
+      total += invoice.total_payments
     end
     total.round(2)
   end
@@ -29,16 +27,8 @@ class Calculator
     total_all(invoices) - total_paid_or_collected_all(invoices)
   end
 
-  def paid_per(invoice)
-    total = 0
-    invoice.payments.each do |payment|
-      total += payment.paid
-    end
-    total.round(2)
-  end
-
   def to_pay_per(invoice)
-    (invoice.total - paid_per(invoice)).round(2)
+    invoice.total - invoice.total_payments.round(2)
   end
 
   def total_costs_current_month(invoices, fuel_receipts = nil)

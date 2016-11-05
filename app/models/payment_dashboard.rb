@@ -5,22 +5,18 @@ class PaymentDashboard
     @payment_params = payment_params
   end
 
-  def check_total
-    total_to_pay.zero?
+  def update_invoice
+    total_to_pay < 0 ? false : invoice.update(paid: total_to_pay.zero?)
   end
 
   private
 
-  def invoice_total_payments
-    invoice.total_payments.to_i
-  end
-
-  def total
-    payment_params[:paid].to_i
-  end
-
   def total_to_pay
-    invoice.total.to_i - (invoice_total_payments + total)
+    invoice.total.to_i - invoice_payments
+  end
+
+  def invoice_payments
+    invoice.total_payments
   end
 
   def invoice

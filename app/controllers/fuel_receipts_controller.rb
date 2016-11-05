@@ -12,7 +12,6 @@ class FuelReceiptsController < ApplicationController
   end
 
   def new
-    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
     @fuel_receipt = FuelReceipt.new
     @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles

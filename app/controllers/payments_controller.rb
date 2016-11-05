@@ -9,11 +9,11 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params_invoice_id)
     @invoice = Invoice.find(invoice_id)
-    @invoice.update(paid: payment_dashboard.check_total)
-    if @payment.save
+    if @payment.save && payment_dashboard.update_invoice
       flash[:success] = 'Pagamento aggiunto'
       redirect_to invoice_path(id: invoice_id)
     else
+      flash[:error] = 'Pagamento superiore al totale da pagare' if payment_dashboard.update_invoice == false
       render 'new'
     end
   end
@@ -26,7 +26,7 @@ class PaymentsController < ApplicationController
   def update
     @payment = Payment.find(params[:id])
     @invoice = @payment.invoice
-    @invoice.update(paid: payment_dashboard.check_total)
+    payment_dashboard.update_invoice
     if @payment.update(payment_params)
       flash[:success] = 'Pagamento aggiornato'
       redirect_to invoice_path(id: invoice_id)
