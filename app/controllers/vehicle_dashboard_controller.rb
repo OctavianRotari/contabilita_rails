@@ -1,11 +1,6 @@
 class VehicleDashboardController < ApplicationController
   before_action :authenticate_user!
-  before_action do
-    if current_user.vehicles.empty?
-      flash[:error] = 'Aggiungere almeno un mezzo'
-      redirect_to :back
-    end
-  end
+  before_action :vehicle_any?
 
   def index
     @vehicle_dashboard = VehicleDashboard.new(params[:id], current_user)

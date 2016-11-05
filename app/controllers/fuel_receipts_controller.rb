@@ -1,14 +1,10 @@
 class FuelReceiptsController < ApplicationController
   before_action :authenticate_user!
-  before_action do
-    if current_user.categories.gas_station_id.nil?
-      flash[:error] = 'Aggiungere una categoria che indichi i benzinaii e almeno una compagnia registrata su tale categoria'
-      redirect_to :back
-    end
-  end
+  before_action :gas_station_category_any?
+  before_action :gas_station_company_any?
 
   def index
-    @fuel_receipt_dashboard = FuelReceiptDashboard.new(params[:id], current_user)
+    @fuel_receipt_dashboard = fuel_receipt_dashboard
   end
 
   def new
@@ -39,18 +35,13 @@ class FuelReceiptsController < ApplicationController
     fuel_receipt = FuelReceipt.find(params[:id])
     fuel_receipt.destroy
     flash[:success] = 'Scontrino elliminata'
-    if current_user.fuel_receipts.count > 0
-      redirect_to :back
-    else
-      redirect_to dashboard_invoices_path
-    end
+    redirect_after_destroy(current_user_fuel_receipts)
   end
 
   def create
     @companies = fuel_receipt_dashboard.gas_station_companies
     @vehicles = current_user.vehicles
-    @fuel_receipt = FuelReceipt.new(fuel_receipt_params)
-    @fuel_receipt[:user_id] = current_user[:id]
+    @fuel_receipt = FuelReceipt.new(fuel_receipt_params_user_id)
     if @fuel_receipt.save
       flash[:success] = 'Scontrino aggiunto'
       redirect_to fuel_receipts_path
@@ -70,6 +61,10 @@ class FuelReceiptsController < ApplicationController
   end
 
   def fuel_receipt_dashboard
-    FuelReceiptDashboard.new(params, current_user)
+    FuelReceiptDashboard.new(params[:id], current_user)
+  end
+
+  def fuel_receipt_params_user_id
+    fuel_receipt_params.merge!(user_id: current_user[:id])
   end
 end

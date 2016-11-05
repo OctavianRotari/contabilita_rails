@@ -10,7 +10,6 @@ describe PaymentDashboard, type: :unit do
     create(:category)
     create(:company)
     create(:invoice, type_of_invoice: 'passiva')
-    create(:payment, paid: 110)
   end
 
   describe 'user create payment' do

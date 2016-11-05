@@ -23,6 +23,45 @@ class ApplicationController < ActionController::Base
     current_user.invoices
   end
 
+  def current_user_fuel_receipts
+    current_user.fuel_receipts
+  end
+
+  def vehicle_any?
+    if current_user_vehicles.empty?
+      flash[:error] = 'Aggiungere almeno un mezzo'
+      redirect_to :back
+    end
+  end
+
+  def category_any?
+    if current_user.categories.empty?
+      flash[:error] = 'Aggiungere almeno una categoria'
+      redirect_to :back
+    end
+  end
+
+  def gas_station_category_any?
+    if current_user_categories.gas_station.empty?
+      flash[:error] = 'Aggiungere una categoria che indichi i benzinaii'
+      redirect_to :back
+    end
+  end
+
+  def gas_station_company_any?
+    if current_user_categories.gas_station.companies.empty?
+      flash[:error] = "Aggiungere almeno un'azienda di benzinaii"
+      redirect_to :back
+    end
+  end
+
+  def company_any?
+    if current_user_companies.empty?
+      flash[:error] = "Aggiungere almeno un'azienda"
+      redirect_to :back
+    end
+  end
+
   def redirect_after_destroy(collection)
     if collection.count > 0
       redirect_to :back

@@ -14,7 +14,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.gas_station
-    where(gas_station: true).first
+    where(gas_station: true)
   end
 
 end
