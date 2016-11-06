@@ -33,7 +33,6 @@ describe PaymentsController, type: :controller do
         create(:payment, paid: 108)
         payment = attributes_for(:payment, paid: 3)
         post :create, payment: payment, invoice_id: payment[:invoice_id]
-        byebug
         expect(flash[:error]).to match('Pagamento superiore al totale da pagare')
         expect(response).to render_template('new')
       end

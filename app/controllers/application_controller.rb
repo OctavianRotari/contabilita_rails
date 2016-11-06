@@ -42,14 +42,14 @@ class ApplicationController < ActionController::Base
   end
 
   def gas_station_category_any?
-    if current_user_categories.gas_station.empty?
+    unless current_user_categories.gas_station
       flash[:error] = 'Aggiungere una categoria che indichi i benzinaii'
       redirect_to :back
     end
   end
 
   def gas_station_company_any?
-    if current_user_categories.gas_station.companies.empty?
+    if current_user_companies.gas_stations.empty?
       flash[:error] = "Aggiungere almeno un'azienda di benzinaii"
       redirect_to :back
     end

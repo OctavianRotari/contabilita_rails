@@ -31,11 +31,7 @@ class CompaniesController < ApplicationController
     company = Company.find(params[:id])
     company.destroy
     flash[:success] = 'Azienda elliminata'
-    if current_user.companies.count > 0
-      redirect_to :back
-    else
-      redirect_to dashboard_invoices_path
-    end
+    redirect_after_destroy(current_user_companies)
   end
 
   def show
@@ -43,11 +39,10 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
-    @category = current_user.categories
-    @company[:user_id] = current_user[:id]
-    @company[:category_id] = category_id
+    @company = Company.new(company_params_user_id)
+    @category = current_user_categories
     if @company.save
+      flash[:success] = 'Azienda aggiunta'
       redirect_to dashboard_companies_path
     else
       render 'new'
@@ -55,8 +50,13 @@ class CompaniesController < ApplicationController
   end
 
   private
+
   def company_params
     params.require(:company).permit(:name, :adress, :number, :category_id)
+  end
+
+  def company_params_user_id
+    company_params.merge!(user_id: current_user[:id])
   end
 
   def company

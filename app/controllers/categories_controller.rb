@@ -27,8 +27,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
-    @category[:user_id] = current_user[:id]
+    @category = Category.new(category_params_user_id)
     if @category.save
       flash[:success] = 'Categoria aggiunta'
       redirect_to dashboard_categories_path
@@ -41,5 +40,9 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name, :gas_station)
+  end
+
+  def category_params_user_id
+    category_params.merge!(user_id: current_user[:id])
   end
 end

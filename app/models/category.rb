@@ -14,7 +14,6 @@ class Category < ActiveRecord::Base
   end
 
   def self.gas_station
-    where(gas_station: true)
+    find_by(gas_station: true)
   end
-
 end
