@@ -1,44 +1,72 @@
 require 'rails_helper'
 
 feature 'user' do
-
   before :each do
-    sign_up
+    create(:user)
+    create(:vehicle)
+    create(:category)
+    create(:company)
+    sign_in
   end
 
-  scenario 'sees unpaid invoices' do
-    category
-    create_passive_record('Bezzi', 'ER859BS')
-    visit '/invoices/dashboard'
-    expect(page).to have_css 'td', text: 'Bezzi'
-    expect(page).to have_css 'td', text: '110'
+  feature 'passive invoices not paid' do
+    before :each do
+      create(:invoice, type_of_invoice: 'passiva')
+    end
+
+    scenario 'sees unpaid invoices' do
+      visit '/invoices/dashboard'
+      expect(page).to have_css '#supplier_1', text: 'Esso'
+      expect(page).to have_css '#total_1', text: '110'
+    end
+
+    scenario 'sees totals unpaid invoices' do
+      create(:invoice, type_of_invoice: 'passiva')
+      create(:payment)
+      visit '/invoices/dashboard'
+      expect(page).to have_css '.total', text: '220'
+      expect(page).to have_css '.vat', text: '20'
+      expect(page).to have_css '.paid', text: '0'
+      expect(page).to have_css '.to_pay', text: '120'
+    end
   end
 
-
-  scenario "doesn't see paid invoices" do
-    category
-    invoice = create_passive_record('Giovanni', 'ER859BS')
-    create_payment(invoice, 110)
-    visit '/invoices/dashboard'
-    expect(page).to_not have_css 'td', text: 'Giovanni'
-    expect(page).to_not have_css 'td', text: '110'
+  feature 'passive invoices paid' do
+    scenario 'does not see paid invoices' do
+      create(:invoice, type_of_invoice: 'passiva', paid: true)
+      visit '/invoices/dashboard'
+      expect(page).to_not have_css '#supplier_1', text: 'Esso'
+      expect(page).to_not have_css '#total_1', text: '110'
+    end
   end
 
-  scenario 'sees uncollected invoices' do
-    category
-    create_active_record('Bezzi', 'ER859BS')
-    visit '/invoices/dashboard'
-    expect(page).to have_css 'td', text: 'Bezzi'
-    expect(page).to have_css 'td', text: '110'
+  feature 'active invoices not collected' do
+    before :each do
+      create(:invoice)
+    end
+
+    scenario 'sees uncollected invoices' do
+      visit '/invoices/dashboard'
+      expect(page).to have_css '#supplier_1', text: 'Esso'
+      expect(page).to have_css '#total_1', text: '110'
+    end
+
+    scenario 'sees totals uncollected invoices' do
+      create(:payment)
+      create(:invoice)
+      visit '/invoices/dashboard'
+      expect(page).to have_css '.total', text: '220'
+      expect(page).to have_css '.vat', text: '20'
+      expect(page).to have_css '.paid', text: '0'
+      expect(page).to have_css '.to_pay', text: '120'
+    end
   end
 
-
-  scenario "doesn't see collected invoices" do
-    category
-    invoice = create_active_record('Giovanni', 'ER859BS')
-    create_payment(invoice, 110)
-    visit '/invoices/dashboard'
-    expect(page).to_not have_css 'td', text: 'Giovanni'
-    expect(page).to_not have_css 'td', text: '110'
+  feature 'active invoices collected' do
+    scenario 'does not see collected invoices' do
+      create(:invoice, paid: true)
+      expect(page).to_not have_css '#supplier_1', text: 'Esso'
+      expect(page).to_not have_css '#total_1', text: '110'
+    end
   end
 end
