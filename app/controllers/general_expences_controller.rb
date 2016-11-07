@@ -1,6 +1,6 @@
 class GeneralExpencesController < ApplicationController
   before_action :authenticate_user!
-  before_action :vehicle_any?
+  before_action :vehicle_general_expences_any?
 
   def index
     @invoices_dashboard = InvoiceDashboard.new(current_user, params)

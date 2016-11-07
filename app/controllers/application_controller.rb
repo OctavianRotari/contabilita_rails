@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     current_user.vehicles
   end
 
+  def current_user_vehicles_general_expences
+    current_user.vehicles.charge_general_expences
+  end
+
   def current_user_invoices
     current_user.invoices
   end
@@ -30,6 +34,13 @@ class ApplicationController < ActionController::Base
   def vehicle_any?
     if current_user_vehicles.empty?
       flash[:error] = 'Aggiungere almeno un mezzo'
+      redirect_to :back
+    end
+  end
+
+  def vehicle_general_expences_any?
+    if current_user_vehicles_general_expences.empty?
+      flash[:error] = "Aggiungere prima un mezzo che e' imputabile per le spese generali"
       redirect_to :back
     end
   end

@@ -127,8 +127,8 @@ describe Calculator, type: :unit do
     before :each do
       invoice
       create(:invoice, type_of_invoice: 'passiva')
-create(:vehicle, charge_general_expences: true)
-create(:vehicle, charge_general_expences: true)
+      create(:vehicle, charge_general_expences: true)
+      create(:vehicle, charge_general_expences: true)
     end
 
     it 'should calculate the total costs per month' do

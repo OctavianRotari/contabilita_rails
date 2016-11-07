@@ -20,9 +20,9 @@ class BuildInvoice
   end
 
   def at_the_expense_of
-    if vehicle_id == 'garage'
+    if vehicle_id == 'general_expences'
       @invoice_params[:vehicle_id] = nil
-      'Officina'
+      'Spese generali'
     elsif !vehicle_id.empty?
       'Veicolo'
     end
