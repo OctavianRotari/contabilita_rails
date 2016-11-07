@@ -1,57 +1,57 @@
 <div class="row">
-<div class="invoices-by-year">
-	<h3>Anno: <%= params[:year_param]%></h3>
-	<h4><%= previos_year_menu("passive") %></h4>
-	<h4><%= next_year_menu("passive") %></h4>
-</div>
+  <div class="invoices-by-year">
+    <h3>Anno: <%= params[:year_param]%></h3>
+    <h4><%= previos_year_menu("passive") %></h4>
+    <h4><%= next_year_menu("passive") %></h4>
+  </div>
 </div>
 <div class="row">
-	<div class="invoices">
-		<% invoices_dashboard.passive_by_year_and_month(params).each do |month, invoices| %>
-			<h2><%= month.strftime('%B') %></h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Fornitore</th>
-						<th>Totale</th>
-						<th class="vat">Iva</th>
-						<th class="paid">Pagato</th>
-						<th>Da pagare</th>
-						<th>Motivo</th>
-						<th class="date-of-issue">Data di emmissione</th>
-						<th class="at-the-expense-of">A carrico di</th>
-						<th class="deadline">Scadenza</th>
-						<th class="cash-invoice"></th>
-						<th class="delete-invoice"></th>
-					</tr>
-				</thead>
-				<%= render partial: "calculators/totals", locals: {calculator: calculator, invoices:invoices} %>
-				<tbody>
-					<% for invoice in invoices %>
-						<tr>
-							<td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
-							<td><%= invoice.total %></td>
-							<td class="vat"><%= invoice.total_vat %></td>
-							<td class="paid"><%= calculator.paid_per(invoice) %></td>
-							<td><%= calculator.to_pay_per(invoice) %></td>
-							<td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
-							<td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
-							<td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
-							<td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-							<td class="cash-invoice">
-								<%= link_to new_invoice_payment_path(invoice_id: invoice.id), title: "Effettua pagamento." do %>
-									<i class="ion-cash icon-small-cash"></i>
-								<% end%>
-							</td>
-							<td class="delete-invoice">
-								<%= link_to invoice_path(id: invoice.id), class: 'delete-invoice', title: "Ellimina fattura.", method: :delete, data: {confirm: "Si e sicuri?"} do%>
-									<i class="ion-ios-trash icon-small-trash"></i>
-								<% end%>
-							</td>
-						</tr>
-					<%end%>
-				</tbody>
-			</table>
-		<%end%>
-	</div>
+  <div class="invoices">
+    <% invoices_dashboard.passive_by_year_and_month(params).each do |month, invoices| %>
+      <h2><%= month.strftime('%B') %></h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Fornitore</th>
+            <th>Totale</th>
+            <th class="vat">Iva</th>
+            <th class="paid">Pagato</th>
+            <th>Da pagare</th>
+            <th>Motivo</th>
+            <th class="date-of-issue">Data di emmissione</th>
+            <th class="at-the-expense-of">A carrico di</th>
+            <th class="deadline">Scadenza</th>
+            <th class="cash-invoice"></th>
+            <th class="delete-invoice"></th>
+          </tr>
+        </thead>
+        <%= render partial: "total_costs/totals", locals: {calculator: calculator, invoices:invoices} %>
+        <tbody>
+          <% for invoice in invoices %>
+            <tr>
+              <td><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
+              <td><%= invoice.total %></td>
+              <td class="vat"><%= invoice.total_vat %></td>
+              <td class="paid"><%= invoice.total_payments %></td>
+              <td><%= calculator.to_pay_per(invoice) %></td>
+              <td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
+              <td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
+              <td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
+              <td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+              <td class="cash-invoice">
+                <%= link_to new_invoice_payment_path(invoice_id: invoice.id), title: "Effettua pagamento." do %>
+                  <i class="ion-cash icon-small-cash"></i>
+                <% end%>
+              </td>
+              <td class="delete-invoice">
+                <%= link_to invoice_path(id: invoice.id), class: 'delete-invoice', title: "Ellimina fattura.", method: :delete, data: {confirm: "Si e sicuri?"} do%>
+                  <i class="ion-ios-trash icon-small-trash"></i>
+                <% end%>
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    <%end%>
+  </div>
 </div>

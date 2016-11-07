@@ -1,22 +1,22 @@
 <tbody>
-<tr>
-  <td id="supplier_<%=invoice.company_id%>"><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
-	<td id="total_<%=invoice.company_id%>"><%= invoice.total %></td>
-	<td class="vat"><%= invoice.total_vat %></td>
-	<td class="paid"><%= invoice.total_payments %></td>
-	<td><%= calculator.to_pay_per(invoice) %></td>
-	<td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
-	<td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
-	<td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
-	<td class="cash-invoice">
-		<%= link_to new_invoice_payment_path(invoice_id: invoice.id) do %>
-			<i class="ion-cash icon-small-cash"></i>
-		<% end%>
-	</td>
-	<td class="delete-invoice_<%=invoice.id%>">
-		<%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
-			<i class="ion-ios-trash icon-small-trash"></i>
-		<% end%>
-	</td>
-</tr>
+  <tr>
+    <td id="supplier_<%=invoice.company_id%>"><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
+    <td id="total_<%=invoice.company_id%>"><%= invoice.total %></td>
+    <td class="vat"><%= invoice.total_vat %></td>
+    <td class="paid"><%= invoice.total_payments %></td>
+    <td><%= calculator.to_pay_per(invoice) %></td>
+    <td><%= link_to invoice.reason, invoice_path(id: invoice.id) %></td>
+    <td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>
+    <td class="deadline"><%= invoice.deadline.strftime("%d-%m-%Y")%></td>
+    <td class="cash-invoice">
+      <%= link_to new_invoice_payment_path(invoice_id: invoice.id) do %>
+        <i class="ion-cash icon-small-cash"></i>
+      <% end%>
+    </td>
+    <td class="delete-invoice_<%=invoice.id%>">
+      <%= link_to invoice_path(id: invoice.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+        <i class="ion-ios-trash icon-small-trash"></i>
+      <% end%>
+    </td>
+  </tr>
 </tbody>

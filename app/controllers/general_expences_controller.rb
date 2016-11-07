@@ -1,4 +1,4 @@
-class GarageController < ApplicationController
+class GeneralExpencesController < ApplicationController
   before_action :authenticate_user!
   before_action :vehicle_any?
 

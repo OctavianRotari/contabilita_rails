@@ -12,4 +12,8 @@ class Vehicle < ActiveRecord::Base
   def fuel_receipts_per_company(comapny_id)
     fuel_receipts.where(company_id: comapny_id)
   end
+
+  def self.charge_general_expences
+    where(charge_general_expences: true)
+  end
 end

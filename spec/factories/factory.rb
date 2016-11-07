@@ -23,6 +23,7 @@ FactoryGirl.define do
     plate('ER354BS')
     type_of_vehicle('trattore')
     user_id(1)
+    charge_general_expences(false)
   end
 
   factory :fuel_receipt do

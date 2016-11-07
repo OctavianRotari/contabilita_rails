@@ -1,35 +1,44 @@
 <div class="row">
-<div class="new">
-	<%= form_for vehicle do |form| %>
-		<% if vehicle.errors.any? %>
-			A causa di questi errori non e' stato possibile creare il veicolo:
-			<ul>
-				<% vehicle .errors.messages.each do |name, error| %>
-					<li><%= error[0] %></li>
-				<% end %>
-			</ul>
-		<% end %>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Targa' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :plate, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Tipo mezzo' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :type_of_vehicle, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-3-of-3 submit">
-				<%= form.submit "Conferma", class: "btn btn-big" %>
-			</div>
-		</div>
-	<% end %>
-</div>
+  <div class="new">
+    <%= form_for vehicle do |form| %>
+      <% if vehicle.errors.any? %>
+        A causa di questi errori non e' stato possibile creare il veicolo:
+        <ul>
+          <% vehicle .errors.messages.each do |name, error| %>
+            <li><%= error[0] %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Targa' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :plate, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Tipo mezzo' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :type_of_vehicle, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+        </div>
+        <div class="gas-station col span-2-of-3">
+          <%= form.label :charge_general_expences do %>
+            <%= form.check_box(:charge_general_expences)  %> Imputazione delle spese generali
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-3-of-3 submit">
+          <%= form.submit "Conferma", class: "btn btn-big" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

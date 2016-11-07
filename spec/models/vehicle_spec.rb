@@ -27,6 +27,14 @@ describe Vehicle, type: :unit do
       company
     end
 
+    describe '#charge_general_expences' do
+      it 'should return only vehicles that will be charged of general expences' do
+        vehicle_expences = create(:vehicle, charge_general_expences: true)
+        expect(Vehicle.charge_general_expences).to eq([vehicle_expences])
+        expect(Vehicle.charge_general_expences).not_to include(vehicle)
+      end
+    end
+
     describe '#receipts' do
       it 'should have many receipts' do
         fuel_receipt = create(:fuel_receipt)

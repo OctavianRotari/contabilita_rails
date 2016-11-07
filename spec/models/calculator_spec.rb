@@ -101,13 +101,14 @@ describe Calculator, type: :unit do
     end
   end
 
-  describe '#total_costs_month_garage_divided' do
+  describe '#total_costs_month_general_expences_divided' do
     let(:invoices) { Invoice.passive }
 
     before :each do
       invoice
       create(:invoice, type_of_invoice: 'passiva')
-      create(:vehicle)
+      create(:vehicle, charge_general_expences: true)
+      create(:vehicle, charge_general_expences: true)
     end
 
     it 'should calculate the total costs per month' do
@@ -120,13 +121,14 @@ describe Calculator, type: :unit do
     end
   end
 
-  describe '#total_costs_year_garage_divided' do
+  describe '#total_costs_year_general_expences_divided' do
     let(:invoices) { Invoice.passive }
 
     before :each do
       invoice
       create(:invoice, type_of_invoice: 'passiva')
-      create(:vehicle)
+create(:vehicle, charge_general_expences: true)
+create(:vehicle, charge_general_expences: true)
     end
 
     it 'should calculate the total costs per month' do

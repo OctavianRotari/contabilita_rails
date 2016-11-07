@@ -1,70 +1,70 @@
 <nav>
-	<div class="main-nav-background">
-		<div class="row js--main-navigation">
-			<div class="logo-sticky">
-				<%=image_tag("accounting.png")%>
-			</div>
-			<div class="app-title-sticky">
-				<h1 class="app-title" >Contabilita</h1>
-			</div>
-			<ul class="main-nav clearfix col span-2-of-3 js--main-nav">
-				<div class="static col span-1-of-7">
-					<span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
-				</div>
-				<div class="static col span-1-of-7">
-					<span><li><%= link_to 'Officina', garage_index_path %></li></span>
-				</div>
-				<div class="dropdown col span-1-of-7 js--dropdown">
-					<span id='fatture'>Fatture</span>
-					<div class="dropdown-content js--dropdown-content">
-						<ul>
-							<% if current_user.invoices.active.any?%>
-								<li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
-							<% end %>
-							<% if current_user.invoices.passive.any?%>
-								<li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
-							<% end %>
-							<li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
-						</ul>
-					</div>
-				</div>
-				<div class="dropdown col span-1-of-7 js--dropdown">
-					<span id="categorie">Carburante</span>
-					<div class="dropdown-content js--dropdown-content">
-						<ul class="clearfix">
-							<li><%= link_to 'Costi carburante', fuel_receipts_path %></li>
-							<li><%= link_to 'Aggiungi scontrino', new_fuel_receipt_path %></li>
-						</ul>
-					</div>
-				</div>
-				<div class="dropdown col span-1-of-7 js--dropdown">
-					<span id="aziende">Aziende</span>
-					<div class="dropdown-content js--dropdown-content">
-						<ul class="clearfix">
-							<li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
-							<li><%= link_to 'Aggiungi azienda', new_company_path %></li>
-						</ul>
-					</div>
-				</div>
-				<div class="dropdown col span-1-of-7 js--dropdown">
-					<span id="mezzi">Mezzi</span>
-					<div class="dropdown-content js--dropdown-content">
-						<ul class="clearfix">
-							<li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
-							<li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
-						</ul>
-					</div>
-				</div>
-				<div class="dropdown col span-1-of-7 js--dropdown">
-					<span id="categorie">Categorie</span>
-					<div class="dropdown-content js--dropdown-content">
-						<ul class="clearfix">
-							<li><%= link_to 'Visualiza categorie', dashboard_categories_path %></li>
-							<li><%= link_to 'Aggiungi categoria', new_category_path %></li>
-						</ul>
-					</div>
-				</div>
-			</ul>
-		</div>
-	</div>
+  <div class="main-nav-background">
+    <div class="row js--main-navigation">
+      <div class="logo-sticky">
+        <%=image_tag("accounting.png")%>
+      </div>
+      <div class="app-title-sticky">
+        <h1 class="app-title" >Contabilita</h1>
+      </div>
+      <ul class="main-nav clearfix col span-2-of-3 js--main-nav">
+        <div class="static col span-1-of-7">
+          <span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
+        </div>
+        <div class="static col span-1-of-7">
+          <span><li><%= link_to 'Spese generali', general_expences_path %></li></span>
+        </div>
+        <div class="dropdown col span-1-of-7 js--dropdown">
+          <span id='fatture'>Fatture</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul>
+              <% if current_user.invoices.active.any?%>
+                <li><%= link_to 'Fatture attive', active_invoices_path(year_param: Time.now.year) %></li>
+              <% end %>
+              <% if current_user.invoices.passive.any?%>
+                <li><%= link_to 'Fatture passive', passive_invoices_path(year_param: Time.now.year)  %></li>
+              <% end %>
+              <li><%= link_to "Aggiungi fattura", new_invoice_path %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown col span-1-of-7 js--dropdown">
+          <span id="categorie">Carburante</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul class="clearfix">
+              <li><%= link_to 'Costi carburante', fuel_receipts_path %></li>
+              <li><%= link_to 'Aggiungi scontrino', new_fuel_receipt_path %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown col span-1-of-7 js--dropdown">
+          <span id="aziende">Aziende</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul class="clearfix">
+              <li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
+              <li><%= link_to 'Aggiungi azienda', new_company_path %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown col span-1-of-7 js--dropdown">
+          <span id="mezzi">Mezzi</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul class="clearfix">
+              <li><%= link_to 'Visualizza mezzi', dashboard_vehicles_path %></li>
+              <li><%= link_to 'Aggiungi mezzo', new_vehicle_path %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown col span-1-of-7 js--dropdown">
+          <span id="categorie">Categorie</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul class="clearfix">
+              <li><%= link_to 'Visualiza categorie', dashboard_categories_path %></li>
+              <li><%= link_to 'Aggiungi categoria', new_category_path %></li>
+            </ul>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
 </nav>

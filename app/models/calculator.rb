@@ -70,6 +70,7 @@ class Calculator
   private
 
   def number_of_vehicles
-    Vehicle.count
+    byebug
+    Vehicle.charge_general_expences.count
   end
 end

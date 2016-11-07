@@ -6,12 +6,23 @@ feature 'vehicles' do
     sign_in
   end
 
-  scenario 'adds new vehicle' do
-    visit '/vehicles/new'
-    fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'
-    fill_in 'vehicle[plate]', with: 'ER345BR'
-    click_button 'Conferma'
-    expect(page).to have_css '#vehicle_plate', text: 'ER345BR'
+  feature 'adds a new vehicle'do
+    before :each do
+      visit '/vehicles/new'
+      fill_in 'vehicle[type_of_vehicle]', with: 'Trattore'
+      fill_in 'vehicle[plate]', with: 'ER345BR'
+      page.check 'Imputazione delle spese generali'
+      click_button 'Conferma'
+    end
+
+    scenario 'user can see the plate of the new vehicle' do
+      expect(page).to have_css '#vehicle_plate', text: 'ER345BR'
+    end
+
+    scenario 'the vehicle is chargeable of general expences' do
+      vehicle = Vehicle.first
+      expect(vehicle.charge_general_expences).to eq(true)
+    end
   end
 
   feature 'vehicle already exists' do
