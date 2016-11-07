@@ -4,8 +4,8 @@ module PathToPreviousOrNextPassiveYearHelper
       link_to 'Anno precedente', company(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
     elsif url.include? 'vehicles'
       link_to 'Anno precedente', vehicle(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
-    elsif url.include? 'garage'
-      link_to 'Anno precedente', garage(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
+    elsif url.include? 'general_expences'
+      link_to 'Anno precedente', general_expences(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
     elsif url.include? 'categories'
       link_to 'Anno precedente', category(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i - 1), :remote => true
     else
@@ -18,8 +18,8 @@ module PathToPreviousOrNextPassiveYearHelper
       link_to 'Anno successivo', company(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
     elsif url.include? 'vehicles'
       link_to 'Anno successivo', vehicle(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
-    elsif url.include? 'garage'
-      link_to 'Anno successivo', garage(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
+    elsif url.include? 'general_expences'
+      link_to 'Anno successivo', general_expences(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
     elsif url.include? 'categories'
       link_to 'Anno successivo', category(type_of_invoice).call(params[:id], year_param: params[:year_param].to_i + 1), :remote => true
     else
@@ -37,8 +37,8 @@ module PathToPreviousOrNextPassiveYearHelper
     method(("#{type_of_invoice}_invoices_vehicle_path").to_sym)
   end
 
-  def garage(type_of_invoice)
-    method(("#{type_of_invoice}_invoices_garage_index_path").to_sym)
+  def general_expences(type_of_invoice)
+    method(("#{type_of_invoice}_invoices_general_expences_path").to_sym)
   end
 
   def category(type_of_invoice)
