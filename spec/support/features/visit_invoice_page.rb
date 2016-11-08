@@ -10,10 +10,4 @@ module Features
     find('#fatture').click
     click_link 'Fatture passive'
   end
-
-  def visits_new_invoice
-    visit '/invoices/dashboard'
-    find('#fatture').click
-    click_link 'Aggiungi fattura'
-  end
 end
