@@ -1,59 +1,59 @@
 <div class="row">
-	<div class="new">
-		<%= form_for fuel_receipt do |form|%>
-		<% if fuel_receipt.errors.any? %>
-		A causa di questi errori non e' stato possibile creare lo scontrino:
-		<ul>
-			<% fuel_receipt.errors.messages.each do |name, error| %>
-			<li><%= error[0] %></li>
-			<% end %>
-		</ul>
-		<% end %>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Totale rifornimento'%>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :total, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Litri'%>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :litres, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Azienda'%>
-			</div>
-			<div class="col span-2-of-3">
-				<%= list_of_companies_selected_value(form) %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'A carico di'%>
-			</div>
-			<div class="col span-2-of-3">
-				<%= list_of_vehicles(form) %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Data emissione scontrino' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :date_of_issue, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-3-of-3 submit">
-				<%= form.submit "Conferma", class: "btn btn-big" %>
-			</div>
-		</div>
-		<% end %>
-	</div>
+  <div class="new">
+    <%= form_for fuel_receipt do |form|%>
+      <% if fuel_receipt.errors.any? %>
+        A causa di questi errori non e' stato possibile creare lo scontrino:
+        <ul>
+          <% fuel_receipt.errors.messages.each do |name, error| %>
+            <li><%= error[0] %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Totale rifornimento'%>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :total, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Litri'%>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :litres, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Azienda'%>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.collection_select(:company_id, @companies, :id, :name, prompt: "Aziende") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'A carico di'%>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.collection_select(:vehicle_id, @vehicles, :id, :plate, prompt: "Mezzi") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Data emissione scontrino' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :date_of_issue, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-3-of-3 submit">
+          <%= form.submit "Conferma", class: "btn btn-big" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

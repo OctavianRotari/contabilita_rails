@@ -1,80 +1,80 @@
 <div class="row">
-<div class="new">
-	<%= form_for invoice do |form| %>
-		<% if invoice.errors.any? %>
-			A causa di questi errori non e' stato possibile creare la fattura:
-			<ul>
-				<% invoice.errors.messages.each do |name, error| %>
-					<li><%= error[0] %></li>
-				<% end %>
-			</ul>
-		<% end %>
-		<%= form.fields_for :taxable_vat_fields do |builder| %>
-			<%= render 'taxable_vat_field_fields', f: builder %>
-		<% end %>
-		<% if invoice_url_include_new? %>
-			<%= default_fields form , :taxable_vat_fields %>
-		<% end %>
-		<div class="row">
-			<div class="col span-1-of-3">
-			</div>
-			<div class="col span-2-of-3">
-				<%= link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Tipo fattura' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= list_of_types_of_invoices_selected_value(form) %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Azienda' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= list_of_companies_selected_value(form) %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'A carico di' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= list_at_the_expence_of_selected_value(form) %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Motivo' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :reason, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Data emissione fattura' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :date_of_issue, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-1-of-3">
-				<%= form.label 'Data scadenza' %>
-			</div>
-			<div class="col span-2-of-3">
-				<%= form.text_field :deadline, require: true %>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col span-3-of-3 submit">
-				<%= form.submit "Conferma", class: "btn btn-big" %>
-			</div>
-		</div>
-	<% end %>
-</div>
+  <div class="new">
+    <%= form_for invoice do |form| %>
+      <% if invoice.errors.any? %>
+        A causa di questi errori non e' stato possibile creare la fattura:
+        <ul>
+          <% invoice.errors.messages.each do |name, error| %>
+            <li><%= error[0] %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form.fields_for :taxable_vat_fields do |builder| %>
+        <%= render 'taxable_vat_field_fields', f: builder %>
+      <% end %>
+      <% if invoice_url_include_new? %>
+        <%= default_fields form , :taxable_vat_fields %>
+      <% end %>
+      <div class="row">
+        <div class="col span-1-of-3">
+        </div>
+        <div class="col span-2-of-3">
+          <%= link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Tipo fattura' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= list_of_types_of_invoices_selected_value(form) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Azienda' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.collection_select(:company_id, @companies, :id, :name, prompt: "Aziende") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'A carico di' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.collection_select(:vehicle_id, [Vehicle.new(id: 'general_expences', plate: "Spese generali")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Motivo' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :reason, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Data emissione fattura' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :date_of_issue, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Data scadenza' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :deadline, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-3-of-3 submit">
+          <%= form.submit "Conferma", class: "btn btn-big" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
