@@ -278,7 +278,8 @@ input[type=submit],
 }
 
 .dropdown-content.animated{
-  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
 }
 
 .dropdown span:hover {
@@ -542,6 +543,7 @@ header.white-space{
 .section-introduction {
   margin: -20px 0 0 0;
   height:calc(100vh - 55px);
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("desk.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("desk.jpg");
   background-attachment: fixed;
   background-size: cover;
@@ -558,13 +560,15 @@ header.white-space{
   width: 1140px; /*same with as the whole image but absolutelly positioned*/
   top: 70%;
   left: 50%;
-  transform: translate(-50%, -50%); /*it translate the object half of its width and heigh left and top*/
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); /*it translate the object half of its width and heigh left and top*/
   font-size:80%;
   font-weight:300;
 }
 
 .section-features{
   height:100vh;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("calculator.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), image-url("calculator.jpg");
   background-attachment: fixed;
   background-size: cover;
