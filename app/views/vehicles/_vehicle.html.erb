@@ -8,10 +8,10 @@
   <%= link_to vehicle_path(vehicle.id), class: 'delete-vehicle', title: "Elimina veicolo." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
     <i class="ion-ios-trash icon-small-trash"></i>
   <% end %>
-  <%= link_to dashboard_vehicle_path(vehicle.id), title: "Visualizza fatture." do%>
+  <%= link_to dashboard_vehicle_path(vehicle.id), class: 'invoices', title: "Visualizza fatture." do%>
     <i class="ion-ios-list icon-small-list"></i>
   <% end %>
-  <%= link_to fuel_receipts_vehicle_path(vehicle.id), title: "Visualizza scontrini carburante." do%>
+  <%= link_to fuel_receipts_vehicle_path(vehicle.id), class: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
     <i class="ion-funnel icon-small-list"></i>
   <% end %>
   <%= render partial: "total_costs/total_costs_vehicle", locals: { calculator: vehicle.calculator, invoices: vehicle.invoices, fuel_receipts: vehicle.fuel_receipts } %>

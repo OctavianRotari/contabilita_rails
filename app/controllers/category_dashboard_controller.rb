@@ -3,11 +3,11 @@ class CategoryDashboardController < ApplicationController
   before_action :category_any?
 
   def index
-    @category_dashboard = CategoryDashboard.new(params, current_user)
+    @category_dashboard = CategoryDashboard.new(category_id, current_user)
   end
 
   def show
-    @category_dashboard = CategoryDashboard.new(params, current_user)
+    @category_dashboard = CategoryDashboard.new(category_id, current_user)
   end
 
   def passive_invoices
@@ -24,5 +24,11 @@ class CategoryDashboardController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+
+  def category_id
+    params[:id]
   end
 end

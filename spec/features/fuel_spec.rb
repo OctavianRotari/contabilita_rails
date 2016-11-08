@@ -25,14 +25,8 @@ feature 'fuel receipts' do
   end
 
   scenario 'user sees companies fuel receipts' do
-    visit "/companies/#{company.id}/fuel_receipts"
-    expect(page).to have_css '#company_name', text: 'Esso'
-    expect(page).to have_css '#total_fuel_receipt', text: '300'
-    expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
-  end
-
-  scenario 'user sees vehicles fuel receipts' do
-    visit "/vehicles/#{vehicle.id}/fuel_receipts"
+    visit('/fuel_receipts')
+    find('.fuel_receipts').click
     expect(page).to have_css '#company_name', text: 'Esso'
     expect(page).to have_css '#total_fuel_receipt', text: '300'
     expect(page).to have_css '#vehicle_plate', text: 'ER354BS'

@@ -1,12 +1,11 @@
 class CompanyDashboard
+  include CurrentUserRecords
 
-  def initialize current_user, params
+  attr_reader :current_user, :company_id
+
+  def initialize(company_id, current_user)
+    @company_id = company_id
     @current_user = current_user
-    @params = params
-  end
-
-  def company_id
-    @params[:id]
   end
 
   def company_name
@@ -14,25 +13,20 @@ class CompanyDashboard
   end
 
   def calculator
-    Calculator.new
+    @calculator ||= Calculator.new
   end
 
   def companies
-    @current_user.companies.order(name: :asc)
+    current_user_companies.order(name: :asc)
   end
 
   def invoices
-    invoice_dashboard.company_invoices(company_id)
+    company.invoices
   end
 
   private
 
   def company
-    @current_user.companies.find(company_id)
+    current_user_companies.find(company_id)
   end
-
-  def invoice_dashboard
-    InvoiceDashboard.new(@current_user, @params)
-  end
-
 end

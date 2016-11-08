@@ -11,7 +11,7 @@
   <%= link_to dashboard_company_path(company.id), title: "Visualizza fatture." do%>
     <i class="ion-ios-list icon-small-list"></i>
   <% end %>
-  <%= link_to fuel_receipts_company_path(company.id), title: "Visualizza scontrini carburante." do%>
+  <%= link_to fuel_receipts_company_path(company.id), class: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
     <i class="ion-funnel icon-small-list"></i>
   <% end %>
   <%= render partial: 'vehicles_fuel_receipts', collection: company.vehicles, as: :vehicle, locals: { calculator: calculator, company_id: company.id } %>

@@ -1,9 +1,9 @@
 class VehicleDashboard
   include CurrentUserRecords
-  attr_reader :id, :current_user
+  attr_reader :current_user, :vehicle_id
 
-  def initialize(id, current_user)
-    @id = id
+  def initialize(vehicle_id, current_user)
+    @vehicle_id = vehicle_id
     @current_user = current_user
   end
 
@@ -26,6 +26,6 @@ class VehicleDashboard
   private
 
   def vehicle
-    current_user_vehicles.find(id)
+    current_user_vehicles.find(vehicle_id)
   end
 end

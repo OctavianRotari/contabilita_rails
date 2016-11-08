@@ -3,11 +3,11 @@ class VehicleDashboardController < ApplicationController
   before_action :vehicle_any?
 
   def index
-    @vehicle_dashboard = VehicleDashboard.new(params[:id], current_user)
+    @vehicle_dashboard = VehicleDashboard.new(vehicle_id, current_user)
   end
 
   def show
-    @vehicle_dashboard = VehicleDashboard.new(params[:id], current_user)
+    @vehicle_dashboard = VehicleDashboard.new(vehicle_id, current_user)
   end
 
   def passive_invoices
@@ -24,5 +24,11 @@ class VehicleDashboardController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  private
+
+  def vehicle_id
+    params[:id]
   end
 end

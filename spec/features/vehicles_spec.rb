@@ -40,9 +40,13 @@ feature 'vehicles' do
     end
 
     scenario 'deletes vehicle' do
-      visit('/vehicles/dashboard')
       find('.delete-vehicle').click
       expect(page).not_to have_css '#vehicle_plate', text: 'ER354BS'
+    end
+
+    scenario "visits vehicle's invoices" do
+      find('.invoices').click
+      expect(page).to have_content('ER354BS')
     end
 
     feature 'and has invoices' do
@@ -67,12 +71,18 @@ feature 'vehicles' do
         create(:category)
         create(:company)
         create(:invoice, type_of_invoice: 'passiva')
+        create(:fuel_receipt)
       end
 
       scenario 'sees the total spent for fuel per month' do
-        create(:fuel_receipt)
         visit '/vehicles/dashboard'
         expect(page).to have_css '#current_month_fuel_costs', text: '300'
+      end
+
+      scenario 'user sees vehicles fuel receipts' do
+        find('.fuel_receipts').click
+        expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
+        expect(page).to have_css '#total_fuel_receipt', text: '300'
       end
     end
   end

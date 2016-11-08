@@ -1,24 +1,23 @@
 class CategoryDashboard
+  include CurrentUserRecords
 
-  def initialize params, current_user
-    @params = params
+  attr_reader :current_user, :category_id
+
+  def initialize(category_id, current_user)
+    @category_id = category_id
     @current_user = current_user
   end
 
-  def category_id
-    @params[:id]
-  end
-
   def categories
-    @current_user.categories.order(name: :asc)
+    current_user_categories.order(name: :asc)
   end
 
   def calculator
-    Calculator.new
+    @calculator ||= Calculator.new
   end
 
   def invoices
-    invoices_dashboard.category_invoices(category_id)
+    category.invoices
   end
 
   def category_name
@@ -27,12 +26,7 @@ class CategoryDashboard
 
   private
 
-  def invoices_dashboard
-    InvoiceDashboard.new(@current_user, @params)
-  end
-
   def category
-    @current_user.categories.find(category_id)
+    current_user_categories.find(category_id)
   end
-
 end
