@@ -28,7 +28,7 @@ feature 'companies' do
     end
 
     scenario "visits company's invoices" do
-      find('.invoices').click
+      find('#invoices').click
       expect(page).to have_content('Esso')
     end
 

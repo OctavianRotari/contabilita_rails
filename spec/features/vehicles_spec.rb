@@ -45,7 +45,7 @@ feature 'vehicles' do
     end
 
     scenario "visits vehicle's invoices" do
-      find('.invoices').click
+      find('#invoices').click
       expect(page).to have_content('ER354BS')
     end
 
@@ -80,7 +80,7 @@ feature 'vehicles' do
       end
 
       scenario 'user sees vehicles fuel receipts' do
-        find('.fuel_receipts').click
+        find('#fuel_receipts').click
         expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
         expect(page).to have_css '#total_fuel_receipt', text: '300'
       end

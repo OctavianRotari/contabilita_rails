@@ -8,7 +8,7 @@
   <%= link_to category_path(category.id), title: "Elimina categoria.", class: 'delete-category', method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
     <i class="ion-ios-trash icon-small-trash"></i>
   <% end %>
-  <%= link_to dashboard_category_path(category.id), class: 'invoices', title: "Visualizza fatture." do%>
+  <%= link_to dashboard_category_path(category.id), id: 'invoices', title: "Visualizza fatture." do%>
     <i class="ion-ios-list icon-small-list"></i>
   <% end %>
   <%= render partial: 'total_costs/total_costs', locals: { calculator: category.calculator, invoices: category.invoices } %>
