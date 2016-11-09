@@ -1,33 +1,28 @@
 <div class="row">
   <div class="new">
-    <%= form_for invoice do |form| %>
-      <% if invoice.errors.any? %>
+    <%= form_for insurance do |form| %>
+      <% if insurance.errors.any? %>
         A causa di questi errori non e' stato possibile creare la fattura:
         <ul>
-          <% invoice.errors.messages.each do |name, error| %>
+          <% insurance.errors.messages.each do |name, error| %>
             <li><%= error[0] %></li>
           <% end %>
         </ul>
       <% end %>
-      <%= form.fields_for :taxable_vat_fields do |builder| %>
-        <%= render 'taxable_vat_field_fields', f: builder %>
-      <% end %>
-      <% if invoice_url_include_new? %>
-        <%= default_fields form , :taxable_vat_fields %>
-      <% end %>
       <div class="row">
         <div class="col span-1-of-3">
+          <%= form.label 'Totale' %>
         </div>
         <div class="col span-2-of-3">
-          <%= link_to_add_fields "Aggiungi imponibile", form , :taxable_vat_fields%>
+          <%= form.text_field :total, require: true %>
         </div>
       </div>
       <div class="row">
         <div class="col span-1-of-3">
-          <%= form.label 'Tipo fattura' %>
+          <%= form.label 'Numero poliza' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.select(:type_of_invoice, options_for_select([["Attiva", 'attiva'], ["Passiva", 'passiva']], selected: form.object.type_of_invoice )) %>
+          <%= form.text_field :serial_of_contract, require: true %>
         </div>
       </div>
       <div class="row">
@@ -43,15 +38,15 @@
           <%= form.label 'A carico di' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.collection_select(:vehicle_id, [Vehicle.new(id: 'general_expences', plate: "Spese generali")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
+          <%= form.collection_select(:at_the_expense_of, [Vehicle.new(id: '0', plate: "Tutti i mezzi")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
         </div>
       </div>
       <div class="row">
         <div class="col span-1-of-3">
-          <%= form.label 'Motivo' %>
+          <%= form.label 'Descrizione' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.text_field :reason, require: true %>
+          <%= form.text_field :description %>
         </div>
       </div>
       <div class="row">
@@ -68,6 +63,14 @@
         </div>
         <div class="col span-2-of-3">
           <%= form.text_field :deadline, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Riccorenza' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.select(:recurrence, options_for_select([["Ogni mese", 1], ["Bimestrale", 2], ["Trimestrale", 3], ["Quadrimestrale", 4], ["Semestrale", 6], ["Anuale", 12]], selected: form.object.recurrence )) %>
         </div>
       </div>
       <div class="row">

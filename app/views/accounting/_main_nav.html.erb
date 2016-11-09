@@ -7,14 +7,14 @@
       <div class="app-title-sticky">
         <h1 class="app-title" >Contabilita</h1>
       </div>
-      <ul class="main-nav clearfix col span-3-of-3 js--main-nav">
-        <div class="static col span-1-of-7">
+      <ul class="main-nav clearfix js--main-nav">
+        <div class="static">
           <span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
         </div>
-        <div class="static col span-1-of-7">
+        <div class="static">
           <span><li><%= link_to 'Spese generali', general_expences_path %></li></span>
         </div>
-        <div class="dropdown col span-1-of-7 js--dropdown">
+        <div class="dropdown js--dropdown">
           <span id='fatture'>Fatture</span>
           <div class="dropdown-content js--dropdown-content">
             <ul>
@@ -28,7 +28,7 @@
             </ul>
           </div>
         </div>
-        <div class="dropdown col span-1-of-7 js--dropdown">
+        <div class="dropdown js--dropdown">
           <span id="categorie">Carburante</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">
@@ -37,8 +37,17 @@
             </ul>
           </div>
         </div>
-        <div class="dropdown col span-1-of-7 js--dropdown">
-          <span id="aziende">Aziende</span>
+        <div class="dropdown js--dropdown">
+          <span id="categorie">Assicurazione</span>
+          <div class="dropdown-content js--dropdown-content">
+            <ul class="clearfix">
+              <li><%= link_to 'Aziende assicurative' %></li>
+              <li><%= link_to 'Aggiungi contratto', new_insurance_path %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown js--dropdown">
+          <span id="insurance">Aziende</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">
               <li><%= link_to 'Visualiza aziende', dashboard_companies_path %></li>
@@ -46,7 +55,7 @@
             </ul>
           </div>
         </div>
-        <div class="dropdown col span-1-of-7 js--dropdown">
+        <div class="dropdown js--dropdown">
           <span id="mezzi">Mezzi</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">
@@ -55,7 +64,7 @@
             </ul>
           </div>
         </div>
-        <div class="dropdown col span-1-of-7 js--dropdown">
+        <div class="dropdown js--dropdown">
           <span id="categorie">Categorie</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">

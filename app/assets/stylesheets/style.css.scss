@@ -410,6 +410,12 @@ input[type=submit],
   height: 35px;
   margin-top: 0px;
   margin-bottom: 0px;
+  position:absolute;
+}
+
+.main-nav>div {
+  float:left;
+  margin: 10px;
 }
 
 .main-nav li {

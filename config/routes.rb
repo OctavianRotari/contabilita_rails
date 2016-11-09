@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :payments, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :insurances
+
   resources :categories, only: [:new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'category_dashboard#index'

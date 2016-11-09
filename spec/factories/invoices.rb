@@ -1,0 +1,29 @@
+FactoryGirl.define do
+  factory :invoice do
+    reason('Manutenzione')
+    total(110)
+    total_vat(10)
+    user_id(1)
+    vehicle_id(1)
+    company_id(1)
+    at_the_expense_of('Veicolo')
+    category_id(1)
+    date_of_issue(Time.zone.now)
+    type_of_invoice('attiva')
+    total_taxable(100)
+    deadline(Time.zone.now + 1.month)
+    paid(false)
+  end
+
+  factory :invoice_params, class: Invoice do
+    taxable_vat_fields_attributes({"1"=>{taxable: "100", vat_rate: "10", "_destroy"=>"false"}})
+    reason('Manutenzione')
+    user_id(1)
+    vehicle_id("1")
+    company_id("1")
+    date_of_issue(Time.zone.now)
+    type_of_invoice('attiva')
+    deadline(Time.zone.now + 1.month)
+    paid(false)
+  end
+end
