@@ -11,15 +11,15 @@ describe FuelReceiptDashboard, type: :unit do
 
   describe '#gas_station_companies' do
     it 'return only companies that are gas companies' do
-      create(:category)
+      create(:gas_station_category)
       gas_company = create(:company)
       expect(fuel_receipt_dashboard.gas_station_companies).to eq([gas_company])
     end
 
     it 'does not return companies that are not gas companies' do
       category = create(:category)
-      company = create(:company, category_id: category.id)
-      expect(fuel_receipt_dashboard.gas_station_companies).to eq([company])
+      create(:company, category_id: category.id)
+      expect(fuel_receipt_dashboard.gas_station_companies).to eq([])
     end
   end
 

@@ -6,10 +6,10 @@ class Company < ActiveRecord::Base
   has_many :vehicles, -> { uniq }, through: :fuel_receipts
 
   phony_normalize :number, default_country_code: 'IT'
-  validates :name, presence: {message: "Inserire nome dell'azienda"}
-  validates :adress, presence: {message: "Inserire indirizzo dell'azienda"}
-  validates :number, presence: {message: "Inserire numero telefonico dell'azienda"}
-  validates :category_id, presence: {message: "Selezionare categoria dell'azienda"}
+  validates :name, presence: { message: "Inserire nome dell'azienda" }
+  validates :adress, presence: { message: "Inserire indirizzo dell'azienda" }
+  validates :number, presence: { message: "Inserire numero telefonico dell'azienda" }
+  validates :category_id, presence: { message: "Selezionare categoria dell'azienda" }
 
   def calculator
     Calculator.new
@@ -17,6 +17,10 @@ class Company < ActiveRecord::Base
 
   def self.gas_stations
     where(category_id: Category.gas_station_id)
+  end
+
+  def self.insurances
+    where(category_id: Category.insurance_id)
   end
 
   def category_name

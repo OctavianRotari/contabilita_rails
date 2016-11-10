@@ -7,7 +7,7 @@ feature 'fuel receipts' do
 
   before :each do
     create(:user)
-    create(:category)
+    create(:gas_station_category)
     company
     vehicle
     fuel_receipt

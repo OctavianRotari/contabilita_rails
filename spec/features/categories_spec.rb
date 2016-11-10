@@ -38,7 +38,7 @@ feature 'categories' do
 
       scenario "visits company's invoices" do
         find('#invoices').click
-        expect(page).to have_content('Benzinaio')
+        expect(page).to have_content('Meccanici')
       end
 
       scenario 'passive_amont_to_pay for the category' do

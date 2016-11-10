@@ -10,14 +10,18 @@ class Category < ActiveRecord::Base
   end
 
   def self.gas_station_id
-    gas_station == nil ?  nil : gas_station.id
+    gas_station.id if gas_station
   end
 
   def self.gas_station
-    find_by(gas_station: true)
+    find_by(type_of: 'Benzinaii')
+  end
+
+  def self.insurance_id
+    insurance.id if insurance
   end
 
   def self.insurance
-    find_by(insurance: true)
+    find_by(type_of: 'Assicurazioni')
   end
 end

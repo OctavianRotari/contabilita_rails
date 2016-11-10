@@ -18,11 +18,10 @@ ActiveRecord::Schema.define(version: 20161110170227) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.boolean  "gas_station"
-    t.boolean  "insurance"
+    t.string   "type_of"
   end
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree

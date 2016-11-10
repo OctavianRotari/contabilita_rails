@@ -15,7 +15,7 @@ describe CategoryDashboard, type: :unit do
 
   describe '#category_name' do
     it 'it returns the name of the category' do
-      expect(category_dashboard.category_name).to eq('Benzinaio')
+      expect(category_dashboard.category_name).to eq('Meccanici')
     end
   end
 

@@ -2,7 +2,7 @@ class InsurancesController < ApplicationController
   before_action :authenticate_user!
   before_action :vehicle_any?
   before_action :insurance_category_any?
-  before_action :company_any?
+  before_action :insurance_company_any?
 
   def show
     @insurance = Insurance.find(params[:id])

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe InsurancesController, type: :controller do
   sign_in_user
 
-  let(:insurance_category) { create(:category, name: 'Assicurazioni') }
+  let(:insurance_category) { create(:insurance_category) }
 
   before :each do
     create(:vehicle)
@@ -11,9 +11,15 @@ describe InsurancesController, type: :controller do
   end
 
   describe 'before each action' do
-    it 'checks if an insurance company exists' do
+    it 'checks if an insurance category exists' do
       get :new
       expect(flash[:error]).to match('Aggiungere una categoria che indichi le assicurazioni')
+    end
+
+    it 'checks if an insurance company exists' do
+      insurance_category
+      get :new
+      expect(flash[:error]).to match('Aggiungere almeno una compania assicurativa')
     end
   end
 

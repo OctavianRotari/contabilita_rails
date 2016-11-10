@@ -1,13 +1,19 @@
 FactoryGirl.define do
   factory :category do
-    name('Benzinaio')
+    name('Meccanici')
     user_id(1)
-    gas_station(true)
+    type_of('Altro')
   end
 
   factory :insurance_category, class: Category do
     name('Assicurazioni')
     user_id(1)
-    gas_station(false)
+    type_of('Assicurazioni')
+  end
+
+  factory :gas_station_category, class: Category do
+    name('Benzinaii')
+    user_id(1)
+    type_of('Benzinaii')
   end
 end

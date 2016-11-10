@@ -59,9 +59,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def gas_station_category_any?
+  def insurance_category_any?
     unless current_user_categories.insurance
       flash[:error] = 'Aggiungere una categoria che indichi le assicurazioni'
+      redirect_to :back
+    end
+  end
+
+  def company_any?
+    if current_user_companies.empty?
+      flash[:error] = "Aggiungere almeno un'azienda"
       redirect_to :back
     end
   end
@@ -73,9 +80,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def company_any?
-    if current_user_companies.empty?
-      flash[:error] = "Aggiungere almeno un'azienda"
+  def insurance_company_any?
+    if current_user_companies.insurances.empty?
+      flash[:error] = "Aggiungere almeno una compania assicurativa"
       redirect_to :back
     end
   end

@@ -18,20 +18,29 @@ describe Category, type: :unit do
 
   describe 'should return only gas station category' do
     it 'returns successfully' do
-      category = create(:category)
+      category = create(:gas_station_category)
       expect(Category.gas_station).to eq(category)
     end
 
     it 'returns gas station id' do
-      category = create(:category)
+      category = create(:gas_station_category)
       expect(Category.gas_station_id).to eq(category[:id])
     end
   end
 
   describe 'should return only insurance category' do
+    let(:category) { create(:insurance_category) }
+
+    before :each do
+      category
+    end
+
     it 'returns succcessfully' do
-      category = create(:category, gas_station: false, insurance: true)
       expect(Category.insurance).to eq(category)
+    end
+
+    it 'returns insurances id' do
+      expect(Category.insurance_id).to eq(category[:id])
     end
   end
 end

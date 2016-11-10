@@ -5,7 +5,7 @@ describe FuelReceiptsController, type: :controller do
 
   before :each do
     create(:vehicle)
-    create(:category)
+    create(:gas_station_category)
     create(:company)
   end
 
