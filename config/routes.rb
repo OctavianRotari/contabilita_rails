@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :payments, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  resources :insurances
+  resources :insurances do
+    resources :receipts, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   resources :categories, only: [:new, :create, :edit, :update, :destroy] do
     collection do

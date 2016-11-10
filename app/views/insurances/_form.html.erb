@@ -38,7 +38,7 @@
           <%= form.label 'A carico di' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.collection_select(:at_the_expense_of, [Vehicle.new(id: '0', plate: "Tutti i mezzi")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
+          <%= form.collection_select(:vehicle_id, [Vehicle.new(id: 'all_vehicles', plate: "Tutti i mezzi")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
         </div>
       </div>
       <div class="row">

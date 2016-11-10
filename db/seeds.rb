@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Vehicle.create(plate: 'Tutti i mezzi', type_of_vehicle: 'Tutti i mezzi')

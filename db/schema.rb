@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108170625) do
+ActiveRecord::Schema.define(version: 20161110133059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,15 +62,21 @@ ActiveRecord::Schema.define(version: 20161108170625) do
   create_table "insurances", force: :cascade do |t|
     t.datetime "date_of_issue"
     t.decimal  "total"
-    t.integer  "at_the_expense_of"
-    t.integer  "company_id"
+    t.string   "at_the_expense_of"
     t.string   "serial_of_contract"
     t.string   "description"
     t.integer  "recurrence"
     t.datetime "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.integer  "company_id"
   end
+
+  add_index "insurances", ["company_id"], name: "index_insurances_on_company_id", using: :btree
+  add_index "insurances", ["user_id"], name: "index_insurances_on_user_id", using: :btree
+  add_index "insurances", ["vehicle_id"], name: "index_insurances_on_vehicle_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
@@ -104,6 +110,14 @@ ActiveRecord::Schema.define(version: 20161108170625) do
   end
 
   add_index "payments", ["invoice_id"], name: "index_payments_on_invoice_id", using: :btree
+
+  create_table "receipts", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "insurance_id"
+  end
+
+  add_index "receipts", ["insurance_id"], name: "index_receipts_on_insurance_id", using: :btree
 
   create_table "taxable_vat_fields", force: :cascade do |t|
     t.decimal  "taxable"
@@ -150,10 +164,14 @@ ActiveRecord::Schema.define(version: 20161108170625) do
   add_foreign_key "fuel_receipts", "companies"
   add_foreign_key "fuel_receipts", "users"
   add_foreign_key "fuel_receipts", "vehicles"
+  add_foreign_key "insurances", "companies"
+  add_foreign_key "insurances", "users"
+  add_foreign_key "insurances", "vehicles"
   add_foreign_key "invoices", "companies"
   add_foreign_key "invoices", "users"
   add_foreign_key "invoices", "vehicles"
   add_foreign_key "payments", "invoices"
+  add_foreign_key "receipts", "insurances"
   add_foreign_key "taxable_vat_fields", "invoices"
   add_foreign_key "vehicles", "users"
 end

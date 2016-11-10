@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :insurance do
-    totale('1100')
-    at_the_expense_of(1)
+    total('1100')
+    vehicle_id(1)
     serial_of_contract('12321')
     company_id(1)
     deadline(Time.zone.now)
