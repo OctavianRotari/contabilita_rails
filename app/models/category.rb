@@ -16,4 +16,8 @@ class Category < ActiveRecord::Base
   def self.gas_station
     find_by(gas_station: true)
   end
+
+  def self.insurance
+    find_by(insurance: true)
+  end
 end

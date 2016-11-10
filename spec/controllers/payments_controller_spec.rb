@@ -20,10 +20,19 @@ describe PaymentsController, type: :controller do
         expect(Invoice.first.paid).to eq(true)
       end
 
-      it 'shows success message and redirects to invoice' do
+      it 'shows success message and redirects to invoice when created' do
         payment = attributes_for(:payment, paid: 110)
         post :create, payment: payment, invoice_id: payment[:invoice_id]
         expect(flash[:success]).to match('Pagamento aggiunto')
+        expect(response).to redirect_to(invoice_path(id: invoice.id))
+      end
+
+      it 'shows success message and redirects to invoice when updated' do
+        payment_one = create(:payment)
+        payment = attributes_for(:payment, paid: 90)
+        put :update, invoice_id: payment[:invoice_id], id: payment_one[:id], payment: payment
+        expect(Payment.find(payment_one[:id]).paid).to eq(90)
+        expect(flash[:success]).to match('Pagamento aggiornato')
         expect(response).to redirect_to(invoice_path(id: invoice.id))
       end
     end

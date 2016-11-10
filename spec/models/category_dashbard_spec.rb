@@ -14,20 +14,20 @@ describe CategoryDashboard, type: :unit do
   end
 
   describe '#category_name' do
-    it 'it returns the plate of the vehicle' do
+    it 'it returns the name of the category' do
       expect(category_dashboard.category_name).to eq('Benzinaio')
     end
   end
 
   describe '#invoices' do
-    it 'returns all the invoices registered on this vehicle' do
+    it 'returns all the invoices registered on this category' do
       invoice = create(:invoice, type_of_invoice: 'passiva')
       expect(category_dashboard.invoices).to eq([invoice])
     end
   end
 
   describe '#categories' do
-    it 'returns all the invoices registered on this vehicle' do
+    it 'returns all the invoices registered on this category' do
       expect(category_dashboard.categories).to eq([category])
     end
   end

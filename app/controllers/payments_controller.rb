@@ -49,7 +49,7 @@ class PaymentsController < ApplicationController
   end
 
   def invoice_id
-    @_invocie_id ||= params[:invoice_id]
+    @_invoice_id ||= params[:invoice_id]
   end
 
   def payment_params_invoice_id

@@ -3,13 +3,26 @@ require 'rails_helper'
 describe InsurancesController, type: :controller do
   sign_in_user
 
+  let(:insurance_category) { create(:category, name: 'Assicurazioni') }
+
   before :each do
     create(:vehicle)
-    insurance_category = create(:category, name: 'Assicurazioni')
-    create(:company, name: 'Milano', category_id: insurance_category.id)
+    request.env["HTTP_REFERER"] = 'where_i_came_from'
+  end
+
+  describe 'before each action' do
+    it 'checks if an insurance company exists' do
+      get :new
+      expect(flash[:error]).to match('Aggiungere una categoria che indichi le assicurazioni')
+    end
   end
 
   describe 'when an insurance is valid' do
+    before :each do
+      insurance_category
+      create(:company, name: 'Milano', category_id: insurance_category.id)
+    end
+
     it 'renders page with success' do
       insurance = attributes_for(:insurance)
       post :create, insurance: insurance
