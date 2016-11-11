@@ -4,8 +4,8 @@ FactoryGirl.define do
     vehicle_id(1)
     serial_of_contract('12321')
     company_id(1)
-    deadline(Time.zone.now)
-    date_of_issue(Time.zone.now + 1.month)
+    deadline(Time.zone.now + 1.year)
+    date_of_issue(Time.zone.now)
     recurrence(3)
     user_id(1)
   end

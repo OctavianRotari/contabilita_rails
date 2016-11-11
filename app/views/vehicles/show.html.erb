@@ -11,5 +11,15 @@
       <h4>Tipo mezzo</h4>
       <%= @vehicle.type_of_vehicle %>
     </div>
+    <%if @vehicle.insurance %>
+      <div>
+        <h4>Scadenza assicurazione</h4>
+        <p id="insurance_deadline"><%= @vehicle.insurance.deadline.strftime("%d-%m-%Y") %></p>
+      </div>
+      <div>
+        <h4>Scadenza pagamento assicurazione</h4>
+        <p id="insurance_payment_deadline"><%= @vehicle.insurance.payment_date %></p>
+      </div>
+    <%end%>
   </div>
 </div>
