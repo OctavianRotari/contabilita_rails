@@ -46,5 +46,14 @@ describe InsurancesController, type: :controller do
       expect(response).to redirect_to(insurance_path(insurance.id))
       expect(flash[:success]).to match('Contratto assicurativo registrato')
     end
+
+    it 'renders page with success when updated' do
+      insurance_create = create(:insurance)
+      insurance = attributes_for(:insurance)
+      put :update, id: insurance_create.id, insurance: insurance
+      insurance = Insurance.first
+      expect(response).to redirect_to(insurance_path(insurance.id))
+      expect(flash[:success]).to match('Contratto assicurativo aggiornato')
+    end
   end
 end

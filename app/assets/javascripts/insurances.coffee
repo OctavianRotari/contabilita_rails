@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 $ ->
-  $('#receipt_payment_date').datepicker
+  $('#insurance_date_of_issue, #insurance_deadline ').datepicker
     dateFormat: 'dd-mm-yy'

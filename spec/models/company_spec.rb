@@ -21,7 +21,7 @@ describe Company, type: :unit do
     end
   end
 
-  describe 'should return the name of the company' do
+  describe '#company_name' do
     before :each do
       category_mechanic
     end
@@ -32,7 +32,7 @@ describe Company, type: :unit do
     end
   end
 
-  describe 'should return only gas stations' do
+  describe '#gas_stations' do
     before :each do
       create(:gas_station_category)
     end
@@ -48,7 +48,7 @@ describe Company, type: :unit do
     end
   end
 
-  describe 'should return only insurance companies' do
+  describe '#insurances' do
     before :each do
       create(:insurance_category)
     end
@@ -61,6 +61,13 @@ describe Company, type: :unit do
     it 'doesnt return non insurance companies' do
       create(:company, category_id: category_mechanic.id)
       expect(Company.insurances).to eq([])
+    end
+
+    describe '#is_insurance?' do
+      it 'should return true if is an insurance company' do
+        insurance_company = create(:insurance_company)
+        expect(insurance_company.is_insurance?).to eq(true)
+      end
     end
   end
 end

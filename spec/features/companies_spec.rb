@@ -2,24 +2,24 @@ require 'rails_helper'
 
 feature 'companies' do
   let(:company) { create(:company) }
+  let(:insurance_category) { create(:insurance_category) }
+  let(:insurance_company) { create(:insurance_company) }
 
   before :each do
     create(:user)
-    create(:category)
-    sign_in
-    company
-    visit('/companies/dashboard')
-  end
-
-  feature 'adds a new company' do
-    scenario 'user can see the plate of the new company' do
-      expect(page).to have_css '#company_name', text: company.name
-    end
+    create(:vehicle)
   end
 
   feature 'company already exists' do
     before :each do
+      create(:category)
+      sign_in
+      company
       visit('/companies/dashboard')
+    end
+
+    scenario 'user can see the plate of the new company' do
+      expect(page).to have_css '#company_name', text: company.name
     end
 
     scenario 'deletes company' do
@@ -34,7 +34,6 @@ feature 'companies' do
 
     feature 'and has invoices' do
       before :each do
-        create(:vehicle)
         create(:invoice, type_of_invoice: 'passiva')
         create(:invoice)
         visit '/companies/dashboard'

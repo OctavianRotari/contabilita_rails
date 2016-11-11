@@ -31,6 +31,10 @@ class Company < ActiveRecord::Base
     where(category_id: Category.insurance_id)
   end
 
+  def is_insurance?
+    true if category.type_of == 3
+  end
+
   def category_name
     category.name
   end

@@ -12,6 +12,25 @@ class InsurancesController < ApplicationController
     @insurance = Insurance.find(params[:id])
   end
 
+  def edit
+    @insurance = Insurance.find(params[:id])
+    @companies = current_user_companies.insurances
+    @vehicles = current_user_vehicles
+  end
+
+  def update
+    build_params = build_insurance
+    @insurance = Insurance.find(params[:id])
+    @companies = current_user_companies.insurances
+    @vehicles = current_user_vehicles
+    if @insurance.update(build_params)
+      flash[:success] = 'Contratto assicurativo aggiornato'
+      redirect_to insurance_path(@insurance.id)
+    else
+      render 'edit'
+    end
+  end
+
   def new
     @insurance = Insurance.new
     @companies = current_user_companies.insurances
@@ -19,8 +38,8 @@ class InsurancesController < ApplicationController
   end
 
   def create
-    params = build_insurance
-    @insurance = Insurance.new(params)
+    build_params = build_insurance
+    @insurance = Insurance.new(build_params)
     @companies = current_user_companies.insurances
     @vehicles = current_user_vehicles
     if @insurance.save

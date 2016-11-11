@@ -45,4 +45,10 @@ feature 'insurance' do
     expect(page).to have_css '#policy_number', text: '12'
     expect(page).to have_css '#method_of_payment', text: 'Bonifico'
   end
+
+  scenario 'user updates the insurance' do
+    visit("/insurances/#{insurance.id}/edit")
+    fill_in_insurance_contract
+    expect(page).to have_css '#total_insurance', text: '1400'
+  end
 end
