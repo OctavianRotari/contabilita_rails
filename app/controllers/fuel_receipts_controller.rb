@@ -9,20 +9,20 @@ class FuelReceiptsController < ApplicationController
 
   def new
     @fuel_receipt = FuelReceipt.new
-    @companies = fuel_receipt_dashboard.gas_station_companies
-    @vehicles = current_user.vehicles
+    @companies = current_user_companies.gas_stations
+    @vehicles = current_user_vehicles
   end
 
   def edit
     @fuel_receipt = FuelReceipt.find(params[:id])
-    @companies = fuel_receipt_dashboard.gas_station_companies
-    @vehicles = current_user.vehicles
+    @companies = current_user_companies.gas_stations
+    @vehicles = current_user_vehicles
   end
 
   def update
     @fuel_receipt = FuelReceipt.find(params[:id])
-    @companies = fuel_receipt_dashboard.gas_station_companies
-    @vehicles = current_user.vehicles
+    @companies = current_user_companies.gas_stations
+    @vehicles = current_user_vehicles
     if @fuel_receipt.update(fuel_receipt_params)
       flash[:success] = 'Scontrino aggiunto'
       redirect_to fuel_receipts_path
@@ -39,8 +39,8 @@ class FuelReceiptsController < ApplicationController
   end
 
   def create
-    @companies = fuel_receipt_dashboard.gas_station_companies
-    @vehicles = current_user.vehicles
+    @companies = current_user_companies.gas_stations
+    @vehicles = current_user_vehicles
     @fuel_receipt = FuelReceipt.new(fuel_receipt_params_user_id)
     if @fuel_receipt.save
       flash[:success] = 'Scontrino aggiunto'

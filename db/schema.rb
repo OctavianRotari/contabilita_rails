@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20161110170227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.string   "type_of"
+    t.integer  "type_of"
   end
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree

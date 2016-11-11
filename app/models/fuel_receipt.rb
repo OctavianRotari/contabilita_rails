@@ -1,8 +1,8 @@
 class FuelReceipt < ActiveRecord::Base
-  belongs_to :company
   belongs_to :category
   belongs_to :user
   belongs_to :vehicle
+  belongs_to :company
 
   validates :total, presence: { message: 'Inserire il totale dello scontrino' }
   validates :litres, presence: { message: 'Inserire i litri' }

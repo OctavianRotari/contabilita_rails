@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="pagamenti">
+    <h3 id='method_of_payment'><%= receipt.method_of_payment %></h3>
+    <%= link_to edit_insurance_receipt_path(insurance_id: insurance.id, id: receipt.id), class: 'edit-payment', title: "Modifica pagamento." do %>
+      <i class="ion-ios-compose icon-small-compose"></i>
+    <% end %>
+    <%= link_to insurance_receipt_path(insurance_id: insurance.id, id: receipt.id), class: 'delete-payment', title: "Elimina pagamento." , method: :delete, data: {confirm: "Si e sicuri di volerlo elliminare?"} do%>
+      <i class="ion-ios-trash icon-small-trash"></i>
+    <% end %>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Totale pagamento:</h4>
+      </div>
+      <div class="col span-1-of-2">
+        <p id='paid'><%=receipt.paid%></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Numero ricevuta:</h4>
+      </div>
+      <div class="col span-1-of-2">
+        <p id='policy_number'><%=receipt.policy_number%></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Data pagamento:</h4>
+      </div>
+      <div class="col span-1-of-2">
+        <p><%=receipt.payment_date.strftime("%d-%m-%Y")%></p>
+      </div>
+    </div>
+  </div>
+</div>

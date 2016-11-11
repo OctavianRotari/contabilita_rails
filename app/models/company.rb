@@ -3,13 +3,21 @@ class Company < ActiveRecord::Base
   belongs_to :category
   has_many :invoices, dependent: :destroy
   has_many :fuel_receipts
-  has_many :vehicles, -> { uniq }, through: :fuel_receipts
+  has_many :insurances
 
   phony_normalize :number, default_country_code: 'IT'
   validates :name, presence: { message: "Inserire nome dell'azienda" }
   validates :adress, presence: { message: "Inserire indirizzo dell'azienda" }
   validates :number, presence: { message: "Inserire numero telefonico dell'azienda" }
   validates :category_id, presence: { message: "Selezionare categoria dell'azienda" }
+
+  def vehicles_insured
+    Vehicle.joins(insurance: :company)
+  end
+
+  def vehicles_refueling
+    Vehicle.joins(fuel_receipts: :company)
+  end
 
   def calculator
     Calculator.new

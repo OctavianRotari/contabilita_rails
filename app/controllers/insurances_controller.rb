@@ -4,20 +4,24 @@ class InsurancesController < ApplicationController
   before_action :insurance_category_any?
   before_action :insurance_company_any?
 
+  def index
+    @companies = current_user_companies.insurances
+  end
+
   def show
     @insurance = Insurance.find(params[:id])
   end
 
   def new
     @insurance = Insurance.new
-    @companies = current_user_companies
+    @companies = current_user_companies.insurances
     @vehicles = current_user_vehicles
   end
 
   def create
     params = build_insurance
     @insurance = Insurance.new(params)
-    @companies = current_user_companies
+    @companies = current_user_companies.insurances
     @vehicles = current_user_vehicles
     if @insurance.save
       flash[:success] = 'Contratto assicurativo registrato'

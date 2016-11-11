@@ -21,4 +21,21 @@ feature 'insurance' do
     expect(page).to have_css '#total_insurance', text: '1100'
     expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
   end
+
+  scenario 'user sees all the plates insured with a cetain company' do
+    vehicle = create(:vehicle, plate: 'BX080PA')
+    create(:insurance, vehicle_id: vehicle.id)
+    visit('/insurances')
+    expect(page).to have_css '#company_name', text: 'Milano assicurazioni'
+    expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
+    expect(page).to have_css '#vehicle_plate', text: 'BX080PA'
+  end
+
+  scenario 'user pays the insurence' do
+    create(:receipt)
+    visit("/insurances/#{insurance.id}")
+    expect(page).to have_css '#paid', text: '1100'
+    expect(page).to have_css '#policy_number', text: '12'
+    expect(page).to have_css '#method_of_payment', text: 'Bonifico'
+  end
 end

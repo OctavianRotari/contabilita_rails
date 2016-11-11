@@ -17,14 +17,14 @@
           <%= form.text_field :name, require: true %>
         </div>
       </div>
-      <% unless gas_station? %>
-        <div class="row">
-          <div class="gas-station col span-3-of-3">
-            <%= form.check_box(:gas_station)  %>
-            <%= form.label 'Selezionare la casella se la categoria indica i benzinaii' %>
-          </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Selezionare tipologia' %>
         </div>
-      <% end %>
+        <div class="col span-2-of-3">
+          <%= form.select(:type_of, options_for_select([["Altro", 1], ["Benzinaii", 2], ["Assicurazioni", 3]], selected: form.object.type_of )) %>
+        </div>
+      </div>
       <div class="row">
         <div class="col span-3-of-3 submit">
           <%= form.submit "Conferma", class: "btn btn-big" %>

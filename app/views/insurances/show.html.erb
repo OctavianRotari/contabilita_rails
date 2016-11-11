@@ -33,62 +33,63 @@
         <h4>A carrico di:</h4>
       </div>
       <div class="col span-1-of-2 data">
-        <% if @insurance.vehicle_id == 0 %>
+        <% if @insurance.at_the_expense_of == 'all_vehicle'  %>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Targa: </h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p>Tutti i mezzi</p>
+      <% else %>
       </div>
       <div class="row">
         <div class="col span-1-of-2">
           <h4>Targa: </h4>
         </div>
         <div class="col span-1-of-2 data">
-          <p>Tutti i mezzi</p>
-        <% else %>
-        </div>
-        <div class="row">
-          <div class="col span-1-of-2">
-            <h4>Targa: </h4>
-          </div>
-          <div class="col span-1-of-2 data">
-            <p id='vehicle_plate'><%=@insurance.vehicle_plate %></p>
-          <% end %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col span-1-of-2">
-          <h4>Ricorrenza: </h4>
-        </div>
-        <div class="col span-1-of-2 data">
-          <p><%=@insurance.recurrence %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col span-1-of-2">
-          <h4>Data emissione: </h4>
-        </div>
-        <div class="col span-1-of-2 data">
-          <p><%=@insurance.date_of_issue.strftime("%d-%m-%Y") %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col span-1-of-2">
-          <h4>Data scadenza: </h4>
-        </div>
-        <div class="col span-1-of-2 data">
-          <p><%=@insurance.deadline.strftime("%d-%m-%Y") %></p>
-        </div>
+          <p id='vehicle_plate'><%=@insurance.vehicle_plate %></p>
+        <% end %>
       </div>
     </div>
     <div class="row">
       <div class="col span-1-of-2">
-        <h4>Scadenza: </h4>
+        <h4>Ricorrenza: </h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p><%=@insurance.recurrence %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Data emissione: </h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p><%=@insurance.date_of_issue.strftime("%d-%m-%Y") %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Data scadenza: </h4>
       </div>
       <div class="col span-1-of-2 data">
         <p><%=@insurance.deadline.strftime("%d-%m-%Y") %></p>
       </div>
     </div>
-    <%unless @insurance.receipts.empty? %>
-      <h2>Pagamenti</h2>
-      <%= render @insurance.payments, insurance: @insurance %>
-    <%end%>
   </div>
+  <div class="row">
+    <div class="col span-1-of-2">
+      <h4>Scadenza: </h4>
+    </div>
+    <div class="col span-1-of-2 data">
+      <p><%=@insurance.deadline.strftime("%d-%m-%Y") %></p>
+    </div>
+  </div>
+  <%unless @insurance.receipts.empty? %>
+    <h2>Ricevute di pagamento</h2>
+    <%= render @insurance.receipts, insurance: @insurance %>
+  <%end%>
+</div>
 </div>

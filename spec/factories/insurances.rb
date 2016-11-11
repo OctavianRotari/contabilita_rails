@@ -7,5 +7,6 @@ FactoryGirl.define do
     deadline(Time.zone.now)
     date_of_issue(Time.zone.now + 1.month)
     recurrence(3)
+    user_id(1)
   end
 end

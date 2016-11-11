@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   has_many :invoices, dependent: :destroy
   has_many :companies, dependent: :destroy
   validates :name, presence: { message: 'Inserire il nome della categoria' }
+  validates :type_of, presence: { message: 'Selezionare tipologia' }
   has_many :fuel_receipts
 
   def calculator
@@ -14,7 +15,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.gas_station
-    find_by(type_of: 'Benzinaii')
+    find_by(type_of: 2)
   end
 
   def self.insurance_id
@@ -22,6 +23,6 @@ class Category < ActiveRecord::Base
   end
 
   def self.insurance
-    find_by(type_of: 'Assicurazioni')
+    find_by(type_of: 3)
   end
 end

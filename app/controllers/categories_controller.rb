@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :gas_station)
+    params.require(:category).permit(:name, :type_of)
   end
 
   def category_params_user_id

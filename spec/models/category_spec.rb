@@ -9,9 +9,9 @@ describe Category, type: :unit do
 
   describe 'category should not be created ' do
     it 'if fields are empty' do
-      category = build(:category, name: '')
+      category = build(:category, name: '', type_of: nil)
       category.save
-      expect(category.errors.count).to eq(1)
+      expect(category.errors.count).to eq(2)
       expect(user.categories).to eq([])
     end
   end

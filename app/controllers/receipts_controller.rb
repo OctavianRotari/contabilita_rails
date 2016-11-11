@@ -2,7 +2,7 @@ class ReceiptsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @receipt = Receipt.new(receipt_params_insurance_id)
+    @receipt = Receipt.new
     @insurance = Insurance.find(insurance_id)
   end
 

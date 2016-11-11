@@ -1,7 +1,8 @@
 <div class="col span-1-of-3 summary">
   <div class="title">
-    <h2><%=link_to company.name, company_path(company.id) %></h2>
+    <h2 id="company_name"><%=link_to company.name, company_path(company.id) %></h2>
   </div>
+  <br>
   <%= link_to edit_company_path(company.id), class: 'edit-company', title: "Modifica azienda." do %>
     <i class="ion-ios-compose icon-small-compose"></i>
   <% end %>
@@ -14,15 +15,5 @@
   <%= link_to fuel_receipts_company_path(company.id), class: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
     <i class="ion-funnel icon-small-list"></i>
   <% end %>
-  <%= render partial: 'vehicles_fuel_receipts', collection: company.vehicles_refueling, as: :vehicle, locals: { calculator: calculator, company_id: company.id } %>
-  <div class="data-summary">
-    <div class="row">
-      <div class="col span-1-of-2">
-        <p id="passive_amont_to_pay">Totale: </p>
-      </div>
-      <div class="col span-1-of-2 data">
-        <p id="total_fuel_receipts_company"><%= calculator.total_all(company.fuel_receipts) %> $</p>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'vehicles/vehicle_insurance', collection: company.vehicles_insured, as: :vehicle %>
 </div>
