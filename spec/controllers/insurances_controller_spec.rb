@@ -38,11 +38,11 @@ describe InsurancesController, type: :controller do
     end
 
     it 'renders page with success when the insurance is divided among all vehicles' do
-      insurance = attributes_for(:insurance, vehicle_id: 'all_vehicles')
+      insurance = attributes_for(:insurance, at_the_expense_of: 'all_vehicles')
       post :create, insurance: insurance
       insurance = Insurance.first
       expect(insurance.vehicle_id).to eq(nil)
-      expect(insurance.at_the_expense_of).to eq('Tutti i mezzi')
+      expect(insurance.at_the_expense_of).to eq('all_vehicles')
       expect(response).to redirect_to(insurance_path(insurance.id))
       expect(flash[:success]).to match('Contratto assicurativo registrato')
     end

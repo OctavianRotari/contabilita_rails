@@ -15,5 +15,12 @@
   <%= link_to fuel_receipts_company_path(company.id), class: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
     <i class="ion-funnel icon-small-list"></i>
   <% end %>
-  <%= render partial: 'vehicles/vehicle_insurance', collection: company.vehicles_insured, as: :vehicle %>
+  <div class="data-summary">
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Veicoli assicurati:</h4>
+      </div>
+      <%= render partial: 'vehicles/vehicle_insurance', collection: company.vehicles_insured, as: :vehicle %>
+    </div>
+  </div>
 </div>

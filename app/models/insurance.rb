@@ -9,7 +9,11 @@ class Insurance < ActiveRecord::Base
     until due_date > Time.zone.now do
       self.recurrence == 12 ? due_date += 1.year : due_date += self.recurrence.months
     end
-    due_date.strftime("%d-%m-%Y")
+    due_date.strftime('%d-%m-%Y')
+  end
+
+  def self.current_year
+    where('extract(year  from date_of_issue) = ?', time_now.year)
   end
 
   def company_name
@@ -18,5 +22,11 @@ class Insurance < ActiveRecord::Base
 
   def vehicle_plate
     vehicle.plate
+  end
+
+  private
+
+  def self.time_now
+    Time.zone.now
   end
 end

@@ -15,7 +15,7 @@ describe BuildInvoice, type: :unit do
     it 'shold call the added fields methods which extracts vat and taxable' do
       build_invoice.build
       expect(build_invoice.invoice_params[:category_id]).to eq(1)
-      expect(build_invoice.invoice_params[:at_the_expense_of]).to eq('Veicolo')
+      expect(build_invoice.invoice_params[:at_the_expense_of]).to eq('1')
       expect(build_invoice.invoice_params[:total_vat]).to eq(10.0)
       expect(build_invoice.invoice_params[:total_taxable]).to eq(100.0)
       expect(build_invoice.invoice_params[:total]).to eq(110.0)

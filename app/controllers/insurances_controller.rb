@@ -57,7 +57,7 @@ class InsurancesController < ApplicationController
   end
 
   def insurance_params
-    params.require(:insurance).permit(:total, :vehicle_id, :serial_of_contract, :company_id, :deadline, :date_of_issue, :recurrence)
+    params.require(:insurance).permit(:total, :at_the_expense_of, :serial_of_contract, :company_id, :description, :deadline, :date_of_issue, :recurrence)
   end
 
   def insurance_params_user_id

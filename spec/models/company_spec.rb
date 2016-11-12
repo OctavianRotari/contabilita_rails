@@ -66,7 +66,7 @@ describe Company, type: :unit do
     describe '#is_insurance?' do
       it 'should return true if is an insurance company' do
         insurance_company = create(:insurance_company)
-        expect(insurance_company.is_insurance?).to eq(true)
+        expect(insurance_company.insurance?).to eq(true)
       end
     end
   end

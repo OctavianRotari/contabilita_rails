@@ -96,7 +96,7 @@ describe Calculator, type: :unit do
     end
 
     it 'should not consider invoice if from different month' do
-      create(:invoice, type_of_invoice: 'passiva', date_of_issue: Time.zone.now - 1.year)
+      create(:invoice, type_of_invoice: 'passiva', date_of_issue: Time.zone.now + 1.year)
       expect(calculator.total_costs_current_year(invoices)).to eq(220)
     end
   end
@@ -174,6 +174,31 @@ describe Calculator, type: :unit do
     it 'should not consider invoice if from different month' do
       create(:fuel_receipt, date_of_issue: Time.zone.now - 1.year)
       expect(calculator.total_fuel_receipts_current_year(fuel_receipts)).to eq(600)
+    end
+  end
+
+  describe '#total_insurance_costs_current_month' do
+    let(:insurances) { Insurance.all }
+
+    before :each do
+      create(:insurance, total: 1200)
+    end
+
+    it 'should calculate the total costs per month' do
+      expect(calculator.total_insurance_costs_current_month(insurances)).to eq(100)
+    end
+  end
+
+  describe '#total_insurance_costs_current_year' do
+    let(:insurances) { Insurance.all }
+
+    before :each do
+      create(:insurance, total: 1200)
+      create(:insurance, total: 1200)
+    end
+
+    it 'should calculate the total costs per month' do
+      expect(calculator.total_insurance_costs_current_year(insurances)).to eq(2400)
     end
   end
 end

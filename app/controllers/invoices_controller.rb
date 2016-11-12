@@ -17,8 +17,8 @@ class InvoicesController < ApplicationController
 
   def update
     @invoice = Invoice.find(params[:id])
-    params = BuildInvoice.new(invoice_params).build
-    if @invoice.update(params)
+    build_params = build_invoice.build
+    if @invoice.update(build_params)
       flash[:success] = "La fattura e' stata aggiornata"
       redirect_to invoice_path(invoice_id: @invoice.id)
     else
@@ -40,8 +40,8 @@ class InvoicesController < ApplicationController
   def create
     @companies = companies
     @vehicles = vehicles
-    params = build_invoice.build
-    @invoice = Invoice.new(params)
+    build_params = build_invoice.build
+    @invoice = Invoice.new(build_params)
     if @invoice.save
       flash[:success] = 'Fattura aggiunta'
       redirect_to invoice_path(id: @invoice.id)
@@ -53,7 +53,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:vehicle_id,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
+    params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:at_the_expense_of,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
 
   def invoice_params_user_id

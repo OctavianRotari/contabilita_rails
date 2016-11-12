@@ -6,21 +6,20 @@ class BuildInsurance
   end
 
   def build
-    insurance_params.merge!(at_the_expense_of: at_the_expense_of)
+    insurance_params.merge!(vehicle_id: vehicle_id)
   end
 
   private
 
-  def at_the_expense_of
-    if vehicle_id == 'all_vehicles'
-      @insurance_params[:vehicle_id] = nil
-      'Tutti i mezzi'
-    elsif !vehicle_id.empty?
-      'Veicolo'
+  def vehicle_id
+    if at_the_expense_of == 'all_vehicles'
+      nil
+    else
+      at_the_expense_of
     end
   end
 
-  def vehicle_id
-    insurance_params[:vehicle_id]
+  def at_the_expense_of
+    insurance_params[:at_the_expense_of]
   end
 end

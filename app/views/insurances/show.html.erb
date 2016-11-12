@@ -36,7 +36,7 @@
         <p id='vehicle_plate'><%=@insurance.at_the_expense_of %></p>
       </div>
     </div>
-    <% if @insurance.vehicle_plate %>
+    <% if @insurance.at_the_expense_of != 'all_vehicles'%>
       <div class="row">
         <div class="col span-1-of-2">
           <h4>Targa:</h4>
@@ -54,6 +54,16 @@
         <p><%=@insurance.recurrence %></p>
       </div>
     </div>
+    <% if @insurance.description %>
+      <div class="row">
+        <div class="col span-1-of-2">
+          <h4>Descrizione:</h4>
+        </div>
+        <div class="col span-1-of-2 data">
+          <p><%=@insurance.description %></p>
+        </div>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col span-1-of-2">
         <h4>Data emissione:</h4>

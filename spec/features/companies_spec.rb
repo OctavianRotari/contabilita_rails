@@ -8,12 +8,12 @@ feature 'companies' do
   before :each do
     create(:user)
     create(:vehicle)
+    sign_in
   end
 
   feature 'company already exists' do
     before :each do
       create(:category)
-      sign_in
       company
       visit('/companies/dashboard')
     end
@@ -56,6 +56,23 @@ feature 'companies' do
         create(:invoice, type_of_invoice: 'passiva', date_of_issue: Time.zone.now - 1.year)
         expect(page).to have_css '#current_year_costs', text: '110'
       end
+    end
+  end
+
+  feature 'insurance company exists' do
+    before :each do
+      insurance_category
+      insurance_company
+      create(:insurance, total: '1200')
+      visit '/companies/dashboard'
+    end
+
+    scenario 'sees the costs for the company for the current month' do
+      expect(page).to have_css '#current_month_costs', text: '100.0'
+    end
+
+    scenario 'sees the costs for the company for the current year' do
+      expect(page).to have_css '#current_year_costs', text: '1200.0'
     end
   end
 end

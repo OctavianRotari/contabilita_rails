@@ -67,6 +67,16 @@ class Calculator
     total_all(fuel_receipts).round(2)
   end
 
+  def total_insurance_costs_current_month(insurances)
+    insurances = insurances.current_year
+    (total_all(insurances) / 12).round(2)
+  end
+
+  def total_insurance_costs_current_year(insurances)
+    insurances = insurances.current_year
+    total_all(insurances)
+  end
+
   private
 
   def number_of_vehicles

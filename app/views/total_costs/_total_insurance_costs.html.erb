@@ -1,0 +1,20 @@
+<div class="data-summary">
+  <div class="row">
+    <div class="col span-1-of-2">
+      <h4>Totale spese</h4>
+      <p>Mese corrente:</p>
+    </div>
+    <div class="col span-1-of-2 data">
+      <br>
+      <p id="current_month_costs"><%= calculator.total_insurance_costs_current_month(invoices) %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-1-of-2">
+      <p>Anno corrente: </p>
+    </div>
+    <div class="col span-1-of-2 data">
+      <p id="current_year_costs"><%= calculator.total_insurance_costs_current_year(invoices) %></p>
+    </div>
+  </div>
+</div>

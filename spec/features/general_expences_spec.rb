@@ -32,7 +32,7 @@ feature 'general expences' do
   feature 'current_year_costs' do
     before :each do
       create(:invoice, type_of_invoice: 'passiva',
-             at_the_expense_of: 'Spese generali',
+             at_the_expense_of: 'general_expences',
              vehicle_id: nil,
              date_of_issue: Time.zone.now - 1.year)
       sign_in

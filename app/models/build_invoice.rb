@@ -15,16 +15,15 @@ class BuildInvoice
 
   def updated_invoice
     invoice_params.merge!(total: total,
-                          at_the_expense_of: at_the_expense_of,
+                          vehicle_id: vehicle_id,
                           category_id: category_id)
   end
 
-  def at_the_expense_of
-    if vehicle_id == 'general_expences'
-      @invoice_params[:vehicle_id] = nil
-      'Spese generali'
-    elsif !vehicle_id.empty?
-      'Veicolo'
+  def vehicle_id
+    if at_the_expense_of == 'general_expences'
+      nil
+    else
+      at_the_expense_of
     end
   end
 
@@ -37,8 +36,8 @@ class BuildInvoice
     invoice_params[:company_id]
   end
 
-  def vehicle_id
-    invoice_params[:vehicle_id]
+  def at_the_expense_of
+    invoice_params[:at_the_expense_of]
   end
 
   def total

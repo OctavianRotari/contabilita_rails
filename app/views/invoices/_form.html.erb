@@ -27,7 +27,7 @@
           <%= form.label 'Tipo fattura' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.select(:type_of_invoice, options_for_select([["Attiva", 'attiva'], ["Passiva", 'passiva']], selected: form.object.type_of_invoice )) %>
+          <%= form.select(:type_of_invoice, options_for_select([["Attiva", 'attiva'], ["Passiva", 'passiva']], selected: form.object.type_of_invoice), prompt: 'Tipo di fattura') %>
         </div>
       </div>
       <div class="row">
@@ -43,7 +43,10 @@
           <%= form.label 'A carico di' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.collection_select(:vehicle_id, [Vehicle.new(id: 'general_expences', plate: "Spese generali")]+@vehicles, :id, :plate, prompt: "Mezzi") %>
+          <%= form.select(:at_the_expense_of) do %>
+            <%= options_for_select([['Slezionare valore', nil], ['Spese generali', 'general_expences']], selected: form.object.at_the_expense_of) %>
+            <%= options_from_collection_for_select(@vehicles, :id, :plate, selected: form.object.at_the_expense_of) %>
+          <% end %>
         </div>
       </div>
       <div class="row">
