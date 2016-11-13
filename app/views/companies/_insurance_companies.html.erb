@@ -9,11 +9,8 @@
   <%= link_to company_path(company.id), class: 'delete-company', title: "Elimina azienda." , method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le fatture registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
     <i class="ion-ios-trash icon-small-trash"></i>
   <% end %>
-  <%= link_to dashboard_company_path(company.id), title: "Visualizza fatture." do%>
+  <%= link_to insurances_company_path(company.id), title: "Visualizza assicurazioni." do%>
     <i class="ion-ios-list icon-small-list"></i>
-  <% end %>
-  <%= link_to fuel_receipts_company_path(company.id), class: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
-    <i class="ion-funnel icon-small-list"></i>
   <% end %>
   <div class="data-summary">
     <div class="row">

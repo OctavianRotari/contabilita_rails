@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'dashboard' => 'company_dashboard#show'
+      get 'insurances' => 'insurances#company_insurances'
       get 'fuel_receipts' => 'fuel_receipt_dashboard#company_receipts'
       get 'passive_invoices' => 'company_dashboard#passive_invoices'
       get 'active_invoices' => 'company_dashboard#active_invoices'

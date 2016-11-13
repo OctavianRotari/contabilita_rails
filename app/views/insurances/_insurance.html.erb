@@ -1,0 +1,20 @@
+<tbody>
+  <tr>
+    <td id="supplier_<%=insurance.company_id%>"><%= link_to insurance.company_name, company_path(insurance.company_id) %></td>
+    <td id="total_<%=insurance.company_id%>"><%= insurance.total %></td>
+    <td class="paid"><%= insurance.total_receipts %></td>
+    <td><%= link_to insurance.description, insurance_path(id: insurance.id) %></td>
+    <td class="at-the-expense-of"><%= insurance.at_the_expense_of %></td>
+    <td class="deadline"><%= insurance.deadline.strftime("%d-%m-%Y")%></td>
+    <td class="cash-insurance">
+      <%= link_to new_insurance_receipt_path(insurance_id: insurance.id) do %>
+        <i class="ion-cash icon-small-cash"></i>
+      <% end%>
+    </td>
+    <td class="delete-insurance_<%=insurance.id%>">
+      <%= link_to insurance_path(id: insurance.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+        <i class="ion-ios-trash icon-small-trash"></i>
+      <% end%>
+    </td>
+  </tr>
+</tbody>

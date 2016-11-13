@@ -24,6 +24,10 @@ class Insurance < ActiveRecord::Base
     vehicle.plate
   end
 
+  def total_receipts
+    receipts.sum(:paid).to_i
+  end
+
   private
 
   def self.time_now

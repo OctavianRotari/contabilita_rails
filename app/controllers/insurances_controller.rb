@@ -8,6 +8,10 @@ class InsurancesController < ApplicationController
     @companies = current_user_companies.insurances
   end
 
+  def company_insurances
+    @insurances = Insurance.where(company_id: params[:id])
+  end
+
   def show
     @insurance = Insurance.find(params[:id])
   end

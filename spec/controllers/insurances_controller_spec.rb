@@ -24,9 +24,16 @@ describe InsurancesController, type: :controller do
   end
 
   describe 'when an insurance is valid' do
+    let(:insurance_company) { create(:company, name: 'Milano', category_id: insurance_category.id) }
+
     before :each do
       insurance_category
-      create(:company, name: 'Milano', category_id: insurance_category.id)
+      insurance_company
+    end
+
+    it 'returns a collection of insurances' do
+      get :company_insurances, id: insurance_company.id
+      expect(response.status).to eq(200)
     end
 
     it 'renders page with success' do

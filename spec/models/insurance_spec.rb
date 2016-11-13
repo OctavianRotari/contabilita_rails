@@ -27,4 +27,12 @@ describe Insurance, type: :model do
       expect(insurance.payment_date).to eq((Time.zone.now + 3.months).strftime("%d-%m-%Y"))
     end
   end
+
+  describe '#total_receipts' do
+    it 'should return the sum of the receipts' do
+      receipts
+      create(:receipt)
+      expect(insurance.total_receipts).to eq(1100)
+    end
+  end
 end
