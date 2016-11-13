@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GeneralExpencesController, type: :controller do
+describe GeneralExpensesController, type: :controller do
   sign_in_user
 
   before :each do

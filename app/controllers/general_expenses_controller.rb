@@ -1,4 +1,4 @@
-class GeneralExpencesController < ApplicationController
+class GeneralExpensesController < ApplicationController
   before_action :authenticate_user!
   before_action :vehicle_general_expences_any?
 

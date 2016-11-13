@@ -25,9 +25,9 @@ describe InvoiceDashboard, type: :unit do
 
   describe '#general_expences_invoices' do
     it 'returns all the invoices' do
-      invoice = create(:invoice, at_the_expense_of: 'Spese generali')
+      invoice = create(:general_expenses_invoice)
       invoice_dashboard = InvoiceDashboard.new(user, params)
-      expect(invoice_dashboard.general_expences_invoices).to eq([invoice])
+      expect(invoice_dashboard.general_expenses_invoices).to eq([invoice])
     end
   end
 

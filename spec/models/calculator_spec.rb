@@ -105,18 +105,18 @@ describe Calculator, type: :unit do
 
     before :each do
       invoice
-      create(:invoice, type_of_invoice: 'passiva')
+      create(:general_expenses_invoice)
       create(:vehicle, charge_general_expences: true)
       create(:vehicle, charge_general_expences: true)
     end
 
     it 'should calculate the total costs per month' do
-      expect(calculator.total_costs_month_garage_divided(invoices)).to eq(110)
+      expect(calculator.total_general_expenses_month(invoices)).to eq(110)
     end
 
     it 'should not consider invoice if from different month' do
       create(:invoice, type_of_invoice: 'passiva', date_of_issue: Time.zone.now - 1.month)
-      expect(calculator.total_costs_month_garage_divided(invoices)).to eq(110)
+      expect(calculator.total_general_expenses_month(invoices)).to eq(110)
     end
   end
 
@@ -125,18 +125,18 @@ describe Calculator, type: :unit do
 
     before :each do
       invoice
-      create(:invoice, type_of_invoice: 'passiva')
+      create(:general_expenses_invoice)
       create(:vehicle, charge_general_expences: true)
       create(:vehicle, charge_general_expences: true)
     end
 
     it 'should calculate the total costs per month' do
-      expect(calculator.total_costs_year_garage_divided(invoices)).to eq(110)
+      expect(calculator.total_general_expenses_year(invoices)).to eq(110)
     end
 
     it 'should not consider invoice if from different month' do
       create(:invoice, type_of_invoice: 'passiva', date_of_issue: Time.zone.now - 1.year)
-      expect(calculator.total_costs_year_garage_divided(invoices)).to eq(110)
+      expect(calculator.total_general_expenses_year(invoices)).to eq(110)
     end
   end
 

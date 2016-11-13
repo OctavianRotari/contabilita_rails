@@ -53,7 +53,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    byebug
     params.require(:invoice).permit(:reason,:date_of_issue,:company_id,:category_id,:at_the_expense_of,:deadline,:type_of_invoice,taxable_vat_fields_attributes:[:taxable, :vat_rate,:_destroy,:id])
   end
 

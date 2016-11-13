@@ -39,7 +39,7 @@ describe Vehicle, type: :unit do
       it 'should have many receipts' do
         fuel_receipt = create(:fuel_receipt)
         fuel_receipt_2 = create(:fuel_receipt)
-        expect(vehicle.fuel_receipts).to eq([fuel_receipt_2, fuel_receipt])
+        expect(vehicle.fuel_receipts).to eq([fuel_receipt, fuel_receipt_2])
       end
 
       it "should return all the vehicle's fuel receipts with a given company_id" do

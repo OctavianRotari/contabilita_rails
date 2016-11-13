@@ -1,7 +1,6 @@
 class Calculator
   def total_all(records)
     total = 0
-    return total if records.empty?
     records.each do |record|
       total += record.total
     end
@@ -42,12 +41,12 @@ class Calculator
     total_all(invoices).round(2)
   end
 
-  def total_costs_year_garage_divided(invoices)
-    (total_costs_current_year(invoices) / number_of_vehicles).round(2)
+  def total_general_expenses_month(invoices)
+    (total_costs_current_month(invoices) / number_of_vehicles).round(2)
   end
 
-  def total_costs_month_garage_divided(invoices)
-    (total_costs_current_month(invoices) / number_of_vehicles).round(2)
+  def total_general_expenses_year(invoices)
+    (total_costs_current_year(invoices) / number_of_vehicles).round(2)
   end
 
   def total_fuel_receipts_current_month(fuel_receipts)

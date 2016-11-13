@@ -53,7 +53,8 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.current_month_passive_invoices
-    passive.where('extract(month from date_of_issue) = ?', time_now.month)
+    passive.where('extract(month from date_of_issue) = ?', time_now.month).
+    current_year_passive_invoices
   end
 
   def self.current_year_passive_invoices

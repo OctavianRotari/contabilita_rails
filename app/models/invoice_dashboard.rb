@@ -10,8 +10,8 @@ class InvoiceDashboard
     current_user_invoices.order(created_at: :desc)
   end
 
-  def general_expences_invoices
-    current_user_invoices.where(at_the_expense_of: 'Spese generali')
+  def general_expenses_invoices
+    current_user_invoices.where(at_the_expense_of: 'general_expenses')
   end
 
   def company_invoices

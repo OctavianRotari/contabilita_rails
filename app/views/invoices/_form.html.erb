@@ -45,7 +45,6 @@
         <div class="col span-2-of-3">
           <%= form.select(:at_the_expense_of, class: 'at_the_expense_of') do %>
             <%= options_for_select([['Slezionare valore', nil], ['Spese generali', 'general_expences'], ['Veicolo specifico', 'specific_vehicle'], ['Piu veicoli', 'multiple_vehicles']], selected: form.object.at_the_expense_of) %>
-            <%#<%= options_from_collection_for_select(@vehicles, :id, :plate, selected: form.object.at_the_expense_of) %>
           <% end %>
         </div>
       </div>
@@ -85,7 +84,7 @@
             var val = $(this).val();
             $('#vehicles').empty();
             if(val === 'specific_vehicle'){
-              $('#vehicles').append("<%=escape_javascript( render 'vehicles/all_vehicles', form: form ) %>");
+              $('#vehicles').html("<%=escape_javascript( render 'vehicles/all_vehicles', form: form ) %>");
             } else if(val == 'multiple_vehicles') {
               $('#vehicles').append("<%= escape_javascript(default_fields(form , :vehicle_field)) %>")
               $('#vehicles').append("<%= escape_javascript(link_to_add_fields('Aggiungi veicolo', form , :vehicle_field, 'add_vehicle_fields')) %>")
