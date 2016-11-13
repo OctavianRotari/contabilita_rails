@@ -1,6 +1,7 @@
 class Calculator
   def total_all(records)
     total = 0
+    return total if records.empty?
     records.each do |record|
       total += record.total
     end
@@ -31,22 +32,14 @@ class Calculator
     invoice.total - invoice.total_payments.round(2)
   end
 
-  def total_costs_current_month(invoices, fuel_receipts = nil)
+  def total_costs_current_month(invoices)
     invoices = invoices.current_month_passive_invoices
-    if fuel_receipts
-      total_all(invoices).round(2) + total_fuel_receipts_current_month(fuel_receipts)
-    else
-      total_all(invoices).round(2)
-    end
+    total_all(invoices).round(2)
   end
 
-  def total_costs_current_year(invoices, fuel_receipts = nil)
+  def total_costs_current_year(invoices)
     invoices = invoices.current_year_passive_invoices
-    if fuel_receipts
-      total_all(invoices).round(2) + total_fuel_receipts_current_year(fuel_receipts)
-    else
-      total_all(invoices).round(2)
-    end
+    total_all(invoices).round(2)
   end
 
   def total_costs_year_garage_divided(invoices)
@@ -77,9 +70,35 @@ class Calculator
     total_all(insurances)
   end
 
+  def total_costs_vehicle_current_month(vehicle_id)
+    vehicle = vehicle(vehicle_id)
+    invoices = vehicle.invoices.current_month_passive_invoices
+    fuel_receipts = vehicle.fuel_receipts.current_month
+    insurance = insurance(vehicle)
+    total_all(invoices) + total_all(fuel_receipts) + insurance / 12
+  end
+
+  def total_costs_vehicle_current_year(vehicle_id)
+    vehicle = vehicle(vehicle_id)
+    invoices = vehicle.invoices.current_year_passive_invoices
+    fuel_receipts = vehicle.fuel_receipts.current_year
+    insurance = insurance(vehicle)
+    total_all(invoices) + total_all(fuel_receipts) + insurance
+  end
+
   private
+
+  def insurance(vehicle)
+    insurance = vehicle.insurance
+    return 0 unless insurance
+    insurance.total
+  end
 
   def number_of_vehicles
     Vehicle.charge_general_expences.count
+  end
+
+  def vehicle(id)
+    Vehicle.find(id)
   end
 end

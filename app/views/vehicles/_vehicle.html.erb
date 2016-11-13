@@ -14,5 +14,5 @@
   <%= link_to fuel_receipts_vehicle_path(vehicle.id), id: 'fuel_receipts', title: "Visualizza scontrini carburante." do%>
     <i class="ion-funnel icon-small-list"></i>
   <% end %>
-  <%= render partial: "total_costs/total_costs_vehicle", locals: { calculator: vehicle.calculator, invoices: vehicle.invoices, fuel_receipts: vehicle.fuel_receipts } %>
+  <%= render partial: "total_costs/total_costs_vehicle", locals: { vehicle: vehicle, calculator: vehicle.calculator, fuel_receipts: vehicle.fuel_receipts } %>
 </div>

@@ -85,5 +85,23 @@ feature 'vehicles' do
         expect(page).to have_css '#total_fuel_receipt', text: '300'
       end
     end
+
+    feature 'and has insurance' do
+      before :each do
+        create(:insurance_category)
+        create(:insurance_company)
+        create(:insurance, total: 1200)
+      end
+
+      scenario 'sees the total spent for insurance per month' do
+        visit '/vehicles/dashboard'
+        expect(page).to have_css '#current_month_costs', text: '100'
+      end
+
+      scenario 'sees the total spent for insurance per year' do
+        visit '/vehicles/dashboard'
+        expect(page).to have_css '#current_year_costs', text: '1200'
+      end
+    end
   end
 end

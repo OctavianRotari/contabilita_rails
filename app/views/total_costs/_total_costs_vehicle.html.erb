@@ -6,7 +6,7 @@
     </div>
     <div class="col span-1-of-2 data">
       <br>
-      <p id="current_month_costs"><%= calculator.total_costs_current_month(invoices, fuel_receipts) %></p>
+      <p id="current_month_costs"><%= calculator.total_costs_vehicle_current_month(vehicle.id) %></p>
     </div>
   </div>
   <div class="row">
@@ -14,7 +14,7 @@
       <p>Anno corrente: </p>
     </div>
     <div class="col span-1-of-2 data">
-      <p id="current_year_costs"><%= calculator.total_costs_current_year(invoices, fuel_receipts) %></p>
+      <p id="current_year_costs"><%= calculator.total_costs_vehicle_current_year(vehicle.id) %></p>
     </div>
   </div>
   <div class="row">

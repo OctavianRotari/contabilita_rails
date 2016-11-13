@@ -1,15 +1,14 @@
 require 'rails_helper'
 
-require 'spec_helper'
-
 describe Calculator, type: :unit do
   let(:calculator) { Calculator.new }
   let(:invoice) { create(:invoice, type_of_invoice: 'passiva') }
+  let(:vehicle) { create(:vehicle) }
 
   before :each do
     create(:user)
     create(:category)
-    create(:vehicle)
+    vehicle
     create(:company)
     create(:invoice)
     invoice
@@ -199,6 +198,26 @@ describe Calculator, type: :unit do
 
     it 'should calculate the total costs per month' do
       expect(calculator.total_insurance_costs_current_year(insurances)).to eq(2400)
+    end
+  end
+
+  describe 'vehicle is insured' do
+    before :each do
+      create(:insurance_category)
+      create(:insurance_company)
+      create(:insurance, total: 1200)
+    end
+
+    describe '#total_costs_current_month' do
+      it 'should calculate the total costs per month' do
+        expect(calculator.total_costs_vehicle_current_month(vehicle.id)).to eq(210)
+      end
+    end
+
+    describe '#total_costs_current_year' do
+      it 'should calculate the total costs per month' do
+        expect(calculator.total_costs_vehicle_current_year(vehicle.id)).to eq(1310)
+      end
     end
   end
 end
