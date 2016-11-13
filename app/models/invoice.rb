@@ -2,10 +2,12 @@ class Invoice < ActiveRecord::Base
   belongs_to :user
   has_many :payments, dependent: :destroy
   has_many :taxable_vat_fields, dependent: :destroy
+  has_many :vehicle_field, dependent: :destroy
   belongs_to :company
   belongs_to :vehicle
   belongs_to :category
   accepts_nested_attributes_for :taxable_vat_fields, allow_destroy: true
+  accepts_nested_attributes_for :vehicle_field, allow_destroy: true
 
   validates :type_of_invoice, presence: {message: "Selezionare il tipo di fattura"}
   validates :company_id, presence: {message: "Selezionare l'azienda la quale ha emesso o ricevuto la fattura"}

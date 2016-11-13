@@ -15,3 +15,9 @@ $ ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, id))
     event.preventDefault()
+
+  $('form').on 'click', '.add_vehicle_fields', (event) ->
+    id = $('.taxable').length + 1
+    regexp = new RegExp($(this).data('id'), 'g')
+    $(this).before($(this).data('fields').replace(regexp, id))
+    event.preventDefault()
