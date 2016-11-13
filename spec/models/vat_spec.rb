@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Vat, type: :unit do
-  let(:invoice_params) { attributes_for(:invoice_params) }
+  let(:invoice_params) { attributes_for(:invoice_params_general_expenses) }
   let(:vat) { Vat.new(invoice_params) }
 
   describe '#total_vat' do

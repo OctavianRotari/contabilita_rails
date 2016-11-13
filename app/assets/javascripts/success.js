@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	$('.success').addClass('visible');
+  $('.success').addClass('visible');
 });

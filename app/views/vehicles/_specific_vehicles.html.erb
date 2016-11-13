@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col span-1-of-3">
+    <%= form.label 'Mezzo' %>
+  </div>
+  <div class="col span-2-of-3">
+    <%= form.collection_select(:vehicle_id, @vehicles, :id, :plate, selected: form.object.vehicle_id) %>
+  </div>
+</div>

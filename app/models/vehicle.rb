@@ -1,6 +1,7 @@
 class Vehicle < ActiveRecord::Base
   belongs_to :user
   has_many :invoices, dependent: :destroy
+  has_many :vehicle_field, dependent: :destroy
   has_many :fuel_receipts
   has_one :insurance
   validates :plate, presence: { message: 'Inserire targa del veicolo' }

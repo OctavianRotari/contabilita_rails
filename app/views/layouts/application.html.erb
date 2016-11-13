@@ -1,69 +1,67 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Contabilita'</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet" type="text/css">
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= csrf_meta_tags %>
-		<%= render 'favicon' %>
-	</head>
-	<body>
-		<header>
-			<div class="top-section-background">
-				<div class="row">
-					<div class="top-section">
-						<div class="logo-title col span-1-of-3">
-							<div class="app-logo"><%=image_tag("accounting.png")%></div>
-							<div class="app-title">
-								<h1>Contabilit&#224;</h1>
-							</div>
-						</div>
-						<div class="company-name col span-1-of-3">
-							<% if user_signed_in? %>
-								<h2><%= current_user.email %></h2>
-							<% end %>
-						</div>
-						<div class="log-section col span-1-of-3">
-							<% if user_signed_in? %>
-								<%= link_to destroy_user_session_path, :method => :delete do %>
-									<h2>Logout</h2><i class="icon-big ion-log-out"></i>
-								<% end %>
-							<% else %>
-								<div class="log-in">
-									<h2>
-										<%= link_to new_user_session_path do %>
-											<h2>Accedi</h2><i class="icon-big ion-log-in"></i>
-										<% end %>
-									</h2>
-								</div>
-								<div class="log-in">
-									<h2>
-										<%= link_to new_user_registration_path do %>
-											<h2>Registrati</h2><i class="icon-big ion-person-add"></i>
-										<% end %>
-									</h2>
-								</div>
-							<% end %>
-						</div>
-					</div>
-				</div>
-			</div>
-			<% if user_signed_in? %>
-				<%= render partial: "accounting/main_nav" %>
-			<% end %>
-		</header>
-		<div class="main-section">
-			<%#<div class="row">%>
-				<%= display_errors(flash) %>
-				<%#</div>%>
-			<div id="page-wrap" class="page-wrap">
-				<%= yield %>
-			</div>
-		</div>
-		</div>
-	</body>
-	<script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>
+  <head>
+    <title>Contabilita'</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet" type="text/css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'favicon' %>
+  </head>
+  <body>
+    <header>
+      <div class="top-section-background">
+        <div class="row">
+          <div class="top-section">
+            <div class="logo-title col span-1-of-3">
+              <div class="app-logo"><%=image_tag("accounting.png")%></div>
+              <div class="app-title">
+                <h1>Contabilit&#224;</h1>
+              </div>
+            </div>
+            <div class="company-name col span-1-of-3">
+              <% if user_signed_in? %>
+                <h2><%= current_user.email %></h2>
+              <% end %>
+            </div>
+            <div class="log-section col span-1-of-3">
+              <% if user_signed_in? %>
+                <%= link_to destroy_user_session_path, :method => :delete do %>
+                  <h2>Logout</h2><i class="icon-big ion-log-out"></i>
+                <% end %>
+              <% else %>
+                <div class="log-in">
+                  <h2>
+                    <%= link_to new_user_session_path do %>
+                      <h2>Accedi</h2><i class="icon-big ion-log-in"></i>
+                    <% end %>
+                  </h2>
+                </div>
+                <div class="log-in">
+                  <h2>
+                    <%= link_to new_user_registration_path do %>
+                      <h2>Registrati</h2><i class="icon-big ion-person-add"></i>
+                    <% end %>
+                  </h2>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <%= render partial: "accounting/main_nav" %>
+      <% end %>
+    </header>
+    <div class="main-section">
+        <%= display_errors(flash) %>
+      <div id="page-wrap" class="page-wrap">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>
 </html>

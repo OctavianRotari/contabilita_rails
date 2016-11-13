@@ -14,7 +14,11 @@ class BuildInvoice
   private
 
   def updated_invoice
-    invoice_params.merge!(total: total, category_id: category_id)
+    invoice_params.merge!(total: total, category_id: category_id, vehicle_id: vehicle_id)
+  end
+
+  def vehicle_id
+    nil if invoice_params[:at_the_expense_of] == 'multiple_vehicles'
   end
 
   def category_id

@@ -31,11 +31,24 @@ FactoryGirl.define do
     paid(false)
   end
 
-  factory :invoice_params, class: Invoice do
+  factory :invoice_params_general_expenses, class: Invoice do
     taxable_vat_fields_attributes({"1"=>{taxable: "100", vat_rate: "10", "_destroy"=>"false"}})
     reason('Manutenzione')
     user_id(1)
     at_the_expense_of('general_expences')
+    company_id('1')
+    date_of_issue(Time.zone.now)
+    type_of_invoice('attiva')
+    deadline(Time.zone.now + 1.month)
+    paid(false)
+  end
+
+  factory :invoice_params_vehicle, class: Invoice do
+    taxable_vat_fields_attributes({"1"=>{taxable: "100", vat_rate: "10", "_destroy"=>"false"}})
+    reason('Manutenzione')
+    user_id(1)
+    at_the_expense_of('specific_vehicle')
+    vehicle_id('1')
     company_id('1')
     date_of_issue(Time.zone.now)
     type_of_invoice('attiva')

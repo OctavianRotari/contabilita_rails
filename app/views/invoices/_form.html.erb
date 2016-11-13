@@ -48,7 +48,10 @@
           <% end %>
         </div>
       </div>
-      <div id='vehicles'></div>
+      <div id='vehicles'>
+        <%= select_specific_vehicle(invoice, form) %>
+        <%= select_multiple_vehicles(invoice, form) %>
+      </div>
       <div class="row">
         <div class="col span-1-of-3">
           <%= form.label 'Motivo' %>
@@ -84,7 +87,7 @@
             var val = $(this).val();
             $('#vehicles').empty();
             if(val === 'specific_vehicle'){
-              $('#vehicles').html("<%=escape_javascript( render 'vehicles/all_vehicles', form: form ) %>");
+              $('#vehicles').html("<%=escape_javascript( render 'vehicles/specific_vehicles', form: form ) %>");
             } else if(val == 'multiple_vehicles') {
               $('#vehicles').append("<%= escape_javascript(default_fields(form , :vehicle_field)) %>")
               $('#vehicles').append("<%= escape_javascript(link_to_add_fields('Aggiungi veicolo', form , :vehicle_field, 'add_vehicle_fields')) %>")

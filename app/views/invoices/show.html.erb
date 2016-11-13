@@ -76,7 +76,7 @@
         <p><%= @invoice.at_the_expense_of %></p>
       </div>
     </div>
-    <% if @invoice.at_the_expense_of != 'general_expences' %>
+    <% if @invoice.vehicle_id %>
       <div class="row">
         <div class="col span-1-of-2">
           <h4>Targa: </h4>

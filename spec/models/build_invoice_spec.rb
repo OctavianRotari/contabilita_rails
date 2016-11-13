@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe BuildInvoice, type: :unit do
-  let(:invoice_params) { attributes_for(:invoice_params) }
+  let(:invoice_params) { attributes_for(:invoice_params_general_expenses) }
   let(:build_invoice) { BuildInvoice.new(invoice_params) }
 
   before :each do

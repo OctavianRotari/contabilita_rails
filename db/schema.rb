@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20161113131729) do
 
   create_table "vehicle_fields", force: :cascade do |t|
     t.integer  "vehicle_id"
-    t.integer  "total"
+    t.integer  "part_of_total"
     t.integer  "invoice_id"
     t.datetime "created_at"
     t.datetime "updated_at"

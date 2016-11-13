@@ -10,13 +10,20 @@ describe InvoicesController, type: :controller do
   end
 
   describe 'when an invoice is valid' do
-    let(:invoice_params) { attributes_for(:invoice_params) }
+    let(:invoice_params) { attributes_for(:invoice_params_general_expenses) }
+    let(:invoice_vehicle) { attributes_for(:invoice_params_vehicle)  }
 
     it 'calculates total vat total and total taxable' do
       post :create, invoice: invoice_params
       expect(Invoice.first.total).to eq(110)
       expect(Invoice.first.total_vat).to eq(10)
       expect(Invoice.first.total_taxable).to eq(100)
+    end
+
+    it 'saves vehicle id and at the expense of' do
+      post :create, invoice: invoice_vehicle
+      expect(Invoice.first.vehicle_id).to eq(1)
+      expect(Invoice.first.at_the_expense_of).to eq('specific_vehicle')
     end
 
     it 'shows success message and redirects to invoice' do

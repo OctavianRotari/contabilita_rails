@@ -5,9 +5,8 @@
     </div>
     <div class="col span-2-of-3">
       <%= f.select(:vehicle_id) do %>
-        <%= options_from_collection_for_select(@vehicles, :id, :plate) %>
+        <%= options_from_collection_for_select(@vehicles, :id, :plate, selected: f.object.vehicle_id) %>
       <% end %>
-      <%= f.hidden_field :_destroy %>
     </div>
   </div>
   <div class="row">
@@ -15,8 +14,9 @@
       <%= f.label 'Totale' %>
     </div>
     <div class="col span-2-of-3">
-      <%= f.text_field :total, require: true %>
+      <%= f.text_field :part_of_total %>
     </div>
+    <%= f.hidden_field :_destroy %>
     <%= link_to "Remove", '#', class: "remove_fields" %>
   </div>
 </fieldset>
