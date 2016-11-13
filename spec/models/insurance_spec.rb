@@ -30,7 +30,7 @@ describe Insurance, type: :model do
 
   describe '#total_receipts' do
     it 'should return the sum of the receipts' do
-      receipts
+      insurance
       create(:receipt)
       expect(insurance.total_receipts).to eq(1100)
     end
