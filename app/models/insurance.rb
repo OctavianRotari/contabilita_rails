@@ -36,7 +36,17 @@ class Insurance < ActiveRecord::Base
     receipts.sum(:paid).round(2)
   end
 
-  private
+  def self.active
+    find_by('date_of_issue <= ? and deadline >= ?', time_now, time_now)
+  end
+
+  def self.general_insurances
+    where(at_the_expense_of: 'general_insurance')
+  end
+
+  def self.general_insurances_total
+    general_insurances.sum(:total)
+  end
 
   def self.time_now
     Time.zone.now

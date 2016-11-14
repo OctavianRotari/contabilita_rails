@@ -38,11 +38,13 @@
           <%= form.label 'A carico di' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.select(:at_the_expense_of) do %>
-            <%= options_for_select([['Slezionare valore', nil], ['Tutti i veicoli', 'all_vehicles']], selected: form.object.at_the_expense_of) %>
-            <%= options_from_collection_for_select(@vehicles, :id, :plate, selected: form.object.at_the_expense_of) %>
+          <%= form.select(:at_the_expense_of, class: 'at_the_expense_of') do %>
+            <%= options_for_select([['Slezionare valore', nil], ['Tutti i veicoli', 'general_insurance'], ['Veicolo specifico', 'specific_vehicle']], selected: form.object.at_the_expense_of) %>
           <% end %>
         </div>
+      </div>
+      <div id='vehicles'>
+        <%= select_specific_vehicle(insurance, form) %>
       </div>
       <div class="row">
         <div class="col span-1-of-3">
@@ -81,6 +83,17 @@
           <%= form.submit "Conferma", class: "btn btn-big" %>
         </div>
       </div>
+      <script type="text/javascript">
+        $(function(){
+          $(document).on('change', '#insurance_at_the_expense_of', function(){
+            var val = $(this).val();
+            $('#vehicles').empty();
+            if(val === 'specific_vehicle'){
+              $('#vehicles').html("<%=escape_javascript( render 'vehicles/specific_vehicles', form: form ) %>");
+            }
+          });
+        });
+      </script>
     <% end %>
   </div>
 </div>

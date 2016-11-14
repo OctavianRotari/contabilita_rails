@@ -12,11 +12,8 @@ class BuildInsurance
   private
 
   def vehicle_id
-    if at_the_expense_of == 'all_vehicles'
-      nil
-    else
-      at_the_expense_of
-    end
+    return nil if at_the_expense_of == 'all_vehicles'
+    insurance_params[:vehicle_id]
   end
 
   def at_the_expense_of

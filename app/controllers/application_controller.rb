@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     current_user.vehicles
   end
 
+  def current_user_insurances
+    current_user.insurances
+  end
+
   def current_user_vehicles_general_expences
     current_user.vehicles.charge_general_expences
   end

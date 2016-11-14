@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :vehicles
   has_many :categories
   has_many :fuel_receipts
+  has_many :insurances
 end
