@@ -19,6 +19,7 @@ class BuildInvoice
 
   def vehicle_id
     nil if invoice_params[:at_the_expense_of] == 'multiple_vehicles'
+    invoice_params[:vehicle_id] if invoice_params[:at_the_expense_of] == 'specific_vehicle'
   end
 
   def category_id
