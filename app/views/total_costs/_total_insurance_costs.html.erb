@@ -6,7 +6,7 @@
     </div>
     <div class="col span-1-of-2 data">
       <br>
-      <p id="current_month_costs"><%= calculator.total_insurance_costs_current_month(invoices) %></p>
+      <p id="current_month_costs"><%=  (insurances.year.total_all/12).round(2)  %></p>
     </div>
   </div>
   <div class="row">
@@ -14,7 +14,7 @@
       <p>Anno corrente: </p>
     </div>
     <div class="col span-1-of-2 data">
-      <p id="current_year_costs"><%= calculator.total_insurance_costs_current_year(invoices) %></p>
+      <p id="current_year_costs"><%= insurances.year.total_all %></p>
     </div>
   </div>
 </div>

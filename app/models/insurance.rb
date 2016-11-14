@@ -12,8 +12,12 @@ class Insurance < ActiveRecord::Base
     due_date.strftime('%d-%m-%Y')
   end
 
-  def self.current_year
-    where('extract(year  from date_of_issue) = ?', time_now.year)
+  def self.month(month = time_now)
+    where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
+  end
+
+  def self.year(year = time_now)
+    where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 
   def company_name
@@ -24,8 +28,12 @@ class Insurance < ActiveRecord::Base
     vehicle.plate
   end
 
+  def self.total_all
+    sum(:total).round(2)
+  end
+
   def total_receipts
-    receipts.sum(:paid).to_i
+    receipts.sum(:paid).round(2)
   end
 
   private

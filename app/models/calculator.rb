@@ -25,48 +25,6 @@ class Calculator
     (total_costs_year / number_of_vehicles).round(2)
   end
 
-  def total_fuel_receipts_current_month(fuel_receipts)
-    fuel_receipts = fuel_receipts.current_month
-    return 0 if fuel_receipt.empty?
-    total_all(fuel_receipts).round(2)
-  end
-
-  def total_fuel_receipts_current_year(fuel_receipts)
-    fuel_receipts = fuel_receipts.current_year
-    return 0 if fuel_receipt.empty?
-    total_all(fuel_receipts).round(2)
-  end
-
-  def total_insurance_costs_current_month(insurances)
-    insurances = insurances.current_year
-    return 0 if insurances.empty?
-    (total_all(insurances) / 12).round(2)
-  end
-
-  def total_insurance_costs_current_year(insurances)
-    insurances = insurances.current_year
-    return 0 if insurances.empty?
-    total_all(insurances)
-  end
-
-  def total_costs_vehicle_current_month(vehicle_id)
-    vehicle = vehicle(vehicle_id)
-    invoices = vehicle.invoices.current_month_passive_invoices
-    fuel_receipts = vehicle.fuel_receipts.current_month
-    insurance = insurance(vehicle)
-    month_general_expenses = total_general_expenses_month(invoices)
-    (month_general_expenses + total_all(invoices) + total_all(fuel_receipts) + insurance / 12).round(2)
-  end
-
-  def total_costs_vehicle_current_year(vehicle_id)
-    vehicle = vehicle(vehicle_id)
-    invoices = vehicle.invoices.current_year_passive_invoices
-    fuel_receipts = vehicle.fuel_receipts.current_year
-    insurance = insurance(vehicle)
-    year_general_expeses = total_general_expenses_year(invoices)
-    (total_all(invoices) + total_all(fuel_receipts) + insurance + year_general_expeses).round(2)
-  end
-
   private
 
   def insurance(vehicle)

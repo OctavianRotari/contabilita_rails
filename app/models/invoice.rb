@@ -52,6 +52,14 @@ class Invoice < ActiveRecord::Base
     active.where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 
+  def self.month_general_expences
+    month_passive.where(at_the_expense_of: 'general_expenses')
+  end
+
+  def self.year_general_expences
+    year_passive.where(at_the_expense_of: 'general_expenses')
+  end
+
   def self.not_paid
     passive.where(paid: false)
   end

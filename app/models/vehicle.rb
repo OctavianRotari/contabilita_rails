@@ -23,7 +23,47 @@ class Vehicle < ActiveRecord::Base
     charge_general_expences.count
   end
 
-  def fuel_receipts_total
-    fuel_receipts.sum(:total).round(2)
+  def fuel_receipts_month_total
+    fuel_receipts.month.sum(:total).round(2)
+  end
+
+  def fuel_receipts_year_total
+    fuel_receipts.year.sum(:total).round(2)
+  end
+
+  def passive_invoices_month_total
+    invoices.month_passive.sum(:total).round(2)
+  end
+
+  def passive_invoices_year_total
+    invoices.year_passive.sum(:total).round(2)
+  end
+
+  def total_insurance_month
+    return 0 unless self.insurance
+    insurance.total / 12
+  end
+
+  def total_insurance_year
+    return 0 unless self.insurance
+    insurance.total
+  end
+
+  def general_expenses_month
+    return 0 unless self.charge_general_expences
+    invoices.month_general_expences.sum(:total)
+  end
+
+  def general_expenses_year
+    return 0 unless self.charge_general_expences
+    invoices.year_general_expences.sum(:total)
+  end
+
+  def current_month_costs
+    fuel_receipts_month_total + passive_invoices_month_total + total_insurance_month + general_expenses_month
+  end
+
+  def current_year_costs
+    fuel_receipts_year_total + passive_invoices_year_total + total_insurance_year + general_expenses_year
   end
 end
