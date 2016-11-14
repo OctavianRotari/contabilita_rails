@@ -26,8 +26,6 @@ class FuelReceipt < ActiveRecord::Base
     sum(:total).round(2)
   end
 
-  private
-
   def self.time_now
     Time.now
   end

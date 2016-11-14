@@ -1,9 +1,9 @@
 class FuelReceiptDashboard
   include CurrentUserRecords
-  attr_reader :id, :current_user
+  attr_reader :params, :current_user
 
-  def initialize(id, current_user)
-    @id = id
+  def initialize(params, current_user)
+    @params = params
     @current_user = current_user
   end
 
@@ -20,11 +20,13 @@ class FuelReceiptDashboard
   end
 
   def vehicle_fuel_receipts_ord
-    vehicle_fuel_receipts.month
+    date = year_params
+    vehicle_fuel_receipts.year(date)
   end
 
   def company_fuel_receipts_ord
-    company_fuel_receipts.month
+    date = year_params
+    company_fuel_receipts.year(date)
   end
 
   def gas_station_companies
@@ -33,11 +35,20 @@ class FuelReceiptDashboard
 
   private
 
+  def id
+    params[:id]
+  end
+
   def vehicle_fuel_receipts
     vehicle.fuel_receipts
   end
 
   def company_fuel_receipts
     company.fuel_receipts
+  end
+
+  def year_params
+    year = params[:year].to_i
+    Date.new(year)
   end
 end

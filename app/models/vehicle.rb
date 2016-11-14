@@ -51,12 +51,12 @@ class Vehicle < ActiveRecord::Base
 
   def general_expenses_month
     return 0 unless self.charge_general_expences
-    invoices.month_general_expences.sum(:total)
+    Invoice.month_general_expences.sum(:total) / Vehicle.general_expences
   end
 
   def general_expenses_year
     return 0 unless self.charge_general_expences
-    invoices.year_general_expences.sum(:total)
+    Invoice.year_general_expences.sum(:total)
   end
 
   def current_month_costs
@@ -65,5 +65,9 @@ class Vehicle < ActiveRecord::Base
 
   def current_year_costs
     fuel_receipts_year_total + passive_invoices_year_total + total_insurance_year + general_expenses_year
+  end
+
+  def self.general_expences
+    charge_general_expences.count
   end
 end
