@@ -40,12 +40,12 @@ class Insurance < ActiveRecord::Base
     find_by('date_of_issue <= ? and deadline >= ?', time_now, time_now)
   end
 
-  def self.general_insurances
-    where(at_the_expense_of: 'general_insurance')
+  def self.general_insurances(user_id)
+    where(at_the_expense_of: 'general_insurance').where(user_id: user_id)
   end
 
-  def self.general_insurances_total
-    general_insurances.sum(:total)
+  def self.general_insurances_total(user_id)
+    general_insurances(user_id).sum(:total)
   end
 
   def self.time_now

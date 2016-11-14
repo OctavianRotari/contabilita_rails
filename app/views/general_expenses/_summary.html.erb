@@ -10,8 +10,8 @@
     <div class="col span-1-of-2">
       <div class="total">
         <h3>Spese per mezzo</h3>
-        <h5>Mese corrente: </h5><p id="current_month_costs_per_vehicle"><%= calculator.total_general_expenses_month(invoices) %></p>
-        <h5>Anno corrente: </h5><p id="current_year_costs_per_vehicle"><%= calculator.total_general_expenses_year(invoices) %></p>
+        <h5>Mese corrente: </h5><p id="current_month_costs_per_vehicle"><%= calculator.total_general_expenses_month(invoices, current_user) %></p>
+        <h5>Anno corrente: </h5><p id="current_year_costs_per_vehicle"><%= calculator.total_general_expenses_year(invoices, current_user) %></p>
       </div>
     </div>
   </div>

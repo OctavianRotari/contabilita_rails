@@ -19,8 +19,8 @@ class Vehicle < ActiveRecord::Base
     where(charge_general_expences: true)
   end
 
-  def self.general_expences_count
-    charge_general_expences.count
+  def self.count_vehicles_general(user_id)
+    where(charge_general_expences: true).where(user_id: user_id).count
   end
 
   def fuel_receipts_month_total
@@ -51,31 +51,35 @@ class Vehicle < ActiveRecord::Base
   end
 
   def general_insurance_month
-    return 0 if insurances.general_insurances.empty?
+    user_id = self.user_id
+    return 0 if insurances.general_insurances_total(user_id).zero?
     return 0 unless charge_general_expences
-    insurances = insurances.general_insurances_total / 12
-    general_expences = Vehicle.general_expences_count
+    insurances = insurances.general_insurances_total(user_id) / 12
+    general_expences = Vehicle.count_vehicles_general(user_id)
     (insurances / general_expences).round(2)
   end
 
   def general_insurance_year
+    user_id = self.user_id
     return 0 unless charge_general_expences
-    insurance = insurances.general_insurances_total
-    general_expences = Vehicle.general_expences_count
+    insurance = insurances.general_insurances_total(user_id)
+    general_expences = Vehicle.count_vehicles_general(user_id)
     (insurance / general_expences).round(2)
   end
 
   def general_expenses_month
+    user_id = self.user_id
     return 0 unless charge_general_expences
-    general_invoice_total = Invoice.month_general_expences.sum(:total)
-    general_expences = Vehicle.general_expences_count
+    general_invoice_total = Invoice.month_general_expences(user_id).sum(:total)
+    general_expences = Vehicle.count_vehicles_general(user_id)
     (general_invoice_total / general_expences).round(2)
   end
 
   def general_expenses_year
+    user_id = self.user_id
     return 0 unless charge_general_expences
-    general_invoice_total = Invoice.year_general_expences.sum(:total)
-    general_expences = Vehicle.general_expences_count
+    general_invoice_total = Invoice.year_general_expences(user_id).sum(:total)
+    general_expences = Vehicle.count_vehicles_general(user_id)
     (general_invoice_total / general_expences).round(2)
   end
 

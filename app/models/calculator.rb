@@ -15,14 +15,14 @@ class Calculator
     invoice.total - invoice.total_payments.round(2)
   end
 
-  def total_general_expenses_month(invoices)
+  def total_general_expenses_month(invoices, current_user)
     total_costs_month = invoices.month_passive.total_all
-    (total_costs_month / number_of_vehicles).round(2)
+    (total_costs_month / number_of_vehicles(current_user)).round(2)
   end
 
-  def total_general_expenses_year(invoices)
+  def total_general_expenses_year(invoices, current_user)
     total_costs_year = invoices.year_passive.total_all
-    (total_costs_year / number_of_vehicles).round(2)
+    (total_costs_year / number_of_vehicles(current_user)).round(2)
   end
 
   private
@@ -33,8 +33,8 @@ class Calculator
     insurance.total
   end
 
-  def number_of_vehicles
-    Vehicle.general_expences_count
+  def number_of_vehicles(current_user)
+    Vehicle.count_vehicles_general(current_user.id)
   end
 
   def vehicle(id)
