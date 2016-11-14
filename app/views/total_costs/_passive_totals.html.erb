@@ -1,0 +1,11 @@
+<tfoot>
+  <tr class="totals">
+    <td>Totale:</td>
+    <% invoices = invoices.month_passive(month) %>
+    <td class="total"><%= invoices.total_all %></td>
+    <td class="vat"><%= invoices.total_vat_all %></td>
+    <% total_to_pay = calculator.total_paid_or_collected_all(invoices) %>
+    <td class="paid"><%= total_to_pay %></td>
+    <td class="to_pay"><%= invoices.not_paid.total_all - total_to_pay %></td>
+  </tr>
+</tfoot>

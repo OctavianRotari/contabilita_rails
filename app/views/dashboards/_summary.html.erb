@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <%= render dashboard.invoices.not_collected, calculator: dashboard.calculator  %>
-      <%= render partial: "total_costs/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_collected} %>
+      <%= render partial: "total_costs/totals", locals: {calculator: dashboard.calculator, invoices: dashboard.invoices.not_collected } %>
     </table>
   </div>
 </div>

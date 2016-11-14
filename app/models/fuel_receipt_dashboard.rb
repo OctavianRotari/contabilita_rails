@@ -20,15 +20,11 @@ class FuelReceiptDashboard
   end
 
   def vehicle_fuel_receipts_ord
-    vehicle_fuel_receipts.group_by do |ord|
-      ord.date_of_issue.beginning_of_month
-    end
+    vehicle_fuel_receipts.month
   end
 
   def company_fuel_receipts_ord
-    company_fuel_receipts.group_by do |ord|
-      ord.date_of_issue.beginning_of_month
-    end
+    company_fuel_receipts.month
   end
 
   def gas_station_companies

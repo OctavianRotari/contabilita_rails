@@ -7,7 +7,7 @@
 </div>
 <div class="row">
   <div class="invoices">
-    <% invoices_dashboard.passive_by_year_and_month(params).each do |month, invoices| %>
+    <% invoices.group_by{ |t| t.date_of_issue.beginning_of_month }.each do |month, invoices_array| %>
       <h2><%= month.strftime('%B') %></h2>
       <table>
         <thead>
@@ -25,9 +25,9 @@
             <th class="delete-invoice"></th>
           </tr>
         </thead>
-        <%= render partial: "total_costs/totals", locals: {calculator: calculator, invoices:invoices} %>
+        <%= render partial: "total_costs/passive_totals", locals: {calculator: calculator, invoices: invoices, month: month } %>
         <tbody>
-          <% for invoice in invoices %>
+          <% for invoice in invoices_array %>
             <tr>
               <td id="supplier_<%=invoice.company_id%>"><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
               <td id="total_<%=invoice.company_id%>"><%= invoice.total %></td>

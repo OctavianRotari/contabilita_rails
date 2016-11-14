@@ -38,4 +38,8 @@ class Company < ActiveRecord::Base
   def category_name
     category.name
   end
+
+  def fuel_receipts_total
+    fuel_receipts.sum(:total).round(2)
+  end
 end

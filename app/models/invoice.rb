@@ -20,22 +20,6 @@ class Invoice < ActiveRecord::Base
     find(params_id).payments
   end
 
-  def self.active_by_year_and_month(params)
-    active_ord_by_year(params).group_by { |t| t.date_of_issue.beginning_of_month }
-  end
-
-  def self.passive_by_year_and_month(params)
-    passive_ord_by_year(params).group_by { |t| t.date_of_issue.beginning_of_month }
-  end
-
-  def self.active_ord_by_year(params)
-    order_by_year(params).active
-  end
-
-  def self.passive_ord_by_year(params)
-    order_by_year(params).passive
-  end
-
   def self.active
     where(type_of_invoice: 'attiva').order(created_at: :desc)
   end
@@ -52,13 +36,20 @@ class Invoice < ActiveRecord::Base
     vehicle.plate
   end
 
-  def self.current_month_passive_invoices
-    passive.where('extract(month from date_of_issue) = ?', time_now.month).
-    current_year_passive_invoices
+  def self.month_passive(month = time_now)
+    passive.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
   end
 
-  def self.current_year_passive_invoices
-    passive.where('extract(year  from date_of_issue) = ?', time_now.year)
+  def self.month_active(month = time_now)
+    active.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
+  end
+
+  def self.year_passive(year = time_now)
+    passive.where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
+  end
+
+  def self.year_active(year = time_now)
+    active.where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 
   def self.not_paid
@@ -67,6 +58,20 @@ class Invoice < ActiveRecord::Base
 
   def self.not_collected
     active.where(paid: false)
+  end
+
+  def self.total_all
+    sum(:total).round(2)
+  end
+
+  def self.total_vat_all
+    sum(:total_vat).round(2)
+  end
+
+  def self.to_pay
+    collect do |invoice|
+      invoice.total_payments
+    end
   end
 
   def total_payments

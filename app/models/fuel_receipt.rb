@@ -14,11 +14,21 @@ class FuelReceipt < ActiveRecord::Base
     where(company_id: company_id)
   end
 
-  def self.current_month
-    where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_month, Time.now.end_of_month )
+  def self.month(month = time_now)
+    where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month )
   end
 
-  def self.current_year
-    where('date_of_issue >= ? and created_at <= ?', Time.now.beginning_of_year, Time.now.end_of_year )
+  def self.year(year = time_now)
+    where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year )
+  end
+
+  def self.total_all
+    sum(:total).round(2)
+  end
+
+  private
+
+  def self.time_now
+    Time.now
   end
 end

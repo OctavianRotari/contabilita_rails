@@ -12,10 +12,18 @@ class Vehicle < ActiveRecord::Base
   end
 
   def fuel_receipts_per_company(comapny_id)
-    fuel_receipts.where(company_id: comapny_id)
+    fuel_receipts.where(company_id: comapny_id).sum(:total).round(2)
   end
 
   def self.charge_general_expences
     where(charge_general_expences: true)
+  end
+
+  def self.general_expences_count
+    charge_general_expences.count
+  end
+
+  def fuel_receipts_total
+    fuel_receipts.sum(:total).round(2)
   end
 end
