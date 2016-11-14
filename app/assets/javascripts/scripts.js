@@ -1,7 +1,7 @@
 $(document).ready(function(){
   //for stiky navigation
   $('.js--main-navigation').waypoint(function(direction){
-    if(direction == 'gdown'){
+    if(direction == 'down'){
       $('header').addClass('white-space');
       $('nav').addClass('sticky');
       $('.js--main-navigation').addClass('animated fadeIn');

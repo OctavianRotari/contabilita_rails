@@ -83,11 +83,31 @@ class Vehicle < ActiveRecord::Base
     (general_invoice_total / general_expences).round(2)
   end
 
+  def vehicle_field_month
+    return 0 unless vehicle_field
+    vehicle_field.month.round(2)
+  end
+
+  def vehicle_field_year
+    return 0 unless vehicle_field
+    vehicle_field.year.round(2)
+  end
+
   def current_month_costs
-    fuel_receipts_month_total + passive_invoices_month_total + total_insurance_month + general_expenses_month + general_insurance_month
+    fuel_receipts_month_total +
+      passive_invoices_month_total +
+      total_insurance_month +
+      general_expenses_month +
+      general_insurance_month +
+      vehicle_field_month
   end
 
   def current_year_costs
-    fuel_receipts_year_total + passive_invoices_year_total + total_insurance_year + general_expenses_year + general_insurance_year
+    fuel_receipts_year_total +
+      passive_invoices_year_total +
+      total_insurance_year +
+      general_expenses_year +
+      general_insurance_year +
+      vehicle_field_year
   end
 end
