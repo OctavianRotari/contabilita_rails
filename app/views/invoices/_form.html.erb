@@ -44,7 +44,7 @@
         </div>
         <div class="col span-2-of-3">
           <%= form.select(:at_the_expense_of, class: 'at_the_expense_of') do %>
-            <%= options_for_select([['Slezionare valore', nil], ['Spese generali', 'general_expenses'], ['Veicolo specifico', 'specific_vehicle'], ['Piu veicoli', 'multiple_vehicles']], selected: form.object.at_the_expense_of) %>
+            <%= options_for_select([['Slezionare valore', nil], ['Nessun veicolo', 'no_vehicle'], ['Spese generali', 'general_expenses'], ['Veicolo specifico', 'specific_vehicle'], ['Piu veicoli', 'multiple_vehicles']], selected: form.object.at_the_expense_of) %>
           <% end %>
         </div>
       </div>

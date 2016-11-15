@@ -3,6 +3,6 @@ FactoryGirl.define do
     plate('ER354BS')
     type_of_vehicle('trattore')
     user_id(1)
-    charge_general_expences(false)
+    charge_general_expenses(false)
   end
 end

@@ -53,6 +53,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
+    byebug
     params.require(:invoice).permit(:reason,
                                     :date_of_issue,
                                     :company_id,

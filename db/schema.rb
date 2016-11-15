@@ -54,11 +54,6 @@ ActiveRecord::Schema.define(version: 20161113131729) do
   add_index "fuel_receipts", ["user_id"], name: "index_fuel_receipts_on_user_id", using: :btree
   add_index "fuel_receipts", ["vehicle_id"], name: "index_fuel_receipts_on_vehicle_id", using: :btree
 
-  create_table "garages", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "insurances", force: :cascade do |t|
     t.datetime "date_of_issue"
     t.decimal  "total"
@@ -167,7 +162,7 @@ ActiveRecord::Schema.define(version: 20161113131729) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "user_id"
-    t.boolean  "charge_general_expences", default: false
+    t.boolean  "charge_general_expenses", default: false
   end
 
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id", using: :btree

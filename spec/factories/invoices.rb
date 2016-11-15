@@ -15,6 +15,22 @@ FactoryGirl.define do
     paid(false)
   end
 
+  factory :passive_invoice, class: Invoice do
+    reason('Manutenzione')
+    total(110)
+    total_vat(10)
+    user_id(1)
+    vehicle_id(1)
+    company_id(1)
+    at_the_expense_of(1)
+    category_id(1)
+    date_of_issue(Time.zone.now)
+    type_of_invoice('passiva')
+    total_taxable(100)
+    deadline(Time.zone.now + 1.month)
+    paid(false)
+  end
+
   factory :general_expenses_invoice, class: Invoice do
     reason('Manutenzione')
     total(110)

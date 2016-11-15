@@ -40,6 +40,14 @@ class Invoice < ActiveRecord::Base
     passive.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
   end
 
+  def self.month_passive_total
+    month_passive.sum(:total).round(2)
+  end
+
+  def self.year_passive_total
+    year_passive.sum(:total).round(2)
+  end
+
   def self.month_active(month = time_now)
     active.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
   end
@@ -52,11 +60,11 @@ class Invoice < ActiveRecord::Base
     active.where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 
-  def self.month_general_expences(user_id)
+  def self.month_general_expenses(user_id)
     month_passive.where(at_the_expense_of: 'general_expenses').where(user_id: user_id)
   end
 
-  def self.year_general_expences(user_id)
+  def self.year_general_expenses(user_id)
     year_passive.where(at_the_expense_of: 'general_expenses').where(user_id: user_id)
   end
 
@@ -76,20 +84,14 @@ class Invoice < ActiveRecord::Base
     sum(:total_vat).round(2)
   end
 
-  def self.to_pay
-    collect do |invoice|
-      invoice.total_payments
-    end
-  end
-
   def total_payments
     payments.sum(:paid).to_i
   end
 
-  private
+  private_class_method
 
   def self.order_by_year(params)
-    where("extract(year from date_of_issue) = ?", params[:year_param] )
+    where('extract(year from date_of_issue) = ?', params[:year_param] )
   end
 
   def self.time_now
