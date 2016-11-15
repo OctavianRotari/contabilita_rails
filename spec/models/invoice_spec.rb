@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe Invoice, type: :unit do
+  let(:user) { create(:user) }
   let(:params) { { year_param: Time.zone.now.year } }
 
   before :each do
-    create(:user)
+    user
     create(:vehicle)
     create(:category)
     create(:company)
@@ -32,8 +33,8 @@ describe Invoice, type: :unit do
   end
 
   describe 'after invoices are created' do
-    let(:passive_invoice) { create(:invoice, type_of_invoice: 'passiva') }
-    let(:active_invoice) { create(:invoice, type_of_invoice: 'attiva') }
+    let(:passive_invoice) { create(:passive_invoice) }
+    let(:active_invoice) { create(:invoice) }
 
     describe '#company_name' do
       it 'should return the name of the company' do
@@ -64,8 +65,24 @@ describe Invoice, type: :unit do
       end
     end
 
+    describe '#total_all' do
+      it 'returns the total of all invoices' do
+        passive_invoice
+        create(:passive_invoice)
+        expect(Invoice.passive.total_all).to eq(220)
+      end
+    end
+
+    describe '#total_vat_all' do
+      it 'returns the total of all invoices' do
+        passive_invoice
+        create(:passive_invoice)
+        expect(Invoice.passive.total_vat_all).to eq(20)
+      end
+    end
+
     describe '#not_paid' do
-      let(:paid_passive_invoice) { create(:invoice, type_of_invoice: 'passiva', paid: true) }
+      let(:paid_passive_invoice) { create(:passive_invoice, paid: true) }
 
       it 'should return all the invoices that are not paid' do
         invoice = passive_invoice
@@ -79,7 +96,7 @@ describe Invoice, type: :unit do
     end
 
     describe '#not_collected' do
-      let(:collected_active_invoice) { create(:invoice, type_of_invoice: 'attiva', paid: true) }
+      let(:collected_active_invoice) { create(:invoice, paid: true) }
 
       it 'should return all the invoices that are not collected' do
         invoice = active_invoice
@@ -92,37 +109,81 @@ describe Invoice, type: :unit do
       end
     end
 
-    describe '#current month passive invoices' do
-      it 'shoud return only invoices that have been registered current month' do
+    describe 'current month passive' do
+      before :each do
+        passive_invoice
+        create(:passive_invoice, date_of_issue: Time.zone.now - 1.month)
+      end
+
+      describe '#current month passive invoices' do
+        it 'returns only invoices that have been registered current month' do
+          expect(Invoice.month_passive).to eq([passive_invoice])
+       end
+      end
+
+      describe '#month_passive_total' do
+        it 'returns the total of current month passive invoices' do
+          expect(Invoice.month_passive_total).to eq(110)
+        end
+      end
+    end
+
+    describe '#current month active invoices' do
+      it 'returns only invoices that have been registered current month' do
         create(:invoice, date_of_issue: Time.zone.now - 1.month)
-        expect(Invoice.current_month_passive_invoices).to eq([passive_invoice])
+        expect(Invoice.month_active).to eq([active_invoice])
       end
     end
 
-    describe '#current year passive invoices' do
-      it 'shoud return only invoices that have been registered current month' do
+    describe 'current year passive' do
+      before :each do
+        passive_invoice
+        create(:passive_invoice, date_of_issue: Time.zone.now - 1.year)
+      end
+
+      describe '#current year passive invoices' do
+        it 'returns only invoices that have been registered current year' do
+          expect(Invoice.year_passive).to eq([passive_invoice])
+        end
+      end
+
+      describe '#year_passive_total' do
+        it 'returns the total of current month passive invoices' do
+          expect(Invoice.year_passive_total).to eq(110)
+        end
+      end
+    end
+
+    describe '#current year active invoices' do
+      it 'returns only invoices that have been registered current year' do
         create(:invoice, date_of_issue: Time.zone.now - 1.year)
-        expect(Invoice.current_year_passive_invoices).to eq([passive_invoice])
+        expect(Invoice.year_active).to eq([active_invoice])
       end
     end
 
-    describe '#active_ord_by_year' do
-      it 'should not return passive invoices' do
-        expect(Invoice.active_ord_by_year(params)).not_to eq([passive_invoice])
+    describe 'general expences' do
+      let(:user_two) { create(:user, email: 'test@test.com') }
+
+      before :each do
+        user_two
       end
 
-      it 'should return active invoices' do
-        expect(Invoice.active_ord_by_year(params)).to eq([active_invoice])
+      describe '#month_general_expenses' do
+        it 'returns genera expenses invoices current user' do
+          invoice = create(:general_expenses_invoice)
+          create(:general_expenses_invoice, date_of_issue: Time.zone.now - 1.month)
+          create(:general_expenses_invoice, user_id: user_two.id)
+          expect(Invoice.month_general_expenses(user.id)).to eq([invoice])
+        end
       end
-    end
 
-    describe '#passive_ord_by_year' do
-      it 'should not return passive invoices ' do
-        expect(Invoice.passive_ord_by_year(params)).not_to eq([active_invoice])
-      end
-
-      it 'should return passive invoices ' do
-        expect(Invoice.passive_ord_by_year(params)).to eq([passive_invoice])
+      describe '#year_general_expenses' do
+        it 'returns genera expenses invoices current user' do
+          invoice = create(:general_expenses_invoice)
+          create(:general_expenses_invoice, date_of_issue: Time.zone.now - 1.year)
+          create(:general_expenses_invoice, user_id: user_two.id)
+          expect(Invoice.year_general_expenses(user.id)).to eq([invoice])
+        end
       end
     end
   end

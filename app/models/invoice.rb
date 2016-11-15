@@ -40,14 +40,6 @@ class Invoice < ActiveRecord::Base
     passive.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
   end
 
-  def self.month_passive_total
-    month_passive.sum(:total).round(2)
-  end
-
-  def self.year_passive_total
-    year_passive.sum(:total).round(2)
-  end
-
   def self.month_active(month = time_now)
     active.where('date_of_issue >= ? and date_of_issue <= ?', month.beginning_of_month, month.end_of_month)
   end
@@ -66,6 +58,14 @@ class Invoice < ActiveRecord::Base
 
   def self.year_general_expenses(user_id)
     year_passive.where(at_the_expense_of: 'general_expenses').where(user_id: user_id)
+  end
+
+  def self.month_passive_total
+    month_passive.sum(:total).round(2)
+  end
+
+  def self.year_passive_total
+    year_passive.sum(:total).round(2)
   end
 
   def self.not_paid
