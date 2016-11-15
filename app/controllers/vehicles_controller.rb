@@ -44,7 +44,7 @@ class VehiclesController < ApplicationController
   private
 
   def vehicle_params
-    params.require(:vehicle).permit(:plate, :type_of_vehicle, :charge_general_expences)
+    params.require(:vehicle).permit(:plate, :type_of_vehicle, :charge_general_expenses)
   end
 
   def vehicle_params_user_id

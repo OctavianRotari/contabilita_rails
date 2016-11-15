@@ -1,4 +1,11 @@
 <div class="row">
+  <div class="invoices-by-year">
+    <h3>Anno: <%= params[:year]%></h3>
+    <h4><%= previos_year_insurances(@company) %></h4>
+    <h4><%= next_year_insurances(@company) %></h4>
+  </div>
+</div>
+<div class="row">
   <div class="invoices">
     <h3 class="title">Assicurazioni</h3>
     <table>
@@ -14,7 +21,7 @@
           <th class="delete-invoice"></th>
         </tr>
       </thead>
-      <%= render @insurances %>
+      <%= render @insurances.year(params[:year]) %>
     </table>
   </div>
 </div>

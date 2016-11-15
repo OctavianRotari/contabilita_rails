@@ -8,7 +8,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.string :plate
       t.datetime :deadline
       t.string :type_of_payment
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

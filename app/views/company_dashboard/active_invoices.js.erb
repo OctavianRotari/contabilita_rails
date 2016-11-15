@@ -1,1 +1,1 @@
-$('#invoices').html("<%=escape_javascript( render partial: 'invoices/active_invoices', locals: {invoices: @invoices_dashboard.company_active_invoices, calculator: @calculator } ) %>");
+$('#invoices').html("<%=escape_javascript( render partial: 'invoices/active_invoices', locals: {invoices: @invoices_dashboard.company_active, calculator: @calculator } ) %>");

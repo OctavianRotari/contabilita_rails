@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "type_of"
   end
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
     t.string   "name"
     t.string   "adress"
     t.string   "number"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "user_id"
   end
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
   create_table "fuel_receipts", force: :cascade do |t|
     t.integer  "total"
     t.datetime "date_of_issue"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "vehicle_id"
     t.integer  "user_id"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date_of_issue"
     t.datetime "deadline"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "company_id"
     t.decimal  "total_vat"
     t.decimal  "total"
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
   create_table "payments", force: :cascade do |t|
     t.string   "method_of_payment"
     t.datetime "payment_date"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "invoice_id"
     t.decimal  "paid"
   end
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
     t.string   "method_of_payment"
     t.string   "policy_number"
     t.datetime "payment_date"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "insurance_id"
   end
 
@@ -122,8 +122,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
     t.decimal  "taxable"
     t.decimal  "vat_rate"
     t.integer  "invoice_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "taxable_vat_fields", ["invoice_id"], name: "index_taxable_vat_fields_on_invoice_id", using: :btree
@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(version: 20161113131729) do
   create_table "vehicles", force: :cascade do |t|
     t.string   "plate"
     t.string   "type_of_vehicle"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "charge_general_expenses", default: false
   end

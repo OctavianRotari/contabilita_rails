@@ -1,1 +1,1 @@
-$('#invoices').html("<%=escape_javascript( render partial: 'invoices/passive_invoices', locals: {invoices_dashboard: @invoices_dashboard.category_invoices(params[:id]), calculator: @calculator }) %>");
+$('#invoices').html("<%=escape_javascript( render partial: 'invoices/passive_invoices', locals: {invoices_dashboard: @invoices_dashboard.category_passive, calculator: @calculator }) %>");

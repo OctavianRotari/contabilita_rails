@@ -17,6 +17,8 @@ class Insurance < ActiveRecord::Base
   end
 
   def self.year(year = time_now)
+    year = year.to_i
+    year = Date.new(year)
     where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 

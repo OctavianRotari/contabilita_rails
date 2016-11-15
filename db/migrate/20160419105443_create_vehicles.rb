@@ -4,7 +4,7 @@ class CreateVehicles < ActiveRecord::Migration
       t.string :plate
       t.string :type_of_vehicle
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

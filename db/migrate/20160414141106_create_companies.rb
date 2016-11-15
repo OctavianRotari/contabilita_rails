@@ -5,7 +5,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :adress
       t.string :number
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

@@ -6,7 +6,7 @@ class CreateReceipts < ActiveRecord::Migration
       t.string :policy_number
       t.datetime :payment_date
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

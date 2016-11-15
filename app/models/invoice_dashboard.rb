@@ -20,48 +20,48 @@ class InvoiceDashboard
     invoices.year_active(date)
   end
 
-  def general_expenses_passive_invoices
+  def general_expenses_passive
     date = year_params
-    general_expenses_invoices.year_passive(date)
+    general_expenses.year_passive(date)
   end
 
-  def general_expenses_active_invoices
+  def general_expenses_active
     date = year_params
-    general_expenses_invoices.year_active(date)
+    general_expenses.year_active(date)
   end
 
-  def company_passive_invoices
+  def company_passive
     date = year_params
     company_invoices.year_passive(date)
   end
 
-  def company_active_invoices
+  def company_active
     date = year_params
     company_invoices.year_active(date)
   end
 
-  def vehicle_invoices_passive
+  def vehicle_passive
     date = year_params
     vehicle_invoices.year_passive(date)
   end
 
-  def vehicle_active_invoices
+  def vehicle_active
     date = year_params
     vehicle_invoices.year_active(date)
   end
 
-  def category_passive_invoices
+  def category_passive
     date = year_params
     category_invoices.year_passive(date)
   end
 
-  def category_active_invoices
+  def category_active
     date = year_params
     category_invoices.year_active(date)
   end
 
-  def general_expenses_invoices
-    current_user_invoices.where(at_the_expense_of: 'general_expenses')
+  def general_expenses
+    current_user_invoices.general_expenses
   end
 
   def calculator
@@ -83,7 +83,7 @@ class InvoiceDashboard
   end
 
   def year_params
-    year = params[:year_param].to_i
+    year = params[:year].to_i
     Date.new(year)
   end
 

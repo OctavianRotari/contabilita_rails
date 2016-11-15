@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string :method_of_payment
       t.datetime :date
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

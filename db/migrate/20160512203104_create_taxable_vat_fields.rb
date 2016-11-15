@@ -5,7 +5,7 @@ class CreateTaxableVatFields < ActiveRecord::Migration
       t.decimal :vat
       t.belongs_to :invoice, index: true, foreign_key: true
 
-      t.timestamps null: false
+      t.timestamps null: true
     end
   end
 end

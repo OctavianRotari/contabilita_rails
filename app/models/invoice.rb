@@ -53,11 +53,15 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.month_general_expenses(user_id)
-    month_passive.where(at_the_expense_of: 'general_expenses').where(user_id: user_id)
+    month_passive.general_expenses.where(user_id: user_id)
   end
 
   def self.year_general_expenses(user_id)
-    year_passive.where(at_the_expense_of: 'general_expenses').where(user_id: user_id)
+    year_passive.general_expenses.where(user_id: user_id)
+  end
+
+  def self.general_expenses
+    where(at_the_expense_of: 'general_expenses').order(created_at: :desc)
   end
 
   def self.month_passive_total
