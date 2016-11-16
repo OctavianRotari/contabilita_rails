@@ -71,18 +71,20 @@ feature 'categories' do
 
     feature 'and has insurance' do
       before :each do
+        sign_in
         insurance_category
         create(:insurance_company)
-        create(:insurance)
+        create(:insurance, total: 1200)
+        create(:insurance, total: 1200)
         visit '/categories/dashboard'
       end
 
       scenario 'sees the costs for the category for the current month' do
-        expect(page).to have_css '#current_month_costs', text: '1100'
+        expect(page).to have_css '#current_month_costs', text: '200'
       end
 
       scenario 'sees the costs for the category for the current year' do
-        expect(page).to have_css '#current_year_costs', text: '1100'
+        expect(page).to have_css '#current_year_costs', text: '2400'
       end
     end
   end

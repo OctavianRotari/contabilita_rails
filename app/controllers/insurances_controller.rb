@@ -14,8 +14,9 @@ class InsurancesController < ApplicationController
   end
 
   def category_insurances
-    @company = Company.find(params[:id])
-    @insurances = Insurance.where(category_id: params[:id])
+    id = params[:id]
+    @category = Category.find(id)
+    @insurances = Insurance.where(category_id: id)
   end
 
   def show

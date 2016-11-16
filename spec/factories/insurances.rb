@@ -5,6 +5,7 @@ FactoryGirl.define do
     at_the_expense_of('specific_vehicle')
     serial_of_contract('12321')
     company_id(1)
+    category_id(1)
     deadline(Time.zone.now + 1.year)
     date_of_issue(Time.zone.now)
     recurrence(3)
