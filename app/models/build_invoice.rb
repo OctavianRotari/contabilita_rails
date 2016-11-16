@@ -23,7 +23,7 @@ class BuildInvoice
   end
 
   def category_id
-    return nil if company_id.empty?
+    return nil unless company_id
     Company.find(company_id).category_id
   end
 

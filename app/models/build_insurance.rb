@@ -17,8 +17,12 @@ class BuildInsurance
   end
 
   def category_id
-    return nil if company_id.empty?
+    return nil unless company_id
     Company.find(company_id).category_id
+  end
+
+  def company_id
+    insurance_params[:company_id]
   end
 
   def at_the_expense_of
