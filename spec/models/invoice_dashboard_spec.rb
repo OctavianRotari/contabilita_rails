@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe InvoiceDashboard, type: :unit do
-  let(:params) { { year_param: Time.zone.now.year, id: 1 } }
+  let(:params) { { year: Time.zone.now.year, id: 1 } }
   let(:user) { create(:user) }
   let(:vehicle) { create(:vehicle) }
   let(:category) { create(:category) }

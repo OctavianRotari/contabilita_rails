@@ -33,7 +33,7 @@
               <td id="total_<%=invoice.company_id%>"><%= invoice.total %></td>
               <td class="vat"><%= invoice.total_vat %></td>
               <td class="paid"><%= invoice.total_payments %></td>
-              <td><%= calculator.to_pay_per(invoice) %></td>
+              <td><%= invoice.to_pay %></td>
               <td><%= link_to invoice.reason, invoice_path(company_id: invoice.company.id, id: invoice.id) %></td>
               <td class="date-of-issue"><%= invoice.date_of_issue.strftime("%d-%m-%Y")%></td>
               <td class="at-the-expense-of"><%= link_to_at_the_expense_of(invoice) %></td>

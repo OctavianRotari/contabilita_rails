@@ -4,8 +4,7 @@
     <% invoices = invoices.month_active(month) %>
     <td class="total"><%= invoices.total_all %></td>
     <td class="vat"><%= invoices.total_vat_all %></td>
-    <% total_to_collect = calculator.total_paid_or_collected_all(invoices) %>
-    <td class="paid"><%= total_to_collect %></td>
-    <td class="to_pay"><%= invoices.not_collected.total_all - total_to_collect %></td>
+    <td class="paid"><%= calculator.total_paid_or_collected_all(invoices) %></td>
+    <td class="to_pay"><%= calculator.total_remaining_all(invoices) %></td>
   </tr>
 </tfoot>

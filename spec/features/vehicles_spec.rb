@@ -21,7 +21,7 @@ feature 'vehicles' do
 
     scenario 'the vehicle is chargeable of general expences' do
       vehicle = Vehicle.first
-      expect(vehicle.charge_general_expences).to eq(true)
+      expect(vehicle.charge_general_expenses).to eq(true)
     end
   end
 

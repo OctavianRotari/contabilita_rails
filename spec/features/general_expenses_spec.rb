@@ -5,8 +5,8 @@ feature 'general expences' do
     create(:user)
     create(:category)
     create(:company)
-    create(:vehicle, charge_general_expences: true)
-    create(:vehicle, charge_general_expences: true)
+    create(:vehicle, charge_general_expenses: true)
+    create(:vehicle, charge_general_expenses: true)
     create(:general_expenses_invoice)
   end
 
@@ -17,7 +17,7 @@ feature 'general expences' do
       visit('/general_expenses')
     end
 
-    scenario 'it shows the total general expences' do
+    scenario 'it shows the total general expenses' do
       expect(page).to have_css '#current_month_costs', text: '110'
     end
 
@@ -33,12 +33,12 @@ feature 'general expences' do
       visit('/general_expenses')
     end
 
-    scenario 'it shows the total general expences' do
+    scenario 'it shows the total general expenses' do
       expect(page).to have_css '#current_year_costs', text: '110'
       expect(page).to have_css '#current_month_costs', text: '110'
     end
 
-    scenario 'it shows the total general expences divided per vehicle' do
+    scenario 'it shows the total general expenses divided per vehicle' do
       expect(page).to have_css '#current_month_costs_per_vehicle', text: '55'
       expect(page).to have_css '#current_year_costs_per_vehicle', text: '55'
     end

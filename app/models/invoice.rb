@@ -92,6 +92,10 @@ class Invoice < ActiveRecord::Base
     payments.sum(:paid).to_i
   end
 
+  def to_pay
+    total - total_payments.round(2)
+  end
+
   private_class_method
 
   def self.order_by_year(params)

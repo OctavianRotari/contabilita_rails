@@ -2,9 +2,9 @@
   <div class="index">
     <h2>Spese generali</h2>
     <div class="nav">
-      <h4><%= link_to 'Passive', passive_invoices_general_expenses_path(year_param: Time.now.year), :remote => true %></h4>
+      <h4><%= link_to 'Passive', passive_invoices_general_expenses_path(year: Time.now.year), :remote => true %></h4>
       <h4><%= link_to 'Riepilogo', general_expenses_path %></h4>
-      <h4><%= link_to 'Attive', active_invoices_general_expenses_path(year_param: Time.now.year), :remote => true %></h4>
+      <h4><%= link_to 'Attive', active_invoices_general_expenses_path(year: Time.now.year), :remote => true %></h4>
     </div>
   </div>
 </div>
