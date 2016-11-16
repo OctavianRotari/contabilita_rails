@@ -43,4 +43,13 @@ describe Category, type: :unit do
       expect(Category.insurance_id).to eq(category[:id])
     end
   end
+
+  describe '#insurance?' do
+    it 'checks if a category is an insurance category' do
+      insurance_category = create(:insurance_category)
+      category = create(:category)
+      expect(insurance_category.insurance?).to eq(true)
+      expect(category.insurance?).to eq(false)
+    end
+  end
 end

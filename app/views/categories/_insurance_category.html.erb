@@ -1,0 +1,15 @@
+<div class="col span-1-of-3 summary">
+  <div class="title">
+    <h2 id="category_name"><%=category.name%></h2>
+  </div>
+  <%= link_to edit_category_path(category.id), title: "Modifica categoria." do %>
+    <i class="ion-ios-compose icon-small-compose"></i>
+  <% end %>
+  <%= link_to category_path(category.id), title: "Elimina categoria.", class: 'delete-category', method: :delete, data: {confirm: "L'elliminazione di questo veicolo elliminera automaticamente anche le assicurazioni registrate su di esso, si e sicuri di volerlo elliminare?"} do%>
+    <i class="ion-ios-trash icon-small-trash"></i>
+  <% end %>
+  <%= link_to insurances_category_path(category.id, year: Time.zone.now.year), title: "Visualizza assicurazioni." do%>
+    <i class="ion-help-buoy icon-small-list"></i>
+  <% end %>
+  <%= render partial: 'total_costs/total_insurance_costs', locals: { calculator: category.calculator, insurances: category.insurances } %>
+</div>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'dashboard' => 'category_dashboard#index'
     end
     member do
+      get 'insurances' => 'insurances#category_insurances'
       get 'dashboard' => 'category_dashboard#show'
       get 'passive_invoices' => 'category_dashboard#passive_invoices'
       get 'active_invoices' => 'category_dashboard#active_invoices'
