@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118135822) do
+ActiveRecord::Schema.define(version: 20161118143253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,17 @@ ActiveRecord::Schema.define(version: 20161118135822) do
 
   add_index "taxable_vat_fields", ["invoice_id"], name: "index_taxable_vat_fields_on_invoice_id", using: :btree
 
+  create_table "tickets", force: :cascade do |t|
+    t.integer  "total"
+    t.datetime "date_of_issue"
+    t.datetime "deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -185,6 +196,7 @@ ActiveRecord::Schema.define(version: 20161118135822) do
   add_foreign_key "payments", "invoices"
   add_foreign_key "receipts", "insurances"
   add_foreign_key "taxable_vat_fields", "invoices"
+  add_foreign_key "tickets", "users"
   add_foreign_key "vehicle_fields", "invoices"
   add_foreign_key "vehicles", "users"
 end

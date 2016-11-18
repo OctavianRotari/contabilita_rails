@@ -31,11 +31,6 @@ describe InsurancesController, type: :controller do
       insurance_company
     end
 
-    it 'returns a collection of insurances' do
-      get :company_insurances, id: insurance_company.id
-      expect(response.status).to eq(200)
-    end
-
     it 'renders page with success' do
       insurance = attributes_for(:insurance)
       post :create, insurance: insurance
