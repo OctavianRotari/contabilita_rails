@@ -21,6 +21,7 @@
           <th class="delete-invoice"></th>
         </tr>
       </thead>
+      <%= render "total_costs/insurances_total", insurances: @insurances %>
       <% year = Date.new(params[:year].to_i) %>
       <%= render @insurances.year(year) %>
     </table>

@@ -51,10 +51,10 @@
       <div id='vehicles'>
         <%= select_specific_vehicle(invoice, form) %>
         <% if invoice.at_the_expense_of == 'multiple_vehicles' %>
-          <%= form.fields_for :vehicle_field do |builder| %>
+          <%= form.fields_for :vehicle_fields do |builder| %>
             <%= render 'vehicle_field_fields', f: builder %>
           <% end %>
-          <%= link_to_add_fields('Aggiungi veicolo', form, :vehicle_field, 'add_vehicle_fields') %>
+          <%= link_to_add_fields('Aggiungi veicolo', form, :vehicle_fields, 'add_vehicle_fields') %>
         <% end %>
       </div>
       <div class="row">
@@ -63,6 +63,14 @@
         </div>
         <div class="col span-2-of-3">
           <%= form.text_field :reason, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+          <%= form.label 'Numero fattura' %>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :serial_number, require: true %>
         </div>
       </div>
       <div class="row">
@@ -94,8 +102,8 @@
             if(val === 'specific_vehicle'){
               $('#vehicles').html("<%=escape_javascript( render 'vehicles/specific_vehicles', form: form ) %>");
             } else if(val == 'multiple_vehicles') {
-              $('#vehicles').append("<%= escape_javascript(default_fields(form , :vehicle_field)) %>")
-              $('#vehicles').append("<%= escape_javascript(link_to_add_fields('Aggiungi veicolo', form , :vehicle_field, 'add_vehicle_fields')) %>")
+              $('#vehicles').append("<%= escape_javascript(default_fields(form , :vehicle_fields)) %>")
+              $('#vehicles').append("<%= escape_javascript(link_to_add_fields('Aggiungi veicolo', form , :vehicle_fields, 'add_vehicle_fields')) %>")
             }
           });
         });

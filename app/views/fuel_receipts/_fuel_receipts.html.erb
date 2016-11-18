@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <%= render fuel_receipts_array %>
-        <%= render partial: "fuel_receipts_total", locals: {calculator: fuel_receipts_calculator, fuel_receipts: fuel_receipts }%>
+        <%= render partial: "total_costs/fuel_receipts_total", locals: {calculator: fuel_receipts_calculator, fuel_receipts: fuel_receipts }%>
       </table>
     <% end %>
   </div>

@@ -56,6 +56,7 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:reason,
                                     :date_of_issue,
                                     :company_id,
+                                    :serial_number,
                                     :category_id,
                                     :vehicle_id,
                                     :at_the_expense_of,

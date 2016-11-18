@@ -49,6 +49,14 @@ class Insurance < ActiveRecord::Base
     general_insurances(user_id).sum(:total)
   end
 
+  def self.total_all_receipts
+    total = 0
+    self.all.each do |insurance|
+      total += insurance.receipts.sum(:paid)
+    end
+    total
+  end
+
   def self.time_now
     Time.zone.now
   end

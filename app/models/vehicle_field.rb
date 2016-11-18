@@ -1,6 +1,6 @@
 class VehicleField < ActiveRecord::Base
   belongs_to :invoice
-  belongs_to :vehicles
+  belongs_to :vehicle
 
   def self.month
     where('created_at >= ? and created_at <= ?', time_now.beginning_of_month, time_now.end_of_month).sum(:part_of_total)

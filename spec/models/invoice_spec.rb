@@ -22,12 +22,13 @@ describe Invoice, type: :unit do
                       company_id: '',
                       at_the_expense_of: '',
                       category_id: '',
+                      serial_number: '',
                       date_of_issue: '',
                       type_of_invoice: '',
                       total_taxable: '',
                       deadline: '')
       invoice.save
-      expect(invoice.errors.count).to eq(6)
+      expect(invoice.errors.count).to eq(7)
       expect(Invoice.all).to eq([])
     end
   end

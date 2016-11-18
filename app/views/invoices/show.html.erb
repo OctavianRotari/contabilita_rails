@@ -22,6 +22,14 @@
     </div>
     <div class="row">
       <div class="col span-1-of-2">
+        <h4>Numero fattura:</h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p id='serial_of_contract'><%=@invoice.serial_number%></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
         <h4>Tipo fattura:</h4>
       </div>
       <div class="col span-1-of-2 data">
@@ -73,19 +81,9 @@
         <h4>A carrico del:</h4>
       </div>
       <div class="col span-1-of-2 data">
-        <p><%= @invoice.at_the_expense_of %></p>
+        <p id='vehicle_plate'><%=link_to_at_the_expense_of(@invoice) %></p>
       </div>
     </div>
-    <% if @invoice.vehicle_id %>
-      <div class="row">
-        <div class="col span-1-of-2">
-          <h4>Targa: </h4>
-        </div>
-        <div class="col span-1-of-2 data">
-          <p><%=@invoice.vehicle_plate %></p>
-        </div>
-      </div>
-    <% end %>
     <div class="row">
       <div class="col span-1-of-2">
         <h4>Scadenza: </h4>
