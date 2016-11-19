@@ -35,4 +35,18 @@ describe Insurance, type: :model do
       expect(insurance.total_receipts).to eq(1100)
     end
   end
+
+  describe '#month' do
+    it 'returns current_month insurances' do
+      create(:insurance, date_of_issue: Time.zone.now - 1.month)
+      expect(Insurance.month).to eq([insurance])
+    end
+  end
+
+  describe '#year' do
+    it 'returns current_year insurances' do
+      create(:insurance, date_of_issue: Time.zone.now - 1.year)
+      expect(Insurance.year).to eq([insurance])
+    end
+  end
 end

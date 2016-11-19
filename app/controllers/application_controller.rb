@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   def vehicle_any?
     if current_user_vehicles.empty?
-      flash[:error] = 'Aggiungere almeno un mezzo'
+      flash[:error] = 'Aggiungere almeno un veicolo'
       redirect_to :back
     end
   end

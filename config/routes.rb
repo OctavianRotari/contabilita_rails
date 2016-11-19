@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resources :receipts, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :tickets
+
   resources :categories, only: [:new, :create, :edit, :update, :destroy] do
     collection do
       get 'dashboard' => 'category_dashboard#index'

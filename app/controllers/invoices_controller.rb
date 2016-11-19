@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :vehicle_any?
+  before_action :category_any?
   before_action :company_any?
 
   def new
