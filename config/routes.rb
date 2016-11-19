@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     resources :receipts, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  resources :tickets
+  resources :tickets do
+    collection do
+      get 'administrative_dashboard' => 'tickets_dashboard#administrative'
+      get 'vehicle_dashboard' => 'tickets_dashboard#vehicle'
+    end
+  end
 
   resources :categories, only: [:new, :create, :edit, :update, :destroy] do
     collection do
