@@ -20,7 +20,11 @@ class Vat
   def calculate_total_vat
     total_vat = 0
     for i in 0..@vats.length-1
-      total_vat += @taxables[i] * @vats[i] / 100
+      if @vats[i] == 1
+        total_vat += 0
+      else
+        total_vat += @taxables[i] * @vats[i] / 100
+      end
     end
     total_vat.round(2)
   end
