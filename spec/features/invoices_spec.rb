@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user' do
-  let(:passive_invoice) { create(:invoice, type_of_invoice: 'passiva') }
+  let(:passive_invoice) { create(:passive_invoice) }
   let(:active_invoice) { create(:invoice) }
 
   before :each do
@@ -15,6 +15,7 @@ feature 'user' do
   feature 'passive_invoices' do
     before :each do
       passive_invoice
+      active_invoice
       visit_passive_invoices_page
     end
 
@@ -33,6 +34,7 @@ feature 'user' do
 
   feature 'active_invoice' do
     before :each do
+      passive_invoice
       active_invoice
       visit_active_invoices_page
     end

@@ -13,14 +13,18 @@ class TicketsController < ApplicationController
     if @ticket.save
       type_of = @ticket.type_of
       flash[:success] = 'Multa aggiunta'
-      redirect_to vehicle_dashboard_tickets_path if type_of == 1
-      redirect_to administrative_dashboard_tickets_path if type_of == 2
+      redirect_to vehicle_dashboard_tickets_path(month: time_now.month, year: time_now.year) if type_of == 1
+      redirect_to administrative_dashboard_tickets_path(month: time_now.month, year: time_now.year) if type_of == 2
     else
       render 'new'
     end
   end
 
   private
+
+  def time_now
+    Time.zone.now
+  end
 
   def ticket_params
     params.require(:ticket).permit(:total, :date_of_issue, :deadline, :type_of, :vehicle_id)

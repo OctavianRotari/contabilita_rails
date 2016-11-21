@@ -1,8 +1,5 @@
 class ReceiptsController < ApplicationController
   before_action :authenticate_user!
-  before_action :gas_station_category_any?
-  before_action :gas_station_company_any?
-  before_action :vehicle_any?
 
   def new
     @receipt = Receipt.new

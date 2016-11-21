@@ -12,7 +12,7 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'pg'
 gem "font-ionicons-rails"
-gem 'jquery-waypoints-rails', '~> 2.0', '>= 2.0.5'
+gem 'jquery-waypoints-rails'
 gem 'phony_rails'
 gem 'rails_real_favicon'
 gem 'pry'
@@ -38,6 +38,6 @@ group :test do
   gem 'coderay'
   gem "database_cleaner"
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'poltergeist'
+  gem "capybara-webkit"
 end

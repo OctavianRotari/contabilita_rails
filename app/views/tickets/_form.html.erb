@@ -27,13 +27,7 @@
           <% end %>
         </div>
       </div>
-      <div class="row">
-        <div class="col span-1-of-3">
-          <%= form.label 'A carico di'%>
-        </div>
-        <div class="col span-2-of-3">
-          <%= form.collection_select(:vehicle_id, @vehicles, :id, :plate, prompt: "Mezzi") %>
-        </div>
+      <div id="vehicles">
       </div>
       <div class="row">
         <div class="col span-1-of-3">
@@ -56,6 +50,17 @@
           <%= form.submit "Conferma", class: "btn btn-big" %>
         </div>
       </div>
+      <script type="text/javascript">
+        $(function(){
+          $(document).on('change', '#ticket_type_of', function(){
+            var val = $(this).val();
+            $('#vehicles').empty();
+            if(val === '1'){
+              $('#vehicles').html("<%=escape_javascript( render 'vehicles/specific_vehicles', form: form ) %>");
+            }
+          });
+        });
+      </script>
     <% end %>
   </div>
 </div>

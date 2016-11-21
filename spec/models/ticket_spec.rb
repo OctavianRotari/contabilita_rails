@@ -25,11 +25,19 @@ describe Ticket, type: :model do
     end
   end
 
-  describe '#administrative' do
+  describe '#administrative_current_user' do
     it 'returns only administrative tickets' do
       administrative_ticket
       ticket
-      expect(Ticket.administrative(user.id)).to eq([administrative_ticket])
+      expect(Ticket.administrative_current_user(user.id)).to eq([administrative_ticket])
+    end
+  end
+
+  describe '#vehicle_current_user' do
+    it 'returns only administrative tickets' do
+      administrative_ticket
+      ticket
+      expect(Ticket.vehicle_current_user(user.id)).to eq([ticket])
     end
   end
 end

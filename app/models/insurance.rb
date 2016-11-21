@@ -4,6 +4,14 @@ class Insurance < ActiveRecord::Base
   belongs_to :company
   has_many :receipts, dependent: :destroy
 
+  validates :total, presence: { message: "Inserire l'ammontare del contratto assicurativo" }
+  validates :company_id, presence: { message: "Selezionare l'azienda la quale ha emesso o ricevuto la assicurazione" }
+  validates :at_the_expense_of, presence: { message: 'Selezionare a carrico di cosa e registrata la assicurazione' }
+  validates :serial_of_contract, presence: { message: 'Inserire il numero del contratto' }
+  validates :date_of_issue, presence: { message: 'Selezionare data di emissione' }
+  validates :recurrence, presence: { message: 'Selezionare la riccorrenza' }
+  validates :deadline, presence: { message: 'Selezionare data di scadenza' }
+
   def payment_date
     due_date = self.date_of_issue
     until due_date > Time.zone.now do

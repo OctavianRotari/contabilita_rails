@@ -13,8 +13,8 @@ feature 'tickets' do
   end
 
   scenario 'a user adds a vehicle ticket' do
-    visit('/tickets/new')
-    fill_in_vehicle_ticket
+    ticket
+    visit("/tickets/vehicle_dashboard?month=#{Time.zone.now.month}&year=#{Time.zone.now.year}")
     expect(page).to have_css '#total_ticket', text: '90'
     expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
   end
@@ -23,6 +23,5 @@ feature 'tickets' do
     visit('/tickets/new')
     fill_in_administrative_ticket
     expect(page).to have_css '#total_ticket', text: '90'
-    expect(page).to have_css '#type_of_ticket', text: 'Amministrativo'
   end
 end

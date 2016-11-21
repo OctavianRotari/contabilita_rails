@@ -1,0 +1,21 @@
+<tbody>
+  <tr>
+    <td id='total_ticket'><%= ticket.total %></td>
+    <% if ticket.type_of == 1 %>
+      <td id='vehicle_plate'><%= ticket.vehicle.plate %></td>
+    <% end%>
+    <td ><%= ticket.description %></td>
+    <td class="date_of_issue"><%= ticket.date_of_issue.strftime("%d-%m-%Y")%></td>
+    <td class="deadline"><%= ticket.deadline.strftime("%d-%m-%Y")%></td>
+    <td class="cash-ticket">
+      <%= link_to new_ticket_path do %>
+        <i class="ion-cash icon-small-cash"></i>
+      <% end%>
+    </td>
+    <td class="delete-ticket_<%=ticket.id%>">
+      <%= link_to ticket_path(id: ticket.id), method: :delete, data: {confirm: "Si e sicuri?"} do%>
+        <i class="ion-ios-trash icon-small-trash"></i>
+      <% end%>
+    </td>
+  </tr>
+</tbody>

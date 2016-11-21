@@ -83,8 +83,8 @@ class InvoiceDashboard
   end
 
   def year_params
-    year = params[:year].to_i
-    Date.new(year)
+    year = params[:year]
+    Time.new(year)
   end
 
   def current_user_invoices

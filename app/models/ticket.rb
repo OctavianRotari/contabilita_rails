@@ -9,8 +9,20 @@ class Ticket < ActiveRecord::Base
     where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year)
   end
 
-  def self.administrative(user_id)
-    where(type_of: 2).where(user_id: user_id)
+  def self.administrative
+    where(type_of: 2)
+  end
+
+  def self.vehicle
+    where(type_of: 1)
+  end
+
+  def self.administrative_current_user(user_id)
+    administrative.where(user_id: user_id)
+  end
+
+  def self.vehicle_current_user(user_id)
+    vehicle.where(user_id: user_id)
   end
 
   def self.time_now
