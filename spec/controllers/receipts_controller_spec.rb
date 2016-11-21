@@ -8,6 +8,7 @@ describe ReceiptsController, type: :controller do
     let(:insurance) { create(:insurance) }
 
     before :each do
+    request.env["HTTP_REFERER"] = 'where_i_came_from'
       create(:vehicle)
       insurance_category
       create(:company, name: 'Milano', category_id: insurance_category.id)
