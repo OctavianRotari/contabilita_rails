@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe FuelReceiptDashboard, type: :unit do
   let(:current_user) { create(:user) }
-  let(:params) { { year: Time.zone.now.year, id: 1 } }
+  let(:time_now) { Time.zone.now }
+  let(:params) { {month: time_now.month, year: time_now.year, id: 1 } }
   let(:fuel_receipt) { create(:fuel_receipt) }
   let(:gas_station_category) { create(:gas_station_category) }
   let(:gas_station_company) { create(:company) }
@@ -44,29 +45,29 @@ describe FuelReceiptDashboard, type: :unit do
 
     describe '#vehicle_fuel_receipts' do
       it 'returns all the fuel receipts for the current year' do
-        expect(fuel_receipt_dashboard.vehicle_fuel_receipts_ord).to eq([fuel_receipt])
+        expect(fuel_receipt_dashboard.vehicle_fuel_receipts_month).to eq([fuel_receipt])
       end
 
-      it 'returns fuel receipt from the year indicated in params' do
-        year = Time.zone.now - 1.year
-        params = { year: year.year, id: 1 }
+      it 'returns fuel receipt from the month indicated in params' do
+        one_month_ago = Time.new(time_now.year, time_now.month - 1)
+        params = { month: one_month_ago.month, year: time_now.year, id: 1 }
         fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
-        fuel_receipt = create(:fuel_receipt, date_of_issue: Time.zone.now - 1.year)
-        expect(fuel_receipt_dashboard.vehicle_fuel_receipts_ord).to eq([fuel_receipt])
+        fuel_receipt = create(:fuel_receipt, date_of_issue: Time.zone.now - 1.month)
+        expect(fuel_receipt_dashboard.vehicle_fuel_receipts_month).to eq([fuel_receipt])
       end
     end
 
     describe '#company_fuel_receipts' do
       it 'returns all the fuel receipts for the current year' do
-        expect(fuel_receipt_dashboard.company_fuel_receipts_ord).to eq([fuel_receipt])
+        expect(fuel_receipt_dashboard.company_fuel_receipts_month).to eq([fuel_receipt])
       end
 
-      it 'returns fuel receipt from the year indicated in params' do
-        year = Time.zone.now - 1.year
-        params = { year: year.year, id: 1 }
+      it 'returns fuel receipt from the month indicated in params' do
+        one_month_ago = Time.new(time_now.year, time_now.month - 1)
+        params = { month: one_month_ago.month, year: time_now.year, id: 1 }
         fuel_receipt_dashboard = FuelReceiptDashboard.new(params, current_user)
-        fuel_receipt = create(:fuel_receipt, date_of_issue: Time.zone.now - 1.year)
-        expect(fuel_receipt_dashboard.company_fuel_receipts_ord).to eq([fuel_receipt])
+        fuel_receipt = create(:fuel_receipt, date_of_issue: Time.zone.now - 1.month)
+        expect(fuel_receipt_dashboard.company_fuel_receipts_month).to eq([fuel_receipt])
       end
     end
   end

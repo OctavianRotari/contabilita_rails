@@ -1,7 +1,6 @@
 <tfoot>
   <tr class="totals">
     <td>Totale:</td>
-    <% invoices = invoices.month_active(month) %>
     <td class="total"><%= invoices.total_all %></td>
     <td class="vat"><%= invoices.total_vat_all %></td>
     <td class="paid"><%= calculator.total_paid_or_collected_all(invoices) %></td>

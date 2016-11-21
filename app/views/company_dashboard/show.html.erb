@@ -2,9 +2,9 @@
   <div class="index">
     <h2><%= @company_dashboard.company_name %></h2>
     <div class="nav">
-      <h4><%= link_to 'Passive', passive_invoices_company_path(@company_dashboard.company_id, year: Time.now.year), remote: true %></h4>
+      <h4><%= link_to 'Passive', passive_invoices_company_path(@company_dashboard.company_id, month: Time.zone.now.month, year: Time.zone.now.year), remote: true %></h4>
       <h4><%= link_to 'Riepilogo', dashboard_company_path(@company_dashboard.company_id) %></h4>
-      <h4><%= link_to 'Attive', active_invoices_company_path(@company_dashboard.company_id, year: Time.now.year), remote: true %></h4>
+      <h4><%= link_to 'Attive', active_invoices_company_path(@company_dashboard.company_id, month: Time.zone.now.month, year: Time.zone.now.year), remote: true %></h4>
     </div>
     <div id="invoices">
       <%= render "dashboards/summary",  dashboard: @company_dashboard %>

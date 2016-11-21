@@ -3,4 +3,4 @@
     <h2>Fatture attive</h2>
   </div>
 </div>
-<%= render partial: 'invoices/active_invoices', locals: {invoices: @invoices_dashboard.year_active, dashboard: @invoices_dashboard, calculator: @calculator } %>
+<%= render partial: 'invoices/active_invoices', locals: {invoices: @invoices_dashboard.month_active, dashboard: @invoices_dashboard, calculator: @calculator } %>

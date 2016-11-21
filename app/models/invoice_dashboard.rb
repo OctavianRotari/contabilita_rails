@@ -10,54 +10,54 @@ class InvoiceDashboard
     current_user_invoices.order(created_at: :desc)
   end
 
-  def year_passive
-    date = year_params
-    invoices.year_passive(date)
+  def month_passive
+    date = month_params
+    invoices.month_passive(date)
   end
 
-  def year_active
-    date = year_params
-    invoices.year_active(date)
+  def month_active
+    date = month_params
+    invoices.month_active(date)
   end
 
   def general_expenses_passive
-    date = year_params
-    general_expenses.year_passive(date)
+    date = month_params
+    general_expenses.month_passive(date)
   end
 
   def general_expenses_active
-    date = year_params
-    general_expenses.year_active(date)
+    date = month_params
+    general_expenses.month_active(date)
   end
 
   def company_passive
-    date = year_params
-    company_invoices.year_passive(date)
+    date = month_params
+    company_invoices.month_passive(date)
   end
 
   def company_active
-    date = year_params
-    company_invoices.year_active(date)
+    date = month_params
+    company_invoices.month_active(date)
   end
 
   def vehicle_passive
-    date = year_params
-    vehicle_invoices.year_passive(date)
+    date = month_params
+    vehicle_invoices.month_passive(date)
   end
 
   def vehicle_active
-    date = year_params
-    vehicle_invoices.year_active(date)
+    date = month_params
+    vehicle_invoices.month_active(date)
   end
 
   def category_passive
-    date = year_params
-    category_invoices.year_passive(date)
+    date = month_params
+    category_invoices.month_passive(date)
   end
 
   def category_active
-    date = year_params
-    category_invoices.year_active(date)
+    date = month_params
+    category_invoices.month_active(date)
   end
 
   def general_expenses
@@ -85,6 +85,12 @@ class InvoiceDashboard
   def year_params
     year = params[:year]
     Time.new(year)
+  end
+
+  def month_params
+    year = params[:year]
+    month = params[:month]
+    Time.new(year, month)
   end
 
   def current_user_invoices

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe InvoiceDashboard, type: :unit do
-  let(:params) { { year: Time.zone.now.year, id: 1 } }
+  let(:time_now) { Time.zone.now }
+  let(:params) { {month: time_now.month, year: time_now.year, id: 1 } }
   let(:user) { create(:user) }
   let(:vehicle) { create(:vehicle) }
   let(:category) { create(:category) }
@@ -27,11 +28,11 @@ describe InvoiceDashboard, type: :unit do
 
   describe 'year_invoices' do
     it 'returns all passive invoices' do
-      expect(invoice_dashboard.year_passive).to eq([passive_invoice])
+      expect(invoice_dashboard.month_passive).to eq([passive_invoice])
     end
 
     it 'returns all active invoices' do
-      expect(invoice_dashboard.year_active).to eq([active_invoice])
+      expect(invoice_dashboard.month_active).to eq([active_invoice])
     end
   end
 

@@ -1,8 +1,6 @@
 <div class="row">
   <div class="fuel_receipts">
     <h3 class="title">Scontrini gasolio</h3>
-    <% fuel_receipts.group_by{ |t| t.date_of_issue.beginning_of_month }.each  do |month, fuel_receipts_array| %>
-      <h2 class="month"><%= month.strftime('%B') %></h2>
       <table>
         <thead>
           <tr>
@@ -14,9 +12,8 @@
             <th></th>
           </tr>
         </thead>
-        <%= render fuel_receipts_array %>
+        <%= render fuel_receipts %>
         <%= render partial: "total_costs/fuel_receipts_total", locals: {calculator: fuel_receipts_calculator, fuel_receipts: fuel_receipts }%>
       </table>
-    <% end %>
   </div>
 </div>

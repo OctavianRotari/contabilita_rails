@@ -19,14 +19,14 @@ class FuelReceiptDashboard
     @calculator ||= Calculator.new
   end
 
-  def vehicle_fuel_receipts_ord
-    date = year_params
-    vehicle_fuel_receipts.year(date)
+  def vehicle_fuel_receipts_month
+    date = month_params
+    vehicle_fuel_receipts.month(date)
   end
 
-  def company_fuel_receipts_ord
-    date = year_params
-    company_fuel_receipts.year(date)
+  def company_fuel_receipts_month
+    date = month_params
+    company_fuel_receipts.month(date)
   end
 
   def gas_station_companies
@@ -47,8 +47,9 @@ class FuelReceiptDashboard
     company.fuel_receipts
   end
 
-  def year_params
-    year = params[:year].to_i
-    Date.new(year)
+  def month_params
+    year = params[:year]
+    month = params[:month]
+    Time.new(year, month)
   end
 end

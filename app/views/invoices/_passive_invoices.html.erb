@@ -1,14 +1,12 @@
 <div class="row">
   <div class="invoices-by-year">
-    <h3>Anno: <%= params[:year]%></h3>
-    <h4><%= previos_year_menu("passive") %></h4>
-    <h4><%= next_year_menu("passive") %></h4>
+    <h3><%= params[:month]%>/<%= params[:year]%></h3>
+    <h4><%= previos_month_menu("passive") %></h4>
+    <h4><%= next_month_menu("passive") %></h4>
   </div>
 </div>
 <div class="row">
   <div class="invoices">
-    <% invoices.group_by{ |t| t.date_of_issue.beginning_of_month }.each do |month, invoices_array| %>
-      <h2><%= month.strftime('%B') %></h2>
       <table>
         <thead>
           <tr>
@@ -25,9 +23,9 @@
             <th class="delete-invoice"></th>
           </tr>
         </thead>
-        <%= render partial: "total_costs/passive_totals", locals: {calculator: calculator, invoices: invoices, month: month } %>
+        <%= render partial: "total_costs/invoices_totals", locals: {calculator: calculator, invoices: invoices } %>
         <tbody>
-          <% for invoice in invoices_array %>
+          <% for invoice in invoices %>
             <tr>
               <td id="supplier_<%=invoice.company_id%>"><%= link_to invoice.company_name, company_path(invoice.company_id) %></td>
               <td id="total_<%=invoice.company_id%>"><%= invoice.total %></td>
@@ -52,6 +50,5 @@
           <%end%>
         </tbody>
       </table>
-    <%end%>
   </div>
 </div>

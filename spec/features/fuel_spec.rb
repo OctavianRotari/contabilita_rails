@@ -57,13 +57,13 @@ feature 'fuel receipts' do
     end
 
     scenario 'user does not see other companies receipts' do
-      visit "/companies/#{company.id}/fuel_receipts"
+      visit "/companies/#{company.id}/fuel_receipts?month=#{Time.zone.now.month}&year=#{Time.zone.now.year}"
       expect(page).not_to have_css '#company_name', text: 'Natale'
       expect(page).not_to have_css '#vehicle_plate', text: 'BX300FC'
     end
 
     scenario 'user does not see other vehicles receipts' do
-      visit "/vehicles/#{vehicle.id}/fuel_receipts"
+      visit "/vehicles/#{vehicle.id}/fuel_receipts?month=#{Time.zone.now.month}&year=#{Time.zone.now.year}"
       create(:fuel_receipt, company_id: company_2.id, vehicle_id: vehicle_2.id)
       expect(page).not_to have_css '#company_name', text: 'Natale'
       expect(page).not_to have_css '#vehicle_plate', text: 'BX300FC'
