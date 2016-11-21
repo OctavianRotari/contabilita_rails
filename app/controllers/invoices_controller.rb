@@ -17,6 +17,8 @@ class InvoicesController < ApplicationController
   end
 
   def update
+    @vehicles = vehicles
+    @companies = companies
     @invoice = Invoice.find(params[:id])
     build_params = build_invoice.build
     if @invoice.update(build_params)
