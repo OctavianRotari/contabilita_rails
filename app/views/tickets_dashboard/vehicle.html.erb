@@ -1,6 +1,6 @@
 <div class="row">
   <div class="invoices-by-year">
-    <h3>Mese: <%= params[:month]%></h3>
+    <h3><%= params[:month]%>/<%= params[:year]%></h3>
     <h4><%= previos_month_administrative_tickets %></h4>
     <h4><%= next_month_administrative_tickets %></h4>
   </div>
@@ -15,7 +15,6 @@
           <th>Targa</th>
           <th class="paid">Pagato</th>
           <th>Descrizione</th>
-          <th class="at-the-expense-of">A carrico di</th>
           <th class="deadline">Scadenza</th>
           <th class="cash-invoice"></th>
           <th class="delete-invoice"></th>
