@@ -7,7 +7,7 @@
       <%= f.text_field :taxable, require: true %>
       <%= f.label 'Iva' %>
       <%= f.select(:vat_rate) do %>
-        <% [['Senza iva', 1]['4', 4],['10', 10],['22',22]].each do |option| %>
+        <% [['Senza iva', 1],['4', 4],['10', 10],['22',22]].each do |option| %>
           <%= content_tag(:option, option.first, value: option.last) %>
         <%end%>
       <%end%>
