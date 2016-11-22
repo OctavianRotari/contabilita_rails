@@ -27,8 +27,6 @@ Rails.application.routes.draw do
   end
 
   resources :tickets do
-    resources :payments, only: [:new, :create, :edit, :update, :destroy]
-
     collection do
       get 'administrative_dashboard' => 'tickets_dashboard#administrative'
       get 'vehicle_dashboard' => 'tickets_dashboard#vehicle'
