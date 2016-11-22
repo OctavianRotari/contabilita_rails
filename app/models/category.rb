@@ -3,9 +3,9 @@ class Category < ActiveRecord::Base
   has_many :invoices, dependent: :destroy
   has_many :insurances, dependent: :destroy
   has_many :companies, dependent: :destroy
+  has_many :fuel_receipts, dependent: :destroy
   validates :name, presence: { message: 'Inserire il nome della categoria' }
   validates :type_of, presence: { message: 'Selezionare tipologia' }
-  has_many :fuel_receipts
 
   def calculator
     Calculator.new
