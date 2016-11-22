@@ -3,7 +3,7 @@ class Vehicle < ActiveRecord::Base
   has_many :invoices, dependent: :destroy
   has_many :vehicle_field, dependent: :destroy
   has_many :fuel_receipts, dependent: :destroy
-  has_many :insurance, dependent: :destroys
+  has_many :insurances, dependent: :destroy
   validates :plate, presence: { message: 'Inserire targa del veicolo' }
   validates :type_of_vehicle, presence: { message: 'Inserire tipo di veicolo' }
 

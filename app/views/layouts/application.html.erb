@@ -56,12 +56,11 @@
       <% end %>
     </header>
     <div class="main-section">
-        <%= display_errors(flash) %>
       <div id="page-wrap" class="page-wrap">
+        <%= display_errors(flash) %>
         <%= yield %>
       </div>
     </div>
-  </div>
-</body>
-<script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/selectivizr/1.0.3b/selectivizr.min.js"></script>
 </html>

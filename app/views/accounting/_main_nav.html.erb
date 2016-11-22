@@ -1,12 +1,6 @@
 <nav>
   <div class="main-nav-background">
     <div class="row js--main-navigation">
-      <%#<div class="logo-sticky">%>
-        <%#<%=image_tag("accounting.png")%>
-      <%#</div>%>
-      <%#<div class="app-title-sticky">%>
-        <%#<h1 class="app-title" >Contabilita</h1>%>
-      <%#</div>%>
       <ul class="main-nav clearfix js--main-nav">
         <div class="static">
           <span><li><%= link_to 'Home', dashboard_invoices_path %></li></span>
@@ -32,7 +26,7 @@
           <span id="categorie">Carburante</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">
-              <li><%= link_to 'Costi carburante', fuel_receipts_path %></li>
+              <li><%= link_to 'Costi carburante', fuel_receipts_path(month: Time.zone.now.month, year: Time.zone.now.year) %></li>
               <li><%= link_to 'Aggiungi scontrino', new_fuel_receipt_path %></li>
             </ul>
           </div>
