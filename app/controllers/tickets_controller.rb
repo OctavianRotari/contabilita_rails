@@ -55,7 +55,7 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:total, :date_of_issue, :deadline, :type_of, :vehicle_id)
+    params.require(:ticket).permit(:total, :date_of_issue, :deadline, :type_of, :vehicle_id, :paid, :description)
   end
 
   def ticket_params_user_id

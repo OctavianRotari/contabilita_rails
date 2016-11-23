@@ -31,6 +31,14 @@
       </div>
       <div class="row">
         <div class="col span-1-of-3">
+          <%= form.label 'Descrizione'%>
+        </div>
+        <div class="col span-2-of-3">
+          <%= form.text_field :description, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
           <%= form.label 'Data emissione multa' %>
         </div>
         <div class="col span-2-of-3">
@@ -43,6 +51,15 @@
         </div>
         <div class="col span-2-of-3">
           <%= form.text_field :deadline, require: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-3">
+        </div>
+        <div class="paid col span-2-of-3">
+          <%= form.label :paid do %>
+            <%= form.check_box(:paid)  %> La multa e' stata pagata?
+          <% end %>
         </div>
       </div>
       <div class="row">

@@ -5,6 +5,7 @@ FactoryGirl.define do
     description('Giovanni')
     type_of(1)
     vehicle_id(1)
+    paid(false)
     deadline(Time.zone.now + 2.month)
     user_id(1)
   end
@@ -15,6 +16,7 @@ FactoryGirl.define do
     description('Multa mancata iva')
     type_of(2)
     vehicle_id(nil)
+    paid(false)
     deadline(Time.zone.now + 2.month)
     user_id(1)
   end

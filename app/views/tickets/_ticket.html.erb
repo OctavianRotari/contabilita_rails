@@ -1,14 +1,19 @@
 <tbody>
   <tr>
     <td id='total_ticket'><%= ticket.total %></td>
+    <% if ticket.paid == true %>
+      <td id="deadline">Pagata</td>
+    <% else %>
+      <td id="deadline">Non pagata</td>
+    <% end%>
     <% if ticket.type_of == 1 %>
       <td id='vehicle_plate'><%= ticket.vehicle.plate %></td>
     <% end%>
-    <td ><%= ticket.description %></td>
+    <td><%= ticket.description %></td>
     <td class="date_of_issue"><%= ticket.date_of_issue.strftime("%d-%m-%Y")%></td>
     <td class="deadline"><%= ticket.deadline.strftime("%d-%m-%Y")%></td>
     <td class="cash-ticket">
-      <%= link_to new_ticket_path do %>
+      <%= link_to edit_ticket_path(ticket.id) do %>
         <i class="ion-cash icon-small-cash"></i>
       <% end%>
     </td>

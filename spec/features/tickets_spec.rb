@@ -17,11 +17,18 @@ feature 'tickets' do
     visit("/tickets/vehicle_dashboard?month=#{Time.zone.now.month}&year=#{Time.zone.now.year}")
     expect(page).to have_css '#total_ticket', text: '90'
     expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
+    expect(page).to have_css '#paid', text: 'Non pagata'
   end
 
   scenario 'a user adds an administrative ticket' do
     visit('/tickets/new')
     fill_in_administrative_ticket
     expect(page).to have_css '#total_ticket', text: '90'
+  end
+
+  scenario 'a user adds a vehicle ticket already paid' do
+    create(:ticket, paid:true)
+    visit("/tickets/vehicle_dashboard?month=#{Time.zone.now.month}&year=#{Time.zone.now.year}")
+    expect(page).to have_css '#paid', text: 'Pagata'
   end
 end
