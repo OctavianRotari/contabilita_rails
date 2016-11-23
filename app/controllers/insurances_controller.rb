@@ -12,25 +12,6 @@ class InsurancesController < ApplicationController
     @insurance = Insurance.find(params[:id])
   end
 
-  def edit
-    @insurance = Insurance.find(params[:id])
-    @companies = current_user_companies.insurances
-    @vehicles = current_user_vehicles
-  end
-
-  def update
-    build_params = build_insurance
-    @insurance = Insurance.find(params[:id])
-    @companies = current_user_companies.insurances
-    @vehicles = current_user_vehicles
-    if @insurance.update(build_params)
-      flash[:success] = 'Contratto assicurativo aggiornato'
-      redirect_to insurance_path(@insurance.id)
-    else
-      render 'edit'
-    end
-  end
-
   def new
     @insurance = Insurance.new
     @companies = current_user_companies.insurances
@@ -50,10 +31,29 @@ class InsurancesController < ApplicationController
     end
   end
 
+  def edit
+    @insurance = Insurance.find(params[:id])
+    @companies = current_user_companies.insurances
+    @vehicles = current_user_vehicles
+  end
+
+  def update
+    build_params = build_insurance
+    @insurance = Insurance.find(params[:id])
+    @companies = current_user_companies.insurances
+    @vehicles = current_user_vehicles
+    if @insurance.update(build_params)
+      flash[:success] = 'Contratto assicurativo aggiornato'
+      redirect_to insurance_path(@insurance.id)
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     insurance = Insurance.find(params[:id])
     insurance.destroy
-    flash[:success] = 'Assicurazione elliminata'
+    flash[:success] = 'Contratto assicurativo elliminato'
     redirect_after_destroy(current_user_insurances)
   end
 

@@ -4,10 +4,27 @@ class InvoicesController < ApplicationController
   before_action :category_any?
   before_action :company_any?
 
+  def show
+    @invoice = Invoice.find(params[:id])
+  end
+
   def new
     @companies = companies
     @vehicles = vehicles
     @invoice = Invoice.new
+  end
+
+  def create
+    @companies = companies
+    @vehicles = vehicles
+    build_params = build_invoice.build
+    @invoice = Invoice.new(build_params)
+    if @invoice.save
+      flash[:success] = 'Fattura aggiunta'
+      redirect_to invoice_path(@invoice.id)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -23,14 +40,10 @@ class InvoicesController < ApplicationController
     build_params = build_invoice.build
     if @invoice.update(build_params)
       flash[:success] = "La fattura e' stata aggiornata"
-      redirect_to invoice_path(invoice_id: @invoice.id)
+      redirect_to invoice_path(@invoice.id)
     else
       render 'edit'
     end
-  end
-
-  def show
-    @invoice = Invoice.find(params[:id])
   end
 
   def destroy
@@ -38,19 +51,6 @@ class InvoicesController < ApplicationController
     invoice.destroy
     flash[:success] = 'Fattura elliminata'
     redirect_after_destroy(current_user_invoices)
-  end
-
-  def create
-    @companies = companies
-    @vehicles = vehicles
-    build_params = build_invoice.build
-    @invoice = Invoice.new(build_params)
-    if @invoice.save
-      flash[:success] = 'Fattura aggiunta'
-      redirect_to invoice_path(id: @invoice.id)
-    else
-      render 'new'
-    end
   end
 
   private

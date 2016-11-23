@@ -38,6 +38,7 @@ describe InvoicesController, type: :controller do
 
   describe 'when an invoice is valid' do
     before :each do
+      request.env["HTTP_REFERER"] = "where_i_came_from"
       vehicle
       category
       company
@@ -64,29 +65,32 @@ describe InvoicesController, type: :controller do
       expect(flash[:success]).to match('Fattura aggiunta')
       expect(response).to redirect_to(invoice_path(id: 1))
     end
-  end
 
-  describe 'when invoice is deleted' do
-    before(:each) do
-      request.env["HTTP_REFERER"] = "where_i_came_from"
-      vehicle
-      category
-      company
+    describe 'update' do
+      it 'renders page with success when updated' do
+        invoice_create = create(:invoice)
+        invoice = attributes_for(:invoice)
+        put :update, id: invoice_create.id, invoice: invoice
+        expect(response).to redirect_to(assigns(:invoice))
+        expect(flash[:success]).to match("La fattura e' stata aggiornata")
+      end
     end
 
-    it 'renders page with success and redirects to dashboard' do
-      create(:invoice)
-      delete :destroy, id: 1
-      expect(flash[:success]).to match('Fattura elliminata')
-      expect(response).to redirect_to(dashboard_invoices_path)
-    end
+    describe 'when invoice is deleted' do
+      it 'renders page with success and redirects to dashboard' do
+        create(:invoice)
+        delete :destroy, id: 1
+        expect(flash[:success]).to match('Fattura elliminata')
+        expect(response).to redirect_to(dashboard_invoices_path)
+      end
 
-    it 'renders page with success and redirects :back' do
-      create(:invoice)
-      create(:invoice)
-      delete :destroy, id: 1
-      expect(flash[:success]).to match('Fattura elliminata')
-      expect(response).to redirect_to("where_i_came_from")
+      it 'renders page with success and redirects :back' do
+        create(:invoice)
+        create(:invoice)
+        delete :destroy, id: 1
+        expect(flash[:success]).to match('Fattura elliminata')
+        expect(response).to redirect_to("where_i_came_from")
+      end
     end
   end
 end

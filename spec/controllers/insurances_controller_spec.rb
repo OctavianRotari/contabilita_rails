@@ -4,6 +4,7 @@ describe InsurancesController, type: :controller do
   sign_in_user
 
   let(:insurance_category) { create(:insurance_category) }
+  let(:insurance_company) { create(:company, name: 'Milano', category_id: insurance_category.id) }
   let(:vehicle) { create(:vehicle) }
 
   before :each do
@@ -36,9 +37,9 @@ describe InsurancesController, type: :controller do
   end
 
   describe 'when an insurance is valid' do
-    let(:insurance_company) { create(:company, name: 'Milano', category_id: insurance_category.id) }
 
     before :each do
+      request.env["HTTP_REFERER"] = "where_i_came_from"
       vehicle
       insurance_category
       insurance_company
@@ -62,13 +63,31 @@ describe InsurancesController, type: :controller do
       expect(flash[:success]).to match('Contratto assicurativo registrato')
     end
 
-    it 'renders page with success when updated' do
-      insurance_create = create(:insurance)
-      insurance = attributes_for(:insurance)
-      put :update, id: insurance_create.id, insurance: insurance
-      insurance = Insurance.first
-      expect(response).to redirect_to(insurance_path(insurance.id))
-      expect(flash[:success]).to match('Contratto assicurativo aggiornato')
+    describe 'update' do
+      it 'renders page with success when updated' do
+        insurance_create = create(:insurance)
+        insurance = attributes_for(:insurance)
+        put :update, id: insurance_create.id, insurance: insurance
+        expect(response).to redirect_to(assigns(:insurance))
+        expect(flash[:success]).to match('Contratto assicurativo aggiornato')
+      end
+    end
+
+    describe 'when insurance is deleted' do
+      it 'renders page with success and redirects to dashboard' do
+        create(:insurance)
+        delete :destroy, id: 1
+        expect(flash[:success]).to match('Contratto assicurativo elliminato')
+        expect(response).to redirect_to(dashboard_invoices_path)
+      end
+
+      it 'renders page with success and redirects :back' do
+        create(:insurance)
+        create(:insurance)
+        delete :destroy, id: 1
+        expect(flash[:success]).to match('Contratto assicurativo elliminato')
+        expect(response).to redirect_to("where_i_came_from")
+      end
     end
   end
 end

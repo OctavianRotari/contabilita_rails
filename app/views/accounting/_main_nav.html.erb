@@ -41,11 +41,11 @@
           </div>
         </div>
         <div class="dropdown js--dropdown">
-          <span id="insurance">Sanzioni</span>
+          <span id="insurance">Multe</span>
           <div class="dropdown-content js--dropdown-content">
             <ul class="clearfix">
-              <li><%= link_to 'Multe amministrative', administrative_dashboard_tickets_path(month: Time.zone.now.month, year: Time.zone.now.year) %></li>
-              <li><%= link_to 'Multe veicoli', vehicle_dashboard_tickets_path(month: Time.zone.now.month, year: Time.zone.now.year) %></li>
+              <li><%= link_to 'Amministrative', administrative_dashboard_tickets_path(month: Time.zone.now.month, year: Time.zone.now.year) %></li>
+              <li><%= link_to 'Veicoli', vehicle_dashboard_tickets_path(month: Time.zone.now.month, year: Time.zone.now.year) %></li>
               <li><%= link_to 'Aggiungi multa', new_ticket_path, title: 'new_ticket' %></li>
             </ul>
           </div>

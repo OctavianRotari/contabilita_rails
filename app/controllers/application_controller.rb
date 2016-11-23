@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
     current_user.fuel_receipts
   end
 
+  def current_user_tickets
+    current_user.tickets
+  end
+
   def vehicle_any?
     if current_user_vehicles.empty?
       flash[:error] = 'Aggiungere almeno un veicolo'
