@@ -15,7 +15,7 @@ describe InsurancesController, type: :controller do
 
     it 'checks if a vehicle exists' do
       get :new
-      expect(flash[:error]).to match('Aggiungere almeno un veicolo')
+      expect(flash[:error]).to match("Aggiungere prima un mezzo che e' imputabile per le spese generali")
     end
 
     describe 'after a vehicle is created' do

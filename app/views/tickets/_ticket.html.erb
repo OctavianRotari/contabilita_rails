@@ -2,9 +2,9 @@
   <tr>
     <td id='total_ticket'><%= ticket.total %></td>
     <% if ticket.paid == true %>
-      <td id="deadline">Pagata</td>
+      <td id="paid">Pagata</td>
     <% else %>
-      <td id="deadline">Non pagata</td>
+      <td id="not_paid">Non pagata</td>
     <% end%>
     <% if ticket.type_of == 1 %>
       <td id='vehicle_plate'><%= ticket.vehicle.plate %></td>

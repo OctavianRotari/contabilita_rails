@@ -30,15 +30,14 @@ describe Vehicle, type: :unit do
 
     describe '#charge_general_expenses' do
       it 'should return only vehicles that will be charged of general expences' do
-        vehicle_expences = create(:vehicle, charge_general_expenses: true)
-        expect(Vehicle.charge_general_expenses).to eq([vehicle_expences])
-        expect(Vehicle.charge_general_expenses).not_to include(vehicle)
+        vehicle_no_general_expences = create(:vehicle, charge_general_expenses: false)
+        expect(Vehicle.charge_general_expenses).to eq([vehicle])
+        expect(Vehicle.charge_general_expenses).not_to include(vehicle_no_general_expences)
       end
     end
 
     describe '#count_vehicle_general' do
       it 'returns the number of vehicles that are subject to general expenses' do
-        create(:vehicle, charge_general_expenses: true)
         expect(Vehicle.count_vehicles_general(user.id)).to eq(1)
         expect(Vehicle.count_vehicles_general(second_user.id)).to eq(0)
       end
@@ -125,12 +124,11 @@ describe Vehicle, type: :unit do
 
     describe '#total_general_insurance_month' do
       it 'returns zero if there is no imputable' do
-        create(:general_insurance)
+        create(:vehicle, charge_general_expenses: true)
         expect(vehicle.general_insurance_month).to eq(0)
       end
 
       it 'returns total if there are imputable' do
-        vehicle = create(:vehicle, charge_general_expenses: true)
         create(:vehicle, charge_general_expenses: true)
         create(:general_insurance, total: 1200)
         expect(vehicle.general_insurance_month).to eq(50)
@@ -144,13 +142,11 @@ describe Vehicle, type: :unit do
     end
 
     describe '#total_general_insurance_year' do
-      it 'returns zero if there is no imputable' do
-        create(:general_insurance)
+      it 'returns zero if there is general insurances' do
         expect(vehicle.general_insurance_year).to eq(0)
       end
 
       it 'returns total if there are imputable' do
-        vehicle = create(:vehicle, charge_general_expenses: true)
         create(:vehicle, charge_general_expenses: true)
         create(:general_insurance, total: 1200)
         expect(vehicle.general_insurance_year).to eq(600)
@@ -164,13 +160,11 @@ describe Vehicle, type: :unit do
     end
 
     describe '#general_expenses_month' do
-      it 'returns zero if there is no imputable' do
-        create(:general_expenses_invoice)
+      it 'returns zero if there is no general expences' do
         expect(vehicle.general_expenses_month).to eq(0)
       end
 
       it 'returns total if there are imputable' do
-        vehicle = create(:vehicle, charge_general_expenses: true)
         create(:vehicle, charge_general_expenses: true)
         create(:general_expenses_invoice, total: 1200)
         expect(vehicle.general_expenses_month).to eq(600)
@@ -184,13 +178,11 @@ describe Vehicle, type: :unit do
     end
 
     describe '#general_expenses_year' do
-      it 'returns zero if there is no imputable' do
-        create(:general_expenses_invoice)
+      it 'returns zero if there is no general expences' do
         expect(vehicle.general_expenses_year).to eq(0)
       end
 
       it 'returns total if there are imputable' do
-        vehicle = create(:vehicle, charge_general_expenses: true)
         create(:vehicle, charge_general_expenses: true)
         create(:general_expenses_invoice, total: 1200)
         expect(vehicle.general_expenses_year).to eq(600)
@@ -228,6 +220,50 @@ describe Vehicle, type: :unit do
         create(:vehicle_field)
         create(:vehicle_field, created_at: Time.zone.now - 1.year)
         expect(vehicle.vehicle_field_year).to eq(600)
+      end
+    end
+
+    describe '#total_tickets' do
+      it 'return zero if there are no tickets' do
+        expect(vehicle.total_tickets_month).to eq(0)
+      end
+
+      describe 'month' do
+        it 'return the total of tickets' do
+          create(:ticket)
+          create(:ticket, date_of_issue: Time.zone.now - 1.month)
+          expect(vehicle.total_tickets_month).to eq(90)
+        end
+      end
+
+      describe 'year' do
+        it 'return the total of tickets' do
+          create(:ticket)
+          create(:ticket, date_of_issue: Time.zone.now - 1.year)
+          expect(vehicle.total_tickets_year).to eq(90)
+        end
+      end
+    end
+
+    describe '#total_administrative_tickets' do
+      it 'return zero if there are no tickets' do
+        expect(vehicle.total_administrative_tickets_month).to eq(0)
+      end
+
+      describe 'month' do
+        it 'return the total of tickets' do
+          create(:administrative_ticket)
+          create(:administrative_ticket, date_of_issue: Time.zone.now - 1.month)
+          expect(vehicle.total_administrative_tickets_month).to eq(90)
+        end
+      end
+
+      describe 'year' do
+        it 'return the total of tickets' do
+          create(:administrative_ticket)
+          create(:administrative_ticket, date_of_issue: Time.zone.now - 1.year)
+          expect(vehicle.total_administrative_tickets_year).to eq(90)
+        end
       end
     end
 

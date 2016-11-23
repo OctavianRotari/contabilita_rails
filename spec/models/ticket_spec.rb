@@ -33,11 +33,33 @@ describe Ticket, type: :model do
     end
   end
 
-  describe '#vehicle_current_user' do
-    it 'returns only administrative tickets' do
+  describe '#total_vehicle_month' do
+    it 'returns the total of the tickets for vehicle' do
+      create(:ticket, date_of_issue: Time.zone.now - 1.month)
+      expect(Ticket.total_vehicles_month).to eq(90)
+    end
+  end
+
+  describe '#total_vehicle_year' do
+    it 'returns the total of the tickets for vehicle' do
+      create(:ticket, date_of_issue: Time.zone.now - 1.year)
+      expect(Ticket.total_vehicles_year).to eq(90)
+    end
+  end
+
+  describe '#total_administrative_month' do
+    it 'returns the total of administrative tickets' do
       administrative_ticket
-      ticket
-      expect(Ticket.vehicle_current_user(user.id)).to eq([ticket])
+      create(:administrative_ticket, date_of_issue: Time.zone.now - 1.month)
+      expect(Ticket.total_administrative_month(user.id)).to eq(90)
+    end
+  end
+
+  describe '#total_administrative_year' do
+    it 'returns the total of administrative tickets' do
+      administrative_ticket
+      create(:administrative_ticket, date_of_issue: Time.zone.now - 1.year)
+      expect(Ticket.total_administrative_year(user.id)).to eq(90)
     end
   end
 end

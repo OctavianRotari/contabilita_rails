@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :vehicle_any?
+  before_action :vehicle_general_expences_any?
 
   def new
     @vehicles = current_user_vehicles

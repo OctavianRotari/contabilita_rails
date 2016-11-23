@@ -52,8 +52,7 @@ describe Calculator, type: :unit do
     before :each do
       invoice
       create(:general_expenses_invoice)
-      create(:vehicle, charge_general_expenses: true)
-      create(:vehicle, charge_general_expenses: true)
+      create(:vehicle)
     end
 
     it 'should calculate the total costs per month' do
@@ -72,8 +71,7 @@ describe Calculator, type: :unit do
     before :each do
       invoice
       create(:general_expenses_invoice)
-      create(:vehicle, charge_general_expenses: true)
-      create(:vehicle, charge_general_expenses: true)
+      create(:vehicle)
     end
 
     it 'should calculate the total costs per month' do

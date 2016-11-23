@@ -4,6 +4,7 @@ class Vehicle < ActiveRecord::Base
   has_many :vehicle_field, dependent: :destroy
   has_many :fuel_receipts, dependent: :destroy
   has_many :insurances, dependent: :destroy
+  has_many :tickets, dependent: :destroy
   validates :plate, presence: { message: 'Inserire targa del veicolo' }
   validates :type_of_vehicle, presence: { message: 'Inserire tipo di veicolo' }
 
@@ -51,34 +52,34 @@ class Vehicle < ActiveRecord::Base
 
   def general_insurance_month
     user_id = self.user_id
-    return 0 unless self.charge_general_expenses
-    insurances = Insurance.general_insurances_total(user_id) / 12
+    general_insurances = Insurance.general_insurances_total(user_id) / 12
+    return 0 if general_insurances.zero?
     general_expenses = Vehicle.count_vehicles_general(user_id)
-    (insurances / general_expenses).round(2)
+    (general_insurances / general_expenses).round(2)
   end
 
   def general_insurance_year
     user_id = self.user_id
-    return 0 unless charge_general_expenses
-    insurance = Insurance.general_insurances_total(user_id)
+    general_insurances = Insurance.general_insurances_total(user_id)
+    return 0 if general_insurances.zero?
     general_expences = Vehicle.count_vehicles_general(user_id)
-    (insurance / general_expences).round(2)
+    (general_insurances / general_expences).round(2)
   end
 
   def general_expenses_month
     user_id = self.user_id
-    return 0 unless charge_general_expenses
-    general_invoise_total = Invoice.month_general_expenses(user_id).sum(:total)
+    general_invoices_total = Invoice.month_general_expenses_total(user_id)
+    return 0 if general_invoices_total.zero?
     general_expenses = Vehicle.count_vehicles_general(user_id)
-    (general_invoise_total / general_expenses).round(2)
+    (general_invoices_total / general_expenses).round(2)
   end
 
   def general_expenses_year
     user_id = self.user_id
-    return 0 unless charge_general_expenses
-    general_invoice_total = Invoice.year_general_expenses(user_id).sum(:total)
+    general_invoices_total = Invoice.year_general_expenses_total(user_id)
+    return 0 if general_invoices_total.zero?
     general_expenses = Vehicle.count_vehicles_general(user_id)
-    (general_invoice_total / general_expenses).round(2)
+    (general_invoices_total / general_expenses).round(2)
   end
 
   def vehicle_field_month
@@ -91,21 +92,65 @@ class Vehicle < ActiveRecord::Base
     vehicle_field.year.round(2)
   end
 
-  def current_month_costs
+  def total_tickets_month
+    tickets.total_vehicles_month.round(2)
+  end
+
+  def total_tickets_year
+    tickets.total_vehicles_year.round(2)
+  end
+
+  def total_administrative_tickets_month
+    user_id = self.user_id
+    administrative_tickets_total = Ticket.total_administrative_month(user_id)
+    return 0 if administrative_tickets_total.zero?
+    general_expenses = Vehicle.count_vehicles_general(user_id)
+    (administrative_tickets_total / general_expenses).round(2)
+  end
+
+  def total_administrative_tickets_year
+    user_id = self.user_id
+    administrative_tickets_total = Ticket.total_administrative_year(user_id)
+    return 0 if administrative_tickets_total.zero?
+    general_expenses = Vehicle.count_vehicles_general(user_id)
+    (administrative_tickets_total / general_expenses).round(2)
+  end
+
+  def specific_month_costs
     fuel_receipts_month_total +
       passive_invoices_month_total +
       total_insurance_month +
-      general_expenses_month +
-      general_insurance_month +
-      vehicle_field_month
+      vehicle_field_month +
+      total_tickets_month
   end
 
-  def current_year_costs
+  def general_month_costs
+    return 0 unless charge_general_expenses
+    general_expenses_month +
+      general_insurance_month +
+      total_administrative_tickets_month
+  end
+
+  def current_month_costs
+    specific_month_costs + general_month_costs
+  end
+
+  def specific_year_costs
     fuel_receipts_year_total +
       passive_invoices_year_total +
       total_insurance_year +
-      general_expenses_year +
+      vehicle_field_year +
+      total_tickets_year
+  end
+
+  def general_year_costs
+    return 0 unless charge_general_expenses
+    general_expenses_year +
       general_insurance_year +
-      vehicle_field_year
+      total_administrative_tickets_year
+  end
+
+  def current_year_costs
+    specific_year_costs + general_year_costs
   end
 end

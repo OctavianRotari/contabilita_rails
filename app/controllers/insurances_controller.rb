@@ -1,6 +1,6 @@
 class InsurancesController < ApplicationController
   before_action :authenticate_user!
-  before_action :vehicle_any?
+  before_action :vehicle_general_expences_any?
   before_action :insurance_category_any?
   before_action :insurance_company_any?
 
