@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  authenticated :user do
+    root 'invoice_dashboard#index', as: :authenticated_root
+  end
+
   root to: "accounting#index"
 
   devise_for :users

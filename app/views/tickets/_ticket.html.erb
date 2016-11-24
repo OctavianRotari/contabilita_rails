@@ -1,6 +1,6 @@
 <tbody>
   <tr>
-    <td id='total_ticket'><%= ticket.total %></td>
+    <td id='total_ticket'><%= ticket.total.round(2) %></td>
     <% if ticket.paid == true %>
       <td id="paid">Pagata</td>
     <% else %>
