@@ -1,5 +1,7 @@
 #Contabilita Rails (Accounting)
 
+[![Build Status](https://travis-ci.org/OctavianRotari/contabilita_rails.svg?branch=master)](https://travis-ci.org/OctavianRotari/contabilita_rails)
+
 This is a web-app developed with Rails. It’s purpose is to help small-scale
 transport companies with their accounting. All expenses are registered (invoices, tickets etc)
 as well as vehicles and categories, then accountability calculations are performed
