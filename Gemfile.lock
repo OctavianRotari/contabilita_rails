@@ -106,6 +106,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hpricot (0.8.6)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -302,6 +303,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   font-ionicons-rails
+  hpricot
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails

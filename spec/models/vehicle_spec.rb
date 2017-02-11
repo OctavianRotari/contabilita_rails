@@ -46,7 +46,7 @@ describe Vehicle, type: :unit do
     describe '#fuel_receipts_month_total' do
       it 'returns the total of the current month fuel receipts' do
         create(:fuel_receipt)
-        expect(vehicle.fuel_receipts_month_total).to eq(300)
+        expect(vehicle.fuel_receipts_month_total.to_f).to eq(300.22)
       end
 
       it 'does not return other months totals' do
@@ -60,7 +60,7 @@ describe Vehicle, type: :unit do
       it 'returns the total of current month fuel receipts' do
         create(:fuel_receipt)
         create(:fuel_receipt, date_of_issue: Time.zone.now - 1.month)
-        expect(vehicle.fuel_receipts_year_total).to eq(600)
+        expect(vehicle.fuel_receipts_year_total.to_f).to eq(600.44)
       end
 
       it 'does not return other years totals' do
@@ -268,12 +268,6 @@ describe Vehicle, type: :unit do
     end
 
     describe '#receipts' do
-      it 'should have many receipts' do
-        fuel_receipt = create(:fuel_receipt)
-        fuel_receipt_two = create(:fuel_receipt)
-        expect(vehicle.fuel_receipts).to eq([fuel_receipt, fuel_receipt_two])
-      end
-
       it "should return all the vehicle's fuel receipts with a given company_id" do
         fuel_receipt = create(:fuel_receipt)
         expect(vehicle.fuel_receipts_per_company(company.id)).to eq(fuel_receipt.total)

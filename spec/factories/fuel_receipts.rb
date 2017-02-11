@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :fuel_receipt do
-    total(300)
+    total(300.22)
     litres(200)
     date_of_issue(Time.zone.now)
     company_id(1)

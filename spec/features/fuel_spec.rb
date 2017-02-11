@@ -16,7 +16,7 @@ feature 'fuel receipts' do
 
   scenario 'user adds a new fuel receipt' do
     visit('/fuel_receipts')
-    expect(page).to have_css '#total_fuel_receipts_vehicle', text: '300'
+    expect(page).to have_css '#total_fuel_receipts_vehicle', text: '300.22'
   end
 
   scenario 'user updates fuel receipt' do
@@ -28,7 +28,7 @@ feature 'fuel receipts' do
     visit('/fuel_receipts')
     find('.fuel_receipts').click
     expect(page).to have_css '#company_name', text: 'Esso'
-    expect(page).to have_css '#total_fuel_receipt', text: '300'
+    expect(page).to have_css '#total_fuel_receipt', text: '300.22'
     expect(page).to have_css '#vehicle_plate', text: 'ER354BS'
   end
 
@@ -39,11 +39,11 @@ feature 'fuel receipts' do
     end
 
     scenario '2 receipts per vehicle' do
-      expect(page).to have_css '#total_fuel_receipts_vehicle', text: '600'
+      expect(page).to have_css '#total_fuel_receipts_vehicle', text: '600.44'
     end
 
     scenario 'company' do
-      expect(page).to have_css '#total_fuel_receipts_company', text: '600'
+      expect(page).to have_css '#total_fuel_receipts_company', text: '600.44'
     end
   end
 

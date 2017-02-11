@@ -40,4 +40,5 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem "capybara-webkit"
+  gem "hpricot"
 end

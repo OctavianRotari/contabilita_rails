@@ -5,7 +5,7 @@
     <td><%= fuel_receipt.date_of_issue.strftime("%d-%m-%Y") %></td>
     <td><%= fuel_receipt.litres %></td>
     <td id='total_fuel_receipt'><%= fuel_receipt.total %></td>
-    <td class="delete-fuel_receipt<%=fuel_receipt.id%>">
+    <td class="delete-fuel_receipt<%= fuel_receipt.id %>">
       <%= link_to edit_fuel_receipt_path(fuel_receipt.id), class: 'edit-company', title: "Modifica scontrino." do %>
         <i class="ion-ios-compose icon-small-compose"></i>
       <% end %>

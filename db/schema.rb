@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123140645) do
+ActiveRecord::Schema.define(version: 20170211135939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20161123140645) do
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "fuel_receipts", force: :cascade do |t|
-    t.integer  "total"
+    t.decimal  "total"
     t.datetime "date_of_issue"
     t.datetime "created_at"
     t.datetime "updated_at"
