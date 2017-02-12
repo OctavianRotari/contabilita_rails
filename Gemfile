@@ -16,6 +16,11 @@ gem 'jquery-waypoints-rails'
 gem 'phony_rails'
 gem 'rails_real_favicon'
 gem 'pry'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'flatpickr_rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 
 group :production do
   gem 'rails_12factor'

@@ -59,7 +59,7 @@
           <%= form.label 'Data emissione fattura' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.text_field :date_of_issue, require: true %>
+          <%= form.text_field :date_of_issue, class: 'date', placeholder: "Selezionare data...", require: true %>
         </div>
       </div>
       <div class="row">
@@ -67,7 +67,7 @@
           <%= form.label 'Data scadenza' %>
         </div>
         <div class="col span-2-of-3">
-          <%= form.text_field :deadline, require: true %>
+          <%= form.text_field :deadline, class: 'date', placeholder: "Selezionare data...", require: true %>
         </div>
       </div>
       <div class="row">

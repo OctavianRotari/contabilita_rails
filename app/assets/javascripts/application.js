@@ -15,8 +15,11 @@
 // = require jquery
 // = require jquery.turbolinks
 // = require jquery_ujs
-// = require_tree ../../../vendor/assets/javascripts/.
 // = require jquery-ui/datepicker
 // = require_tree .
 // = require scripts
+//= require tether
+//= require bootstrap-sprockets
+//= require flatpickr
+// = require_tree ../../../vendor/assets/javascripts/
 //
