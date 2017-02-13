@@ -22,8 +22,8 @@ class FuelReceipt < ActiveRecord::Base
     where('date_of_issue >= ? and date_of_issue <= ?', year.beginning_of_year, year.end_of_year )
   end
 
-  def self.total_month
-    month.sum(:total).round(2)
+  def self.total_month(month)
+    month(month).sum(:total).round(2)
   end
 
   def self.total_year

@@ -1,6 +1,6 @@
 <div class="col span-1-of-3 summary">
   <div class="title">
-    <h2 id='vehicle_plate'><%=link_to vehicle.plate, vehicle_path(vehicle.id) %></h2>
+    <h2 id='vehicle_plate'><%=link_to vehicle.plate, vehicle_path(vehicle.id, month: Time.zone.now.month, year: Time.zone.now.year) %></h2>
   </div>
   <%= link_to edit_vehicle_path(vehicle.id), class: 'edit-vehicle', title: "Modifica veicolo." do %>
     <i class="ion-ios-compose icon-small-compose"></i>

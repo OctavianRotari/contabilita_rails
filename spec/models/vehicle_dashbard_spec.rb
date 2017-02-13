@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe VehicleDashboard, type: :unit do
+  let(:time_now) { Time.zone.now }
+  let(:params) { {month: time_now.month, year: time_now.year, id: 1 } }
   let(:vehicle) { create(:vehicle) }
-  let(:id) { 1 }
   let(:current_user) { create(:user) }
-  let(:vehicle_dashboard) { VehicleDashboard.new(id, current_user) }
+  let(:vehicle_dashboard) { VehicleDashboard.new(current_user, params) }
 
   before :each do
     current_user

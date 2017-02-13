@@ -31,19 +31,23 @@ class Ticket < ActiveRecord::Base
     Time.zone.now
   end
 
-  def self.total_vehicles_month
-    vehicle.month.sum(:total)
+  def self.total_vehicles_month(month = time_now)
+    vehicle.month(month).sum(:total).round(2)
   end
 
   def self.total_vehicles_year
-    vehicle.year.sum(:total)
+    vehicle.year.sum(:total).round(2)
   end
 
-  def self.total_administrative_month(user_id)
-    administrative_current_user(user_id).month.sum(:total)
+  def self.total_administrative_month(user_id, month = time_now)
+    administrative_current_user(user_id).month(month).sum(:total)
   end
 
   def self.total_administrative_year(user_id)
     administrative_current_user(user_id).year.sum(:total)
+  end
+
+  def time_now
+    Time.zone.now
   end
 end

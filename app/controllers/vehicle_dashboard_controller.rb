@@ -3,11 +3,11 @@ class VehicleDashboardController < ApplicationController
   before_action :vehicle_any?
 
   def index
-    @vehicle_dashboard = VehicleDashboard.new(vehicle_id, current_user)
+    @vehicle_dashboard = VehicleDashboard.new(current_user, params)
   end
 
   def show
-    @vehicle_dashboard = VehicleDashboard.new(vehicle_id, current_user)
+    @vehicle_dashboard = VehicleDashboard.new(current_user, params)
   end
 
   def passive_invoices

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Vehicle, type: :unit do
+  let(:time_now) { Time.zone.now }
+  let(:params) { {month: time_now.month, year: time_now.year, id: 1 } }
   let(:user) { create(:user) }
   let(:second_user) { create(:user, email: 'test@test.com') }
 

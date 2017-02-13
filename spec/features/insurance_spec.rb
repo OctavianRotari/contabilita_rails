@@ -33,7 +33,8 @@ feature 'insurance' do
   end
 
   scenario 'user sees insurance info on the vehicle page' do
-    visit("/vehicles/#{vehicle.id}")
+    visit("/vehicles/dashboard")
+    click_link 'ER354BS'
     expect(page).to have_css '#insurance_deadline', text: insurance.deadline.strftime("%d-%m-%Y")
     expect(page).to have_css '#insurance_payment_deadline', text: (Time.zone.now + 3.months).strftime("%d-%m-%Y")
   end

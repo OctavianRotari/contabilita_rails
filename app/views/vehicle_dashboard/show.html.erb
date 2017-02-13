@@ -2,9 +2,9 @@
   <div class="index">
     <h2 id='vehicle_plate'><%= @vehicle_dashboard.plate %></h2>
     <div class="nav">
-      <h4><%= link_to 'Passive', passive_invoices_vehicle_path(@vehicle_dashboard.vehicle_id, month: Time.zone.now.month, year: Time.zone.now.year), :remote => true %></h4>
-      <h4><%= link_to 'Riepilogo', dashboard_vehicle_path(@vehicle_dashboard.vehicle_id) %></h4>
-      <h4><%= link_to 'Attive', active_invoices_vehicle_path(@vehicle_dashboard.vehicle_id, month: Time.zone.now.month, year: Time.zone.now.year), :remote => true %></h4>
+      <h4><%= link_to 'Passive', passive_invoices_vehicle_path(@vehicle_dashboard.id, month: Time.zone.now.month, year: Time.zone.now.year), :remote => true %></h4>
+      <h4><%= link_to 'Riepilogo', dashboard_vehicle_path(@vehicle_dashboard.id) %></h4>
+      <h4><%= link_to 'Attive', active_invoices_vehicle_path(@vehicle_dashboard.id, month: Time.zone.now.month, year: Time.zone.now.year), :remote => true %></h4>
     </div>
     <div id="invoices">
       <%= render "dashboards/summary",  dashboard: @vehicle_dashboard %>

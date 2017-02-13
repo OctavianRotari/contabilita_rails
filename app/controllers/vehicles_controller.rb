@@ -6,7 +6,8 @@ class VehiclesController < ApplicationController
   end
 
   def show
-    @vehicle = Vehicle.find(params[:id])
+    @vehicle_dashboard = VehicleDashboard.new(current_user, params)
+    @calculator = Calculator.new
   end
 
   def edit
@@ -49,5 +50,9 @@ class VehiclesController < ApplicationController
 
   def vehicle_params_user_id
     vehicle_params.merge!(user_id: current_user.id)
+  end
+
+  def vehicle_id
+    params[:id]
   end
 end

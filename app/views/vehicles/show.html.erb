@@ -1,29 +1,66 @@
 <div class="row">
   <div class="show">
     <div class="title">
-      <h3><%= @vehicle.plate %></h3>
+      <h3><%= @vehicle_dashboard.plate %></h3>
     </div>
     <div>
       <h4>Targa</h4>
-      <%= @vehicle.plate %>
+      <%= @vehicle_dashboard.plate %>
     </div>
     <div>
       <h4>Tipo mezzo</h4>
-      <%= @vehicle.type_of_vehicle %>
+      <%= @vehicle_dashboard.type_of_vehicle %>
     </div>
-    <%if @vehicle.insurances.active %>
+    <%if @vehicle_dashboard.insurances.active %>
       <div>
         <h4>Scadenza assicurazione</h4>
-        <p id="insurance_deadline"><%= @vehicle.insurances.active.deadline.strftime("%d-%m-%Y") %></p>
+        <p id="insurance_deadline"><%= @vehicle_dashboard.insurances.active.deadline.strftime("%d-%m-%Y") %></p>
       </div>
       <div>
         <h4>Scadenza pagamento assicurazione</h4>
-        <p id="insurance_payment_deadline"><%= @vehicle.insurances.active.payment_date %></p>
+        <p id="insurance_payment_deadline"><%= @vehicle_dashboard.insurances.active.payment_date %></p>
       </div>
       <div>
         <h4>Assicurazione</h4>
-        <p><%= link_to @vehicle.insurances.active.serial_of_contract, insurance_path(@vehicle.insurances.active.id) %></p>
+        <p><%= link_to @vehicle_dashboard.insurances.active.serial_of_contract, insurance_path(@vehicle_dashboard.insurances.active.id) %></p>
       </div>
     <%end%>
+    <div class="row">
+      <div class="invoices-by-year">
+        <h3><%= params[:month]%>/<%= params[:year]%></h3>
+        <h4><%= previos_month_costs(@vehicle_dashboard) %></h4>
+        <h4><%= next_month_costs(@vehicle_dashboard) %></h4>
+      </div>
+    </div>
+    <div class="row">
+      <%= render partial: 'invoices/passive_invoices_table', locals: {invoices: @vehicle_dashboard.month_passive, calculator: @calculator } %>
+    </div>
+    <div class="row">
+      <%= render partial: "fuel_receipts/fuel_receipts",  locals: { fuel_receipts: @vehicle_dashboard.vehicle_fuel_receipts_month, fuel_receipts_calculator: @calculator } %>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Spese generali</h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p id="current_month_costs"><%= @vehicle_dashboard.vehicle_general_expenses %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Assicurazioni</h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p id="current_month_costs"><%= @vehicle_dashboard.vehicle_insurances_month %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col span-1-of-2">
+        <h4>Costi totali <%= params[:month]%>/<%= params[:year]%></h4>
+      </div>
+      <div class="col span-1-of-2 data">
+        <p id="current_month_costs"><%= @vehicle_dashboard.total_costs_month %></p>
+      </div>
+    </div>
   </div>
 </div>

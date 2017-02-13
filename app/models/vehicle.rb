@@ -24,16 +24,16 @@ class Vehicle < ActiveRecord::Base
     where(charge_general_expenses: true).where(user_id: user_id).count
   end
 
-  def fuel_receipts_month_total
-    fuel_receipts.total_month
+  def fuel_receipts_month_total(month = time_now)
+    fuel_receipts.total_month(month)
   end
 
   def fuel_receipts_year_total
     fuel_receipts.total_year
   end
 
-  def passive_invoices_month_total
-    invoices.month_passive_total
+  def passive_invoices_month_total(month = time_now)
+    invoices.month_passive_total(month)
   end
 
   def passive_invoices_year_total
@@ -43,6 +43,10 @@ class Vehicle < ActiveRecord::Base
   def total_insurance_month
     return 0 unless insurances.active
     (insurances.active.total / 12).round(2)
+  end
+
+  def insurances_total
+    general_insurance_month + total_insurance_month
   end
 
   def total_insurance_year
@@ -66,9 +70,9 @@ class Vehicle < ActiveRecord::Base
     (general_insurances / general_expences).round(2)
   end
 
-  def general_expenses_month
+  def general_expenses_month(month = time_now)
     user_id = self.user_id
-    general_invoices_total = Invoice.month_general_expenses_total(user_id)
+    general_invoices_total = Invoice.month_general_expenses_total(user_id, month)
     return 0 if general_invoices_total.zero?
     general_expenses = Vehicle.count_vehicles_general(user_id)
     (general_invoices_total / general_expenses).round(2)
@@ -82,9 +86,9 @@ class Vehicle < ActiveRecord::Base
     (general_invoices_total / general_expenses).round(2)
   end
 
-  def vehicle_field_month
+  def vehicle_field_month(month = time_now)
     return 0 unless vehicle_field
-    vehicle_field.month.round(2)
+    vehicle_field.month(month).round(2)
   end
 
   def vehicle_field_year
@@ -92,17 +96,17 @@ class Vehicle < ActiveRecord::Base
     vehicle_field.year.round(2)
   end
 
-  def total_tickets_month
-    tickets.total_vehicles_month.round(2)
+  def total_tickets_month(month = time_now)
+    tickets.total_vehicles_month(month)
   end
 
   def total_tickets_year
-    tickets.total_vehicles_year.round(2)
+    tickets.total_vehicles_year
   end
 
-  def total_administrative_tickets_month
+  def total_administrative_tickets_month(month = time_now)
     user_id = self.user_id
-    administrative_tickets_total = Ticket.total_administrative_month(user_id)
+    administrative_tickets_total = Ticket.total_administrative_month(user_id, month)
     return 0 if administrative_tickets_total.zero?
     general_expenses = Vehicle.count_vehicles_general(user_id)
     (administrative_tickets_total / general_expenses).round(2)
@@ -116,23 +120,23 @@ class Vehicle < ActiveRecord::Base
     (administrative_tickets_total / general_expenses).round(2)
   end
 
-  def specific_month_costs
-    fuel_receipts_month_total +
-      passive_invoices_month_total +
+  def specific_month_costs(month = time_now)
+    fuel_receipts_month_total(month) +
+      passive_invoices_month_total(month) +
       total_insurance_month +
-      vehicle_field_month +
-      total_tickets_month
+      vehicle_field_month(month) +
+      total_tickets_month(month)
   end
 
-  def general_month_costs
+  def general_month_costs(month = time_now)
     return 0 unless charge_general_expenses
-    general_expenses_month +
+    general_expenses_month(month) +
       general_insurance_month +
-      total_administrative_tickets_month
+      total_administrative_tickets_month(month)
   end
 
-  def current_month_costs
-    specific_month_costs + general_month_costs
+  def current_month_costs(month = time_now)
+    specific_month_costs(month) + general_month_costs(month)
   end
 
   def specific_year_costs
@@ -152,5 +156,9 @@ class Vehicle < ActiveRecord::Base
 
   def current_year_costs
     specific_year_costs + general_year_costs
+  end
+
+  def time_now
+    Time.zone.now
   end
 end
