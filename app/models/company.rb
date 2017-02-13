@@ -12,11 +12,11 @@ class Company < ActiveRecord::Base
   validates :category_id, presence: { message: "Selezionare categoria dell'azienda" }
 
   def vehicles_insured
-    Vehicle.joins(insurances: :company)
+    Vehicle.joins(insurances: :company).uniq
   end
 
   def vehicles_refueling
-    Vehicle.joins(fuel_receipts: :company)
+    Vehicle.joins(fuel_receipts: :company).uniq
   end
 
   def calculator
