@@ -40,13 +40,14 @@ class Vehicle < ActiveRecord::Base
     invoices.year_passive_total
   end
 
-  def total_insurance_month
-    return 0 unless insurances.active
-    (insurances.active.total / 12).round(2)
+  def total_insurance_month(month = time_now)
+    active_insurances = insurances.active
+    return 0 unless active_insurances && month.month >= active_insurances.date_of_issue.month
+    (active_insurances.total / 12).round(2)
   end
 
-  def insurances_total
-    general_insurance_month + total_insurance_month
+  def insurances_total(month)
+    general_insurance_month + total_insurance_month(month)
   end
 
   def total_insurance_year
@@ -123,7 +124,7 @@ class Vehicle < ActiveRecord::Base
   def specific_month_costs(month = time_now)
     fuel_receipts_month_total(month) +
       passive_invoices_month_total(month) +
-      total_insurance_month +
+      total_insurance_month(month) +
       vehicle_field_month(month) +
       total_tickets_month(month)
   end

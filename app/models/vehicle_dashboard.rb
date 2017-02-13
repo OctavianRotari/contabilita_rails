@@ -33,7 +33,8 @@ class VehicleDashboard
   end
 
   def vehicle_insurances_month
-    vehicle.insurances_total
+    date = month_params
+    vehicle.insurances_total(date)
   end
 
   def type_of_vehicle
@@ -48,14 +49,14 @@ class VehicleDashboard
     params[:id]
   end
 
-  def month_passive
+  def total_month_passive
     date = month_params
-    invoices.month_passive(date)
+    vehicle.passive_invoices_month_total(date)
   end
 
-  def vehicle_fuel_receipts_month
+  def total_fuel_receipts_month
     date = month_params
-    vehicle_fuel_receipts.month(date)
+    vehicle.fuel_receipts_month_total(date)
   end
 
   def total_costs_month
