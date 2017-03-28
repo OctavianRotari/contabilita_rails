@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_companies
-    current_user.companies
+    current_user.companies.order('name ASC')
   end
 
   def current_user_categories
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_vehicles
-    current_user.vehicles
+    current_user.vehicles.order('plate ASC')
   end
 
   def current_user_insurances
